@@ -519,7 +519,7 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <script src="03-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <script src="03-slides_files/header-attrs-2.7/header-attrs.js"></script>
     <link href="03-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="03-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 </head>
@@ -693,12 +693,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="ok-here-we-go." class="slide level2">
 <h2>Ok, here we go.</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)   </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">## ── Attaching packages ────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">## ✓ tibble  3.0.3     ✓ dplyr   1.0.1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">## ✓ tidyr   1.1.1     ✓ stringr 1.4.0</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">## ✓ readr   1.3.1     ✓ forcats 0.5.0</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">## ── Conflicts ───────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">## ✓ tibble  3.1.0     ✓ dplyr   1.0.5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">## ✓ tidyr   1.1.3     ✓ stringr 1.4.0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">## ✓ readr   1.4.0     ✓ forcats 0.5.1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">## x dplyr::filter() masks stats::filter()</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">## x dplyr::lag()    masks stats::lag()</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"># this is an R package that contains ggplot graphing tools </span></span>
@@ -765,26 +765,26 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                        &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       </span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">## 1 TCGA-E9-A1NF-01A-11R-A14D-07 E9    A1NF        TCGA-E9-A1NF</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">## 2 TCGA-D8-A27M-01A-11R-A16F-07 D8    A27M        TCGA-D8-A27M</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">## 3 TCGA-BH-A0GZ-01A-11R-A056-07 BH    A0GZ        TCGA-BH-A0GZ</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">8</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 4</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">##   bcr_patient_uuid                     form_completion_date birth_days_to gender</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                                &lt;chr&gt;                &lt;chr&gt;         &lt;chr&gt; </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">## 1 a8b1f6e7-2bcf-460d-b1c6-1792a9801119 2011-6-23            -21981        FEMALE</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">## 2 ae65baeb-6b78-492a-8c63-bb7e93e83dc2 2011-7-17            -21910        FEMALE</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">## 3 27dfb9d4-3a2c-44bc-9acf-8f638d3f3004 2010-11-10           -22714        FEMALE</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">13</span>])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 5</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">##   menopause_status race  ethnicity              tumor_status vital_status</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;                  &lt;chr&gt;        &lt;chr&gt;       </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">## 1 Post             WHITE NOT HISPANIC OR LATINO TUMOR FREE   Alive       </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">## 2 Post             WHITE NOT HISPANIC OR LATINO TUMOR FREE   Alive       </span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">## 3 Post             WHITE [Not Available]        TUMOR FREE   Alive</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">## 3 TCGA-BH-A0GZ-01A-11R-A056-07 BH    A0GZ        TCGA-BH-A0GZ</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">8</span>])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 4</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">##   bcr_patient_uuid                     form_completion_date birth_days_to gender</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                                &lt;chr&gt;                &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">## 1 a8b1f6e7-2bcf-460d-b1c6-1792a9801119 2011-6-23            -21981        FEMALE</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">## 2 ae65baeb-6b78-492a-8c63-bb7e93e83dc2 2011-7-17            -21910        FEMALE</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co">## 3 27dfb9d4-3a2c-44bc-9acf-8f638d3f3004 2010-11-10           -22714        FEMALE</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">13</span>])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 5</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co">##   menopause_status race  ethnicity              tumor_status vital_status</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;                  &lt;chr&gt;        &lt;chr&gt;       </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co">## 1 Post             WHITE NOT HISPANIC OR LATINO TUMOR FREE   Alive       </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co">## 2 Post             WHITE NOT HISPANIC OR LATINO TUMOR FREE   Alive       </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">## 3 Post             WHITE [Not Available]        TUMOR FREE   Alive</span></span></code></pre></div>
 </section>
 <section id="scatterplot" class="slide level2">
 <h2>Scatterplot</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2))</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>ERBB2 is the official gene name for HER2.</li>
@@ -795,8 +795,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="scatterplot-1" class="slide level2">
 <h2>Scatterplot</h2>
 <p>Ok, I don’t like the black and the points are too big.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>,  <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>,  <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li><span class="math inline">\({\tt size}\)</span> is in mm.</li>
@@ -805,8 +805,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="aesthetic-mappings" class="slide level2">
 <h2>Aesthetic mappings</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>Some of our samples are tumors and some are <em>matched normal</em>. Perhaps not surprisingly, the normals have low expression of both oncogenes.</p></li>
@@ -815,16 +815,16 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="aesthetic-mappings-race" class="slide level2">
 <h2>Aesthetic mappings: Race</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>                           <span class="dt">color =</span> race), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>                           <span class="dt">color =</span> race), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="aesthetic-mappings-tnm-staging" class="slide level2">
 <h2>Aesthetic mappings: TNM staging</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>                          <span class="dt">shape =</span> tumor, <span class="dt">color =</span> ajcc_pathologic_tumor_stage), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>                          <span class="dt">shape =</span> tumor, <span class="dt">color =</span> ajcc_pathologic_tumor_stage), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>A bit noisey</li>
@@ -835,9 +835,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Facets partition the data (ESR1 vs HER2 expression) according to a third attribute (tumor stage). Notice the tilde (<span class="math inline">\(\sim\)</span>). This species a <em>formula</em> (more about this later).</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>ajcc_pathologic_tumor_stage, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>ajcc_pathologic_tumor_stage, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="facets-histological-type" class="slide level2">
@@ -845,9 +845,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>I’m not too convinced in a relationship between ER, HER2 and TNM staging. What about histological type?</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>histological_type, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>histological_type, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="geometric-objects" class="slide level2">
@@ -855,8 +855,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>GRB7 and ERBB2 (aka HER2) show correlation in their expression. This makes sense because high expression of HER2 in BC is very often due to amplification of the chromosomal region that contains HER2. In some patients, this genomic locus is amplified (duplicated) 30-50x. GRB7 lies very close to HER2 in this so-called <em>amplicon</em>.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="smoothing" class="slide level2">
@@ -864,24 +864,24 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Often we would just like to capture the essence of the relationship. Here for example that could be represented by a curve and a confidence interval <span class="math inline">\({\tt geom\_smooth}\)</span> rather than the actual points <span class="math inline">\({\tt geom\_point}\)</span>.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="smoothing-1" class="slide level2">
 <h2>Smoothing</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">linetype =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">linetype =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="smoothing-2" class="slide level2">
 <h2>Smoothing</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">linetype =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">linetype =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /></p>
 </section>
 <section id="statistical-transformations" class="slide level2">
@@ -889,8 +889,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Lymph node status has long been used by clinicians to measure how far a tumor has progressed. They count the number of positive lymph nodes and pay particular attention to the so-called <em>sentinal</em> lymph node (the one closest to the tumor).</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>lymph_nodes_examined_count))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>lymph_nodes_examined_count))</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>It is possible to reorder the x-axis but not for today….</li>
@@ -898,8 +898,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="statistical-transformations-are-beautiful" class="slide level2">
 <h2>Statistical transformations are beautiful</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>lymph_nodes_examined_count, <span class="dt">fill =</span> ajcc_pathologic_tumor_stage))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>lymph_nodes_examined_count, <span class="dt">fill =</span> ajcc_pathologic_tumor_stage))</span></code></pre></div>
 <p><img src="03-slides_files/figure-revealjs/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Notice how low stages “disappear” in patients with many lymph nodes.</li>

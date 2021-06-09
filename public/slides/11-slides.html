@@ -519,10 +519,10 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <script src="11-slides_files/header-attrs-2.4/header-attrs.js"></script>
+    <script src="11-slides_files/header-attrs-2.7/header-attrs.js"></script>
     <link href="11-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="11-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-    <script src="11-slides_files/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <script src="11-slides_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
     <link href="11-slides_files/str_view-0.1.0/str_view.css" rel="stylesheet" />
     <script src="11-slides_files/str_view-binding-1.4.0/str_view.js"></script>
 </head>
@@ -795,14 +795,14 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="stringr-1" class="slide level2">
 <h2>stringr</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="kw">str_view</span>(<span class="kw">c</span>(x,y), <span class="st">&quot;o.e&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-0c6895ce4573b5050a1e" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0c6895ce4573b5050a1e">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predicts<\/li>\n  <li>As the data keep coming in, R<span class='match'>oge<\/span>r looks more and more like a prophet.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">str_view</span>(<span class="kw">c</span>(x,y), <span class="st">&quot;..$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-3374a7b7532473a92dce" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3374a7b7532473a92dce">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predic<span class='match'>ts<\/span><\/li>\n  <li>As the data keep coming in, Roger looks more and more like a prophe<span class='match'>t.<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">str_view</span>(z, <span class="st">&quot;keep(s|)&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-b3063925796ff5a822e3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b3063925796ff5a822e3">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predicts. As the data <span class='match'>keep<\/span> coming in, Roger looks more and more like a prophet.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-be6449daa2725d9b24b8" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be6449daa2725d9b24b8">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predicts<\/li>\n  <li>As the data keep coming in, R<span class='match'>oge<\/span>r looks more and more like a prophet.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+str_view(c(x,y), "..$")
+<div id="htmlwidget-d52bf3f93e7aca33d02a" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d52bf3f93e7aca33d02a">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predic<span class='match'>ts<\/span><\/li>\n  <li>As the data keep coming in, Roger looks more and more like a prophe<span class='match'>t.<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+str_view(z, "keep(s|)")
+<div id="htmlwidget-2155c93e3400ddfc3b30" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2155c93e3400ddfc3b30">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predicts. As the data <span class='match'>keep<\/span> coming in, Roger looks more and more like a prophet.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </section>
 <section id="biostrings" class="slide level2">
 <h2>Biostrings</h2>
@@ -818,20 +818,20 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Biostrings allows for DNA strings (DNAString), RNA strings (RNAString), and amino acid strings (AAString) with <em>generic classes</em> BString and XString (more about these last two later).</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="co"># BiocManager::install(&quot;Biostrings&quot;)</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a><span class="kw">library</span>(Biostrings)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>dnastring =<span class="st"> </span><span class="kw">DNAString</span>(<span class="st">&quot;GCGATN-CTC&quot;</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a>dnastring</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a><span class="co">## seq: GCGATN-CTC</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a><span class="kw">length</span>(dnastring)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true"></a><span class="co">## [1] 10</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true"></a>DNA_ALPHABET</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true"></a><span class="co">##  [1] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot; &quot;M&quot; &quot;R&quot; &quot;W&quot; &quot;S&quot; &quot;Y&quot; &quot;K&quot; &quot;V&quot; &quot;H&quot; &quot;D&quot; &quot;B&quot; &quot;N&quot; &quot;-&quot; &quot;+&quot; &quot;.&quot;</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true"></a><span class="kw">alphabetFrequency</span>(dnastring, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true"></a><span class="co">##     A     C     G     T other </span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true"></a><span class="co">##   0.1   0.3   0.2   0.2   0.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="co"># BiocManager::install(&quot;Biostrings&quot;)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="kw">library</span>(Biostrings)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>dnastring =<span class="st"> </span><span class="kw">DNAString</span>(<span class="st">&quot;GCGATN-CTC&quot;</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>dnastring</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a><span class="co">## seq: GCGATN-CTC</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a><span class="kw">length</span>(dnastring)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a><span class="co">## [1] 10</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true"></a>DNA_ALPHABET</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true"></a><span class="co">##  [1] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot; &quot;M&quot; &quot;R&quot; &quot;W&quot; &quot;S&quot; &quot;Y&quot; &quot;K&quot; &quot;V&quot; &quot;H&quot; &quot;D&quot; &quot;B&quot; &quot;N&quot; &quot;-&quot; &quot;+&quot; &quot;.&quot;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true"></a><span class="kw">alphabetFrequency</span>(dnastring, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true"></a><span class="co">##     A     C     G     T other </span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true"></a><span class="co">##   0.1   0.3   0.2   0.2   0.2</span></span></code></pre></div>
 <ul>
 <li><p><a href="https://www.bioinformatics.org/sms/iupac.html">IUPAC</a>.</p></li>
 <li><p>The “-” indicates a gap (more about that later).</p></li>
@@ -839,160 +839,80 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section id="biostrings-2" class="slide level2">
 <h2>Biostrings</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>dnastring</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="co">## seq: GCGATN-CTC</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a><span class="kw">reverseComplement</span>(dnastring)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a><span class="co">## seq: GAG-NATCGC</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a>dnastring[<span class="dv">8</span>]</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a><span class="co">## 1-letter DNAString object</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true"></a><span class="co">## seq: C</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true"></a>dnastring[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>]</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true"></a><span class="co">## 7-letter DNAString object</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true"></a><span class="co">## seq: ATN-CTC</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true"></a>dnastring <span class="op">==</span><span class="st"> </span><span class="kw">reverseComplement</span>(<span class="kw">reverseComplement</span>(dnastring))</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true"></a>view =<span class="st"> </span><span class="kw">Views</span>(dnastring, <span class="dt">start=</span><span class="dv">3</span><span class="op">:</span><span class="dv">0</span>, <span class="dt">end=</span><span class="dv">5</span><span class="op">:</span><span class="dv">8</span>)</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true"></a>view</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true"></a><span class="co">## Views on a 10-letter DNAString subject</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true"></a><span class="co">## subject: GCGATN-CTC</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true"></a><span class="co">## views:</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true"></a><span class="co">##       start end width</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true"></a><span class="co">##   [1]     3   5     3 [GAT]</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true"></a><span class="co">##   [2]     2   6     5 [CGATN]</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true"></a><span class="co">##   [3]     1   7     7 [GCGATN-]</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true"></a><span class="co">##   [4]     0   8     9 [ GCGATN-C]</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>dnastring</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="co">## seq: GCGATN-CTC</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a><span class="kw">reverseComplement</span>(dnastring)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a><span class="co">## seq: GAG-NATCGC</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true"></a>dnastring[<span class="dv">8</span>]</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true"></a><span class="co">## 1-letter DNAString object</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true"></a><span class="co">## seq: C</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true"></a>dnastring[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true"></a><span class="co">## 7-letter DNAString object</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true"></a><span class="co">## seq: ATN-CTC</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true"></a>dnastring <span class="op">==</span><span class="st"> </span><span class="kw">reverseComplement</span>(<span class="kw">reverseComplement</span>(dnastring))</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true"></a>view =<span class="st"> </span><span class="kw">Views</span>(dnastring, <span class="dt">start=</span><span class="dv">3</span><span class="op">:</span><span class="dv">0</span>, <span class="dt">end=</span><span class="dv">5</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true"></a>view</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true"></a><span class="co">## Views on a 10-letter DNAString subject</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true"></a><span class="co">## subject: GCGATN-CTC</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true"></a><span class="co">## views:</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true"></a><span class="co">##       start end width</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true"></a><span class="co">##   [1]     3   5     3 [GAT]</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true"></a><span class="co">##   [2]     2   6     5 [CGATN]</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true"></a><span class="co">##   [3]     1   7     7 [GCGATN-]</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true"></a><span class="co">##   [4]     0   8     9 [ GCGATN-C]</span></span></code></pre></div>
 </section>
 <section id="biostrings-3" class="slide level2">
 <h2>Biostrings</h2>
 <ul>
 <li>There is also a notion of a set of sequences</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>dna_seqs =<span class="st"> </span><span class="kw">DNAStringSet</span>(<span class="kw">c</span>(<span class="st">&quot;TATGCG&quot;</span>, <span class="st">&quot;TAACCG&quot;</span>, <span class="st">&quot;AATGGG&quot;</span>, <span class="st">&quot;TTACGG&quot;</span>))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a><span class="kw">alphabetFrequency</span>(dna_seqs, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a><span class="co">##              A         C         G         T other</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a><span class="co">## [1,] 0.1666667 0.1666667 0.3333333 0.3333333     0</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a><span class="co">## [2,] 0.3333333 0.3333333 0.1666667 0.1666667     0</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a><span class="co">## [3,] 0.3333333 0.0000000 0.5000000 0.1666667     0</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a><span class="co">## [4,] 0.1666667 0.1666667 0.3333333 0.3333333     0</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true"></a>dna_seqs</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true"></a><span class="co">## DNAStringSet object of length 4:</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true"></a><span class="co">##     width seq</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true"></a><span class="co">## [1]     6 TATGCG</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true"></a><span class="co">## [2]     6 TAACCG</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true"></a><span class="co">## [3]     6 AATGGG</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true"></a><span class="co">## [4]     6 TTACGG</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>dna_seqs =<span class="st"> </span><span class="kw">DNAStringSet</span>(<span class="kw">c</span>(<span class="st">&quot;TATGCG&quot;</span>, <span class="st">&quot;TAACCG&quot;</span>, <span class="st">&quot;AATGGG&quot;</span>, <span class="st">&quot;TTACGG&quot;</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a><span class="kw">alphabetFrequency</span>(dna_seqs, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a><span class="co">##              A         C         G         T other</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a><span class="co">## [1,] 0.1666667 0.1666667 0.3333333 0.3333333     0</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a><span class="co">## [2,] 0.3333333 0.3333333 0.1666667 0.1666667     0</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a><span class="co">## [3,] 0.3333333 0.0000000 0.5000000 0.1666667     0</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a><span class="co">## [4,] 0.1666667 0.1666667 0.3333333 0.3333333     0</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true"></a>dna_seqs</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true"></a><span class="co">## DNAStringSet object of length 4:</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true"></a><span class="co">##     width seq</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true"></a><span class="co">## [1]     6 TATGCG</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true"></a><span class="co">## [2]     6 TAACCG</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true"></a><span class="co">## [3]     6 AATGGG</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true"></a><span class="co">## [4]     6 TTACGG</span></span></code></pre></div>
 </section>
 <section id="biostrings-4" class="slide level2">
 <h2>Biostrings</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="co">#BiocManager::install(&quot;BSgenome.Scerevisiae.UCSC.sacCer2&quot;)</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="kw">library</span>(BSgenome.Scerevisiae.UCSC.sacCer2)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>yeast_<span class="dv">1</span> &lt;-<span class="st"> </span>Scerevisiae<span class="op">$</span>chrI; </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a><span class="kw">class</span>(yeast_<span class="dv">1</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a><span class="co">## [1] &quot;DNAString&quot;</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a><span class="co">## attr(,&quot;package&quot;)</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a><span class="co">## [1] &quot;Biostrings&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="co">#BiocManager::install(&quot;BSgenome.Scerevisiae.UCSC.sacCer2&quot;)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="kw">library</span>(BSgenome.Scerevisiae.UCSC.sacCer2)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a>yeast_<span class="dv">1</span> &lt;-<span class="st"> </span>Scerevisiae<span class="op">$</span>chrI; </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a><span class="kw">class</span>(yeast_<span class="dv">1</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a><span class="co">## [1] &quot;DNAString&quot;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a><span class="co">## attr(,&quot;package&quot;)</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a><span class="co">## [1] &quot;Biostrings&quot;</span></span></code></pre></div>
 </section>
 <section id="biostrings-5" class="slide level2">
 <h2>Biostrings</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>Sc &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">chromosome=</span><span class="ot">NA</span>, <span class="dt">A=</span><span class="ot">NA</span>, <span class="dt">C=</span><span class="ot">NA</span>, <span class="dt">G=</span><span class="ot">NA</span>, <span class="dt">T=</span><span class="ot">NA</span>, <span class="dt">other=</span><span class="ot">NA</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>) {</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a>  tmp &lt;-<span class="st"> </span><span class="kw">alphabetFrequency</span>(Scerevisiae[[i]], <span class="dt">as.prob=</span><span class="ot">TRUE</span>, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a>  Sc &lt;-<span class="st"> </span><span class="kw">add_row</span>( Sc, <span class="dt">chromosome =</span> <span class="kw">str_c</span>(<span class="st">&quot;Chr &quot;</span>, i), </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>                 <span class="dt">A=</span>tmp[<span class="dv">1</span>],  <span class="dt">C=</span>tmp[<span class="dv">2</span>] ,</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>                 <span class="dt">G=</span>tmp[<span class="dv">3</span>],  <span class="dt">T=</span>tmp[<span class="dv">4</span>], <span class="dt">other =</span> tmp[<span class="dv">5</span>] )</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a>  }</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a>Sc &lt;-<span class="st"> </span>Sc <span class="op">%&gt;%</span><span class="st"> </span>drop_na <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(A, C, G, T, other),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>                                            <span class="dt">names_to=</span><span class="st">&quot;nucleotide&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>Sc &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">chromosome=</span><span class="ot">NA</span>, <span class="dt">A=</span><span class="ot">NA</span>, <span class="dt">C=</span><span class="ot">NA</span>, <span class="dt">G=</span><span class="ot">NA</span>, <span class="dt">T=</span><span class="ot">NA</span>, <span class="dt">other=</span><span class="ot">NA</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>) {</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a>  tmp &lt;-<span class="st"> </span><span class="kw">alphabetFrequency</span>(Scerevisiae[[i]], <span class="dt">as.prob=</span><span class="ot">TRUE</span>, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a>  Sc &lt;-<span class="st"> </span><span class="kw">add_row</span>( Sc, <span class="dt">chromosome =</span> <span class="kw">str_c</span>(<span class="st">&quot;Chr &quot;</span>, i), </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a>                 <span class="dt">A=</span>tmp[<span class="dv">1</span>],  <span class="dt">C=</span>tmp[<span class="dv">2</span>] ,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a>                 <span class="dt">G=</span>tmp[<span class="dv">3</span>],  <span class="dt">T=</span>tmp[<span class="dv">4</span>], <span class="dt">other =</span> tmp[<span class="dv">5</span>] )</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a>  }</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true"></a>Sc &lt;-<span class="st"> </span>Sc <span class="op">%&gt;%</span><span class="st"> </span>drop_na <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(A, C, G, T, other),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true"></a>                                            <span class="dt">names_to=</span><span class="st">&quot;nucleotide&quot;</span>)</span></code></pre></div>
 </section>
 <section id="biostrings-6" class="slide level2">
 <h2>Biostrings</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>Sc, <span class="kw">aes</span>(<span class="dt">x=</span>chromosome, <span class="dt">y=</span>value, <span class="dt">fill=</span>nucleotide)) <span class="op">+</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>Sc, <span class="kw">aes</span>(<span class="dt">x=</span>chromosome, <span class="dt">y=</span>value, <span class="dt">fill=</span>nucleotide)) <span class="op">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>))</span></code></pre></div>
 <p><img data-src="11-slides_files/figure-revealjs/unnamed-chunk-15-1.png" /><!-- --></p>
-</section>
-<section id="biostrings-7" class="slide level2">
-<h2>Biostrings</h2>
-<ul>
-<li>Biostrings has some example data.</li>
-</ul>
-<pre><code>## DNAStringSet object of length 6:
-##     width seq                                               names               
-## [1]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA Genbank
-## [2]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA RF70s
-## [3]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA SS78
-## [4]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA Bull
-## [5]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA G97
-## [6]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA NEB03</code></pre>
-<pre><code>## [1] &quot;DNAStringSet&quot;
-## attr(,&quot;package&quot;)
-## [1] &quot;Biostrings&quot;</code></pre>
-<pre><code>## [1] 6</code></pre>
-<pre><code>## [1] 5386
-## [1] 5386
-## [1] 5386
-## [1] 5386
-## [1] 5386
-## [1] 5386</code></pre>
-</section>
-<section id="biostrings-8" class="slide level2">
-<h2>Biostrings</h2>
-<ul>
-<li>Whereas the previous slide gave the full length genomes, we also have access to approximatley 1000 short reads from a sequencer.</li>
-</ul>
-<pre><code>## DNAStringSet object of length 1113:
-##        width seq
-##    [1]    35 GTTATTATACCGTCAAGGACTGTGTGACTATTGAC
-##    [2]    35 GGTGGTTATTATACCGTCAAGGACTGTGTGACTAT
-##    [3]    35 TACCGTCAAGGACTGTGTGACTATTGACGTCCTTC
-##    [4]    35 GTACGCCGGGCAATAATGTTTATGTTGGTTTCATG
-##    [5]    35 GGTTTCATGGTTTGGTCTAACTTTACCGCTACTAA
-##    ...   ... ...
-## [1109]    35 ATAATGTTTATGTTGGTTTCATGGTTTGTTCTATC
-## [1110]    35 GGGCAATAATGTTTATGTTGGTTTCATTTTTTTTT
-## [1111]    35 CAATAATGTTTATGTTGGTTTCATGGTTTGTTTTA
-## [1112]    35 GACGTCCTTCCTCGTACGCCGGGCAATGATGTTTA
-## [1113]    35 ACGCCGGGCAATAATGTTTATGTTGTTTTCATTGT</code></pre>
-</section>
-<section id="biostrings-9" class="slide level2">
-<h2>Biostrings</h2>
-<ul>
-<li>An important concept in computational biology is the notion of an alignment: how to find one string within another string.</li>
-</ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a>PpiI &lt;-<span class="st"> &quot;GAACNNNNNCTC&quot;</span>  <span class="co"># a restriction enzyme pattern</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a>(align.PpiI &lt;-<span class="st"> </span><span class="kw">matchPattern</span>(PpiI, phiX174Phage[[<span class="dv">1</span>]], <span class="dt">fixed=</span><span class="ot">FALSE</span>))</span></code></pre></div>
-<pre><code>## Views on a 5386-letter DNAString subject
-## subject: GAGTTTTATCGCTTCCATGACGCAGAAGTTAACA...CTTCGATAAAAATGATTGGCGTATCCAACCTGCA
-## views: NONE</code></pre>
-</section>
-<section id="biostrings-10" class="slide level2">
-<h2>Biostrings</h2>
-<ul>
-<li>The previous slide explored a very simple notion of alignment, basically an “exact” match. There are more biologically relevant notions of alignment that ultimately are based in models of evolution. We will learn these in part 3 of the course.</li>
-</ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a>aligns &lt;-<span class="st"> </span><span class="kw">pairwiseAlignment</span>(srPhiX174, phiX174Phage[[<span class="st">&quot;Genbank&quot;</span>]],</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true"></a>                            <span class="dt">type =</span> <span class="st">&quot;global-local&quot;</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true"></a>aligns<span class="op">@</span>subject</span></code></pre></div>
-<pre><code>## QualityAlignedXStringSet (1 of 1113)
-## [2750] GTTATTATACCGTCAAGGACTGTGTGACTATTGAC</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a>aligns<span class="op">@</span>subject<span class="op">@</span>range</span></code></pre></div>
-<pre><code>## IRanges object with 1113 ranges and 0 metadata columns:
-##              start       end     width
-##          &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
-##      [1]      2750      2784        35
-##      [2]      2746      2780        35
-##      [3]      2757      2791        35
-##      [4]      2795      2829        35
-##      [5]      2821      2855        35
-##      ...       ...       ...       ...
-##   [1109]      2807      2841        35
-##   [1110]      2802      2836        35
-##   [1111]      2805      2839        35
-##   [1112]      2782      2816        35
-##   [1113]      2797      2831        35</code></pre>
 </section>
 <section id="points-of-reflection" class="slide level2">
 <h2>Points of reflection</h2>

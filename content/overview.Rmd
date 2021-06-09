@@ -11,7 +11,7 @@ library(tidyverse)
 library(pander) 
 ```
 
-# Course objectives
+# Course objectives 
 
 Our fundamental goal is to ensure you have the necessary bioinformatics skills, both in terms of tools and underlying analytic approaches,in order to fully participate in modern life science approaches. 
 

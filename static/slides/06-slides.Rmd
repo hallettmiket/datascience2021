@@ -28,7 +28,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-library(reshape2)
+library(reshape2) 
 load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")   # load the BC dataset
 # small_brca <- mutate(small_brca, menopause_status = plyr::revalue(menopause_status, c(
 #       "Post (prior bilateral ovariectomy OR >12 mo since LMP with no prior hysterectomy)" = "Post",

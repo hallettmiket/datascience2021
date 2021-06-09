@@ -519,7 +519,7 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <script src="06-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <script src="06-slides_files/header-attrs-2.7/header-attrs.js"></script>
     <link href="06-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="06-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 </head>
@@ -695,21 +695,20 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="whats-up-with-tt-histologic_diagnosis" class="slide level2">
 <h2>What’s up with <span class="math inline">\({\tt histologic\_diagnosis}\)</span>?</h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>brca <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(histologic_diagnosis_other) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>( nn &lt;-<span class="st"> </span><span class="kw">n</span>())</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">## `summarise()` ungrouping output (override with `.groups` argument)</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">## # A tibble: 60 x 2</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">##    histologic_diagnosis_other                                `nn &lt;- n()`</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;                                                           &lt;int&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">##  1 [Not Applicable]                                                 1128</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">##  2 Adenocarcinoma with squamous differentiation, metaplastic           1</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">##  3 Adenoid Cystic Carcinoma                                            1</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">##  4 Apocrine                                                            1</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">##  5 Cribiform                                                           1</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">##  6 Ductal &amp; Mucinous                                                   2</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">##  7 ductal and lobular                                                  2</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">##  8 ductal and lobular features                                         2</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">##  9 ductal and papillary                                                1</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co">## 10 Ductal partially papillary                                          1</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a><span class="co">## # … with 50 more rows</span></span></code></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">## # A tibble: 60 x 2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">##    histologic_diagnosis_other                                `nn &lt;- n()`</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;                                                           &lt;int&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">##  1 [Not Applicable]                                                 1128</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">##  2 Adenocarcinoma with squamous differentiation, metaplastic           1</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">##  3 Adenoid Cystic Carcinoma                                            1</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">##  4 Apocrine                                                            1</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">##  5 Cribiform                                                           1</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">##  6 Ductal &amp; Mucinous                                                   2</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">##  7 ductal and lobular                                                  2</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">##  8 ductal and lobular features                                         2</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">##  9 ductal and papillary                                                1</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">## 10 Ductal partially papillary                                          1</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co">## # … with 50 more rows</span></span></code></pre></div>
 </section>
 <section id="explore-other-variables-3" class="slide level2">
 <h2>Explore other variables</h2>

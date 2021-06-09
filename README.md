@@ -1,8 +1,12 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5593d0f5-bec7-41b1-bbe6-53aed0f28f2e/deploy-status)](https://app.netlify.com/sites/hallett-biology-datascience/deploys)
+
 # General
 
-The structure of this website was modified from dataviz.andrewheiss.com
 
-This repository contains the code for generating [datascience.mikehallett.science](https://datascience.mikehallett.science).
+ 
+The general structure of this website was modified from dataviz.andrewheiss.com
+
+This repository contains the code for generating [this course](https://hallett-biology-datascience.netlify.app/).
 
 ## Theme  
 
@@ -21,3 +25,4 @@ To get the theme later, use this command:
 To update to the latest version of the theme, use:
 
     git submodule update --recursive --remote
+

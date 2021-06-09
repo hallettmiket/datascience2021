@@ -4,7 +4,7 @@
 
 
  
-The structure of this website was modified from dataviz.andrewheiss.com
+The general structure of this website was modified from dataviz.andrewheiss.com
 
 This repository contains the code for generating [this course](https://hallett-biology-datascience.netlify.app/).
 

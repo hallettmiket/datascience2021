@@ -1,0 +1,32 @@
+---
+title: "Reproducibility in life science research"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/23-slides.html)
+
+
+
+# Action Items
+
+- Assignment 4
+
+- Project
+
+- Start to prepare for final
+
+
+
+# Points of Reflection
+
+
+- What from the course have you learnt that could help increase the reproducibility of your own research?
+
+- Could an approach such as Distill work for the life sciences?
+

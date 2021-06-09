@@ -1,0 +1,14 @@
+---
+title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 20 at Youtube](https://youtu.be/fcxyQATE3Ec)
+
+
+
+
+

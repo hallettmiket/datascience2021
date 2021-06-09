@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Readings on Bioinformatics</title>
+    <link>/reading/</link>
+    <description>Recent content in Readings on Bioinformatics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/reading/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bioinformatics repositories: the NCBI and other tools</title>
+      <link>/reading/07-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/07-reading/</guid>
+      <description>Required  The NCBI Handbook Please read short chapter on Genome (page 89-94).
+ Also please read the definition of GenBank (page 381). This link gives a bit more information.
+ Please read The Entrez Search and Retrieval System (page 459-44). Then try it out using your favourite gene (choose an organism and gene at random otherwise).
+ Finally please read the short section on the NCBI Protein database (page 385-6)</description>
+    </item>
+    
+    <item>
+      <title>Computational challenges of single cell profiling</title>
+      <link>/reading/22-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/22-reading/</guid>
+      <description>Required  [Macosko et al (2015) Cell] (https://www.cell.com/fulltext/S0092-8674%2915%2900549-8)(Please watch video and try to undestand up to Figures 1, 2, and S2. You don’t need to read the whole paper.)
+ Candida albicans single cell project (my lab)
+  Recommended Reading  Laehnemann et al. (2020) Elevn grand challenges in single-cell data science. Genome Biology (Try to understand the intuition of each of the 11 challenges.)
+ Trapnell (2018) Defining cell types and states with single-cell genomes.</description>
+    </item>
+    
+    <item>
+      <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
+      <link>/reading/21-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/21-reading/</guid>
+      <description>Required  Convolution Neural Networks
+ Leanring to drive
+ Learning to converse
+ Hide and Seek - Reinforcement learning  DeepMind versus Atari games
+ OpenAI Microscope
+  Recommended Reading  Learning to walk
+ If you are a fan of chess…
+ Not perfect
+ DeepMind versus StarCraft
+ Image to Image Translation. Consider microscopy for example.
+ Cross-model interpolations
+ Supervised Image-to-Image Translation
+ Winter to Summer</description>
+    </item>
+    
+    <item>
+      <title>Discovering subtypes in breast cancer: unsupervised analysis</title>
+      <link>/reading/18-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/18-reading/</guid>
+      <description>  Required  Conditional probablity  Recommended Reading  Basic Probability Theory
+ The Hallmarks of Cancer I and II
+ The Emporer of All Maladies
+  Action items  Assignment #4
+ Project
+ Complete the dynamic programming table.
+  </description>
+    </item>
+    
+    <item>
+      <title>Discovery breast cancer subtypes: unsupervised analysis</title>
+      <link>/reading/19-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/19-reading/</guid>
+      <description>  Required R for Data Science, Chapter 23
+Recommended Reading Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Exploratory data analysis of breast cancer transcriptomes</title>
+      <link>/reading/06-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/06-reading/</guid>
+      <description>Required  Chapter 7 for Data Science: Basics  Recommended Reading  magrittr package in R for pipes.
+ Chapter 8 for Data Science: Projects is very short and we have covered most of this material throughout the lecture. It might be of interest to you.
+  Deeper insight  DataCamp tutorial on pipes  Action items  You might investigate the code in Project L06 at RStudio Cloud.</description>
+    </item>
+    
+    <item>
+      <title>Exploring microbial diversity across our oceans</title>
+      <link>/reading/10-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/10-reading/</guid>
+      <description>  Required  Sample Variance
+ Chapters 12, 13, 15: R for Data If you haven’t completed them.
+  Recommended Reading Action items  Assignment #2  </description>
+    </item>
+    
+    <item>
+      <title>Gene finding continued</title>
+      <link>/reading/15-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/15-reading/</guid>
+      <description>  Required  Textbook, Chapter 21 Iteration  Recommended Reading Action items  Assignment #3  </description>
+    </item>
+    
+    <item>
+      <title>Gene finding with Hidden Markov Models</title>
+      <link>/reading/14-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/14-reading/</guid>
+      <description>  Required  Textbook, Chapter 22  Recommended Reading  Measures of performance Try to understand the basic definitions of accuracy, sensitivity, specificity, true/false positive/negative.
+ S4 Object-oriented programming Try to understand the basics of S3 classes in R.
+  Action items  Assignment #3  </description>
+    </item>
+    
+    <item>
+      <title>Genome annotations</title>
+      <link>/reading/12-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/12-reading/</guid>
+      <description>  Required  Annotate Bioconductor package  Recommended Reading  1000 Genomes Project
+ Biostrings
+  Action items  Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+  </description>
+    </item>
+    
+    <item>
+      <title>How to wrangle with marine microbes</title>
+      <link>/reading/08-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/08-reading/</guid>
+      <description>Required (Spread over L08 and L09)  Chapters 10-13: R for Data Sience (they are short and most of the material is already familiar to you)
+ Intro. to Metagenomics
+  Recommended Reading (Spread over L08 and L09)  Sunagawa et al. (2015) Structure and function of the global ocean microbiome  You will need to be logged into the Concordia VPN to access this paper.
+ Metagenonomics (wiki)</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/reading/00-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/00-reading/</guid>
+      <description>This is the first class, so allow me to run through how the Readings pages work.
+Both Readings and Video should be completed before the actual lecture. The lecture itself is intended for you to ask questions, for me to give out small quizzes/puzzles/questions (for grades), and for me to provide deeper insight into the material.
+Required  Please read the Overview for the course.Required reading represents fundamental material that you are expected to master.</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/reading/01-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/01-reading/</guid>
+      <description>Required  Please read the Resources for the course.
+ These are interesting short articles on different approaches towards keeping lab notebooks, and the pros and cons of electronic laboratory notebooks (ELNs) versus traditional paper notebooks. E Pain (2019) Science and R Kwok (2018) Nature.
+  Recommended  Read a little bit about RStudio here and specifically RStudio Cloud
+ If you have difficulties with Google Drive, this seems like a reasonable tutorial.</description>
+    </item>
+    
+    <item>
+      <title>IT for the Life Sciences</title>
+      <link>/reading/02-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/02-reading/</guid>
+      <description>Required  Chapter 2 R for Data Science: Introduction (1 page long)  Recommended  Try to understand  Antikythera Mechanism Napier’s Bones and Jacquard Loom The Sun Shadow Board   Fun Reading  Computers over Time Computer Science: some of its flavours:  Algorithms Cryptography Computational Complexity Databases Compilers  Read on-line resources with some passing familarity with computer developments in the 20th century. The Turing Award Suggested readings: The Enigma, or at least the movie The Imitation Game War Games, the best movie ever.</description>
+    </item>
+    
+    <item>
+      <title>Models of sequence evolution</title>
+      <link>/reading/16-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/16-reading/</guid>
+      <description>  Required Amino Acids
+Smart Biology - Protein Structure
+Recommended Reading  Junk DNA This is a reply by Ford Doolittle (Dalhousie University in Halifax, a famous evolutionary biologist) to a debate in the mid-10’s about the fundamental nature of junk DNA.
+ BLOSUM matrices
+ The Life History of 21 Breast Cancers
+  Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Organzing the Tara Oceans data</title>
+      <link>/reading/09-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/09-reading/</guid>
+      <description>Required (Spread over L08 and L09)  Chapters 12, 13, 15: R for Data (they are short and most of the material is already familiar to you)
+ The Bermuda Principles
+ Bioconductor
+  Recommended Reading (Spread over L08 and L09)  Sunagawa et al. (2015) Structure and function of the global ocean microbiome  You will need to be logged into the Concordia VPN to access this paper.</description>
+    </item>
+    
+    <item>
+      <title>Phylogenies and alignments</title>
+      <link>/reading/17-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/17-reading/</guid>
+      <description>  Required  [BLOSUM matrices(https://en.wikipedia.org/wiki/BLOSUM)  Recommended Reading  The Hallmarks of Cancer I and II The Emporer of All Maladies  Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
+      <link>/reading/20-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/20-reading/</guid>
+      <description>  Required  Oncotype Dx
+ MammaPrint
+  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Representing and Manipulating Data in R</title>
+      <link>/reading/04-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/04-reading/</guid>
+      <description>  Required  Chapter 4 for Data Science: Basics  Deeper insight  Introduction to R (DataCamp) Datacamp has some excellent short courses in R.  Action items  You might investigate the code in Project L04 at RStudio Cloud.  </description>
+    </item>
+    
+    <item>
+      <title>Representing genomes and their annotations</title>
+      <link>/reading/11-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/11-reading/</guid>
+      <description>  Required  Chapters 14 - Strings  Recommended Reading  Lab October 20th Video
+ Integrative Genome Viewer
+  Action items  Oct 22 Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+  </description>
+    </item>
+    
+    <item>
+      <title>Reproducibility in life science research</title>
+      <link>/reading/23-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/23-reading/</guid>
+      <description>Required  Chapters 26-30 They are very short and most of the material is at least passingly familiar to you.
+ Duke scandal This event prompted an indepth study and guidelines; see OMICS below.
+ Reproducibility crisis The wiki page gives a decent overview to the problem and surveys the major angles for addressing this issue.
+  Recommended Reading  OMICS - lessons learned and the path forward</description>
+    </item>
+    
+    <item>
+      <title>Transcription factor binding sites in Baker’s yeast</title>
+      <link>/reading/13-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/13-reading/</guid>
+      <description>  Required  Oxford lecture Around 2:45mins, they start to talk about binding sites.
+ Overview of the Gene Ontology
+  Recommended Reading  TFs the Movie From Wyeth Wasserman (UBC), a founder of JASPAR.
+ Primer on Gene Ontologies
+  Action items  Oct 29 Midterm  </description>
+    </item>
+    
+    <item>
+      <title>Transformations of breast cancer transcriptional cohorts</title>
+      <link>/reading/05-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/05-reading/</guid>
+      <description>  Required  Chapter 5 for Data Science: Basics
+ Simpson’s Paradox
+  Recommended Reading  If you didn’t have time previously to explore TCGA, perhaps take a look at the project now.  Deeper insight  dplyr tutorial Datacamp’s dpylyr tutorial  Action items  You might investigate the code in Project L05 at RStudio Cloud.  </description>
+    </item>
+    
+    <item>
+      <title>Visualizing breast cancer transcriptomes</title>
+      <link>/reading/03-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/03-reading/</guid>
+      <description>Required  Chapter 3 R for Data Science: Introduction
+ Sequencing by Synthesis
+ Sequencing by Synthesis (more background including DNA chemistry)
+  Recommended  Transcriptomics Excellent set of slides describing sequencing technologies and trends. Includes nice grpahics about Illumina technology. [From D Beiting, UPenn]
+ History of Sequencing and Illumina’s Sequencing by Synthesis[From D Beiting, UPenn]
+  Deeper insight  DIY Transcriptomics A nice course covering the central topics of transcriptomic bioinformatic analysis.</description>
+    </item>
+    
+  </channel>
+</rss>

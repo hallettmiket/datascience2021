@@ -1,0 +1,13 @@
+---
+title: "Modern Computing Paradigms"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 02 Part 1 at Youtube: Computing Paradigms](https://youtu.be/E-UGYfLZsJg) 
+
+[Lecture 02 Part 2 at Youtube (RStudio Cloud)](https://youtu.be/IaeUbzn8Pdc) 
+
+

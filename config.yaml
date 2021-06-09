@@ -1,0 +1,87 @@
+baseURL: "/"
+languageCode: en-us
+title: Bioinformatics
+theme: ath-tufte-hugo
+googleAnalytics: ""
+ignoreFiles:
+  - \.Rmd$
+  - \.Rmarkdown$
+  - \.yaml$
+  - _cache$
+  - \.csl$
+  - \.md$
+  - \.utf8$
+  - \.knit$
+permalinks:
+  post: "/:year/:month/:day/:slug/"
+menu:
+  main:
+    - name: Overview
+      url: /overview/
+      weight: 1
+    - name: Assignments 
+      url: /assignments/
+      weight: 4
+    - name: Syllabus
+      url: /syllabus/
+      weight: 2
+    - name: Resources
+      url: /resources/
+      weight: 3
+    - name: Projects
+      url: /projects/
+      weight: 5
+# Disable taxonomies
+taxonomies:
+  tag: ""
+  group: ""
+  category: ""
+params:
+  author: Mike Hallett
+  thumbnail: /images/sys-small1.png
+  instructor: 
+    name: Mike Hallett
+    email: hallett.mike.t@gmail.com
+    url: "https://mikehallett.science"
+    twitter: hallettmichael
+    github: hallettmiket
+    bitbucket: hallettlab
+    office: GE120.07
+    officehours: "Office TuTh 12-13"
+  course:
+    number: BIOL 480/510/630
+    semester: Fall 2021
+    days: TuTh
+    time: "13:15-14:30"
+    location: "https://concordia-ca.zoom.us/s/8992285958#success"
+    twitter: hallettmichael
+    slack: "https://biol480-18-concordia.slack.com/"
+    dates: "September 8–December 7, 2021"
+    youtube: "https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber"
+    github: "https://github.com/hallettmiket/hallettmiket.github.io"
+    copyrightYear: "2021"
+    contactDetails: Slack
+    rstudiocloud: "private"
+  labs:
+    TA: TBA
+    email: TBA
+    location:  "HC 155 Loy"
+    labtime: "Tu 10:15-11:30"
+    officehours: "TBA" 
+  university: 
+    name: Concordia University
+    url: "https://www.concordia.ca"
+  school:
+    name: Department of Biology | CSFG | CASB
+    url: "https://www.concordia.ca/artsci/biology.html"
+  description: "Explore and model biological data"
+  primaryColor: "#1663BA"
+  secondaryColor: "#398AE6"
+  credits: "We thank [A Heiss](https://www.andrewheiss.com/) for the modified Tufte scheme. "
+  
+  logo: 
+    url: /images/sys-small1.png
+    alt: Data Science in Biology
+  meta:
+    twitterSite: "@hallettmichael"
+    twitterCreator: "@hallettmichael"

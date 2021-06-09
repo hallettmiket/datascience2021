@@ -1,0 +1,29 @@
+---
+title: "Genome annotations"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Annotate](https://www.bioconductor.org/packages/release/bioc/vignettes/annotate/inst/doc/annotate.pdf) Bioconductor package
+
+# Recommended Reading
+
+- [1000 Genomes Project](https://www.internationalgenome.org/)
+
+- [Biostrings](https://web.stanford.edu/class/bios221/labs/biostrings/lab_1_biostrings.html)
+
+# Action items  
+
+-  Project outline due for genomics diploma and grad students (1 page)
+
+- Oct 29 Midterm
+
+- Assignment #3 is available
+
+
+

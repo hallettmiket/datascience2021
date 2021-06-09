@@ -1,0 +1,35 @@
+---
+title: "Genome annotations"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/12-slides.html)
+
+
+# Action Items
+
+-  See if you can understand the ${\tt sapply}$ and ${\tt for}$ loops.
+
+- Project outline due for genomics diploma and grad students (1 page)
+
+- Oct 29 Midterm
+
+- Assignment #3 is available
+
+
+
+- Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.
+
+## Points of Reflection
+
+
+- Which organism has the largest genome? And why on earth would such a large genome evolve in this organism?
+
+- What are the advantages of special datastructures  for genomes and molecular sequence data?
+

@@ -1,0 +1,31 @@
+---
+title: "Bioinformatics repositories: the NCBI and other tools"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+# Required
+
+- [The NCBI Handbook](https://www.semanticscholar.org/paper/The-NCBI-Handbook-Mcentyre-Ostell/a3019d0915269394f75471944510eedb16302e20?p2df) Please read short chapter on Genome (page 89-94). 
+
+- Also please read the definition of GenBank (page 381). This [link](https://www.ncbi.nlm.nih.gov/genbank/) gives a bit more information.
+
+- Please read The Entrez Search and Retrieval System (page 459-44). Then try it out using your favourite gene (choose an organism and gene at random otherwise).
+
+- Finally please read the short section on the NCBI Protein database (page 385-6)
+
+# Recommended Reading
+
+- I would recommend that you get familiar with the FASTA format for sequence data. It has been around a long time and pops up over and over again. [FASTA (just section 1)](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp)
+
+
+# Action items  
+
+
+- Assignment #2 will be available.
+
+
+

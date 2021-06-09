@@ -1,0 +1,22 @@
+---
+title: "Gene finding continued"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Textbook, Chapter 21 Iteration](https://r4ds.had.co.nz/iteration.html)
+
+
+
+# Recommended Reading
+
+
+# Action items  
+
+- Assignment #3
+

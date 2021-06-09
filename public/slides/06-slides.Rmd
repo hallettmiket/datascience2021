@@ -1,0 +1,522 @@
+---
+title: "Exploratory data analysis of breast cancer transcriptomes"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(reshape2)
+load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")   # load the BC dataset
+# small_brca <- mutate(small_brca, menopause_status = plyr::revalue(menopause_status, c(
+#       "Post (prior bilateral ovariectomy OR >12 mo since LMP with no prior hysterectomy)" = "Post",
+#       "[Not Available]"  = "Not Available",
+#       "Pre (<6 months since LMP AND no prior bilateral ovariectomy AND not on estrogen replacement)" = "Pre",
+#       "Indeterminate (neither Pre or Postmenopausal)" = "Indeterminate",
+#       "[Unknown]" = "Unknown",
+#       "Peri (6-12 months since last menstrual period)" = "Peri",
+#       "[Not Evaluated]"  = "Not Evaluated"
+#                                       )))
+# save(small_brca, file ="~/data/GDC/TCGA_BRCA/small_brca.Rdata")
+brca <- rename(small_brca,  stage = ajcc_pathologic_tumor_stage ) # just to simplify like last class
+brca <- select(brca, -c("tss", "barcode", "id", "bcr_patient_uuid", "form_completion_date", "birth_days_to"))
+```
+
+## Plan for Today
+
+
+
+- A few minutes about _pipes_ in R (the ${\tt magrittr}$ package, also a part of 
+${\tt R}$'s ${\tt tidyverse}$).
+
+- Further explore our breast cancer transcriptome dataset. Our focus today is on the __model__ in the Data Science cycle.
+
+- Here we focus more on the gene expression (rather than clinico-pathlogical sample data).
+
+- This will complete Part I of the textbook.
+
+- Today's material marks the end of material covered by the first midterm.
+
+
+<figure class="image">
+<p float="center">
+  <img src="images/explore_cycle.png" width="600"/> 
+</p>
+<figcaption><small> From R for Datas Sience, Chapter 6.
+</small> </figcaption>
+</figure>
+
+## Pipes
+
+- Pipes simplify R. They are a bit tricky at first.
+
+- The ${\tt tidyverse}$ incorporates the ${\tt magrittr}$ package. So when you load the ${\tt tidyverse}$ library, you have access to pipes.
+
+<figure class="image">
+<p float="center">
+  <img src="images/notpipe.jpg" width="210"/> 
+  <img src="images/pipe.png" width="293"/> 
+</p>
+<figcaption><small>Left: _This is not a pipe._ René Margritte (1929). Right: _Actually this is a pipe._    Stefan Milton Bache (2014).
+</small> </figcaption>
+</figure>
+
+<div style="text-align: left"> 
+<small>To be honest, I think many new programmers can get confused by pipes so I would normally not teach them this early. However, the book and examples online do use pipes. So I guess we have to go with the flow.</small>
+</dev>
+
+## Functions and composition
+
+- Suppose I wanted to compute a function $f(x) = \log{ \left( \sqrt{ e^{tanh( x)} } \right) }$. I have no idea why you would want to compute this but ...
+
+Approach 1 [Level Newbie]
+```{r echo=TRUE, fig.align='center', collapse=TRUE, fig.width = 4, fig.height=4, incremental=FALSE }
+x <- 5
+x1 <- tanh(x)
+x2 <- exp(x1)
+x3 <- sqrt(x2)
+answer <- log(x3)
+```
+
+Approach 2 [Level Junior]
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, fig.width = 4, fig.height=4, incremental=FALSE }
+x <- 5
+answer <- tanh(x)
+answer <- exp(answer)
+answer <- sqrt(answer)
+answer <- log(answer)
+```
+
+
+## Functions and composition
+
+
+<div style="text-align: left"> 
+Approach 3 [Level Padawan] (composition of functions) </dev>
+```{r echo=TRUE, fig.align='center', collapse=TRUE, fig.width = 4, fig.height=4, incremental=FALSE }
+x <- 5
+answer <- log(sqrt(exp(tanh(x))))
+```
+
+<div style="text-align: left"> 
+Approach 4 [Level Jedi Warrior] (Pipes) </dev>
+```{r echo=TRUE, fig.align='center', collapse=TRUE, fig.width = 4, fig.height=4, incremental=FALSE }
+x <- 5
+x %>% tanh %>% exp %>% sqrt %>% log -> answer
+```
+
+<div style="text-align: left"> 
+Here $x$ is transformed by a succession of functions.
+By default the left-hand side (LHS) will be piped in as the first argument of the function appearing on the right-hand side (RHS). </dev>
+
+
+<div style="text-align: left"> 
+If it's not the first argument, you can use "." as a placeholder.
+</dev>
+```{r echo=TRUE, fig.align='center', collapse=TRUE, fig.width = 4, fig.height=4, incremental=FALSE }
+10 %>% seq(1, ., 2); 3 %>% seq(1, 10, .)
+5 %>% seq( from = 1, by = 1) # fills in the missing parameter
+```
+
+## Pipes - return to our example last class (L05)
+
+
+```{r echo=TRUE, fig.align='left', collapse=TRUE, class.source="watch-out"}
+b0 <- rename(small_brca,  stage = ajcc_pathologic_tumor_stage )
+b1 <- filter(b0, (grepl("Stage", stage) & !grepl("Stage X", stage) & tumor==TRUE)) 
+b2 <- select(b1, participant, stage, vital_status, death_days_to)
+b3 <- filter(b2, vital_status=="Dead")
+b4 <- mutate(b3, death_yrs = as.numeric(death_days_to) / 365)
+```
+
+
+```{r echo=TRUE, fig.align='left', collapse=TRUE, class.source="watch-out"}
+small_brca %>% 
+      rename(stage = ajcc_pathologic_tumor_stage ) %>%
+      filter((grepl("Stage", stage) & !grepl("Stage X", stage) & tumor==TRUE))  %>%
+      select(participant, stage, vital_status, death_days_to) %>%
+      filter(vital_status=="Dead") %>%
+      mutate(death_yrs = as.numeric(death_days_to) / 365) -> b4
+```
+
+<div style="text-align: left"> 
+Starting in Chapter 5 of the textbook, you see a lot of examples using ${\tt %>%}$.
+</div>
+
+## Returning to our breast cancer transcriptome 
+
+- We've learnt how to winnow our dataset down to the core that we want through ${\tt dplyr}$.
+
+- And we've learnt how to visualize that data to discover trends through ${\tt ggplot}$. 
+
+- Now we focus on the types of questions we can ask, how to model our data (to answer these questions), and then to refine our data and visualizations (cyclic).
+
+- Modelling is a very big topic and one could argue that the a large portion of the course explores modelling from different angles.
+
+
+<figure class="image">
+<p float="center">
+  <img src="images/explore_cycle.png" width="600"/> 
+</p>
+<figcaption><small> From R for Datas Sience, Chapter 6.
+</small> </figcaption>
+</figure>
+
+## Some basic definitions
+
+- Previous lectures suggested that a good data scientist listens to experts to understand each of their variables (eg  Why are these variables tracked in patients? What is stage? How are breast caner patients tracked? etc). Domain specific knowledge is key to data science, <small>(no matter what any of your deep learning friends say - It's ok for you to hang around with deep learning people but don't let them to be a negative influence on you. No drugs, no GANs, no VAEs, no staying out too late, and be your own person. You don't need to do or not do anything any one else says. It's ok to be different. You have your cell phone and you know how to call a me or a taxi or 911 if they starting snorting Differential Programming again. Of course, deep learning is fun and important if you use them wisely. Just don't fall prey to the demon weed of AI.)</small>
+
+- But now it's time to switch and let the data speak for itself. That's also an important aspect of data science: use advice from the experts to help phrase the questions and check the quality of your data, but then ask new questions and objectively stand back and see what it says.
+
+- Columns correspond to __variables__ in ${\tt tibbles}$. Variables can take on different __values__.
+
+- Some  variables are  _categorical_, meaning they have  a (typically) small range of values. For example, ${\tt x}$ can have only an integer value $0$, $1$, or $2$. For example, ${\tt tumor}$ can only have values ${\tt TRUE, FALSE}$. For example, ${\tt salsa}$ can have values ${\tt hot, medium, cold}$.
+
+- Some categorical variables are __ordered__. For example, ${\tt days}$ could have values ${\tt sunday, monday}, \ldots, {\tt saturday}$. Our stage variable is another example.
+
+- Some variables are __continuous__, meaning they have an infinite number of values and these values are ordered. For example, ${\tt temp}$ is a real number. The expression of ${\tt ESR1}$ is a continous variables, or is it?
+
+- Categorical $\rightarrow$ Bar plot; Continuous $\rightarrow$ Histogram
+
+## Values and variability
+
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+brca <- rename(small_brca,  stage = ajcc_pathologic_tumor_stage ) # just to simplify like last class
+brca <- select(brca, -c("tss", "barcode", "id", "bcr_patient_uuid", "form_completion_date", "birth_days_to"))
+ggplot(data = brca) + geom_bar(mapping = aes(x = stage)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Explore other variables
+
+- Bar plots depict the variability of a variable. We begin with several categorical variables. In bar plot, the $x$-axis is simply the different value the variable can take. 
+
+- We'll use the ${\tt ggpubr}$ package which contains a function called ${\tt ggarrange()}$ to put 
+multiple plots together in a figure.
+
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+library(ggpubr)
+g_gender <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = gender)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_menopause_status <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = menopause_status)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_race <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = race)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_ethnicity <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = ethnicity)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+
+## Explore other variables
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+ggarrange(g_gender, g_race, g_ethnicity, g_menopause_status, 
+          ncol = 2, nrow = 2)
+```
+
+## Explore other variables
+
+
+```{r echo=FALSE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+g_hist <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = histologic_diagnosis_other)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_age <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = age_at_diagnosis)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_micromet <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = micromet_detection_by_ihc)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_lymph <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = lymph_nodes_examined_count)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+ggarrange(g_hist, g_age, g_micromet, g_lymph, 
+          ncol = 2, nrow = 2)
+```
+
+## What's up with ${\tt histologic\_diagnosis}$?
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+brca %>% group_by(histologic_diagnosis_other) %>% summarize( nn <- n())
+```
+
+
+## Explore other variables
+
+```{r echo=FALSE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+g_er <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = er_status_by_ihc)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_pr <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = pr_status_by_ihc)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_her2 <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = her2_fish_status)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+g_mets <- ggplot(data = brca) +
+  geom_bar(mapping = aes(x = metastatic_tumor_indicator)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+ggarrange(g_er, g_pr, g_her2, g_mets, ncol = 2, nrow = 2)
+```
+
+## Explore the continuous gene expression data
+
+- The medical community has maintained records of clinco-pathological data for a long time. The information it provides about a tumor is perhaps limited.
+
+- Modern -omic techniques including gene expression (via RNA-sequencing) promise new deeper molecular level insight.
+
+- These are continous variables and we might use a __histogram__. A histogram partitions the $x$-axis into equal sized bins across the range of the target variable. Then the $y$-axis is proportional to the count (or frequency) of data points falling into that bin. You can control the number of bins.
+
+
+```{r echo=TRUE,  fig.align='center', fig.width=16, fig.height=0.1, collapse=TRUE, class.source="watch-out"}
+cat("\n Min value: ", min(brca$ESR1), " Max value: ", max(brca$ESR1), " Number observations: ", nrow(brca), "\n\n"); brca$ESR1[1:50]
+```
+
+<div style="text-align: left"> 
+The counts range across several orders of magnitude of difference ($10^1 \ldots 10^5$), suggesting the need for a transformation of the data. Gene expression data is often $log$-transformed.
+</div>
+
+## Histogram for gene expression
+
+
+```{r echo=TRUE, fig.align='center', fig.height = 4, collapse=TRUE, class.source="watch-out"}
+g <- ggplot(data = brca, mapping=aes(x =  ESR1))
+g1 <- g +    geom_histogram()  # I think default is 30 bins
+g2 <- g +    geom_histogram(bins=100)
+g3 <- g +    geom_histogram(bins=10)
+g4 <- g +    geom_histogram() + coord_cartesian(ylim = c(0, 500))
+ggarrange(g1, g2, g3, g4,  ncol = 2, nrow = 2)
+```
+
+## Limitations of histograms
+
+<div style="text-align: left"> 
+There are at least two problems with histograms.
+</div>
+
+1. The choice of number of bin (which determines binwidth) can greatly affect the plot, and therefore our interpretations.
+
+2. Outliers can cause the histogram to be somewhat vacuous, providing little resolution of the distribution for the majority of points. (This is true in the histograms of the previous page.)
+
+<div style="text-align: left"> 
+It is wise to look at the outlier values, and note their source. Which observation do they arise in? Determinig why there are outlier values is important. Is it a technical problem with that sample? Did someone enter a value incorrectly? Has a bug in your code generated a spurious value? Is it true biological variability?
+
+If it is a technical problem or mistake, it might be correct to remove it from the study. Do you remove the whole sample? Or do you just replace the outlier value in that sample with an ${\tt NA}$? The latter is preferable if the whole sample is not an outlier.
+</div>
+
+## Hunting for outliers
+
+```{r echo=TRUE, fig.align='center', fig.height = 1, collapse=TRUE, class.source="watch-out"}
+exprs <- brca %>% arrange(desc(ESR1)) %>% select(participant:tumor_status, ESR1)
+print(exprs, n=15)
+```
+
+- There are some repeated numbers; this is suspicious to me but not enough to throw out the measurement.
+
+- What would help is to compare these outliers against outliers of other genes. In other words, we want to compare the variability of $ESR1$ against the variability of other genes.
+
+## Box plots, the dinosaurs of  visualization
+
+- Displays the median ($50^{th}$ percentile), the lower and upper hinge ($25^{th}$ and $75^{th}$ percentiles), two whiskers (about a $95\%$ confidence interval from the tip of the lower whisker to the tip of the upper whisker), and  outliers.
+
+```{r echo=TRUE, fig.align='center', fig.height = 3, collapse=TRUE, class.source="watch-out"}
+brca %>% 
+  select( c(participant, tumor, "ESR1", "PGR", "ERBB2", "EGFR", "KRT5" )) %>%
+  melt(id.vars = c("participant", "tumor"), measure.vars = c("ESR1", "PGR", "ERBB2", "EGFR", "KRT5" )) %>%
+  as_tibble -> lava
+ggplot(lava, aes( x= variable, y = value)) + geom_boxplot(  ) +  theme(axis.text.x = element_text(angle=65, vjust=0.6)) 
+```
+
+
+<div style="text-align: left"> 
+Yikes, this plot needs a $log$-transform as much as the entire population needs a haircut after the lockdown.
+</div>
+
+## The ${\tt melt()}$ function
+
+- Contained in the package ${\tt reshape2}$. 
+
+- Currently in our tibble, the value for all $50$ genes are contained in the same row (observation) for each participant.
+
+- Functions in  ${\tt ggplot}$ want each gene count value as a separate row.
+
+- For example, if my original tibble called ${\tt timmy}$ is as follows,
+
+
+```{r echo=FALSE, fig.align='center', fig.height = 3, collapse=TRUE, class.source="watch-out"}
+orig <- data.frame( participant = c("A1NF", "A27"), ESR1= c(5, 50), ERBB2 = c(100, 10))
+print(orig)
+```
+it should be _melted_ to look like this.
+
+```{r echo=FALSE, fig.align='center', fig.height = 3, collapse=TRUE, class.source="watch-out"}
+orig <- data.frame( participant = c("A1NF", "A1NF", "A27", "A27"), gene_name= c("ESR1", "ERBB2", "ESR1", "ERBB2"), 
+                    count = c(5, 100, 50, 10))
+print(orig)
+```
+
+<div style="text-align: left"> 
+Take a moment to reassure yourself that the information in the original tibble is also present in the new tibble.
+</div>
+
+## Melting ${\tt brca}$ to ${\tt lava}$
+
+
+```{r echo=TRUE, eval=FALSE, fig.align='center', fig.height = 3, collapse=TRUE, class.source="watch-out"}
+melted_timmy <- melt( timmy, id.vars = "participant", 
+                      measure.vars = c("ESR1", "ERBB2"))
+```
+
+
+```{r echo=TRUE, fig.align='center', fig.height = 3, collapse=TRUE, class.source="watch-out"}
+brca %>% 
+  select( c(participant, tumor, "ESR1", "PGR", "ERBB2", "EGFR", "KRT5" )) %>%
+  melt(id.vars = c("participant", "tumor"), measure.vars = c("ESR1", "PGR", "ERBB2", "EGFR", "KRT5" )) %>%
+  as_tibble -> lava
+lava
+```
+
+
+
+## Log-transform before plotting
+
+- When data spans multiple orders of magnitude, such as in this case where counts range from $10^1$ to $10^5$, it is
+important to $log$-transform data. That is, we compute $log(x_y)$ where $x$ is the count for gene $y$. 
+
+
+```{r echo=TRUE, fig.align='center', fig.height = 3, collapse=TRUE, class.source="watch-out"}
+ggplot(lava, aes( x= variable, y = value)) + geom_boxplot(  ) +
+  scale_y_continuous(trans='log') +  theme(axis.text.x = element_text(angle=65, vjust=0.6)) 
+```
+
+
+## Conclusion regarding ESR1 outliers
+
+- Given that the distribution of ESR1 has less variance than many other genes in the dataset, the counts are not so suspicious and shouldn't be removed.
+
+## Violin plots: First $10$ genes, tumor vs normal
+
+
+- Violin plots killed the box plot (like video killed the radio star).
+
+```{r echo=TRUE, fig.align='center', fig.height = 8, fig.width=16, collapse=TRUE, class.source="watch-out"}
+brca %>% select( c(participant, tumor, ANLN:ESR1 ))  %>%
+      melt(id.vars = c("participant", "tumor"), measure.vars = colnames(brca)[24:33]) %>%
+      as_tibble -> lava
+ggplot(lava, aes( x= variable, y = value, fill=tumor)) +  
+  geom_violin( trim = FALSE, position = position_dodge(0.9), draw_quantiles = c(0.5) ) + scale_y_continuous(trans='log') +
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) 
+```
+
+
+## Violin plots: All genes, tumor vs normal
+
+
+```{r echo=FALSE, fig.align='center', fig.height = 8, fig.width=16, collapse=TRUE, class.source="watch-out"}
+brca %>% select( c(participant, tumor, ANLN:TMEM45B ))  %>%
+      melt(id.vars = c("participant", "tumor"), measure.vars = colnames(brca)[24:length(colnames(brca))]) %>%
+      as_tibble -> lava
+ggplot(lava, aes( x= variable, y = value, fill=tumor)) +  
+  geom_violin( trim = FALSE, position = position_dodge(0.9), draw_quantiles = c(0.5) ) + scale_y_continuous(trans='log') +
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) 
+```
+
+<div style="text-align: left"> 
+If you study this closely (with a magnifying glass), you'll see that _ANLN_, _UBE2T_, _ORC6_ amongst others are different between tumor and normal samples.
+</div>
+
+## Modelling tissue status using gene expression
+
+- Could we use the expression levels of _ANLN_ and _UBE2T_ to differentiate between healthy breast and tumor material? <small>I'm not sure what the clinical utility of this would be ultimately, but it serves as a simple example to start. We will  tackle  more complicated questinos later.</small>
+
+
+```{r echo=TRUE, fig.align='center', fig.height = 8, fig.width=16, collapse=TRUE, class.source="watch-out"}
+ggplot(brca, aes(x=ANLN, y=UBE2T, color=tumor), size = .3) +
+  scale_y_continuous(trans='log') +   scale_x_continuous(trans='log') +
+  geom_point() + geom_rug()
+```
+
+## Modelling: Classifier of tissue type
+
+- We will come back to this in much more depth through the course. This is just to foreshadow. So don't freak out.
+
+- The above analysis identifies potential interesting correlations between the expresion of specific genes and clinical data (here we looked at tumor versus normal tissue).
+
+- We can use methods from machine learning and statisics to build classifiers using these genes. For example, we could
+try to estimate whether a given tissue was tumor or normal depending on the expression of ANLN and UBE2T alone.
+
+- Many other end-points are possible (prognosis, benefit from therapy etc).
+
+```{r echo=TRUE, fig.align='center', fig.height = 10, fig.width=16, collapse=TRUE, class.source="watch-out"}
+library(modelr)
+tissue_type <- glm(tumor ~ ANLN + UBE2T, data = brca, family = binomial)
+```
+
+## Quality of our model
+
+```{r echo=TRUE, fig.align='center', fig.height = 10, fig.width=16, collapse=TRUE, class.source="watch-out"}
+summary(tissue_type)
+```
+
+
+## Points of Reflection
+
+- Go through the ${\tt small\_brca}$ object and figure out whether each variable is categorical, ordered categorical or continuous.
+
+- Temperature does have a lower bound, if not also an upper bound in a physics sense. So it has a finite range. Why is it still considered a continuous variable?
+
+- What about the expression of a gene such as ${\tt ESR1}$? Argue for or against it being a continuous variable. Why is it best modelled as a continuous variable? What properties call in to question it being a continuous variable?
+
+- Make sure you understand how and why the ${\tt brca}$ tibble was melted to ${\tt lava}$. It's a bit tricky.
+
+- What would be the advantage of using UBE2T __and__ ANLN simultaneously to predict tissue type (tumor vs normal) rather than either one alone?
+
+- So transformations and visualization allow us to identify genes etc. that may be useful for predicting clinical endpoints. What is meant by a model here and why is it needed? What is the purpose of the model?
+
+- Why is it a data science cycle and simply not Transform, Visualize, Model, Beer-o-clock?
+
+## BIOL480 
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

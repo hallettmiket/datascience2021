@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Gene finding with Hidden Markov Models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="14-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="14-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="14-slides_files/header-attrs-2.4/header-attrs.js"></script>
+    <link href="14-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="14-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Gene finding with Hidden Markov Models</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="goals-for-today" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><p>Object oriented programming in R: S4 objects (short note)</p></li>
+<li><p>Then back to computational biology …</p></li>
+<li><p>Measures of performance</p></li>
+<li><p>Markov models</p></li>
+<li><p>Hidden Markov Models</p></li>
+<li><p>A simple model for gene finding</p></li>
+</ul>
+</section>
+<section id="object-oriented-programming" class="slide level2">
+<h2>Object Oriented programming</h2>
+<ul>
+<li><p>A complete exposition on object orient (OO) programming would take a complete course</p></li>
+<li><p>Our goal here is just to introduce you to this important concept</p></li>
+<li><p>OO is a very powerful paradigm that really helps to organize code.</p></li>
+<li><p>In R, there are three different types of OO programming, ordered by “strictness” (from informal to formal):</p></li>
+</ul>
+<p><span class="math display">\[ S3 &lt; S4 &lt; RS = R5 &lt; R6
+\]</span></p>
+<ul>
+<li>Let’s not worry about why there are so many flavours of OO programming, but just focus on <span class="math inline">\(S4\)</span> as a compromise.</li>
+</ul>
+</section>
+<section id="the-basic-concepts-of-oo-programming" class="slide level2">
+<h2>The basic concepts of OO programming</h2>
+<ul>
+<li><p>OO programming begins with the concept of a <span class="math inline">\({\tt class}\)</span>. Here we can make new classes on demand.</p></li>
+<li><p>For example, we can think of genomes as a class. Individual objects of this class correspond to a single genome. So there would be an object <span class="math inline">\({\tt Scerevisiae}\)</span> for the genome of yeast and an object <span class="math inline">\({\tt Hsapiens}\)</span> for human etc.</p></li>
+<li><p>To create a <span class="math inline">\({\tt Genome}\)</span> class in R, we can use the <span class="math inline">\({\tt setClass}\)</span> function from the R base language.</p></li>
+<li><p>The <span class="math inline">\({\tt setClass}\)</span> function has several required arguments, and many optional arguments that more advanced practioners would use to ensure good programming style.</p></li>
+<li><p>Now each <span class="math inline">\({\tt Genome}\)</span> object can have several attributes or properties. These are stored in <span class="math inline">\({\tt slots}\)</span> of the object. For example each genome object would have a name (of the organism), and perhaps a <span class="math inline">\({\tt DNAStringSet}\)</span> to contain the chromsomes, plus many more attributes for annotations.</p></li>
+</ul>
+</section>
+<section id="a-genome-class" class="slide level2">
+<h2>A genome class</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>Genome &lt;-<span class="st"> </span><span class="kw">setClass</span> (</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="st">&quot;Genome&quot;</span>,        <span class="co"># Set the name of the class. Often people start with uppercase</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="dt">slots =</span> <span class="kw">c</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="dt">organism_name =</span> <span class="st">&quot;character&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="dt">chromosomes =</span> <span class="st">&quot;DNAStringSet&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="dt">annotations =</span> <span class="st">&quot;data.frame&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    <span class="dt">chromosome_names =</span> <span class="st">&quot;data.frame&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="dt">GO =</span> <span class="st">&quot;data.frame&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  ), <span class="co"># end of slots</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="dt">prototype =</span> <span class="kw">list</span>(          <span class="co"># set the default values for each slot (optional)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="dt">organism_name =</span> <span class="st">&quot;&quot;</span>,    <span class="dt">chromosomes =</span> <span class="kw">DNAStringSet</span>(), </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="dt">annotations =</span> <span class="kw">data.frame</span>(), <span class="dt">chromosome_names =</span> <span class="kw">data.frame</span>(),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="dt">GO =</span> <span class="kw">data.frame</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  ), <span class="co"># end of prototype</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>  </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>  <span class="co"># This fucntion can check that the data in your object is consistent;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>  <span class="dt">validity =</span> <span class="cf">function</span>(object) {}  <span class="co"># it doesn&#39;t do anything. </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>) <span class="co"># end of genome class</span></span></code></pre></div>
+</section>
+<section id="instantiating-objects-of-class-genome" class="slide level2">
+<h2>Instantiating objects of class GENOME</h2>
+<ul>
+<li>Now we can create objects of class <span class="math inline">\({\tt Genome}\)</span> passing different arguments to fill the slots.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>bland &lt;-<span class="st"> </span><span class="kw">Genome</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>(bland)                <span class="co"># the slots have default settings</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">## An object of class &quot;Genome&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">## Slot &quot;organism_name&quot;:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">## [1] &quot;&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">## Slot &quot;chromosomes&quot;:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">## DNAStringSet object of length 0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">## Slot &quot;annotations&quot;:</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">## data frame with 0 columns and 0 rows</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">## Slot &quot;chromosome_names&quot;:</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">## data frame with 0 columns and 0 rows</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="co">## Slot &quot;GO&quot;:</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co">## data frame with 0 columns and 0 rows</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>bland<span class="op">@</span>organism_name    <span class="co"># note the use of the @ operator to access slots</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="co">## [1] &quot;&quot;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>bland<span class="op">@</span>chromosomes</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="co">## DNAStringSet object of length 0</span></span></code></pre></div>
+</section>
+<section id="instantiating-objects-of-class-genome-1" class="slide level2">
+<h2>Instantiating objects of class GENOME</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># data_path &lt;- &quot;/cloud/project/data&quot;      #  for RStudio Cloud</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>anno &lt;-<span class="st"> </span><span class="kw">read_rds</span>( <span class="kw">file.path</span>( data_path, <span class="st">&quot;annotations_1.0.rds&quot;</span> ))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>sc &lt;-<span class="st"> </span><span class="kw">read_rds</span>( <span class="kw">file.path</span>( data_path, <span class="st">&quot;sc_1.0.rds&quot;</span> ))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>sc_meta &lt;-<span class="st"> </span><span class="kw">read_rds</span>( <span class="kw">file.path</span>( data_path, <span class="st">&quot;sc_meta_1.0.rds&quot;</span> ))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>go &lt;-<span class="st"> </span><span class="kw">read_rds</span>( <span class="kw">file.path</span>( data_path, <span class="st">&quot;GO.rds&quot;</span> ))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>Scerevisiae &lt;-<span class="st"> </span><span class="kw">Genome</span>(<span class="dt">organism_name =</span> <span class="st">&quot;Saccharomyces cerevisiae&quot;</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>                     <span class="dt">chromosomes =</span> sc,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>                     <span class="dt">chromosome_names =</span> sc_meta,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>                     <span class="dt">annotations =</span> anno,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>                     <span class="dt">GO =</span> go)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>Scerevisiae<span class="op">@</span>organism_name</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">## [1] &quot;Saccharomyces cerevisiae&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>Scerevisiae<span class="op">@</span>annotations</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">## # A tibble: 23,058 x 9</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">##    seqid source type       start    end score strand phase attributes           </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">##    &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt; &lt;chr&gt;                </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">##  1 chrI  SGD    chromosome     1 230218    NA &lt;NA&gt;   &lt;NA&gt;  ID=chrI;dbxref=NCBI:…</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">##  2 chrI  SGD    telomere       1    801    NA -      &lt;NA&gt;  ID=TEL01L;Name=TEL01…</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">##  3 chrI  SGD    X_element    337    801    NA -      &lt;NA&gt;  ID=TEL01L_X_element;…</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">##  4 chrI  SGD    X_element…    63    336    NA -      &lt;NA&gt;  ID=TEL01L_X_element_…</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">##  5 chrI  SGD    telomeric…     1     62    NA -      &lt;NA&gt;  ID=TEL01L_telomeric_…</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">##  6 chrI  SGD    gene         335    649    NA +      &lt;NA&gt;  ID=YAL069W;Name=YAL0…</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">##  7 chrI  SGD    CDS          335    649    NA +      0     Parent=YAL069W_mRNA;…</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="co">##  8 chrI  SGD    mRNA         335    649    NA +      &lt;NA&gt;  ID=YAL069W_mRNA;Name…</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co">##  9 chrI  SGD    gene         538    792    NA +      &lt;NA&gt;  ID=YAL068W-A;Name=YA…</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">## 10 chrI  SGD    CDS          538    792    NA +      0     Parent=YAL068W-A_mRN…</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">## # … with 23,048 more rows</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="kw">length</span>(Scerevisiae<span class="op">@</span>chromosomes[[<span class="dv">3</span>]])</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="co">## [1] 316620</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="kw">write_rds</span>( Scerevisiae, <span class="kw">file.path</span>( data_path, <span class="st">&quot;Scerevisiae_vers_1.0.rds&quot;</span> ))</span></code></pre></div>
+</section>
+<section id="methods-associated-wtih-classes" class="slide level2">
+<h2>Methods associated wtih classes</h2>
+<ul>
+<li><p>Sometimes we want to have specific methods (functions) that operate on our objects.</p></li>
+<li><p>Recall the <span class="math inline">\({\tt my\_scan}\)</span> function from last class that takes a binding site and searchers for it in the target sequence.</p></li>
+<li><p>We won’t explore this functionality here.</p></li>
+</ul>
+</section>
+<section id="now-back-to-computational-biology" class="slide level2">
+<h2>Now back to computational biology</h2>
+<ul>
+<li><p>What is a model?</p></li>
+<li><p>Why are they important?</p></li>
+<li><p>How do we build a model?</p></li>
+<li><p>How do we parameterize or train a model?</p></li>
+<li><p><strong>How do we evaluate its performance?</strong></p></li>
+<li><p>How do we validate a model?</p></li>
+</ul>
+</section>
+<section id="tf-binding-sites-revisited" class="slide level2">
+<h2>TF binding sites revisited</h2>
+<ul>
+<li>We left off last class with this figure describing the distribution of log-odds ratio of 4 TFs across chromosome 3 of yeast.</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/log-odds.png" width="500"/>
+</p>
+</figure>
+<ul>
+<li>The question is where to set the point along the <span class="math inline">\(x\)</span>-axis to call scores to the right as putative TF bindings sites and scores to the left as random hits.</li>
+</ul>
+</section>
+<section id="classifiers" class="slide level2">
+<h2>Classifiers</h2>
+<ul>
+<li><p>If you set a point along the <span class="math inline">\(x\)</span>-axis, any point to the right corresponds to a score from a position somewhere in the chromosome. This position in the chromosome would be classified as a positive hit, an actual binding site for the TF.</p></li>
+<li><p>Any point to the left corresponds to a score from a position somewhere in the chromosome that is not strong enough to be classified as binding site. It is classified as a negative. hit.</p></li>
+<li><p>The reality, which you do not know but which you are trying to “learn”, is that each position along the chromosome is either true binding site or false binding site.</p></li>
+<li><p>If we predict a position in the chromosome to be a binding site, and it truly is, we call it a <strong>True Positive (TP)</strong>.</p></li>
+<li><p>If we predict it not to be a binding site and it really is not a binding site, we call it a <strong>True Negative (TN)</strong>.</p></li>
+<li><p>If we predict a position in the chromosome to be a binding site, and it is not, we call it a <strong>False Positive (FP)</strong>.</p></li>
+<li><p>If we predict a position in the chromosome not to be a binding site, and it truly is, we call it a <strong>False Negative (FN)</strong>.</p></li>
+</ul>
+</section>
+<section id="tp-fp-tn-fn" class="slide level2">
+<h2>TP, FP, TN, FN</h2>
+<figure class="image">
+<p float="center">
+<img src="images/accuracy.jpg" width="500"/>
+</p>
+</figure>
+</section>
+<section id="measures-of-performance" class="slide level2">
+<h2>Measures of performance</h2>
+<p><span class="math display">\[  Sensitvity = \frac{\#TP}{\#TP+\#FN} \]</span></p>
+<p><span class="math display">\[   Specificity = \frac{\#TN}{\#TN + \#FP} 
+\]</span></p>
+<p><span class="math display">\[ Accuracy = \frac{\#TP + \#TN}{\#TP + \#FP + \#TN + \#FN}
+\]</span></p>
+<ul>
+<li><p>(Many other related notions, some of which we will explore later.)</p></li>
+<li><p>But TP, FP, TN, and FN are difficult to know for the TF binding site problem. Which are the most problematic?</p></li>
+</ul>
+</section>
+<section id="training-and-testing" class="slide level2">
+<h2>Training and testing</h2>
+<ul>
+<li><p>Another issue in the approach above is that the motifs that were used to train our model (the position weight matrix) were used in the evaluation of its performance.</p></li>
+<li><p>The required reading starts to touch on this issue and we will explore it more today.</p></li>
+<li><p>Briefly here, whatever data you use to train your model should be kept completely separate than the data used to validate your model.</p></li>
+<li><p>One simple approach in this direction would be to train the model using only half of the binding sites (eg 3 of 6) and use the other half to compute TP, FP, TN, FN. Why is this not quite correct either?</p></li>
+</ul>
+</section>
+<section id="goals-for-today-1" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><p>Object oriented programming in R: S4 objects (short note)</p></li>
+<li><p>Then back to computational biology …</p></li>
+<li><p>Measures of performance</p></li>
+<li><p>Markov models</p></li>
+<li><p>Hidden Markov Models</p></li>
+<li><p>A simple model for gene finding</p></li>
+<li><p>(We switch now to some hand written notes.)</p></li>
+</ul>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of reflection</h2>
+<ul>
+<li><p>What are some of the differences between predicting genes in eukaryotic versus prokaryotic genomes?</p></li>
+<li><p>Besides nucleotide frequency, what other genomic properties could be used to predict the location of genes?</p></li>
+<li><p>What are the advantages of object oriented programming?</p></li>
+</ul>
+</section>
+<section id="biol-480" class="slide level2">
+<h2>BIOL 480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="14-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="14-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '14-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '14-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '14-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '14-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '14-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Discovering subtypes in breast cancer: unsupervised analysis</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="18-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="18-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="18-slides_files/header-attrs-2.4/header-attrs.js"></script>
+    <link href="18-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="18-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Discovering subtypes in breast cancer: unsupervised analysis</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="goals-for-today" class="slide level2">
+<h2>Goals for today</h2>
+<ul>
+<li><p>Finish with sequence alignment</p></li>
+<li><p>Some basic definitions in machine learning</p></li>
+<li><p>Supervised vs unsupervised vs reinforcement learning</p></li>
+<li><p>Probabilistic perspectives</p></li>
+<li><p>k means clustering (unsuperivised)</p></li>
+<li><p>Next class: linear models (supervised)</p></li>
+</ul>
+</section>
+<section id="global-thermonuclear-war" class="slide level2">
+<h2>Global Thermonuclear War</h2>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=hbqMuvnx5MU&amp;ab_channel=MovieclipsClassicTrailers">War Games</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=F7qOV8xonfY">Tic Tac Toe</a></p></li>
+<li><p>(In RStudio, you can simply click Session/Interrupt R.)</p></li>
+</ul>
+<figure class="image">
+<p float="left">
+<img src="images/ti994a.jpg" height = "350">
+</p>
+</figure>
+<p>Ti-99/4a</p>
+</section>
+<section id="supervised-learning" class="slide level2">
+<h2>Supervised learning</h2>
+<ul>
+<li>The goal is to learn mappings from the input variables <strong>x</strong> to the output variables <strong>y</strong>, using a training set consisting of a labelled set of input-output pairs:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">input</th>
+<th style="text-align: center;">paired with</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x[1]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[1]</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[2]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[2]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[N]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[N]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>N is the number of training samples</p></li>
+<li><p>For example, <span class="math inline">\(x\)</span> could be the height of <span class="math inline">\(N\)</span> individuals, and <span class="math inline">\(y\)</span> could correspond to their sex. Our goal might be to learn a mapping to predict sex from height.</p></li>
+<li><p>Usually, though each observation (row) is comprised of several attributes (variables, columns).</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">height</th>
+<th style="text-align: center;">weight</th>
+<th style="text-align: center;">IQ</th>
+<th style="text-align: center;">education</th>
+<th style="text-align: center;">paired with</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x[1,1]</td>
+<td style="text-align: center;">x[1,2]</td>
+<td style="text-align: center;">x[1,3]</td>
+<td style="text-align: center;">x[1,4]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[1]</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[2,1]</td>
+<td style="text-align: center;">x[2,2]</td>
+<td style="text-align: center;">x[2,3]</td>
+<td style="text-align: center;">x[2,4]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[2]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[N,1]</td>
+<td style="text-align: center;">x[N,2]</td>
+<td style="text-align: center;">x[N,3]</td>
+<td style="text-align: center;">x[N,4]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[N]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-matrix-x" class="slide level2">
+<h2>Design matrix X</h2>
+<ul>
+<li><p>Height, weight, IQ, education status are referred to as <strong>features</strong>, <strong>attributes</strong> or <strong>covariates</strong>. In tibbles , we call them <strong>variables</strong>.</p></li>
+<li><p>We often refer to this feature data as the design matrix <span class="math inline">\(X\)</span>:</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">height</th>
+<th style="text-align: center;">weight</th>
+<th style="text-align: center;">IQ</th>
+<th style="text-align: center;">education</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x[1,1]</td>
+<td style="text-align: center;">x[1,2]</td>
+<td style="text-align: center;">x[1,3]</td>
+<td style="text-align: center;">x[1,4]</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[2,1]</td>
+<td style="text-align: center;">x[2,2]</td>
+<td style="text-align: center;">x[2,3]</td>
+<td style="text-align: center;">x[2,4]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[N,1]</td>
+<td style="text-align: center;">x[N,2]</td>
+<td style="text-align: center;">x[N,3]</td>
+<td style="text-align: center;">x[N,4]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="different-forms-of-supervised-learning" class="slide level2">
+<h2>Different forms of supervised learning</h2>
+<ul>
+<li><p>Variable <span class="math inline">\(y\)</span> (eg sex) is called the <strong>response</strong> variable.</p></li>
+<li><p>It can have different types.</p></li>
+<li><p><strong>Categorical</strong> when possible states of <span class="math inline">\(y\)</span> are finite. That is <span class="math inline">\(y \in C\)</span> where <span class="math inline">\(|C|\)</span> is a finite number. For example, <span class="math inline">\(y \in \{ 1, 2, 3 \}\)</span> or <span class="math inline">\(y \in \{ good, bad, ugly \}\)</span>, <span class="math inline">\(y \in \{ TRUE, FALSE \}\)</span></p></li>
+<li><p>When <span class="math inline">\(y\)</span> is categorical, we say that this is a classification problem.</p></li>
+<li><p>When <span class="math inline">\(|C| = 2\)</span>, we say it is a _binary classification problem.</p></li>
+<li><p>When <span class="math inline">\(|C| &gt; 2\)</span>, we say it is a multiclass classification.</p></li>
+<li><p>Sometimes, we have <strong>ordinal</strong> response variables: categorical variables that are ordered. Eg, <span class="math inline">\(your\_grade \in \{ B, B+, A-, A, A+ \}\)</span>.</p></li>
+<li><p>Sometimes <span class="math inline">\(y\)</span> can take real values. Eg, <span class="math inline">\(y \in \{ -\infty : +\infty \}\)</span>, <span class="math inline">\(y\)</span> is a temperature, <span class="math inline">\(y\)</span> is the number of days to relapse.</p></li>
+<li><p>When <span class="math inline">\(y\)</span> is real, we call this a <strong>regression</strong> problem.</p></li>
+</ul>
+</section>
+<section id="supervised-learning-example" class="slide level2">
+<h2>Supervised learning example</h2>
+<ul>
+<li>The goal here is to generalize beyond the training set. That is, use the examples in the boxes of (a) and design matrix of (b) to form general rules that will allow us to classify the purple moon, yellow donut, and blue arrow.</li>
+</ul>
+<figure class="image">
+<p float="left">
+<img src="images/supervised.png" height = "350">
+</p>
+</figure>
+</section>
+<section id="essential-probability-theory" class="slide level2">
+<h2>Essential probability theory</h2>
+<ul>
+<li><p><a href="https://seeing-theory.brown.edu/compound-probability/index.html#section3">Conditional Probability</a></p></li>
+<li><p>We have our <strong>training set</strong> <span class="math inline">\(U\)</span> consisting of mappings from the input variable <span class="math inline">\(x\)</span> to the output variable <span class="math inline">\(y\)</span>.</p></li>
+<li><p>If we are learning a binary classifer, the <span class="math inline">\(C\)</span> is either <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> (good or bad, on or off).</p></li>
+<li><p>Ideally, we would like to reason in a sound manner about</p></li>
+</ul>
+<p><span class="math display">\[
+Pr( y | x, U)
+\]</span></p>
+<ul>
+<li><p>For example, <span class="math inline">\(Pr( y = {\tt bad~outcome} | x, U )\)</span> represents the probability that a woman diagnosed with breast cancer will recur (bad outcome) given</p>
+<ul>
+<li><p>the clinico-pathological and gene expression data for this patient in our <span class="math inline">\({\tt brca}\)</span> dataset (this is <span class="math inline">\(x\)</span>), and</p></li>
+<li><p>a (hopefully large) collection of other cases of women of good and bad outcome with different atttributes (this is <span class="math inline">\(U\)</span>, the rest of our <span class="math inline">\({\tt brca}\)</span> dataset)</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="conditional-probability" class="slide level2">
+<h2>Conditional probability</h2>
+<ul>
+<li><p>Notice that <span class="math display">\[ Pr( y = {\tt bad~outcome} | x, Y ) + Pr (y = {\tt good~outcome} | x, Y ) = 1
+\]</span></p></li>
+<li><p>Actually we should probabily write <span class="math inline">\(Pr( y | x, U, {\bf M})\)</span> where <span class="math inline">\(M\)</span> is the model of how we classify <span class="math inline">\(y\)</span> from <span class="math inline">\(x\)</span> and <span class="math inline">\(U\)</span>. For example, via logistic regression which we will look at today.</p></li>
+</ul>
+</section>
+<section id="maximum-a-posterior-probability-map" class="slide level2">
+<h2>Maximum a posterior probability (MAP)</h2>
+<ul>
+<li>Recall the question from Michelle about a sort of likelihood/parsimony highbrid. MAP is a common approach; “best guess”:
+<ul>
+<li>if <span class="math inline">\(Pr( y = {\tt good~outcome} | x, U) &gt; Pr(y={\tt bad~outcome} | x, Y)\)</span>, choose good. Otherwise bad.</li>
+</ul></li>
+<li>Let’s revisit this puzzle with these concepts in mind.</li>
+</ul>
+<figure class="image">
+<p float="left">
+<img src="images/supervised.png" height = "200">
+</p>
+</figure>
+</section>
+<section id="some-real-world-examples-of-supervised-learning" class="slide level2">
+<h2>Some real-world examples of supervised learning</h2>
+<ul>
+<li>This data is available in R (<span class="math inline">\({\tt iris}\)</span> variable). From R. Fisher. The goal is to build a classifier for the three types of irises: setosa, virginica, versicolor.</li>
+</ul>
+<figure class="image">
+<p float="left">
+<img src="images/irises.png" height = "600">
+</p>
+</figure>
+</section>
+<section id="real-world-examples-of-supervised-learning" class="slide level2">
+<h2>Real-world examples of supervised learning</h2>
+<ul>
+<li>The features x are sepal length, sepal width, petal length, petal width (x[i, 1], x[i,2], x[i,3], x[i,4] four attributes). D is the data in the <span class="math inline">\({\tt iris}\)</span> tibble in R. N, the number of examples in the learning set, is 150.</li>
+</ul>
+<figure class="image">
+<p float="left">
+<img src="images/irises.png" height = "600">
+</p>
+</figure>
+</section>
+<section id="more-examples" class="slide level2">
+<h2>More examples</h2>
+<figure class="image">
+<p float="left">
+<img src="images/hand.png" height = "250"> <img src="images/faces.png" height = "250">
+</p>
+</figure>
+</section>
+<section id="regression" class="slide level2">
+<h2>Regression</h2>
+<ul>
+<li>Recall: Variable <span class="math inline">\(y\)</span> (eg gender) is called the <strong>response</strong> variable. When <span class="math inline">\(y\)</span> takes real values (eg age, time, temperature), we call this problem a regression.</li>
+</ul>
+<figure class="image">
+<p float="left">
+<img src="images/regression.png" height = "250"> <img src="images/fits.png" height = "150">
+</p>
+</figure>
+</section>
+<section id="unsupervised-learning" class="slide level2">
+<h2>Unsupervised learning</h2>
+<ul>
+<li>Here the training set consists only of the inputs <span class="math inline">\(x\)</span> but no output variables <span class="math inline">\(y\)</span>.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">height</th>
+<th style="text-align: center;">weight</th>
+<th style="text-align: center;">IQ</th>
+<th style="text-align: center;">education</th>
+<th style="text-align: center;">paired with</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x[1,1]</td>
+<td style="text-align: center;">x[1,2]</td>
+<td style="text-align: center;">x[1,3]</td>
+<td style="text-align: center;">x[1,4]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[1]</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[2,1]</td>
+<td style="text-align: center;">x[2,2]</td>
+<td style="text-align: center;">x[2,3]</td>
+<td style="text-align: center;">x[2,4]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[2]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+<td style="text-align: center;">•••</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x[N,1]</td>
+<td style="text-align: center;">x[N,2]</td>
+<td style="text-align: center;">x[N,3]</td>
+<td style="text-align: center;">x[N,4]</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">y[N]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>The goal is to find “interesting” patterns in the data. This is sometimes called knowledge discovery or data mining.</p></li>
+<li><p>We aren’t told what kind of patterns nor how to evaluate the patterns.</p></li>
+<li><p>Seems a bit open ended, no?</p></li>
+<li><p>It’s best to think of this as you being a very patient open minded parent.</p></li>
+<li><p>Perhaps you are speaking with your teenage daughter who is teen-splaining a political issue for your benefit by randomly uttering statements about the topic.</p></li>
+<li><p>You listen patiently to see if there is an overall pattern emerging from the stream of information.</p></li>
+</ul>
+</section>
+<section id="unsupervised-learning-1" class="slide level2">
+<h2>Unsupervised learning</h2>
+<ol start="2" type="1">
+<li>The unsupervised approach.</li>
+</ol>
+<ul>
+<li><p>In e-commerce, it is common to cluster users into groups, based on their purchasing or web-surfing behavior, and then to send customized targeted advertising to each group (Berkhin 2006).</p></li>
+<li><p>In astronomy, the autoclass system (Cheeseman et al. 1988) discovered a new type of star, based on clustering astrophysical measurements.</p></li>
+<li><p>In biology, many examples including with protein or gene expression data and DNA-level sequence motif discovery.</p></li>
+<li><p>We will look at the k-means approach for clustering data shortly.</p></li>
+</ul>
+</section>
+<section id="reinforcement-learning" class="slide level2">
+<h2>Reinforcement learning</h2>
+<ul>
+<li><p>It is the subject of much current research.</p></li>
+<li><p>The idea is kind of like conditional learning in psychology.</p></li>
+<li><p>Your train your computer program to perform certain tasks (eg to drive you to work) by rewarding or punishing it.</p></li>
+<li><p>You can ask how do you punish or reward a computer … you can’t … it’s just flowery language to describe how your program makes decisions based on trying out different alternaives.</p></li>
+<li><p>For example, if you are building a computerized wheelchair to go down stairs, Your program might start by lurching forward at the top of the stairss. It gets -10 points for rolling end over end down the stairs.</p></li>
+<li><p>Your program would start again and try rolling very slowly towards. It might make it down 1 stair before falling, so it would get -5 points.</p>
+<ul>
+<li>Eventually your program learns to roll forward and backward in tiny increments until it gets to the bottom.</li>
+</ul></li>
+</ul>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of reflection</h2>
+</section>
+<section id="biol-480" class="slide level2">
+<h2>BIOL 480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="18-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="18-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '18-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '18-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '18-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '18-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '18-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

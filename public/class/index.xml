@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Classes on Bioinformatics</title>
+    <link>/class/</link>
+    <description>Recent content in Classes on Bioinformatics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/class/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Information Technology for Life Science</title>
+      <link>/class/01-class/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/01-class/</guid>
+      <description>Slides View lectures slide in your browser (html)
+Action Items  Note that Assignment 1 is made available today.
+ Please make sure you have sent us your gmail account at email
+  Points of reflection  Your devices contain an incredible amount of personal information. The consequences from misuse by malicious individuals for some of this information are quite easy to see (eg credit card numbers). How else can data be stolen from your machine and used in a malcious fashion?</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/class/00-class/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/00-class/</guid>
+      <description>Slides View lectures slide in your browser (html)They will also be made available to you in RStudio Cloud for direct viewing.
+
+Action items  If you haven’t doing the reading, please do so and address the action items at the bottom. This primarily involves sending us your gmail account and establishing accounts with some of the software we will use.
+ Prepare for Lecture 02 (readings + videos)</description>
+    </item>
+    
+    <item>
+      <title>Bioinformatics repositories: the NCBI and other tools</title>
+      <link>/class/07-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/07-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Assignment #2 will be now available. I would look that over.  Points of Reflection  What are the pros and cons with simply making your data available through a self-made website?
+ Similarly, what are the pros and cons with an approach of data release at the journal website?</description>
+    </item>
+    
+    <item>
+      <title>Computational challenges of single cell profiling</title>
+      <link>/class/22-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/22-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Project
+ Start to prepare for final
+  Points of Reflection  How can Simpson’s paradoxes be resolved with single cell sequencing?
+ What are the reasons that isogenic cells vary from individual to individual? in mammalian tissue? in bacteria or fungal populations?</description>
+    </item>
+    
+    <item>
+      <title>Discovering subtypes in breast cancer: unsupervised analysis</title>
+      <link>/class/18-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/18-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Complete the dynamic programming
+  Points of Reflection  Consider all the factors that went into choosing between box 1 and box 0 in the example of supervised learning (shapes and colors example).
+ Consider again the iris example and make sure you understand what is meant by the model \(M\).</description>
+    </item>
+    
+    <item>
+      <title>Discovery breast cancer subtypes: unsupervised analysis</title>
+      <link>/class/19-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/19-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Plase read R for Data Science, Chapter 23. It will provide more background and supporting concepts for the supervised analysis that comes next.
+  Points of Reflection  How did we know k in the k-means algorithm? Or did we?
+ How well do our \(5\) subtypes line up with the \(5\) subtypes from Parker et al.</description>
+    </item>
+    
+    <item>
+      <title>Exploratory data analysis of breast cancer transcriptomes</title>
+      <link>/class/06-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/06-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Today’s material is the final material included in Midterm #1.  Challenge Points of Reflection  Many of us are familiar with representing data in spreadsheets (eg Excel of Google Sheets). Describe the fundamental differences between the two dimensional table of spreadsheets and the tibble.
+ With respect to the discussion at the beginning of Chapter 6 in the textbook, what are some fundamental differences between an academic course environment where you are given a dataset and specific questions to complete on an assignment versus data science in research or idustrial settings?</description>
+    </item>
+    
+    <item>
+      <title>Exploring microbial diversity across our oceans</title>
+      <link>/class/10-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/10-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)
+ PDF of my hand written notes
+  Action Items  Assignment 2
+ Make sure you understand the concept of sample variance
+  Points of Reflection  Do you have data from your research project or from one of your courses?
+ Is it tidy?
+ What would it take to wrangle it into a tibble?</description>
+    </item>
+    
+    <item>
+      <title>Gene finding continued</title>
+      <link>/class/15-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/15-class/</guid>
+      <description>  Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items Points of Reflection  benefits/drawbacks of intrinsic versus extrinsic versus RNA-seq gene finding methods  </description>
+    </item>
+    
+    <item>
+      <title>Gene finding with Hidden Markov Models</title>
+      <link>/class/14-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/14-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)
+ Aki’s S4 objects for Markov Models
+  Action Items  Oct 29 Midterm  Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.
+ What other aspects of gene regulation are not well modelled by our approach?</description>
+    </item>
+    
+    <item>
+      <title>Genome annotations</title>
+      <link>/class/12-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/12-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  See if you can understand the \({\tt sapply}\) and \({\tt for}\) loops.
+ Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+ Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.</description>
+    </item>
+    
+    <item>
+      <title>How to wrange with marine microbes</title>
+      <link>/class/08-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/08-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Midterm midterm midterm  Points of Reflection  What advantages are there for data scientists if there is a single data structure like the \({\tt tibble}\)?
+ Do a bit of archaelogy and figure out what this ancient \({\tt data.frame}\) is.
+ Would science be better served if there were more standardized ways of making data and metadata available?</description>
+    </item>
+    
+    <item>
+      <title>Models of sequence evolution</title>
+      <link>/class/16-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/16-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)
+ Aki’s Hidden Markov Models
+  Action Items  Assignment 4  Points of Reflection  In our models, we used steps in our Markov model as a unit of time. More precisely, we “calibrated” the MMs so that they match with an expected number of mutations at the site.</description>
+    </item>
+    
+    <item>
+      <title>Modern Computing Paradigms</title>
+      <link>/class/02-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/02-class/</guid>
+      <description>Contents  Slides Action Items Points of reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 Try to get up and running with RStudio Cloud.  Points of reflection  The concept of computation has been around for a long time. A lot of activity during the Industrial Revolution … and then an explosion circa WWII Three fundamental properties of computation.</description>
+    </item>
+    
+    <item>
+      <title>Organzing the Tara Oceans data</title>
+      <link>/class/09-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/09-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Assignment 2 and prepare for Quiz on Thursday (midterm revisited)  Points of Reflection  Why are primary and foreign keys so important?
+ Why are concepts such as the Bermuda Principles so important? How could they be applied outside of genomics?
+ How are “business models” challenged by open source, open access approaches?</description>
+    </item>
+    
+    <item>
+      <title>Phylogenies and alignment</title>
+      <link>/class/17-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/17-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4  Points of Reflection  Try to understand the long branch attraction problem.
+ Enumerate all the undirected graphs with 6 species.
+ Suppose you have an amino acid sequence of length 100. You apply the PAM_1 Markov model to each position. So some amino acids change, likely most don’t.</description>
+    </item>
+    
+    <item>
+      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
+      <link>/class/20-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/20-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Project
+  Points of Reflection  What are the social and the economic benefits of tests like Oncotype DX or MammaPrint? They are quite expensive (costing thousands of dollars). How can they nevetheless save our health care systems money?
+ What advantages does multivariate prediction have over univariate prediction in this domain?</description>
+    </item>
+    
+    <item>
+      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
+      <link>/class/21-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/21-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Project
+  Points of Reflection  How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
+ Does it matter if computer intelligence is or isn’t the same time of intelligence we associate with humans?</description>
+    </item>
+    
+    <item>
+      <title>Representing and Manipulating Data in R</title>
+      <link>/class/04-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/04-class/</guid>
+      <description>  Contents  Slides Action Items Points of reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 Copy (and save permanently) Project 4 in RStudio Cloud. Try to work you way through the examples. Try some of the exercises in Chapter 4 to increase your fluency inthe basics of R.  Points of reflection </description>
+    </item>
+    
+    <item>
+      <title>Representing genomes and their annotations</title>
+      <link>/class/11-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/11-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Oct 22 Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+  Action items  Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.  Points of Reflection  Which organism has the largest genome?</description>
+    </item>
+    
+    <item>
+      <title>Reproducibility in life science research</title>
+      <link>/class/23-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/23-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Project
+ Start to prepare for final
+  Points of Reflection  What from the course have you learnt that could help increase the reproducibility of your own research?
+ Could an approach such as Distill work for the life sciences?</description>
+    </item>
+    
+    <item>
+      <title>Transcription factor binding sites in Baker’s yeast</title>
+      <link>/class/13-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/13-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Oct 29 Midterm
+ Work your way through the \({\tt my\_scan}\) function. Trace through the execution of the algorithm using the ARR1 binding site and a short sequence three base pairs longer than it.
+  Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.</description>
+    </item>
+    
+    <item>
+      <title>Transformations of breast cancer transcriptional cohorts</title>
+      <link>/class/05-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/05-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 due this week.  Challenge  The last \(50\) variables give expression values for \(50\) genes. When I was wrangling this data into a \({\tt tibble}\), I just used teh gene name.
+ Arguably, it would have been better to us variables names of the form \({\tt Gene.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing breast cancer transcriptomes</title>
+      <link>/class/03-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/03-class/</guid>
+      <description>Contents  Slides Action Items Points of reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 Copy (and save permanently) Project 3 in RStudio Cloud. Try to work you way through the examples. Try some of the exercises in Chapter 3 to increase your fluency in \({\tt ggplot}\). Try changing the colour (using hex notation; this is the most flexible approach), shape or size of the scatter plots created above.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+---
+title: "Representing and Manipulating Data in R"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+
+# Required
+
+- [Chapter 4 for Data Science: Basics](https://r4ds.had.co.nz/)
+
+
+
+# Deeper insight
+
+- [Introduction to R (DataCamp)](https://www.datacamp.com/courses/free-introduction-to-r?utm_source=adwords_ppc&utm_campaignid=805200711&utm_adgroupid=42045039256&utm_device=c&utm_keyword=%2Bdatacamp%20%2Br&utm_matchtype=b&utm_network=g&utm_adpostion=&utm_creative=255792658557&utm_targetid=aud-299261629574:kwd-424141783896&utm_loc_interest_ms=&utm_loc_physical_ms=9000565&gclid=Cj0KCQjwg8n5BRCdARIsALxKb94-LogJ8Iqgipp6QxKyH-TaEsI7jcu3kOC6eRhECKumBnC61I4RBUkaApi-EALw_wcB)  Datacamp has some excellent short courses in R. 
+
+# Action items  
+
+- You might investigate the code in Project L04 at RStudio Cloud. 
+

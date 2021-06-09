@@ -1,0 +1,48 @@
+---
+title: "Transformations of breast cancer transcriptional cohorts"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/05-slides.html)
+
+
+# Action Items
+
+- Assignment #1 due this week.
+
+
+
+## Challenge
+
+- The last $50$ variables give expression values for $50$ genes. When I was _wrangling_ this data into a ${\tt tibble}$, I just used teh gene name.
+
+- Arguably, it would have been better to us variables names of the form ${\tt Gene.ANIN, Gene.FOXC1, Gene.CDH3,}$ etc.
+
+- Why? Because this clearly marks these variables as different than the first $29$ variables which are not gene expression.
+
+- If I wanted to add or delete these variables with ${\tt select()}$, I could have used something like the ${\tt starts_with()}$ function.
+
+- Create a ${\tt tibble}$ called ${\tt pure_expression}$ that contains only the ${\tt participant}$ variables, and the expression of all $50$ genes, after changing the gene names as discussed above.
+
+## Points of Reflection
+
+- What advantages or disadvantages are there between traditional spreadsheets and these types of transformations in ${\tt R}$?
+
+
+- How does the  Transform $\rightarrow$ Visualize $\rightarrow$ Model cycle relate to Simpson's paradox?
+
+- In the slids above, we focused on removing observations (rows) to reduce the heterogeneity in our dataset. It might be easier to see interesting patterns when technical and nuisance biological variability is reduced. What are the potential downsides of reducing the number of observations?
+
+- Although data scientists speak about the  Transform $\rightarrow$ Visualize $\rightarrow$ Model cycle,
+what similarities and differences do you see between this cycle and what you experience as a bench
+scientist?
+
+
+
+

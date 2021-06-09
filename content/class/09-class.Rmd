@@ -1,0 +1,30 @@
+---
+title: "Organzing the Tara Oceans data"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/09-slides.html)
+
+
+# Action Items
+
+- Assignment 2 and prepare for Quiz on Thursday (midterm revisited)
+
+
+
+
+## Points of Reflection
+
+- Why are primary and foreign keys so important?
+
+- Why are concepts such as the Bermuda Principles so important? How could they be applied outside of genomics? 
+
+- How are "business models" challenged by open source, open access approaches? Where have such models succeeded economically?
+
+

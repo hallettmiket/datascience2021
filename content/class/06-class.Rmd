@@ -1,0 +1,46 @@
+---
+title: "Exploratory data analysis of breast cancer transcriptomes"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/06-slides.html)
+
+
+# Action Items
+
+- Today's material is the final material included in  Midterm #1. 
+
+
+
+
+## Challenge
+
+
+## Points of Reflection
+
+- Many of us are familiar with representing data in spreadsheets (eg Excel of Google Sheets). Describe the fundamental differences between the two dimensional table of spreadsheets and the tibble. 
+
+- With respect to the discussion at the beginning of Chapter 6 in the textbook, what are some fundamental differences between an academic course environment where you are given a dataset and specific questions to complete on an assignment versus data science in research or idustrial settings?
+
+
+- Go through the ${\tt small\_brca}$ object and figure out whether each variable is categorical, ordered categorical or continuous.
+
+- Temperature does have a lower bound, if not also an upper bound in a physics sense. So it has a finite range. Why is it still considered a continuous variable?
+
+- What about the expression of a gene such as ${\tt ESR1}$? Argue for or against it being a continuous variable. Why is it best modelled as a continuous variable? What properties call in to question it being a continuous variable?
+
+- Make sure you understand how and why the ${\tt brca}$ tibble was melted to ${\tt lava}$. It's a bit tricky.
+
+- What would be the advantage of using UBE2T __and__ ANLN simultaneously to predict tissue type (tumor vs normal) rather than either one alone?
+
+- So transformations and visualization allow us to identify genes etc. that may be useful for predicting clinical endpoints. What is meant by a model here and why is it needed? What is the purpose of the model?
+
+- Why is it a data science cycle and simply not Transform, Visualize, Model, Beer-o-clock?
+
+

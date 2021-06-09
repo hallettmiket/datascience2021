@@ -1,0 +1,14 @@
+---
+title: "Deep learning: proliferative index of a cancer cell with microscopy"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 21 at Youtube](https://youtu.be/f3mc_iyKw3Q)
+
+
+
+
+

@@ -1,0 +1,42 @@
+---
+title: "Introduction and orientation"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+
+# Required
+
+- Please read the [Resources](/resources/) for the course.
+
+
+- These are interesting short articles on different approaches towards keeping lab notebooks, and the pros and cons of electronic laboratory notebooks (ELNs)  versus traditional paper notebooks. [E Pain (2019) Science](https://www.sciencemag.org/careers/2019/09/how-keep-lab-notebook) and [R Kwok (2018) Nature](https://www.nature.com/articles/d41586-018-05895-3). 
+
+
+
+# Recommended
+
+- Read a little bit about RStudio [here](https://rstudio.com) and specifically [RStudio Cloud](https://rstudio.cloud/learn/guide)
+
+- If you have difficulties with Google Drive, this seems like a reasonable [tutorial](https://www.youtube.com/watch?v=cCZj5ojxRAA).
+
+# Action items  
+
+- Obtain your gmail account and send it to us as per the instructions.
+
+- When you receive your Slack invitation, join slack and enter the #datascience_2020 channel. Send an emoticon or messages to the group. Also, send a direct message to me.
+
+- Make sure that you are familiar with Google Drive now.
+
+# Points of reflection
+
+- Do you have a backup strategy for your devices? 
+
+- How do you manage your lab notebook? Are there any ideas from the readings or lecture that might be useful?
+
+- What are some potentially negative aspects of Cloud computing? 
+
+

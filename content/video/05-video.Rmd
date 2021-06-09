@@ -1,0 +1,13 @@
+---
+title: "Transformations of breast cancer transcriptional cohorts"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 04 at Youtube: Transforming breast cancer transcriptional cohorts](https://youtu.be/QSjdCy5agIY)
+ 
+
+
+

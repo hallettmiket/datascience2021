@@ -1,0 +1,66 @@
+---
+title: "Phylogenies and alignments"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(Biostrings)
+data_path = "~/data"
+
+```
+
+## Goals for today
+
+- SNPs and other evolutionary events
+
+- Relationship to cancer
+
+- Phylogenies
+
+- Parsimony
+
+- Maximum likelihod
+
+- Sequence alignment 
+
+
+
+
+
+
+
+## Points of reflection
+
+
+## BIOL 480
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

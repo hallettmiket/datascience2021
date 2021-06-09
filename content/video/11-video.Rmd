@@ -1,0 +1,14 @@
+---
+title: "Representing genomes and their annotations"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 11 at Youtube](https://youtu.be/-ezu-gzkc4s)
+
+
+
+
+

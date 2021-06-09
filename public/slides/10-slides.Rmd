@@ -1,0 +1,82 @@
+---
+title: "Exploring microbial diversity across our oceans"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Plan for Today
+
+- It's been two days already and Les Stroud  [Survivorman](https://www.youtube.com/watch?v=yNxro4Nn_Ok)
+still has not caught a microbe
+
+- 3 days without water and you are dead. 
+
+- [Tara Oceans](https://oceans.taraexpeditions.org/en/)  
+
+- [Sunagawa et al. (2015) Structure and function of the global ocean microbiome. Science](https://science.sciencemag.org/content/348/6237/1261359.long)
+
+- [Sunagawa et al. (2015) Supplemental Data](http://ocean-microbiome.embl.de/companion.html)
+
+
+## Map of where we are
+
+
+<figure class="image">
+<p float="center">
+  <img src="images/explore_cycle.png" width="600"/> 
+</p>
+<figcaption><small> From R for Datas Sience, Chapter 6.
+</small> </figcaption>
+</figure>
+
+
+## Survivorman's  goals: today
+
+- ${\tt seperate, unite}$
+
+- ${\tt intersect, setdiff, union}$
+
+- Inner and outer joins.
+
+- Normalization of the Tara Oceans dataset
+
+- Visualization using heatmaps
+
+## Now ...
+
+- Will Survivorman succeed and capturing microbes in his tibble on this remote south pacific island?
+
+
+## BIOL 480 on location
+
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

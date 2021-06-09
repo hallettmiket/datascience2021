@@ -1,0 +1,8 @@
+---
+title: "Syllabus"
+slug: syllabus
+---
+
+Readings and assignments should be completed *before* each class session. Assignments, and instructions for submitting assignments, can be found at at the [Assignments](/assignments/) page. 
+
+`r blogdown::shortcode("schedule")`

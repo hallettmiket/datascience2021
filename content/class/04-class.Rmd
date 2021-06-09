@@ -1,0 +1,25 @@
+---
+title: "Representing and Manipulating Data in R"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/04-slides.html)
+
+
+# Action Items
+
+- Assignment #1
+- Copy (and save permanently) Project 4 in RStudio Cloud. 
+- Try to work you way through the examples.
+- Try some of the exercises in Chapter 4 to increase your fluency inthe basics of R.
+
+
+
+# Points of reflection
+

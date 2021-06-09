@@ -1,0 +1,158 @@
+---
+title: Resources
+slug: resources
+output:
+  blogdown::html_page:
+    template: ../pandoc/toc-title_html.template
+    toc: true
+---
+
+```{r include=FALSE}
+library(emo)
+```
+ 
+# Information technologies for life science labs
+
+- [<i class="fa fa-google"></i> Google Drive](https://drive.google.com) An excellent and convenient collection of tools (documents, images, spreadsheets, presentations) with lots of storage space. This is cloud-based so teams can work on documents simultaneously. 
+
+- [<i class="fas fa-book"></i> Zotero](https://www.zotero.org/) It is really important to develop your library of bibliographic references, but it can certainly be challenging to keep all the references organized. Also, it is time consming to manually enter all the details of reference. There are many good tools out there; we tend to use Zotero as it is well integrated with Google Docs (for text files).
+
+- [<i class="fa fa-google"></i> Google Colab](https://colab.research.google.com) A promising cloud-based approach for a team to program together. It doesn't currently have great support for ${\tt R}$ but perhaps in the near future(?). It is a good option for ${\tt Python}$ currently.
+
+- [<i class="fa fa-google"></i> Google Cloud](https://cloud.google.com/) Whereas Google Drive is for storing files and developing documents, Google Cloud provides as much CPU, GPU, and TPU power as you want or can afford. There are other options including ${\tt AWS}$ from Amazon and ${\tt Azure}$ from Microsoft, amongst others.
+
+Note that RStudio Cloud is a kind of restricted combination of Google Drive, Colab and Cloud. It suffices for the teething stage while learning bioinformatics and biodata science.
+
+- [<i class="fa fa-slack"></i> Slack](https://slack.com/) We will use this non-stop in the course. There are alternatives including open source efforts but for various reasons we choose ${\tt Slack}$ for all of our laboratory-related work. Any of these tools are far far superior than email (yikes).
+
+- [<i class="fa fa-git"></i> Git](https://git-scm.com/) The course will touch on GIT, a very important piece of software that provides version control. GIT tracks all the files in a project as they are modified by different members of a team. It allows you to see the entire history of all modifications to any file and to "roll back" the files if necessary. Once your project is stored in GIT, it's basically impossible to lose it. Our entire course is maintained under GIT and you have full access to it through GitHub (see next entry).
+
+- [<i class="fa fa-github"></i> GitHub](https://github.com/) GitHub is a cloud resource providing facilities to house and share code persistently and consistently. It is tightly assocaited with GIT.  There are many alternatives. We use both GitHub and [<i class="fa fa-bitbucket"></i>BitBucket](bitbucket.org).
+
+# Modern lab notebooks
+
+- These are interesting short articles on different approaches towards keeping lab notebooks, and the pros and cons of electronic laboratory notebooks (ELNs)  versus traditional paper notebooks. [E Pain (2019) Science](https://www.sciencemag.org/careers/2019/09/how-keep-lab-notebook) and [R Kwok (2018) Nature](https://www.nature.com/articles/d41586-018-05895-3). 
+
+- I personally use a tool called  [<i class="fa fa-goodnotes"></i> Goodnotes](https://www.goodnotes.com). Others in my lab use [<i class="fa fa-evernote"></i> Evernote](https://www.evernote.com). Although I haven't used it, I hear very good things about
+[<i class="fa fa-wrench"></i> Notion](https://notion.so/). This is software that really integrates many tools into one coherent framework. If everyone in a group is using the software, it is very easy to share notes, images, calendars, and other common information. As it is cloud based, the information is available anywhere to all members of the group.
+
+
+# Time management 
+
+There are many software packages for designing, executing and managing large projects that involve many people. Most of these packages are built for companies. However several are particularly useful for modern life science labs.
+
+
+- [<i class="fa fa-wrench"></i> Trello](https://trello.com/) This is a project planning tool that is quite handy. It is not life science specific and could be used for almost any time of proect or event that is complicated to plan. Some members of my lab use it.
+
+
+- [<i class="fa fa-wrench"></i> Labscrum](https://labscrum.org/) This is really more of a technique than softare per se for conducting academic scientific research. It is a way of organizing a group, and provides a method to assist in tracking progress of projects and researchers. Our group does not use this, but it looks interesting. 
+
+- [<i class="fa fa-power-off"></i> Toggl](https://toggl.com/) This is an app that allows you to manage your time. Basically, you can keep track of how long you spend on different tasks during the day. Many private consultants use this type of tool to record how long they spend on a client's project for billing purposes. It is also useful if you have trouble managing your study and research time.
+
+# Resource management
+
+Especially with wet labs, a consistent effort is needed to order, track and invoice reagents, kits, and other expendables. Moreover, there is a need to precisely and accurately handle samples. For instance, as we process samples donated by cancer patients, we have a moral obligation to ensure that the material is not lost or mislabeled. Our lab certainly finds it challenging to  maintain a "chain of custody". We have experience with several software systems.
+
+- [<i class="fa fa-wrench"></i> Quartzy](https://www.quartzy.com/) and [<i class="fa fa-benchling"></i> Benchling](https://www.benchling.com/) are both nice software systems, each with their pros and cons. 
+
+- [<i class="fa fa-qrcode"></i> Snipe-It](https://snipeitapp.com/) We recently installed this system as a way to generate QR- (or classic bar-) codes. Basically, you can print out QR code stickers and associate each QR code with one item (reagent, buffer, sample, computer, eraser) in your lab. You need only a cell phone with a camera. You can purchase cheap special sticker paper that survives autoclaves and -80 freezers.
+
+# Community Support
+
+Finding on-line communities to answer questions as they arise is super imporant. 
+
+- [<i class="fa fa-stack-overflow"></i> Stackoverflow](https://stackoverflow.com/) This is an amazingly useful website that you will discover many times when asking questions especially with respect to computers and IT issues. It is community driven, meaning that people voluntarily answer each other's questions and provide advice from the very mundane to the most technical challenges.
+
+- [<i class="fa fa-info-circle"></i> Biostars](https://www.biostars.org/) If your question is bioinformatic in nature (eg what software to use? how does a particular piece of software work? how do I design my experiment optimally? etc.), the Biostars website and community is  excellent.
+
+
+- [<i class="fa fa-rebel"></i> RStudio Community](https://community.rstudio.com/) If your questions are about operating RStudio or its products (incl. Shiny, blogdown) specific. Not generally the place for assistance with coding in ${\tt R}$.
+
+
+# Scientific literature
+
+It is difficult to keep up to date with new publications in your area(s) of interest. In addition to standard Google searches, I use some of the following strategy each day. 
+
+-  [<i class="fa fa-search"></i> NCBI's PubMed](https://pubmed.ncbi.nlm.nih.gov/) Provides access to almost all scientific publications. ^[Note that Concordia has subscriptions to many (non-open-source) journals. You need to connect to the Concordia VPN ([instructions here](https://www.concordia.ca/content/dam/concordia/docs/IITS/VPN/VPN_AnyConnect_Windows_v2.pdf)).] The NCBI has a tool where you can receive daily updates (by email) of all  abstracts containing specific keywords.^[Each morning I troll through these emails for relevant papers.]
+
+- [bioRxiv preprints](https://www.biorxiv.org/) It is becoming increasingly common to submit manuscripts before publication to the preprint servers such as ${\tt bioRxiv}$. In fact, my group finds that there is quite often a year's delay between when a preliminary (unrefereed) version of a manuscript appears as a preprint and when it appears in a journal in its final version.^[A problem with preprint servers is that it is like drinking from a fire hose. It's hard to zero in on the papers you want to see.]
+
+-  [<i class="fa fa-twitter"></i> Twitter specifically #academictwitter](https://twitter.com/hallettmichael) In addition to  a platform that allows questionable right wing politicians to tweet questionable policy decisions, Twitter cannot be ignored as a valuable tool for following your scientific community. ^[I spend a considerable amount of micro-breaks following links to tweets of interesting look papers. Also, I find that Twitter allows you to expand out a bit and see groups/papers you might otherwise not run into.] I highly recommend that each student open a Twitter account for their "professional" purposes and follow members of your community. This includes journals and preprint servers who regularly tweet new papers.^[I often rely on journals to tweet new papers rather than going to the journal's webpage or having them  send me an email (yikes).]
+
+
+-  [<i class="fa fa-google"></i> Google Scholar](https://scholar.google.com/) Not surprisingly, this is a very powerful search engine for academic groups and publications. I recommend every student to establish a profile at Google Scholar.
+
+- Otherwise, I greatly rely on my group to post interesting articles to our ${\tt Slack}$ workspace and to give mini-presentations of potentially interesting papers in our lab meetings.
+ 
+# Bioinformatic resources
+
+- [<i class="fa fa-database"></i> National Center for Biotechnology Information (NCBI)](https://www.ncbi.nlm.nih.gov/) A huge resource from the USA that houses a vast spectrum of biological data and datasets,  and bioinformatic tools. 
+
+- [<i class="fa fa-database"></i> European Molecular Biology Labs (EMBL)](https://www.embl.org/) and [EMBL-European Bioinformatics Institute (EBI)](https://www.ebi.ac.uk/) are the European analogs to the NCBI with similar mandates and scope.
+
+- [<i class="fa fa-database"></i> Joint Genomes Institute (JGI)](https://jgi.doe.gov/)
+This is US Department of Energy, Lawrence Berkeley lab intiative that has really excelled recently in many different domains. My lab uses tools such as [MycoCosm](https://jgi.doe.gov/data-and-tools/mycocosm/) often for fungal (microbiome) studies.
+
+There are many other databases, often with very specific mandates. For example,
+many organisms have their own database [Saccharomyces cerevisiae Genome DataBase (SGD)](https://www.yeastgenome.org/) and many human diseases have specialized resources. For example, these are two important cancer resources:
+
+- [<i class="fa fa-database"></i> The Cancer Genome Atlast (TCGA) program](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga). TCGA, which is USA based, contains high-throughput profiles for several large patient cohorts across different cancer types. The availability of multi-modal high-throughput profiles conducting in a uniform manner across these cohorts opens up many analysis opportunities. 
+
+- [<i class="fa fa-database"></i> International Cancer Genome Consortium (ICGC)](https://dcc.icgc.org/) is similar to TCGA but an international consortium across more types of cancers.
+
+
+# R, RStudio and tidyverse resources
+ 
+There is now likely an uncountably infinite number^[well perhaps not **that** many but ...] of resources for learning R, RStudio and assocaiated packages and extensions. 
+
+- [The R Language](https://www.r-project.org/) This is the main website for the core R language. There is a tonne of useful information including manuals, books and other technical information. You can download (for free) R from this site (if you would like to set up R independently of RStudio Cloud).
+
+- [The R Manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) If you would like to learn the basics of R in a more traditional approach (compared to the data science focus used in this course), this manual is a good place to start.
+
+- [R and RStudio cheat sheets](https://www.rstudio.com/resources/cheatsheets/): A large collection of simple cheat sheets for RStudio, `ggplot2`, and other R-related things. RStudio also has an excellent series of [webinars](https://rstudio.com/resources/webinars/) covering almost all aspects of R and RStudio. I highly recommend these easy to follow videos.
+
+- [Bioconductor](http://www.bioconductor.org/) is a collection of packages and tools for the biosciences. It is an open source effort. Although not strictly limited to R, Bioconductor is certainly well integrated with R. 
+
+- [DataCamp](https://www.datacamp.com/) has excellent R tutorials where lectures are intermixed with hands-on programming exercises similar to the ${\tt LearnR}$ modules you will experience in this course. You might consider trying the ${\tt tidyverse}$ tutorial that is very high quality in my opinion. There are many competitors to DataCamp, some of which are free. DataCamp allows for limited free access.
+
+- [Stat 545](http://stat545.com/): [Dr. Jenny Bryan](https://twitter.com/JennyBryan) at the University of British Columbia has an entire introductory course in R, visualization, and data analysis online.
+
+
+
+# How to select the appropriate chart type
+
+[^dataviz-cat] I find the collections below very useful: when I want to make a plot, I typically search through hundreds of images to find the most suitable/exciting.^[Thank you to [A Heiss](https://www.andrewheiss.com) for compiling this selection.] Here are some of the best:
+
+- [The Data Visualisation Catalogue](http://www.datavizcatalogue.com/): Descriptions, explanations, examples, and tools for creating 60 different types of visualizations.
+- [The Data Viz Project](http://datavizproject.com/): Descriptions and examples for 150 different types of visualizations. Also allows you to search by data shape and chart function (comparison, correlation, distribution, geographical, part to whole, trend over time, etc.).
+- [The Chartmaker Directory](http://chartmaker.visualisingdata.com/): xamples of how to create 51 different types of visualizations in 31 different software packages, including Excel, Tableau, and R.
+- [R Graph Catalog](https://www.r-graph-gallery.com/): R code for 124 ggplot graphs.
+- [Emery's Essentials](http://annkemery.com/essentials/): Descriptions and examples of 26 different chart types.
+
+[^dataviz-cat]: {-} [![The Data Visualisation Catalogue](/images/reference/dataviz-catalogue.png)](http://www.datavizcatalogue.com/) *The Data Visualisation Catalogue*
+
+
+
+
+# Colors and fonts
+
+- [ColorBrewer](http://colorbrewer2.org/): Sequential, diverging, and qualitative color palettes that take accessibility into account.
+- [Google Fonts](https://fonts.google.com/): Huge collection of free, well-made fonts.
+- [The Ultimate Collection of Google Font  Pairings](https://www.reliablepsd.com/ultimate-google-font-pairings/): A list of great, well-designed font pairings from all those fonts hosted by Google (for when you're looking for good contrasting or complementary fonts).
+
+
+# Markdown
+
+The slides and website for this course were developed in Markdown, specifically a dialect deigned for R (${\tt RMarkdown}$). Fluency in Markdown is a useful skill to have as more and more tools and information migrates to the cloud.
+
+- ^[{-} ![Markdown logo](/images/reference/markdown.png)] [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/): A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.
+- [Markdown tutorial](https://www.markdowntutorial.com/): An interactive tutorial to practice using Markdown.
+- [Markdown cheatsheet](http://packetlife.net/media/library/16/Markdown.pdf): Useful one-page reminder of Markdown syntax.
+
+
+# Citations and bibliography
+
+[^bibtex] You can [download a BibTeX file](/bib/references.bib) of all the non-web-based readings in the course.
+
+[^bibtex]: {-} You can open the file in [BibDesk on macOS](http://bibdesk.sourceforge.net/), [JabRef on Windows](http://www.jabref.org/), or [Zotero](https://www.zotero.org/) or [Mendeley](https://www.mendeley.com/) online. I personnally use Zotero with Google Docs. 
+

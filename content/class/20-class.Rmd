@@ -1,0 +1,28 @@
+---
+title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/20-slides.html)
+
+
+
+# Action Items
+
+- Assignment 4
+
+- Project
+
+
+
+# Points of Reflection
+
+- What are the social and the economic benefits of tests like Oncotype DX or MammaPrint? They are quite expensive (costing thousands of dollars). How can they nevetheless save our health care systems money?
+
+- What advantages does multivariate prediction have over univariate prediction in this domain?

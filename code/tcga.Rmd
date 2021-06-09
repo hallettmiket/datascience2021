@@ -1,0 +1,186 @@
+---
+title: "Preparing TCGA"
+author: "M Hallett"
+date: "07/08/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+#BiocManager::install("TCGAbiolinks")
+library(TCGAbiolinks)
+library(SummarizedExperiment)
+library(dplyr)
+library(DT)
+
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("stephenturner/annotables")
+BiocManager::install("stephenturner/annotables")
+library(annotables)
+```
+
+
+```{r setup, include=FALSE}
+CancerProject <- "TCGA-BRCA"
+DataDirectory <- paste0("~/data/GDC/",gsub("-","_",CancerProject))
+FileNameData <- paste0(DataDirectory, "_","HTSeq_Counts",".rda")
+
+query <- GDCquery(project = CancerProject,
+                  data.category = "Transcriptome Profiling",
+                  data.type = "Gene Expression Quantification", 
+                  workflow.type = "HTSeq - Counts")
+samplesDown <- getResults(query,cols=c("cases"))
+
+dataSmTP <- TCGAquery_SampleTypes(barcode = samplesDown,
+                                  typesample = "TP")  #primary tumor
+
+dataSmNT <- TCGAquery_SampleTypes(barcode = samplesDown,
+                                  typesample = "NT") # normal tissue
+
+
+queryDown <- GDCquery(project = CancerProject, 
+                      data.category = "Transcriptome Profiling",
+                      data.type = "Gene Expression Quantification", 
+                      workflow.type = "HTSeq - Counts", 
+                      barcode = c(dataSmTP, dataSmNT))
+
+GDCdownload(query = queryDown,
+            directory = DataDirectory)
+
+dataPrep <- GDCprepare(query = queryDown, 
+                       save = TRUE, 
+                       directory =  DataDirectory,
+                       save.filename = FileNameData)
+
+
+dataPrep <- TCGAanalyze_Preprocessing(object = dataPrep, 
+                                      cor.cut = 0.6,
+                                      datatype = "HTSeq - Counts")   
+
+dataNorm <- TCGAanalyze_Normalization(tabDF = dataPrep,
+                                      geneInfo = geneInfoHT,
+                                      method = "gcContent") 
+
+boxplot(dataPrep, outline = FALSE)
+
+boxplot(dataNorm, outline = FALSE)
+
+dataFilt <- TCGAanalyze_Filtering(tabDF = dataNorm,
+                                  method = "quantile", 
+                                  qnt.cut =  0.25)   
+
+dataDEGs <- TCGAanalyze_DEA(mat1 = dataFilt[,dataSmTP_short],
+                            mat2 = dataFilt[,dataSmNT_short],
+                            Cond1type = "Normal",
+                            Cond2type = "Tumor",
+                            fdr.cut = 0.01 ,
+                            logFC.cut = 1,
+                            method = "glmLRT")  
+
+#my attempt
+myquery <- GDCquery(project = "TCGA-BRCA", 
+                  data.category = "Clinical",
+                  data.type = "Clinical Supplement", 
+                  data.format = "BCR Biotab")
+GDCdownload(myquery)
+clinical.BCRtab <- GDCprepare(myquery)
+
+```
+
+Now let's prepare the expression matrix as a tibble
+```{r setup, include=FALSE}
+exprs <- t(dataNorm)
+t_exprs <- as_tibble(exprs)
+t_exprs$id <- rownames(exprs)
+exprs <- t_exprs[ , c(ncol(t_exprs), 1:(ncol(t_exprs)-1))]
+
+exprs$tss <- unlist(lapply(exprs$id, FUN=function(x) { return( strsplit(x, split="-")[[1]][2]) } ))
+
+exprs$participant <- unlist(lapply(exprs$id, FUN=function(x) { return( strsplit(x, split="-")[[1]][3]) } ))
+exprs$barcode <- unlist(lapply(exprs$id, FUN=function(x) {
+  return( paste0("TCGA-", strsplit(x, split="-")[[1]][2], "-", strsplit(x, split="-")[[1]][3])) } ))
+
+exprs <- exprs[, c( 1, (ncol(exprs)-2), (ncol(exprs)-1), ncol(exprs), 2:(ncol(exprs)-3) )]
+```
+Now append the clinical data.
+```{r setup, include=FALSE}
+clin3 <- clinical.BCRtab[[3]]
+clin4 <- clinical.BCRtab[[4]]
+#clin <- full_join(clin4, clin3, by = c( "bcr_patient_barcode"))[-c(1,2),]
+clin <- clin4
+```
+
+Now join the clinical and exprs data together
+```{r setup, include=FALSE}
+brca <- left_join(exprs, clin, by =c("barcode" = "bcr_patient_barcode"))
+ens <- grep("ENS", colnames(brca))
+brca <- brca[ , c(setdiff(1:ncol(brca), ens), ens )]
+save(brca, file = file.path(DataDirectory, "brca.Rdata"))
+```
+# The brca tibble is very large and not appropriate for the class.
+
+Now we need a map between ENSEMBL ids and gene names.
+```{r setup, include=FALSE}
+obs_ensembl <- as_tibble(colnames(exprs)[-c(1,2,3,4)]); colnames(obs_ensembl) <- "observed"
+ensembl2gene <- left_join( obs_ensembl, grch38, by=c("observed" = "ensgene"))
+save(ensembl2gene, file = file.path(DataDirectory, "ensembl2gene.Rdata"))
+```
+Note that some ensembl ids have several Entrez ids. There are some other things going on here too. 
+
+Now we should reduce the size of the ${\tt brca tibble}$ to make it more appropriate for the class.
+We begin by using only the PAM50 genes.
+```{r setup, include=FALSE}
+p50 <- c("UBE2T", "BIRC5", "NUF2", "CDC6", "CCNB1", "TYMS", "MYBL2", 
+  "CEP55", "MELK", "NDC80", "RRM2", "UBE2C", 
+  "CENPF", "PTTG1", "EXO1", "ORC6", 
+  "ANLN", "CCNE1", "CDC20", "MKI67", 
+  "KIF2C", "ACTR3B", "MYC", "EGFR", 
+  "KRT5", "PHGDH", "CDH3", "MIA",
+  "KRT17", "FOXC1", "SFRP1", "KRT14", 
+  "ESR1", "SLC39A6", "BAG1", "MAPT", 
+  "PGR", "CXXC5", "MLPH", "BCL2", "MDM2", "NAT1", 
+  "FOXA1", "BLVRA", "MMP11", "GPR160", 
+  "FGFR4", "GRB7", "TMEM45B", "ERBB2")
+(ensembl2gene %>% filter(symbol %in% p50))$observed ->p50ensembl
+which(colnames(brca) %in% p50ensembl) -> brca.idx
+ens <- setdiff(grep("ENS", colnames(brca)), brca.idx)
+small_brca <- brca[ , -ens]
+
+tt <- grep("ENS", colnames(small_brca))
+sym <- c()
+for (i in tt) {
+  sym <-c(sym,  ensembl2gene[ which(ensembl2gene$observed == colnames(small_brca)[i]), "symbol"] )
+}
+sym <- unname(unlist(sym))
+colnames(small_brca)[tt] <- sym
+```
+
+Now let's remove some clinical variables that aren't too important for this application.
+```{r setup, include=FALSE}
+rem <- c(  7, 8, 14, 15, 18, 20, 21, 25, 26, 27, 28, 29, 30, 31:34, 36, 38, 39, 40, 41:43, 45,
+           46, 49, 50, 51:52, 55, 56:60, 61:63, 66:103, 105, 106:108, 110, 111:115
+    )
+small_brca <- small_brca[, -rem]
+```
+
+Finally mark each sample as tumor or normal in  a simple way.
+```{r setup, include=FALSE}
+for (id in dataSmTP) {
+  idx <- which(small_brca$id == id)
+  small_brca[idx, "tumor"] <- TRUE
+}
+
+for (id in dataSmNT) {
+  idx <- which(small_brca$id == id)
+  small_brca[idx, "tumor"] <- FALSE
+}
+small_brca <- small_brca[, c(1:28, 79, 29:78)]
+save(small_brca,  file = file.path(DataDirectory, "small_brca.Rdata"))
+```
+
+
+

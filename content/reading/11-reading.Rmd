@@ -1,0 +1,30 @@
+---
+title: "Representing genomes and their annotations"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Chapters 14 - Strings](https://r4ds.had.co.nz/strings.html)
+
+# Recommended Reading
+
+- [Lab October 20th Video](https://youtu.be/NRtxmIIqNtg)
+
+- [Integrative Genome Viewer](https://www.youtube.com/channel/UCb5W5WqauDOwubZHb-IA_rA)
+
+
+# Action items  
+
+- Oct 22 Project outline due for genomics diploma and grad students (1 page)
+
+- Oct 29 Midterm
+
+- Assignment #3 is available
+
+
+

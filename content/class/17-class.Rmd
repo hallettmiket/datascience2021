@@ -1,0 +1,32 @@
+---
+title: "Phylogenies and alignment"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/17-slides.html)
+
+
+
+# Action Items
+
+- Assignment 4
+
+
+# Points of Reflection
+
+- Try to understand the long branch attraction problem.
+
+- Enumerate all the undirected graphs with 6 species.
+
+- Suppose you have an amino acid sequence of length 100. You apply the PAM_1 Markov model to each position. So some amino acids change, likely most don't. We would expected 1% to change. Now apply the PAM_1 MM again. Do you expected to see that 2% of the amino acids have changed? Why or why not?
+
+- Why is PAM_250 considered the upper bound? What happens after PAM_250?
+
+
+

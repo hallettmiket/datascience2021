@@ -1,0 +1,31 @@
+---
+title: "Discovering subtypes in breast cancer: unsupervised analysis"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Conditional probablity](https://seeing-theory.brown.edu/compound-probability/index.html#section3)
+
+
+# Recommended Reading
+
+- [Basic Probability Theory](https://seeing-theory.brown.edu/basic-probability/index.html)
+
+- The Hallmarks of Cancer [I](https://pubmed.ncbi.nlm.nih.gov/10647931/) and [II](https://pubmed.ncbi.nlm.nih.gov/21376230/)
+- [The Emporer of All Maladies](https://www.amazon.ca/dp/B003UYUP58/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
+
+
+# Action items  
+
+- Assignment #4
+
+- Project
+
+- Complete the dynamic programming table.
+
+

@@ -1,0 +1,29 @@
+---
+title: "Gene finding with Hidden Markov Models"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/14-slides.html)
+
+- [Aki's S4 objects for Markov Models](/slides/14-lab.html)
+
+
+# Action Items
+
+- Oct 29 Midterm
+
+
+## Points of Reflection
+
+- Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.
+
+- What other aspects of gene regulation are not well modelled by our approach?
+
+- How could we improve our mdoel to better reflect the bioogical reality of transcription factors, binding sites and gene regulation in general?
+

@@ -1,0 +1,37 @@
+---
+title: "How to wrangle with marine microbes"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+# Required (Spread over L08 and L09)
+
+- [Chapters 10-13](https://r4ds.had.co.nz/wrangle-intro.html): R for Data Sience (they are short 
+and most of the material is already familiar to you)
+
+- [Intro. to Metagenomics](https://www.youtube.com/watch?v=gWzUWa7-UWA)
+
+# Recommended Reading (Spread over L08 and L09)
+
+- [Sunagawa et al. (2015) Structure and function of the global ocean microbiome](https://science.sciencemag.org/content/348/6237/1261359.long)
+
+You will need to be logged into the Concordia VPN to access this paper.
+
+- [Metagenonomics (wiki)](https://en.wikipedia.org/wiki/Metagenomics)
+
+
+- [Metagenomics analysis](https://www.youtube.com/watch?v=TnWeVUx5ERU)
+
+- [Unix Tutorial](http://www.ee.surrey.ac.uk/Teaching/Unix/unixintro.html)
+
+
+# Action items  
+
+
+- Get ready for the midterm.
+
+
+

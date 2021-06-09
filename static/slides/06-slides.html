@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Exploratory data analysis of breast cancer transcriptomes</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="06-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="06-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="06-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <link href="06-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="06-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Exploratory data analysis of breast cancer transcriptomes</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="plan-for-today" class="slide level2">
+<h2>Plan for Today</h2>
+<ul>
+<li><p>A few minutes about <em>pipes</em> in R (the <span class="math inline">\({\tt magrittr}\)</span> package, also a part of <span class="math inline">\({\tt R}\)</span>’s <span class="math inline">\({\tt tidyverse}\)</span>).</p></li>
+<li><p>Further explore our breast cancer transcriptome dataset. Our focus today is on the <strong>model</strong> in the Data Science cycle.</p></li>
+<li><p>Here we focus more on the gene expression (rather than clinico-pathlogical sample data).</p></li>
+<li><p>This will complete Part I of the textbook.</p></li>
+<li><p>Today’s material marks the end of material covered by the first midterm.</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/explore_cycle.png" width="600"/>
+</p>
+<figcaption>
+<small> From R for Datas Sience, Chapter 6. </small>
+</figcaption>
+</figure>
+</section>
+<section id="pipes" class="slide level2">
+<h2>Pipes</h2>
+<ul>
+<li><p>Pipes simplify R. They are a bit tricky at first.</p></li>
+<li><p>The <span class="math inline">\({\tt tidyverse}\)</span> incorporates the <span class="math inline">\({\tt magrittr}\)</span> package. So when you load the <span class="math inline">\({\tt tidyverse}\)</span> library, you have access to pipes.</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/notpipe.jpg" width="210"/> <img src="images/pipe.png" width="293"/>
+</p>
+<figcaption>
+<small>Left: <em>This is not a pipe.</em> René Margritte (1929). Right: <em>Actually this is a pipe.</em> Stefan Milton Bache (2014). </small>
+</figcaption>
+</figure>
+<div style="text-align: left">
+<p><small>To be honest, I think many new programmers can get confused by pipes so I would normally not teach them this early. However, the book and examples online do use pipes. So I guess we have to go with the flow.</small> </dev></p>
+</section>
+<section id="functions-and-composition" class="slide level2">
+<h2>Functions and composition</h2>
+<ul>
+<li>Suppose I wanted to compute a function <span class="math inline">\(f(x) = \log{ \left( \sqrt{ e^{tanh( x)} } \right) }\)</span>. I have no idea why you would want to compute this but …</li>
+</ul>
+<p>Approach 1 [Level Newbie]</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>x1 &lt;-<span class="st"> </span><span class="kw">tanh</span>(x)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>x2 &lt;-<span class="st"> </span><span class="kw">exp</span>(x1)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>x3 &lt;-<span class="st"> </span><span class="kw">sqrt</span>(x2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>answer &lt;-<span class="st"> </span><span class="kw">log</span>(x3)</span></code></pre></div>
+<p>Approach 2 [Level Junior]</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>answer &lt;-<span class="st"> </span><span class="kw">tanh</span>(x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>answer &lt;-<span class="st"> </span><span class="kw">exp</span>(answer)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>answer &lt;-<span class="st"> </span><span class="kw">sqrt</span>(answer)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>answer &lt;-<span class="st"> </span><span class="kw">log</span>(answer)</span></code></pre></div>
+</section>
+<section id="functions-and-composition-1" class="slide level2">
+<h2>Functions and composition</h2>
+<div style="text-align: left">
+<p>Approach 3 [Level Padawan] (composition of functions) </dev></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>answer &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="kw">sqrt</span>(<span class="kw">exp</span>(<span class="kw">tanh</span>(x))))</span></code></pre></div>
+<div style="text-align: left">
+<p>Approach 4 [Level Jedi Warrior] (Pipes) </dev></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>x <span class="op">%&gt;%</span><span class="st"> </span>tanh <span class="op">%&gt;%</span><span class="st"> </span>exp <span class="op">%&gt;%</span><span class="st"> </span>sqrt <span class="op">%&gt;%</span><span class="st"> </span>log -&gt;<span class="st"> </span>answer</span></code></pre></div>
+<div style="text-align: left">
+<p>Here <span class="math inline">\(x\)</span> is transformed by a succession of functions. By default the left-hand side (LHS) will be piped in as the first argument of the function appearing on the right-hand side (RHS). </dev></p>
+<div style="text-align: left">
+<p>If it’s not the first argument, you can use “.” as a placeholder. </dev></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, ., <span class="dv">2</span>); <span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, .)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">## [1] 1 3 5 7 9</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">## [1]  1  4  7 10</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="dv">5</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">seq</span>( <span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="dv">1</span>) <span class="co"># fills in the missing parameter</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">## [1] 1 2 3 4 5</span></span></code></pre></div>
+</section>
+<section id="pipes---return-to-our-example-last-class-l05" class="slide level2">
+<h2>Pipes - return to our example last class (L05)</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>b0 &lt;-<span class="st"> </span><span class="kw">rename</span>(small_brca,  <span class="dt">stage =</span> ajcc_pathologic_tumor_stage )</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>b1 &lt;-<span class="st"> </span><span class="kw">filter</span>(b0, (<span class="kw">grepl</span>(<span class="st">&quot;Stage&quot;</span>, stage) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">&quot;Stage X&quot;</span>, stage) <span class="op">&amp;</span><span class="st"> </span>tumor<span class="op">==</span><span class="ot">TRUE</span>)) </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>b2 &lt;-<span class="st"> </span><span class="kw">select</span>(b1, participant, stage, vital_status, death_days_to)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>b3 &lt;-<span class="st"> </span><span class="kw">filter</span>(b2, vital_status<span class="op">==</span><span class="st">&quot;Dead&quot;</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>b4 &lt;-<span class="st"> </span><span class="kw">mutate</span>(b3, <span class="dt">death_yrs =</span> <span class="kw">as.numeric</span>(death_days_to) <span class="op">/</span><span class="st"> </span><span class="dv">365</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>small_brca <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="st">      </span><span class="kw">rename</span>(<span class="dt">stage =</span> ajcc_pathologic_tumor_stage ) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="st">      </span><span class="kw">filter</span>((<span class="kw">grepl</span>(<span class="st">&quot;Stage&quot;</span>, stage) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">&quot;Stage X&quot;</span>, stage) <span class="op">&amp;</span><span class="st"> </span>tumor<span class="op">==</span><span class="ot">TRUE</span>))  <span class="op">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="st">      </span><span class="kw">select</span>(participant, stage, vital_status, death_days_to) <span class="op">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="st">      </span><span class="kw">filter</span>(vital_status<span class="op">==</span><span class="st">&quot;Dead&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="st">      </span><span class="kw">mutate</span>(<span class="dt">death_yrs =</span> <span class="kw">as.numeric</span>(death_days_to) <span class="op">/</span><span class="st"> </span><span class="dv">365</span>) -&gt;<span class="st"> </span>b4</span></code></pre></div>
+<div style="text-align: left">
+<p>Starting in Chapter 5 of the textbook, you see a lot of examples using <span class="math inline">\({\tt %&gt;%}\)</span>.</p>
+</div>
+</section>
+<section id="returning-to-our-breast-cancer-transcriptome" class="slide level2">
+<h2>Returning to our breast cancer transcriptome</h2>
+<ul>
+<li><p>We’ve learnt how to winnow our dataset down to the core that we want through <span class="math inline">\({\tt dplyr}\)</span>.</p></li>
+<li><p>And we’ve learnt how to visualize that data to discover trends through <span class="math inline">\({\tt ggplot}\)</span>.</p></li>
+<li><p>Now we focus on the types of questions we can ask, how to model our data (to answer these questions), and then to refine our data and visualizations (cyclic).</p></li>
+<li><p>Modelling is a very big topic and one could argue that the a large portion of the course explores modelling from different angles.</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/explore_cycle.png" width="600"/>
+</p>
+<figcaption>
+<small> From R for Datas Sience, Chapter 6. </small>
+</figcaption>
+</figure>
+</section>
+<section id="some-basic-definitions" class="slide level2">
+<h2>Some basic definitions</h2>
+<ul>
+<li><p>Previous lectures suggested that a good data scientist listens to experts to understand each of their variables (eg Why are these variables tracked in patients? What is stage? How are breast caner patients tracked? etc). Domain specific knowledge is key to data science, <small>(no matter what any of your deep learning friends say - It’s ok for you to hang around with deep learning people but don’t let them to be a negative influence on you. No drugs, no GANs, no VAEs, no staying out too late, and be your own person. You don’t need to do or not do anything any one else says. It’s ok to be different. You have your cell phone and you know how to call a me or a taxi or 911 if they starting snorting Differential Programming again. Of course, deep learning is fun and important if you use them wisely. Just don’t fall prey to the demon weed of AI.)</small></p></li>
+<li><p>But now it’s time to switch and let the data speak for itself. That’s also an important aspect of data science: use advice from the experts to help phrase the questions and check the quality of your data, but then ask new questions and objectively stand back and see what it says.</p></li>
+<li><p>Columns correspond to <strong>variables</strong> in <span class="math inline">\({\tt tibbles}\)</span>. Variables can take on different <strong>values</strong>.</p></li>
+<li><p>Some variables are <em>categorical</em>, meaning they have a (typically) small range of values. For example, <span class="math inline">\({\tt x}\)</span> can have only an integer value <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, or <span class="math inline">\(2\)</span>. For example, <span class="math inline">\({\tt tumor}\)</span> can only have values <span class="math inline">\({\tt TRUE, FALSE}\)</span>. For example, <span class="math inline">\({\tt salsa}\)</span> can have values <span class="math inline">\({\tt hot, medium, cold}\)</span>.</p></li>
+<li><p>Some categorical variables are <strong>ordered</strong>. For example, <span class="math inline">\({\tt days}\)</span> could have values <span class="math inline">\({\tt sunday, monday}, \ldots, {\tt saturday}\)</span>. Our stage variable is another example.</p></li>
+<li><p>Some variables are <strong>continuous</strong>, meaning they have an infinite number of values and these values are ordered. For example, <span class="math inline">\({\tt temp}\)</span> is a real number. The expression of <span class="math inline">\({\tt ESR1}\)</span> is a continous variables, or is it?</p></li>
+<li><p>Categorical <span class="math inline">\(\rightarrow\)</span> Bar plot; Continuous <span class="math inline">\(\rightarrow\)</span> Histogram</p></li>
+</ul>
+</section>
+<section id="values-and-variability" class="slide level2">
+<h2>Values and variability</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>brca &lt;-<span class="st"> </span><span class="kw">rename</span>(small_brca,  <span class="dt">stage =</span> ajcc_pathologic_tumor_stage ) <span class="co"># just to simplify like last class</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>brca &lt;-<span class="st"> </span><span class="kw">select</span>(brca, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;tss&quot;</span>, <span class="st">&quot;barcode&quot;</span>, <span class="st">&quot;id&quot;</span>, <span class="st">&quot;bcr_patient_uuid&quot;</span>, <span class="st">&quot;form_completion_date&quot;</span>, <span class="st">&quot;birth_days_to&quot;</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> brca) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> stage)) <span class="op">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="explore-other-variables" class="slide level2">
+<h2>Explore other variables</h2>
+<ul>
+<li><p>Bar plots depict the variability of a variable. We begin with several categorical variables. In bar plot, the <span class="math inline">\(x\)</span>-axis is simply the different value the variable can take.</p></li>
+<li><p>We’ll use the <span class="math inline">\({\tt ggpubr}\)</span> package which contains a function called <span class="math inline">\({\tt ggarrange()}\)</span> to put multiple plots together in a figure.</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">library</span>(ggpubr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>g_gender &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> brca) <span class="op">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gender)) <span class="op">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>g_menopause_status &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> brca) <span class="op">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> menopause_status)) <span class="op">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>g_race &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> brca) <span class="op">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> race)) <span class="op">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a>g_ethnicity &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> brca) <span class="op">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ethnicity)) <span class="op">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+</section>
+<section id="explore-other-variables-1" class="slide level2">
+<h2>Explore other variables</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">ggarrange</span>(g_gender, g_race, g_ethnicity, g_menopause_status, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>          <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="explore-other-variables-2" class="slide level2">
+<h2>Explore other variables</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">ggarrange</span>(g_hist, g_age, g_micromet, g_lymph, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>          <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="whats-up-with-tt-histologic_diagnosis" class="slide level2">
+<h2>What’s up with <span class="math inline">\({\tt histologic\_diagnosis}\)</span>?</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>brca <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(histologic_diagnosis_other) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>( nn &lt;-<span class="st"> </span><span class="kw">n</span>())</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">## `summarise()` ungrouping output (override with `.groups` argument)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">## # A tibble: 60 x 2</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">##    histologic_diagnosis_other                                `nn &lt;- n()`</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;                                                           &lt;int&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">##  1 [Not Applicable]                                                 1128</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">##  2 Adenocarcinoma with squamous differentiation, metaplastic           1</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">##  3 Adenoid Cystic Carcinoma                                            1</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">##  4 Apocrine                                                            1</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">##  5 Cribiform                                                           1</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">##  6 Ductal &amp; Mucinous                                                   2</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">##  7 ductal and lobular                                                  2</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">##  8 ductal and lobular features                                         2</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">##  9 ductal and papillary                                                1</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co">## 10 Ductal partially papillary                                          1</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a><span class="co">## # … with 50 more rows</span></span></code></pre></div>
+</section>
+<section id="explore-other-variables-3" class="slide level2">
+<h2>Explore other variables</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">ggarrange</span>(g_er, g_pr, g_her2, g_mets, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="explore-the-continuous-gene-expression-data" class="slide level2">
+<h2>Explore the continuous gene expression data</h2>
+<ul>
+<li><p>The medical community has maintained records of clinco-pathological data for a long time. The information it provides about a tumor is perhaps limited.</p></li>
+<li><p>Modern -omic techniques including gene expression (via RNA-sequencing) promise new deeper molecular level insight.</p></li>
+<li><p>These are continous variables and we might use a <strong>histogram</strong>. A histogram partitions the <span class="math inline">\(x\)</span>-axis into equal sized bins across the range of the target variable. Then the <span class="math inline">\(y\)</span>-axis is proportional to the count (or frequency) of data points falling into that bin. You can control the number of bins.</p></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Min value: &quot;</span>, <span class="kw">min</span>(brca<span class="op">$</span>ESR1), <span class="st">&quot; Max value: &quot;</span>, <span class="kw">max</span>(brca<span class="op">$</span>ESR1), <span class="st">&quot; Number observations: &quot;</span>, <span class="kw">nrow</span>(brca), <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>); brca<span class="op">$</span>ESR1[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="co">##  Min value:  16  Max value:  198790  Number observations:  1215</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="co">##  [1]  39073    512  66040    472 133812    359  40853     83  17928  91953</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="co">## [11]    129  25536  10121 100300  30192   2226   3915  16505   8199  46358</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="co">## [21]    672    454   2065  43274    263  65432  63025   2560  37780    167</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="co">## [31] 129540    275  56217  10257    225  62466  24713  87730  17564   1395</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="co">## [41]  25725  23137  82888    882   8946    342    578  57101  14744  40112</span></span></code></pre></div>
+<div style="text-align: left">
+<p>The counts range across several orders of magnitude of difference (<span class="math inline">\(10^1 \ldots 10^5\)</span>), suggesting the need for a transformation of the data. Gene expression data is often <span class="math inline">\(log\)</span>-transformed.</p>
+</div>
+</section>
+<section id="histogram-for-gene-expression" class="slide level2">
+<h2>Histogram for gene expression</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> brca, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x =</span>  ESR1))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>g1 &lt;-<span class="st"> </span>g <span class="op">+</span><span class="st">    </span><span class="kw">geom_histogram</span>()  <span class="co"># I think default is 30 bins</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>g2 &lt;-<span class="st"> </span>g <span class="op">+</span><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">100</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>g3 &lt;-<span class="st"> </span>g <span class="op">+</span><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins=</span><span class="dv">10</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>g4 &lt;-<span class="st"> </span>g <span class="op">+</span><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">500</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="kw">ggarrange</span>(g1, g2, g3, g4,  <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="co">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="co">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="limitations-of-histograms" class="slide level2">
+<h2>Limitations of histograms</h2>
+<div style="text-align: left">
+<p>There are at least two problems with histograms.</p>
+</div>
+<ol type="1">
+<li><p>The choice of number of bin (which determines binwidth) can greatly affect the plot, and therefore our interpretations.</p></li>
+<li><p>Outliers can cause the histogram to be somewhat vacuous, providing little resolution of the distribution for the majority of points. (This is true in the histograms of the previous page.)</p></li>
+</ol>
+<div style="text-align: left">
+<p>It is wise to look at the outlier values, and note their source. Which observation do they arise in? Determinig why there are outlier values is important. Is it a technical problem with that sample? Did someone enter a value incorrectly? Has a bug in your code generated a spurious value? Is it true biological variability?</p>
+<p>If it is a technical problem or mistake, it might be correct to remove it from the study. Do you remove the whole sample? Or do you just replace the outlier value in that sample with an <span class="math inline">\({\tt NA}\)</span>? The latter is preferable if the whole sample is not an outlier.</p>
+</div>
+</section>
+<section id="hunting-for-outliers" class="slide level2">
+<h2>Hunting for outliers</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>exprs &lt;-<span class="st"> </span>brca <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(ESR1)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(participant<span class="op">:</span>tumor_status, ESR1)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">print</span>(exprs, <span class="dt">n=</span><span class="dv">15</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="co">## # A tibble: 1,215 x 7</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="co">##    participant gender menopause_status race      ethnicity   tumor_status   ESR1</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="co">##  1 A1H2        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   198790</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="co">##  2 A1HE        FEMALE Post             ASIAN     NOT HISPAN… TUMOR FREE   198790</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a><span class="co">##  3 A083        FEMALE Post             [Not Ava… [Not Avail… TUMOR FREE   167889</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="co">##  4 A26Z        FEMALE Post             ASIAN     NOT HISPAN… TUMOR FREE   167889</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a><span class="co">##  5 A1R7        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   167889</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a><span class="co">##  6 A0DC        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   160797</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a><span class="co">##  7 A3OD        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   160797</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a><span class="co">##  8 A1XC        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   160797</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a><span class="co">##  9 A12H        FEMALE Pre              BLACK OR… NOT HISPAN… TUMOR FREE   160797</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a><span class="co">## 10 A0TV        FEMALE Post             [Not Ava… [Not Avail… TUMOR FREE   154199</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true"></a><span class="co">## 11 A1FR        FEMALE Not Available    WHITE     NOT HISPAN… WITH TUMOR   148507</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true"></a><span class="co">## 12 A247        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   148507</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true"></a><span class="co">## 13 A0IC        FEMALE Post             WHITE     NOT HISPAN… [Not Availa… 148507</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true"></a><span class="co">## 14 A156        FEMALE Post             WHITE     NOT HISPAN… TUMOR FREE   143338</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true"></a><span class="co">## 15 A09K        FEMALE Post             [Not Ava… [Not Avail… TUMOR FREE   143338</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true"></a><span class="co">## # … with 1,200 more rows</span></span></code></pre></div>
+<ul>
+<li><p>There are some repeated numbers; this is suspicious to me but not enough to throw out the measurement.</p></li>
+<li><p>What would help is to compare these outliers against outliers of other genes. In other words, we want to compare the variability of <span class="math inline">\(ESR1\)</span> against the variability of other genes.</p></li>
+</ul>
+</section>
+<section id="box-plots-the-dinosaurs-of-visualization" class="slide level2">
+<h2>Box plots, the dinosaurs of visualization</h2>
+<ul>
+<li>Displays the median (<span class="math inline">\(50^{th}\)</span> percentile), the lower and upper hinge (<span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentiles), two whiskers (about a <span class="math inline">\(95\%\)</span> confidence interval from the tip of the lower whisker to the tip of the upper whisker), and outliers.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>brca <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>( <span class="kw">c</span>(participant, tumor, <span class="st">&quot;ESR1&quot;</span>, <span class="st">&quot;PGR&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>, <span class="st">&quot;EGFR&quot;</span>, <span class="st">&quot;KRT5&quot;</span> )) <span class="op">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">melt</span>(<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;participant&quot;</span>, <span class="st">&quot;tumor&quot;</span>), <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;ESR1&quot;</span>, <span class="st">&quot;PGR&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>, <span class="st">&quot;EGFR&quot;</span>, <span class="st">&quot;KRT5&quot;</span> )) <span class="op">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="st">  </span>as_tibble -&gt;<span class="st"> </span>lava</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a><span class="kw">ggplot</span>(lava, <span class="kw">aes</span>( <span class="dt">x=</span> variable, <span class="dt">y =</span> value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(  ) <span class="op">+</span><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">65</span>, <span class="dt">vjust=</span><span class="fl">0.6</span>)) </span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /></p>
+<div style="text-align: left">
+<p>Yikes, this plot needs a <span class="math inline">\(log\)</span>-transform as much as the entire population needs a haircut after the lockdown.</p>
+</div>
+</section>
+<section id="the-tt-melt-function" class="slide level2">
+<h2>The <span class="math inline">\({\tt melt()}\)</span> function</h2>
+<ul>
+<li><p>Contained in the package <span class="math inline">\({\tt reshape2}\)</span>.</p></li>
+<li><p>Currently in our tibble, the value for all <span class="math inline">\(50\)</span> genes are contained in the same row (observation) for each participant.</p></li>
+<li><p>Functions in <span class="math inline">\({\tt ggplot}\)</span> want each gene count value as a separate row.</p></li>
+<li><p>For example, if my original tibble called <span class="math inline">\({\tt timmy}\)</span> is as follows,</p></li>
+</ul>
+<pre><code>##   participant ESR1 ERBB2
+## 1        A1NF    5   100
+## 2         A27   50    10</code></pre>
+<p>it should be <em>melted</em> to look like this.</p>
+<pre><code>##   participant gene_name count
+## 1        A1NF      ESR1     5
+## 2        A1NF     ERBB2   100
+## 3         A27      ESR1    50
+## 4         A27     ERBB2    10</code></pre>
+<div style="text-align: left">
+<p>Take a moment to reassure yourself that the information in the original tibble is also present in the new tibble.</p>
+</div>
+</section>
+<section id="melting-tt-brca-to-tt-lava" class="slide level2">
+<h2>Melting <span class="math inline">\({\tt brca}\)</span> to <span class="math inline">\({\tt lava}\)</span></h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>melted_timmy &lt;-<span class="st"> </span><span class="kw">melt</span>( timmy, <span class="dt">id.vars =</span> <span class="st">&quot;participant&quot;</span>, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>                      <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;ESR1&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>brca <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>( <span class="kw">c</span>(participant, tumor, <span class="st">&quot;ESR1&quot;</span>, <span class="st">&quot;PGR&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>, <span class="st">&quot;EGFR&quot;</span>, <span class="st">&quot;KRT5&quot;</span> )) <span class="op">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">melt</span>(<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;participant&quot;</span>, <span class="st">&quot;tumor&quot;</span>), <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;ESR1&quot;</span>, <span class="st">&quot;PGR&quot;</span>, <span class="st">&quot;ERBB2&quot;</span>, <span class="st">&quot;EGFR&quot;</span>, <span class="st">&quot;KRT5&quot;</span> )) <span class="op">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="st">  </span>as_tibble -&gt;<span class="st"> </span>lava</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a>lava</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a><span class="co">## # A tibble: 6,075 x 4</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="co">##    participant tumor variable  value</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;lgl&gt; &lt;fct&gt;     &lt;dbl&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a><span class="co">##  1 A1NF        TRUE  ESR1      39073</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a><span class="co">##  2 A27M        TRUE  ESR1        512</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a><span class="co">##  3 A0GZ        TRUE  ESR1      66040</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a><span class="co">##  4 A18V        TRUE  ESR1        472</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a><span class="co">##  5 A13G        TRUE  ESR1     133812</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a><span class="co">##  6 A275        TRUE  ESR1        359</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a><span class="co">##  7 A0XS        TRUE  ESR1      40853</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a><span class="co">##  8 A5RW        TRUE  ESR1         83</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a><span class="co">##  9 A5RX        TRUE  ESR1      17928</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a><span class="co">## 10 A1RD        TRUE  ESR1      91953</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a><span class="co">## # … with 6,065 more rows</span></span></code></pre></div>
+</section>
+<section id="log-transform-before-plotting" class="slide level2">
+<h2>Log-transform before plotting</h2>
+<ul>
+<li>When data spans multiple orders of magnitude, such as in this case where counts range from <span class="math inline">\(10^1\)</span> to <span class="math inline">\(10^5\)</span>, it is important to <span class="math inline">\(log\)</span>-transform data. That is, we compute <span class="math inline">\(log(x_y)\)</span> where <span class="math inline">\(x\)</span> is the count for gene <span class="math inline">\(y\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">ggplot</span>(lava, <span class="kw">aes</span>( <span class="dt">x=</span> variable, <span class="dt">y =</span> value)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(  ) <span class="op">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">trans=</span><span class="st">&#39;log&#39;</span>) <span class="op">+</span><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">65</span>, <span class="dt">vjust=</span><span class="fl">0.6</span>)) </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a><span class="co">## Warning: Transformation introduced infinite values in continuous y-axis</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a><span class="co">## Warning: Removed 3 rows containing non-finite values (stat_boxplot).</span></span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="conclusion-regarding-esr1-outliers" class="slide level2">
+<h2>Conclusion regarding ESR1 outliers</h2>
+<ul>
+<li>Given that the distribution of ESR1 has less variance than many other genes in the dataset, the counts are not so suspicious and shouldn’t be removed.</li>
+</ul>
+</section>
+<section id="violin-plots-first-10-genes-tumor-vs-normal" class="slide level2">
+<h2>Violin plots: First <span class="math inline">\(10\)</span> genes, tumor vs normal</h2>
+<ul>
+<li>Violin plots killed the box plot (like video killed the radio star).</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>brca <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>( <span class="kw">c</span>(participant, tumor, ANLN<span class="op">:</span>ESR1 ))  <span class="op">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="st">      </span><span class="kw">melt</span>(<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;participant&quot;</span>, <span class="st">&quot;tumor&quot;</span>), <span class="dt">measure.vars =</span> <span class="kw">colnames</span>(brca)[<span class="dv">24</span><span class="op">:</span><span class="dv">33</span>]) <span class="op">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="st">      </span>as_tibble -&gt;<span class="st"> </span>lava</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a><span class="kw">ggplot</span>(lava, <span class="kw">aes</span>( <span class="dt">x=</span> variable, <span class="dt">y =</span> value, <span class="dt">fill=</span>tumor)) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_violin</span>( <span class="dt">trim =</span> <span class="ot">FALSE</span>, <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.9</span>), <span class="dt">draw_quantiles =</span> <span class="kw">c</span>(<span class="fl">0.5</span>) ) <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">trans=</span><span class="st">&#39;log&#39;</span>) <span class="op">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">65</span>, <span class="dt">vjust=</span><span class="fl">0.6</span>)) </span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="violin-plots-all-genes-tumor-vs-normal" class="slide level2">
+<h2>Violin plots: All genes, tumor vs normal</h2>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis
+## Warning: Removed 90 rows containing non-finite values (stat_ydensity).
+## Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
+## collapsing to unique &#39;x&#39; values</code></pre>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /></p>
+<div style="text-align: left">
+<p>If you study this closely (with a magnifying glass), you’ll see that <em>ANLN</em>, <em>UBE2T</em>, <em>ORC6</em> amongst others are different between tumor and normal samples.</p>
+</div>
+</section>
+<section id="modelling-tissue-status-using-gene-expression" class="slide level2">
+<h2>Modelling tissue status using gene expression</h2>
+<ul>
+<li>Could we use the expression levels of <em>ANLN</em> and <em>UBE2T</em> to differentiate between healthy breast and tumor material? <small>I’m not sure what the clinical utility of this would be ultimately, but it serves as a simple example to start. We will tackle more complicated questinos later.</small></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">ggplot</span>(brca, <span class="kw">aes</span>(<span class="dt">x=</span>ANLN, <span class="dt">y=</span>UBE2T, <span class="dt">color=</span>tumor), <span class="dt">size =</span> <span class="fl">.3</span>) <span class="op">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">trans=</span><span class="st">&#39;log&#39;</span>) <span class="op">+</span><span class="st">   </span><span class="kw">scale_x_continuous</span>(<span class="dt">trans=</span><span class="st">&#39;log&#39;</span>) <span class="op">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_rug</span>()</span></code></pre></div>
+<p><img src="06-slides_files/figure-revealjs/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="modelling-classifier-of-tissue-type" class="slide level2">
+<h2>Modelling: Classifier of tissue type</h2>
+<ul>
+<li><p>We will come back to this in much more depth through the course. This is just to foreshadow. So don’t freak out.</p></li>
+<li><p>The above analysis identifies potential interesting correlations between the expresion of specific genes and clinical data (here we looked at tumor versus normal tissue).</p></li>
+<li><p>We can use methods from machine learning and statisics to build classifiers using these genes. For example, we could try to estimate whether a given tissue was tumor or normal depending on the expression of ANLN and UBE2T alone.</p></li>
+<li><p>Many other end-points are possible (prognosis, benefit from therapy etc).</p></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="kw">library</span>(modelr)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>tissue_type &lt;-<span class="st"> </span><span class="kw">glm</span>(tumor <span class="op">~</span><span class="st"> </span>ANLN <span class="op">+</span><span class="st"> </span>UBE2T, <span class="dt">data =</span> brca, <span class="dt">family =</span> binomial)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a><span class="co">## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</span></span></code></pre></div>
+</section>
+<section id="quality-of-our-model" class="slide level2">
+<h2>Quality of our model</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="kw">summary</span>(tissue_type)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="co">## Call:</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a><span class="co">## glm(formula = tumor ~ ANLN + UBE2T, family = binomial, data = brca)</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a><span class="co">## Deviance Residuals: </span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a><span class="co">##     Min       1Q   Median       3Q      Max  </span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a><span class="co">## -3.7688   0.0000   0.0002   0.0245   1.9803  </span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a><span class="co">## Coefficients:</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a><span class="co">##               Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true"></a><span class="co">## (Intercept) -2.7906861  0.3372703  -8.274  &lt; 2e-16 ***</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true"></a><span class="co">## ANLN         0.0027241  0.0008698   3.132  0.00174 ** </span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true"></a><span class="co">## UBE2T        0.0120677  0.0020828   5.794 6.87e-09 ***</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true"></a><span class="co">## ---</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true"></a><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true"></a><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true"></a><span class="co">##     Null deviance: 751.92  on 1214  degrees of freedom</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true"></a><span class="co">## Residual deviance: 217.87  on 1212  degrees of freedom</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true"></a><span class="co">## AIC: 223.87</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true"></a><span class="co">## </span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true"></a><span class="co">## Number of Fisher Scoring iterations: 11</span></span></code></pre></div>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of Reflection</h2>
+<ul>
+<li><p>Go through the <span class="math inline">\({\tt small\_brca}\)</span> object and figure out whether each variable is categorical, ordered categorical or continuous.</p></li>
+<li><p>Temperature does have a lower bound, if not also an upper bound in a physics sense. So it has a finite range. Why is it still considered a continuous variable?</p></li>
+<li><p>What about the expression of a gene such as <span class="math inline">\({\tt ESR1}\)</span>? Argue for or against it being a continuous variable. Why is it best modelled as a continuous variable? What properties call in to question it being a continuous variable?</p></li>
+<li><p>Make sure you understand how and why the <span class="math inline">\({\tt brca}\)</span> tibble was melted to <span class="math inline">\({\tt lava}\)</span>. It’s a bit tricky.</p></li>
+<li><p>What would be the advantage of using UBE2T <strong>and</strong> ANLN simultaneously to predict tissue type (tumor vs normal) rather than either one alone?</p></li>
+<li><p>So transformations and visualization allow us to identify genes etc. that may be useful for predicting clinical endpoints. What is meant by a model here and why is it needed? What is the purpose of the model?</p></li>
+<li><p>Why is it a data science cycle and simply not Transform, Visualize, Model, Beer-o-clock?</p></li>
+</ul>
+</section>
+<section id="biol480" class="slide level2">
+<h2>BIOL480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="06-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="06-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '06-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '06-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '06-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '06-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '06-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

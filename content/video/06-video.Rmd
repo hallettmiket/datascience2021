@@ -1,0 +1,13 @@
+---
+title: "Exploratory data analysis of breast cancer transcriptomes"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 06 at Youtube: Exploratory data analysis of breast cancer transcriptomes](https://youtu.be/vc-qV0JRZRs)
+ 
+
+
+

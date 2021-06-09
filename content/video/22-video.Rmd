@@ -1,0 +1,14 @@
+---
+title: "Computational challenges of single cell profiling"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 22 at Youtube](https://youtu.be/y_gdYJwhPog)
+
+
+
+
+

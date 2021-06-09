@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Genome Annotations</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="12-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="12-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="12-slides_files/header-attrs-2.4/header-attrs.js"></script>
+    <link href="12-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="12-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Genome Annotations</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="biostrings-tools-to-manipule-genetic-strings" class="slide level2">
+<h2>Biostrings: tools to manipule genetic strings</h2>
+<ul>
+<li><p>Last lecture we finished with a partial exploration of the Biostrings package in R.</p></li>
+<li><p>We saw various functions applied to <span class="math inline">\({\tt DNAstring}\)</span> datastructures.</p></li>
+<li><p>… and we used the <span class="math inline">\({\tt BSgenome}\)</span> package to quite seamlessly import full genomes into R. (Naming convention: <span class="math inline">\({\tt BSgenome.Organism.Provider.BuildVersion}\)</span>)</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>dnastring =<span class="st"> </span><span class="kw">DNAString</span>(<span class="st">&quot;ATGATAAAAGAA&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>dnastring</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">## 12-letter DNAString object</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">## seq: ATGATAAAAGAA</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">length</span>(dnastring)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">## [1] 12</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">reverseComplement</span>(dnastring)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">## 12-letter DNAString object</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">## seq: TTCTTTTATCAT</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">translate</span>(dnastring)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">## 4-letter AAString object</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">## seq: MIKE</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">library</span>(BSgenome.Scerevisiae.UCSC.sacCer2)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>yeast_<span class="dv">1</span> &lt;-<span class="st"> </span>Scerevisiae<span class="op">$</span>chrI; </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>yeast_<span class="dv">1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co">## 230208-letter DNAString object</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="co">## seq: CCACACCACACCCACACACCCACACACCACACCACA...GGTGTGTGGGTGTGGTGTGGGTGTGGTGTGTGTGGG</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">dinucleotideFrequency</span>(yeast_<span class="dv">1</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="co">##         AA         AC         AG         AT         CA         CC         CG </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="co">## 0.10400639 0.05426855 0.05916849 0.08587489 0.06614482 0.04005091 0.03078534 </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="co">##         CT         GA         GC         GG         GT         TA         TC </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a><span class="co">## 0.05695743 0.06287819 0.03871298 0.04099788 0.05620594 0.07028891 0.06090171 </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a><span class="co">##         TG         TT </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="co">## 0.06784763 0.10490993</span></span></code></pre></div>
+</section>
+<section id="biostrings" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li><p>String (Biostrings)</p>
+<p>– Virtual class</p>
+<p>– Concrete subclasses:</p>
+<pre><code>-- BString – Any “biological” sequence
+
+-- DNAString – DNA sequence
+
+-- RNAString – RNA sequence
+
+-- AAString – Amino acid sequence</code></pre></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>(<span class="kw">RNAString</span>(dnastring))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">## 12-letter RNAString object</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">## seq: AUGAUAAAAGAA</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">AAString</span>(<span class="st">&quot;MARKSLEMSIR*&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">class</span>(a)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">## [1] &quot;AAString&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">## attr(,&quot;package&quot;)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">## [1] &quot;Biostrings&quot;</span></span></code></pre></div>
+</section>
+<section id="the-bsgenome-series-of-packages" class="slide level2">
+<h2>The BSgenome series of packages</h2>
+<ul>
+<li>BSgenome is a series of packages that import the complete genome of different organisms into R and represents them as Biostrings.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co"># BiocManager::install(&quot;BSgenome&quot;)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co"># BiocManager::install(&quot;BSgenome.Hsapiens.UCSC.hg19&quot;)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">library</span>(BSgenome)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">available.genomes</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">##  [1] &quot;BSgenome.Alyrata.JGI.v1&quot;                  </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">##  [2] &quot;BSgenome.Amellifera.BeeBase.assembly4&quot;    </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">##  [3] &quot;BSgenome.Amellifera.UCSC.apiMel2&quot;         </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">##  [4] &quot;BSgenome.Amellifera.UCSC.apiMel2.masked&quot;  </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">##  [5] &quot;BSgenome.Aofficinalis.NCBI.V1&quot;            </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">##  [6] &quot;BSgenome.Athaliana.TAIR.04232008&quot;         </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">##  [7] &quot;BSgenome.Athaliana.TAIR.TAIR9&quot;            </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">##  [8] &quot;BSgenome.Btaurus.UCSC.bosTau3&quot;            </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="co">##  [9] &quot;BSgenome.Btaurus.UCSC.bosTau3.masked&quot;     </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="co">## [10] &quot;BSgenome.Btaurus.UCSC.bosTau4&quot;            </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="co">## [11] &quot;BSgenome.Btaurus.UCSC.bosTau4.masked&quot;     </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="co">## [12] &quot;BSgenome.Btaurus.UCSC.bosTau6&quot;            </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="co">## [13] &quot;BSgenome.Btaurus.UCSC.bosTau6.masked&quot;     </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="co">## [14] &quot;BSgenome.Btaurus.UCSC.bosTau8&quot;            </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co">## [15] &quot;BSgenome.Btaurus.UCSC.bosTau9&quot;            </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co">## [16] &quot;BSgenome.Carietinum.NCBI.v1&quot;              </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">## [17] &quot;BSgenome.Celegans.UCSC.ce10&quot;              </span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co">## [18] &quot;BSgenome.Celegans.UCSC.ce11&quot;              </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co">## [19] &quot;BSgenome.Celegans.UCSC.ce2&quot;               </span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="co">## [20] &quot;BSgenome.Celegans.UCSC.ce6&quot;               </span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="co">## [21] &quot;BSgenome.Cfamiliaris.UCSC.canFam2&quot;        </span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="co">## [22] &quot;BSgenome.Cfamiliaris.UCSC.canFam2.masked&quot; </span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="co">## [23] &quot;BSgenome.Cfamiliaris.UCSC.canFam3&quot;        </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="co">## [24] &quot;BSgenome.Cfamiliaris.UCSC.canFam3.masked&quot; </span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a><span class="co">## [25] &quot;BSgenome.Cjacchus.UCSC.calJac3&quot;           </span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a><span class="co">## [26] &quot;BSgenome.Dmelanogaster.UCSC.dm2&quot;          </span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a><span class="co">## [27] &quot;BSgenome.Dmelanogaster.UCSC.dm2.masked&quot;   </span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a><span class="co">## [28] &quot;BSgenome.Dmelanogaster.UCSC.dm3&quot;          </span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a><span class="co">## [29] &quot;BSgenome.Dmelanogaster.UCSC.dm3.masked&quot;   </span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a><span class="co">## [30] &quot;BSgenome.Dmelanogaster.UCSC.dm6&quot;          </span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a><span class="co">## [31] &quot;BSgenome.Drerio.UCSC.danRer10&quot;            </span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a><span class="co">## [32] &quot;BSgenome.Drerio.UCSC.danRer11&quot;            </span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a><span class="co">## [33] &quot;BSgenome.Drerio.UCSC.danRer5&quot;             </span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a><span class="co">## [34] &quot;BSgenome.Drerio.UCSC.danRer5.masked&quot;      </span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a><span class="co">## [35] &quot;BSgenome.Drerio.UCSC.danRer6&quot;             </span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a><span class="co">## [36] &quot;BSgenome.Drerio.UCSC.danRer6.masked&quot;      </span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a><span class="co">## [37] &quot;BSgenome.Drerio.UCSC.danRer7&quot;             </span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a><span class="co">## [38] &quot;BSgenome.Drerio.UCSC.danRer7.masked&quot;      </span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true"></a><span class="co">## [39] &quot;BSgenome.Dvirilis.Ensembl.dvircaf1&quot;       </span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true"></a><span class="co">## [40] &quot;BSgenome.Ecoli.NCBI.20080805&quot;             </span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true"></a><span class="co">## [41] &quot;BSgenome.Gaculeatus.UCSC.gasAcu1&quot;         </span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true"></a><span class="co">## [42] &quot;BSgenome.Gaculeatus.UCSC.gasAcu1.masked&quot;  </span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true"></a><span class="co">## [43] &quot;BSgenome.Ggallus.UCSC.galGal3&quot;            </span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true"></a><span class="co">## [44] &quot;BSgenome.Ggallus.UCSC.galGal3.masked&quot;     </span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true"></a><span class="co">## [45] &quot;BSgenome.Ggallus.UCSC.galGal4&quot;            </span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true"></a><span class="co">## [46] &quot;BSgenome.Ggallus.UCSC.galGal4.masked&quot;     </span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true"></a><span class="co">## [47] &quot;BSgenome.Ggallus.UCSC.galGal5&quot;            </span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true"></a><span class="co">## [48] &quot;BSgenome.Ggallus.UCSC.galGal6&quot;            </span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true"></a><span class="co">## [49] &quot;BSgenome.Hsapiens.1000genomes.hs37d5&quot;     </span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true"></a><span class="co">## [50] &quot;BSgenome.Hsapiens.NCBI.GRCh38&quot;            </span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true"></a><span class="co">## [51] &quot;BSgenome.Hsapiens.UCSC.hg17&quot;              </span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true"></a><span class="co">## [52] &quot;BSgenome.Hsapiens.UCSC.hg17.masked&quot;       </span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true"></a><span class="co">## [53] &quot;BSgenome.Hsapiens.UCSC.hg18&quot;              </span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true"></a><span class="co">## [54] &quot;BSgenome.Hsapiens.UCSC.hg18.masked&quot;       </span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true"></a><span class="co">## [55] &quot;BSgenome.Hsapiens.UCSC.hg19&quot;              </span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true"></a><span class="co">## [56] &quot;BSgenome.Hsapiens.UCSC.hg19.masked&quot;       </span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true"></a><span class="co">## [57] &quot;BSgenome.Hsapiens.UCSC.hg38&quot;              </span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true"></a><span class="co">## [58] &quot;BSgenome.Hsapiens.UCSC.hg38.masked&quot;       </span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true"></a><span class="co">## [59] &quot;BSgenome.Mdomestica.UCSC.monDom5&quot;         </span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true"></a><span class="co">## [60] &quot;BSgenome.Mfascicularis.NCBI.5.0&quot;          </span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true"></a><span class="co">## [61] &quot;BSgenome.Mfuro.UCSC.musFur1&quot;              </span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true"></a><span class="co">## [62] &quot;BSgenome.Mmulatta.UCSC.rheMac10&quot;          </span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true"></a><span class="co">## [63] &quot;BSgenome.Mmulatta.UCSC.rheMac2&quot;           </span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true"></a><span class="co">## [64] &quot;BSgenome.Mmulatta.UCSC.rheMac2.masked&quot;    </span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true"></a><span class="co">## [65] &quot;BSgenome.Mmulatta.UCSC.rheMac3&quot;           </span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true"></a><span class="co">## [66] &quot;BSgenome.Mmulatta.UCSC.rheMac3.masked&quot;    </span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true"></a><span class="co">## [67] &quot;BSgenome.Mmulatta.UCSC.rheMac8&quot;           </span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true"></a><span class="co">## [68] &quot;BSgenome.Mmusculus.UCSC.mm10&quot;             </span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true"></a><span class="co">## [69] &quot;BSgenome.Mmusculus.UCSC.mm10.masked&quot;      </span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true"></a><span class="co">## [70] &quot;BSgenome.Mmusculus.UCSC.mm8&quot;              </span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true"></a><span class="co">## [71] &quot;BSgenome.Mmusculus.UCSC.mm8.masked&quot;       </span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true"></a><span class="co">## [72] &quot;BSgenome.Mmusculus.UCSC.mm9&quot;              </span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true"></a><span class="co">## [73] &quot;BSgenome.Mmusculus.UCSC.mm9.masked&quot;       </span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true"></a><span class="co">## [74] &quot;BSgenome.Osativa.MSU.MSU7&quot;                </span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true"></a><span class="co">## [75] &quot;BSgenome.Ptroglodytes.UCSC.panTro2&quot;       </span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true"></a><span class="co">## [76] &quot;BSgenome.Ptroglodytes.UCSC.panTro2.masked&quot;</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true"></a><span class="co">## [77] &quot;BSgenome.Ptroglodytes.UCSC.panTro3&quot;       </span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true"></a><span class="co">## [78] &quot;BSgenome.Ptroglodytes.UCSC.panTro3.masked&quot;</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true"></a><span class="co">## [79] &quot;BSgenome.Ptroglodytes.UCSC.panTro5&quot;       </span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true"></a><span class="co">## [80] &quot;BSgenome.Ptroglodytes.UCSC.panTro6&quot;       </span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true"></a><span class="co">## [81] &quot;BSgenome.Rnorvegicus.UCSC.rn4&quot;            </span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true"></a><span class="co">## [82] &quot;BSgenome.Rnorvegicus.UCSC.rn4.masked&quot;     </span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true"></a><span class="co">## [83] &quot;BSgenome.Rnorvegicus.UCSC.rn5&quot;            </span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true"></a><span class="co">## [84] &quot;BSgenome.Rnorvegicus.UCSC.rn5.masked&quot;     </span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true"></a><span class="co">## [85] &quot;BSgenome.Rnorvegicus.UCSC.rn6&quot;            </span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true"></a><span class="co">## [86] &quot;BSgenome.Scerevisiae.UCSC.sacCer1&quot;        </span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true"></a><span class="co">## [87] &quot;BSgenome.Scerevisiae.UCSC.sacCer2&quot;        </span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true"></a><span class="co">## [88] &quot;BSgenome.Scerevisiae.UCSC.sacCer3&quot;        </span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true"></a><span class="co">## [89] &quot;BSgenome.Sscrofa.UCSC.susScr11&quot;           </span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true"></a><span class="co">## [90] &quot;BSgenome.Sscrofa.UCSC.susScr3&quot;            </span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true"></a><span class="co">## [91] &quot;BSgenome.Sscrofa.UCSC.susScr3.masked&quot;     </span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true"></a><span class="co">## [92] &quot;BSgenome.Tgondii.ToxoDB.7.0&quot;              </span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true"></a><span class="co">## [93] &quot;BSgenome.Tguttata.UCSC.taeGut1&quot;           </span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true"></a><span class="co">## [94] &quot;BSgenome.Tguttata.UCSC.taeGut1.masked&quot;    </span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true"></a><span class="co">## [95] &quot;BSgenome.Tguttata.UCSC.taeGut2&quot;           </span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true"></a><span class="co">## [96] &quot;BSgenome.Vvinifera.URGI.IGGP12Xv0&quot;        </span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true"></a><span class="co">## [97] &quot;BSgenome.Vvinifera.URGI.IGGP12Xv2&quot;        </span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true"></a><span class="co">## [98] &quot;BSgenome.Vvinifera.URGI.IGGP8X&quot;</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true"></a><span class="kw">library</span>(BSgenome.Hsapiens.UCSC.hg19)</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true"></a><span class="kw">print</span>(Hsapiens)</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true"></a><span class="co">## Human genome:</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true"></a><span class="co">## # organism: Homo sapiens (Human)</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true"></a><span class="co">## # provider: UCSC</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true"></a><span class="co">## # provider version: hg19</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true"></a><span class="co">## # release date: June 2013</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true"></a><span class="co">## # release name: Genome Reference Consortium GRCh37.p13</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true"></a><span class="co">## # 298 sequences:</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true"></a><span class="co">## #   chr1                  chr2                  chr3                 </span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true"></a><span class="co">## #   chr4                  chr5                  chr6                 </span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true"></a><span class="co">## #   chr7                  chr8                  chr9                 </span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true"></a><span class="co">## #   chr10                 chr11                 chr12                </span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true"></a><span class="co">## #   chr13                 chr14                 chr15                </span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true"></a><span class="co">## #   ...                   ...                   ...                  </span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true"></a><span class="co">## #   chr19_gl949749_alt    chr19_gl949750_alt    chr19_gl949751_alt   </span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true"></a><span class="co">## #   chr19_gl949752_alt    chr19_gl949753_alt    chr20_gl383577_alt   </span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true"></a><span class="co">## #   chr21_gl383578_alt    chr21_gl383579_alt    chr21_gl383580_alt   </span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true"></a><span class="co">## #   chr21_gl383581_alt    chr22_gl383582_alt    chr22_gl383583_alt   </span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true"></a><span class="co">## #   chr22_kb663609_alt                                               </span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true"></a><span class="co">## # (use &#39;seqnames()&#39; to see all the sequence names, use the &#39;$&#39; or &#39;[[&#39; operator</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true"></a><span class="co">## # to access a given sequence)</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true"></a><span class="kw">print</span>(Hsapiens<span class="op">$</span>chr22)</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true"></a><span class="co">## 51304566-letter DNAString object</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true"></a><span class="co">## seq: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span></span></code></pre></div>
+</section>
+<section id="gsgenome-and-biostrings" class="slide level2">
+<h2>GSgenome and Biostrings</h2>
+<ul>
+<li>See if you can figure out the <span class="math inline">\({\tt sapply}\)</span> function.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">sapply</span>(<span class="kw">seqnames</span>(Hsapiens),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a> <span class="cf">function</span>(seqname)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a> <span class="kw">alphabetFrequency</span>(Hsapiens[[seqname]], <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">##             chr1       chr2       chr3       chr4       chr5       chr6</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">## A     0.26307213 0.29236355 0.29649845 0.30306923 0.29667234 0.29544115</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">## C     0.18866317 0.19702133 0.19519605 0.18773216 0.19395480 0.19369006</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">## G     0.18863167 0.19715117 0.19528146 0.18775841 0.19417481 0.19380773</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">## T     0.26346476 0.29292583 0.29673651 0.30316909 0.29739966 0.29532129</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">## other 0.09616827 0.02053811 0.01628752 0.01827111 0.01779839 0.02173976</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">##             chr7       chr8      chr9      chr10      chr11      chr12</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">## A     0.28904200 0.29219813 0.2496935 0.28281126 0.28374367 0.28841453</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">## C     0.19901933 0.19611365 0.1758063 0.20148817 0.20174432 0.19898855</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">## G     0.19880134 0.19610435 0.1757146 0.20141273 0.20197572 0.19885449</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="co">## T     0.28935305 0.29184102 0.2495788 0.28315185 0.28381916 0.28856160</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co">## other 0.02378429 0.02374286 0.1492068 0.03113599 0.02871713 0.02518083</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="co">##           chr13     chr14     chr15     chr16      chr17      chr18      chr19</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="co">## A     0.2547276 0.2421339 0.2303770 0.2404310 0.26060568 0.28773273 0.24337696</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">## C     0.1598743 0.1679293 0.1682176 0.1951202 0.21833746 0.19005133 0.22794667</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co">## G     0.1598923 0.1683468 0.1680304 0.1959165 0.21799734 0.19037135 0.22850292</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="co">## T     0.2554961 0.2440392 0.2301531 0.2415882 0.26118512 0.28804157 0.24402502</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">## other 0.1700097 0.1775508 0.2032219 0.1269441 0.04187439 0.04380302 0.05614844</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co">##            chr20     chr21     chr22       chrX       chrY      chrM</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="co">## A     0.26216449 0.2165582 0.1772703 0.29399618 0.12914207 0.3085511</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="co">## C     0.20797651 0.1487685 0.1632600 0.19200905 0.08588285 0.3133184</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="co">## G     0.20863631 0.1490699 0.1631285 0.19234703 0.08679432 0.1315551</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">## T     0.26537230 0.2150178 0.1764863 0.29479139 0.13025126 0.2465753</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="co">## other 0.05585039 0.2705855 0.3198550 0.02685635 0.56792951 0.0000000</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="co">##              chrMT chr4_ctg9_hap1 chr6_apd_hap1 chr6_cox_hap2 chr6_dbb_hap3</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a><span class="co">## A     3.092522e-01      0.3136227     0.1428621     0.2796939    0.25432414</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a><span class="co">## C     3.126924e-01      0.1821668     0.1101547     0.2230914    0.20465704</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a><span class="co">## G     1.309071e-01      0.1815841     0.1104193     0.2237072    0.20502924</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a><span class="co">## T     2.470879e-01      0.3226264     0.1386412     0.2735075    0.24790734</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="co">## other 6.035367e-05      0.0000000     0.4979227     0.0000000    0.08808224</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a><span class="co">##       chr6_mann_hap4 chr6_mcf_hap5 chr6_qbl_hap6 chr6_ssto_hap7 chr17_ctg5_hap1</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a><span class="co">## A          0.2468544     0.2174387    0.25795168      0.2378417      0.25535867</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a><span class="co">## C          0.1928190     0.1776351    0.20968048      0.1863057      0.21174623</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a><span class="co">## G          0.1937628     0.1781635    0.21030038      0.1880758      0.21583589</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a><span class="co">## T          0.2421801     0.2119062    0.25340743      0.2345850      0.25756472</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a><span class="co">## other      0.1243838     0.2148565    0.06866004      0.1531918      0.05949449</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a><span class="co">##       chr1_gl000191_random chr1_gl000192_random chr4_gl000193_random</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a><span class="co">## A                0.2628038            0.2978615            0.2819394</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a><span class="co">## C                0.2234739            0.2059010            0.2140061</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a><span class="co">## G                0.2199788            0.2090262            0.2139639</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a><span class="co">## T                0.2937435            0.2872112            0.2900906</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a><span class="co">## other            0.0000000            0.0000000            0.0000000</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a><span class="co">##       chr4_gl000194_random chr7_gl000195_random chr8_gl000196_random</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a><span class="co">## A                0.2765408            0.2923465            0.3557332</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true"></a><span class="co">## C                0.2168549            0.2024156            0.2032687</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true"></a><span class="co">## G                0.2157321            0.2042089            0.1932209</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true"></a><span class="co">## T                0.2908722            0.3010290            0.2477771</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true"></a><span class="co">## other            0.0000000            0.0000000            0.0000000</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true"></a><span class="co">##       chr8_gl000197_random chr9_gl000198_random chr9_gl000199_random</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true"></a><span class="co">## A               0.23252186            0.3090748            0.3220151</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true"></a><span class="co">## C               0.26585071            0.1733585            0.2059232</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true"></a><span class="co">## G               0.27276395            0.2051951            0.1732225</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true"></a><span class="co">## T               0.22617350            0.3123716            0.2988391</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true"></a><span class="co">## other           0.00268998            0.0000000            0.0000000</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true"></a><span class="co">##       chr9_gl000200_random chr9_gl000201_random chr11_gl000202_random</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true"></a><span class="co">## A                0.2959500            0.1964424             0.2300576</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true"></a><span class="co">## C                0.1989039            0.2869592             0.2806274</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true"></a><span class="co">## G                0.2005721            0.3074582             0.2654415</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true"></a><span class="co">## T                0.3045740            0.2091402             0.2238735</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true"></a><span class="co">## other            0.0000000            0.0000000             0.0000000</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true"></a><span class="co">##       chr17_gl000203_random chr17_gl000204_random chr17_gl000205_random</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true"></a><span class="co">## A                 0.3350579             0.2423072             0.2821213</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true"></a><span class="co">## C                 0.1619820             0.2791908             0.2103008</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true"></a><span class="co">## G                 0.1708891             0.2654655             0.2070360</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true"></a><span class="co">## T                 0.3320710             0.2130365             0.3005418</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true"></a><span class="co">## other             0.0000000             0.0000000             0.0000000</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true"></a><span class="co">##       chr17_gl000206_random chr18_gl000207_random chr19_gl000208_random</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true"></a><span class="co">## A                 0.2138972             0.2355702             0.3148054</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true"></a><span class="co">## C                 0.2556767             0.1379634             0.1981789</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true"></a><span class="co">## G                 0.2752372             0.3015016             0.1784354</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true"></a><span class="co">## T                 0.2551889             0.3249648             0.3085803</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true"></a><span class="co">## other             0.0000000             0.0000000             0.0000000</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true"></a><span class="co">##       chr19_gl000209_random chr21_gl000210_random chrUn_gl000211 chrUn_gl000212</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true"></a><span class="co">## A                 0.2762975           0.227151217      0.3057407      0.2821875</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true"></a><span class="co">## C                 0.2226753           0.279098331      0.1919239      0.2271993</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true"></a><span class="co">## G                 0.2422896           0.261939166      0.1951599      0.2166458</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true"></a><span class="co">## T                 0.2587376           0.228198830      0.3071755      0.2739674</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true"></a><span class="co">## other             0.0000000           0.003612456      0.0000000      0.0000000</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true"></a><span class="co">##       chrUn_gl000213 chrUn_gl000214 chrUn_gl000215 chrUn_gl000216</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true"></a><span class="co">## A          0.2925432      0.2951321      0.2917152      0.2403392</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true"></a><span class="co">## C          0.2059864      0.1995672      0.2100901      0.2711470</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true"></a><span class="co">## G          0.2030334      0.2156436      0.2099336      0.1485948</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true"></a><span class="co">## T          0.2984370      0.2896571      0.2882610      0.3399190</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true"></a><span class="co">##       chrUn_gl000217 chrUn_gl000218 chrUn_gl000219 chrUn_gl000220</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true"></a><span class="co">## A          0.3017444      0.2856398      0.3043003      0.2300960</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true"></a><span class="co">## C          0.1892430      0.2066188      0.1981105      0.2516656</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true"></a><span class="co">## G          0.1866465      0.2095850      0.2014978      0.2329823</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true"></a><span class="co">## T          0.3223661      0.2981563      0.2960915      0.2852561</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true"></a><span class="co">##       chrUn_gl000221 chrUn_gl000222 chrUn_gl000223 chrUn_gl000224</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true"></a><span class="co">## A          0.3083393      0.2757825      0.2933197      0.2796325</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true"></a><span class="co">## C          0.1923203      0.2186973      0.2152836      0.2082997</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true"></a><span class="co">## G          0.1940321      0.2210413      0.2167133      0.2245775</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true"></a><span class="co">## T          0.3053083      0.2844788      0.2746834      0.2874903</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true"></a><span class="co">##       chrUn_gl000225 chrUn_gl000226 chrUn_gl000227 chrUn_gl000228</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true"></a><span class="co">## A          0.2696509      0.2999733      0.3199713      0.2363073</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true"></a><span class="co">## C          0.2317105      0.1749733      0.2044807      0.2748993</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true"></a><span class="co">## G          0.2448230      0.2152852      0.2056180      0.2644517</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true"></a><span class="co">## T          0.2538156      0.3097681      0.2699300      0.2243417</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true"></a><span class="co">##       chrUn_gl000229 chrUn_gl000230 chrUn_gl000231 chrUn_gl000232</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true"></a><span class="co">## A          0.2000201      0.2901742      0.2592566      0.2837253</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true"></a><span class="co">## C          0.2704264      0.2137282      0.2265026      0.2088458</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true"></a><span class="co">## G          0.2310551      0.2033828      0.2201490      0.2093870</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true"></a><span class="co">## T          0.2984985      0.2927147      0.2940919      0.2980419</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true"></a><span class="co">##       chrUn_gl000233 chrUn_gl000234 chrUn_gl000235 chrUn_gl000236</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true"></a><span class="co">## A          0.2653839      0.2663887      0.3435923      0.3101541</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true"></a><span class="co">## C          0.2068740      0.2152673      0.1910135      0.2010779</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true"></a><span class="co">## G          0.2173440      0.2154400      0.1889540      0.2152430</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true"></a><span class="co">## T          0.3103981      0.3029040      0.2764402      0.2735251</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true"></a><span class="co">##       chrUn_gl000237 chrUn_gl000238 chrUn_gl000239 chrUn_gl000240</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true"></a><span class="co">## A          0.2675780      0.2604973      0.2726171      0.3243508</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true"></a><span class="co">## C          0.2232760      0.1954230      0.2148770      0.2137219</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true"></a><span class="co">## G          0.2433558      0.2045870      0.2391497      0.2117664</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true"></a><span class="co">## T          0.2657902      0.3394927      0.2733562      0.2501610</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true"></a><span class="co">##       chrUn_gl000241 chrUn_gl000242 chrUn_gl000243 chrUn_gl000244</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true"></a><span class="co">## A          0.3231163      0.2433426      0.2475254      0.2741867</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true"></a><span class="co">## C          0.1865629      0.2305218      0.2377426      0.2144807</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true"></a><span class="co">## G          0.1863020      0.2534292      0.2223299      0.2218187</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true"></a><span class="co">## T          0.3040188      0.2727064      0.2924021      0.2895139</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true"></a><span class="co">##       chrUn_gl000245 chrUn_gl000246 chrUn_gl000247 chrUn_gl000248</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true"></a><span class="co">## A          0.3512865      0.2736279      0.3020702      0.2542100</span></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true"></a><span class="co">## C          0.1829964      0.1927452      0.2139915      0.2328709</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true"></a><span class="co">## G          0.1801315      0.1937412      0.2220087      0.2236968</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true"></a><span class="co">## T          0.2855857      0.3398857      0.2619296      0.2892223</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true"></a><span class="co">## other      0.0000000      0.0000000      0.0000000      0.0000000</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true"></a><span class="co">##       chrUn_gl000249 chr1_gl383516_fix chr1_gl383517_fix chr1_gl949741_fix</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true"></a><span class="co">## A          0.2803231         0.3008963         0.3051345         0.2516645</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true"></a><span class="co">## C          0.2331827         0.2175764         0.2172759         0.2265574</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true"></a><span class="co">## G          0.2346112         0.2133385         0.2081982         0.2368312</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true"></a><span class="co">## T          0.2518830         0.2681888         0.2693913         0.2849470</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true"></a><span class="co">## other      0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true"></a><span class="co">##       chr1_jh636052_fix chr1_jh636053_fix chr1_jh636054_fix chr1_jh806573_fix</span></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true"></a><span class="co">## A             0.2915854         0.2974645         0.2677319         0.2461507</span></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true"></a><span class="co">## C             0.2111091         0.2018625         0.2188790         0.2453809</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true"></a><span class="co">## G             0.2092759         0.2037353         0.2276569         0.2471232</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true"></a><span class="co">## T             0.2880296         0.2969377         0.2857322         0.2613452</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true"></a><span class="co">##       chr1_jh806574_fix chr1_jh806575_fix chr2_gl877870_fix chr2_gl877871_fix</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true"></a><span class="co">## A             0.2163867         0.2903457         0.2862271         0.3017369</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true"></a><span class="co">## C             0.2863545         0.2308422         0.1949380         0.2067067</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true"></a><span class="co">## G             0.2504569         0.2398912         0.2080702         0.1945740</span></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true"></a><span class="co">## T             0.2468018         0.2389209         0.3107648         0.2969823</span></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true"></a><span class="co">##       chr2_kb663603_fix chr3_gl383523_fix chr3_gl383524_fix chr3_gl383525_fix</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true"></a><span class="co">## A             0.2805614         0.2872107         0.3484320         0.2938536</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true"></a><span class="co">## C             0.2292188         0.2327587         0.1856637         0.1877104</span></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true"></a><span class="co">## G             0.2218436         0.2240462         0.1854606         0.2034643</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true"></a><span class="co">## T             0.2683762         0.2559844         0.2804437         0.3149716</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true"></a><span class="co">##       chr3_jh159131_fix chr3_jh159132_fix chr3_ke332495_fix chr4_gl582967_fix</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true"></a><span class="co">## A             0.3129855         0.2165372         0.2651169         0.3151178</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true"></a><span class="co">## C             0.1983980         0.2801160         0.2341839         0.1859600</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true"></a><span class="co">## G             0.1874119         0.2894214         0.2359235         0.1836431</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true"></a><span class="co">## T             0.3012045         0.2139254         0.2647758         0.3152790</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true"></a><span class="co">##       chr4_gl877872_fix chr4_ke332496_fix chr5_jh159133_fix chr5_ke332497_fix</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true"></a><span class="co">## A             0.2260887         0.2827837         0.3082428         0.2927088</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true"></a><span class="co">## C             0.1943527         0.2041732         0.1755734         0.1969190</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true"></a><span class="co">## G             0.1875389         0.2058345         0.1859032         0.2026945</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true"></a><span class="co">## T             0.2239441         0.3072086         0.3302806         0.3076777</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true"></a><span class="co">## other         0.1680757         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true"></a><span class="co">##       chr6_jh636056_fix chr6_jh636057_fix chr6_jh806576_fix chr6_kb663604_fix</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true"></a><span class="co">## A             0.3020745         0.2886735         0.3036915         0.2848935</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true"></a><span class="co">## C             0.1926120         0.2259797         0.1991543         0.2214604</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true"></a><span class="co">## G             0.2033532         0.2242963         0.2004528         0.2207861</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true"></a><span class="co">## T             0.3019604         0.2610505         0.2967014         0.2728599</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true"></a><span class="co">##       chr6_ke332498_fix chr7_gl582968_fix chr7_gl582969_fix chr7_gl582970_fix</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true"></a><span class="co">## A             0.2705915         0.2479387         0.2768214         0.2658675</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true"></a><span class="co">## C             0.2335874         0.2494963         0.2144562         0.2369186</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true"></a><span class="co">## G             0.2294320         0.2438807         0.2261152         0.2417782</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true"></a><span class="co">## T             0.2663892         0.2586844         0.2826072         0.2554357</span></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true"></a><span class="co">##       chr7_gl582971_fix chr7_gl582972_fix chr7_jh159134_fix chr7_jh636058_fix</span></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true"></a><span class="co">## A             0.2906429         0.2567043         0.2583319        0.27316619</span></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true"></a><span class="co">## C             0.2084313         0.2369437         0.2433786        0.19363274</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true"></a><span class="co">## G             0.2091196         0.2416360         0.2418288        0.19167666</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true"></a><span class="co">## T             0.2918062         0.2647159         0.2564607        0.27171414</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000        0.06981027</span></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true"></a><span class="co">##       chr7_ke332499_fix chr8_gl383535_fix chr8_gl383536_fix chr8_gl949743_fix</span></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true"></a><span class="co">## A             0.2797819         0.2138011         0.2026136         0.2739874</span></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true"></a><span class="co">## C             0.2016203         0.2945841         0.2998523         0.2159851</span></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true"></a><span class="co">## G             0.2079076         0.2775717         0.2945769         0.2216656</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true"></a><span class="co">## T             0.3106903         0.2140431         0.2029572         0.2883619</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true"></a><span class="co">##       chr8_jh159135_fix chr8_ke332500_fix chr9_gl339450_fix chr9_gl383537_fix</span></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true"></a><span class="co">## A             0.2633324         0.2809599         0.2434184         0.2157284</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true"></a><span class="co">## C             0.2508435         0.1932923         0.2550975         0.3011132</span></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true"></a><span class="co">## G             0.2468827         0.2071417         0.2654469         0.2955073</span></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true"></a><span class="co">## T             0.2389414         0.3186061         0.2360372         0.1876512</span></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true"></a><span class="co">##       chr9_gl383538_fix chr9_jh636059_fix chr9_jh806577_fix chr9_jh806578_fix</span></span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true"></a><span class="co">## A             0.1844524         0.2905386         0.1904528         0.2116067</span></span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true"></a><span class="co">## C             0.3013535         0.1947803         0.2885148         0.2722074</span></span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true"></a><span class="co">## G             0.3299040         0.2047844         0.2922658         0.2924155</span></span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true"></a><span class="co">## T             0.1842901         0.3098968         0.2287666         0.2237705</span></span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true"></a><span class="co">##       chr9_jh806579_fix chr9_kb663605_fix chr10_gl383543_fix chr10_gl383544_fix</span></span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true"></a><span class="co">## A             0.2186676         0.2543835          0.2838067          0.2633940</span></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true"></a><span class="co">## C             0.2610420         0.2338289          0.1968497          0.2307327</span></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true"></a><span class="co">## G             0.2660016         0.2450457          0.2024736          0.2340043</span></span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true"></a><span class="co">## T             0.2542888         0.2667419          0.3168700          0.2718690</span></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true"></a><span class="co">##       chr10_gl877873_fix chr10_jh591181_fix chr10_jh591182_fix</span></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true"></a><span class="co">## A              0.2985961          0.2759234          0.2662309</span></span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true"></a><span class="co">## C              0.2143650          0.2127839          0.2418909</span></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true"></a><span class="co">## G              0.2068798          0.2125819          0.2326125</span></span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true"></a><span class="co">## T              0.2801591          0.2767918          0.2592657</span></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0219190          0.0000000</span></span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true"></a><span class="co">##       chr10_jh591183_fix chr10_jh636060_fix chr10_jh806580_fix</span></span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true"></a><span class="co">## A              0.3060196          0.3087915          0.2414197</span></span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true"></a><span class="co">## C              0.2057104          0.2039293          0.2332822</span></span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true"></a><span class="co">## G              0.1943402          0.2009312          0.2601209</span></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true"></a><span class="co">## T              0.2939299          0.2863481          0.2651773</span></span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true"></a><span class="co">##       chr10_kb663606_fix chr10_ke332501_fix chr11_gl582973_fix</span></span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true"></a><span class="co">## A              0.2986107          0.2941566          0.3148621</span></span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true"></a><span class="co">## C              0.2044067          0.1797307          0.1998044</span></span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true"></a><span class="co">## G              0.2050768          0.1852263          0.1994710</span></span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true"></a><span class="co">## T              0.2919059          0.3408864          0.2858625</span></span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true"></a><span class="co">##       chr11_gl949744_fix chr11_jh159138_fix chr11_jh159139_fix</span></span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true"></a><span class="co">## A              0.2458111          0.2491665          0.3059755</span></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true"></a><span class="co">## C              0.2546519          0.2476326          0.1944936</span></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true"></a><span class="co">## G              0.2557805          0.2495982          0.2053786</span></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true"></a><span class="co">## T              0.2437565          0.2536028          0.2941523</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true"></a><span class="co">##       chr11_jh159140_fix chr11_jh159141_fix chr11_jh159142_fix</span></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true"></a><span class="co">## A              0.2820317          0.2886761          0.2932768</span></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true"></a><span class="co">## C              0.2082956          0.2019977          0.2117332</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true"></a><span class="co">## G              0.2137015          0.2081570          0.2094432</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true"></a><span class="co">## T              0.2959712          0.3011691          0.2855468</span></span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true"></a><span class="co">##       chr11_jh159143_fix chr11_jh591184_fix chr11_jh591185_fix</span></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true"></a><span class="co">## A              0.2365075          0.2923194          0.2985959</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true"></a><span class="co">## C              0.2503579          0.2114402          0.2000872</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true"></a><span class="co">## G              0.2598405          0.2046478          0.1953989</span></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true"></a><span class="co">## T              0.2532941          0.2915926          0.3059180</span></span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true"></a><span class="co">##       chr11_jh720443_fix chr11_jh806581_fix chr12_gl383548_fix</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true"></a><span class="co">## A              0.2679578         0.24112875          0.2291055</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true"></a><span class="co">## C              0.2261807         0.24222035          0.3036061</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true"></a><span class="co">## G              0.2262468         0.23897651          0.2740564</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true"></a><span class="co">## T              0.2796146         0.22034250          0.1932319</span></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true"></a><span class="co">## other          0.0000000         0.05733189          0.0000000</span></span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true"></a><span class="co">##       chr12_gl582974_fix chr12_jh720444_fix chr12_kb663607_fix</span></span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true"></a><span class="co">## A              0.2463166       2.418134e-01          0.2652498</span></span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true"></a><span class="co">## C              0.2548102       2.476934e-01          0.2465738</span></span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true"></a><span class="co">## G              0.2572781       2.525153e-01          0.2403784</span></span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true"></a><span class="co">## T              0.2415951       2.579706e-01          0.2477980</span></span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true"></a><span class="co">## other          0.0000000       7.322574e-06          0.0000000</span></span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true"></a><span class="co">##       chr13_gl582975_fix chr14_kb021645_fix chr15_jh720445_fix</span></span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true"></a><span class="co">## A              0.2865963          0.2550673          0.2652367</span></span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true"></a><span class="co">## C              0.2060181          0.2350002          0.2363247</span></span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true"></a><span class="co">## G              0.2179620          0.2376574          0.2272500</span></span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true"></a><span class="co">## T              0.2894236          0.2722751          0.2711885</span></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-268"><a href="#cb5-268" aria-hidden="true"></a><span class="co">##       chr16_jh720446_fix chr17_gl383558_fix chr17_gl383559_fix</span></span>
+<span id="cb5-269"><a href="#cb5-269" aria-hidden="true"></a><span class="co">## A              0.2416046          0.2936936          0.2448234</span></span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true"></a><span class="co">## C              0.2709230          0.2213674          0.2446551</span></span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true"></a><span class="co">## G              0.2624788          0.2134601          0.2519755</span></span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true"></a><span class="co">## T              0.2249936          0.2714789          0.2585459</span></span>
+<span id="cb5-273"><a href="#cb5-273" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true"></a><span class="co">##       chr17_gl383560_fix chr17_gl383561_fix chr17_gl383562_fix</span></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true"></a><span class="co">## A              0.2546136         0.28450789          0.2663827</span></span>
+<span id="cb5-276"><a href="#cb5-276" aria-hidden="true"></a><span class="co">## C              0.2327602         0.19281220          0.2400825</span></span>
+<span id="cb5-277"><a href="#cb5-277" aria-hidden="true"></a><span class="co">## G              0.2375835         0.24846026          0.2448025</span></span>
+<span id="cb5-278"><a href="#cb5-278" aria-hidden="true"></a><span class="co">## T              0.2750427         0.24481980          0.2487322</span></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true"></a><span class="co">## other          0.0000000         0.02939985          0.0000000</span></span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true"></a><span class="co">##       chr17_gl582976_fix chr17_jh159144_fix chr17_jh159145_fix</span></span>
+<span id="cb5-281"><a href="#cb5-281" aria-hidden="true"></a><span class="co">## A              0.2504660          0.2686409          0.2546161</span></span>
+<span id="cb5-282"><a href="#cb5-282" aria-hidden="true"></a><span class="co">## C              0.2630225          0.2237369          0.2467233</span></span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true"></a><span class="co">## G              0.2519859          0.2279085          0.2446706</span></span>
+<span id="cb5-284"><a href="#cb5-284" aria-hidden="true"></a><span class="co">## T              0.2345256          0.2797137          0.2539900</span></span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-286"><a href="#cb5-286" aria-hidden="true"></a><span class="co">##       chr17_jh591186_fix chr17_jh636061_fix chr17_jh720447_fix</span></span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true"></a><span class="co">## A              0.2507981          0.1990981          0.2407870</span></span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true"></a><span class="co">## C              0.2722189          0.2965403          0.1963929</span></span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true"></a><span class="co">## G              0.2609596          0.3012109          0.2016088</span></span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true"></a><span class="co">## T              0.2160235          0.2031506          0.2511725</span></span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.1100388</span></span>
+<span id="cb5-292"><a href="#cb5-292" aria-hidden="true"></a><span class="co">##       chr17_jh806582_fix chr17_kb021646_fix chr17_ke332502_fix</span></span>
+<span id="cb5-293"><a href="#cb5-293" aria-hidden="true"></a><span class="co">## A              0.2539408          0.2601411         0.32603479</span></span>
+<span id="cb5-294"><a href="#cb5-294" aria-hidden="true"></a><span class="co">## C              0.2662980          0.2252431         0.15536183</span></span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true"></a><span class="co">## G              0.2486786          0.2397974         0.23171852</span></span>
+<span id="cb5-296"><a href="#cb5-296" aria-hidden="true"></a><span class="co">## T              0.2310826          0.2748184         0.27681498</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000         0.01006988</span></span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true"></a><span class="co">##       chr19_gl582977_fix chr19_jh159149_fix chr19_kb021647_fix</span></span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true"></a><span class="co">## A              0.2977965          0.2410897          0.2550652</span></span>
+<span id="cb5-300"><a href="#cb5-300" aria-hidden="true"></a><span class="co">## C              0.2001058          0.2400386          0.2425837</span></span>
+<span id="cb5-301"><a href="#cb5-301" aria-hidden="true"></a><span class="co">## G              0.2048560          0.2433099          0.2469098</span></span>
+<span id="cb5-302"><a href="#cb5-302" aria-hidden="true"></a><span class="co">## T              0.2972417          0.2755619          0.2554412</span></span>
+<span id="cb5-303"><a href="#cb5-303" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-304"><a href="#cb5-304" aria-hidden="true"></a><span class="co">##       chr19_ke332505_fix chr20_gl582979_fix chr20_jh720448_fix</span></span>
+<span id="cb5-305"><a href="#cb5-305" aria-hidden="true"></a><span class="co">## A              0.2664916          0.1967882        0.220989458</span></span>
+<span id="cb5-306"><a href="#cb5-306" aria-hidden="true"></a><span class="co">## C              0.2467141          0.2930533        0.252912050</span></span>
+<span id="cb5-307"><a href="#cb5-307" aria-hidden="true"></a><span class="co">## G              0.2376043          0.2975114        0.268589589</span></span>
+<span id="cb5-308"><a href="#cb5-308" aria-hidden="true"></a><span class="co">## T              0.2491900          0.2126471        0.252571542</span></span>
+<span id="cb5-309"><a href="#cb5-309" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000        0.004937361</span></span>
+<span id="cb5-310"><a href="#cb5-310" aria-hidden="true"></a><span class="co">##       chr20_kb663608_fix chr21_ke332506_fix chr22_jh720449_fix</span></span>
+<span id="cb5-311"><a href="#cb5-311" aria-hidden="true"></a><span class="co">## A              0.3067808          0.2671325          0.2765028</span></span>
+<span id="cb5-312"><a href="#cb5-312" aria-hidden="true"></a><span class="co">## C              0.1854622          0.2528869          0.2395972</span></span>
+<span id="cb5-313"><a href="#cb5-313" aria-hidden="true"></a><span class="co">## G              0.1888408          0.2468235          0.2310432</span></span>
+<span id="cb5-314"><a href="#cb5-314" aria-hidden="true"></a><span class="co">## T              0.3189162          0.2331571          0.2528568</span></span>
+<span id="cb5-315"><a href="#cb5-315" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-316"><a href="#cb5-316" aria-hidden="true"></a><span class="co">##       chr22_jh806583_fix chr22_jh806584_fix chr22_jh806585_fix</span></span>
+<span id="cb5-317"><a href="#cb5-317" aria-hidden="true"></a><span class="co">## A              0.3140870          0.2865427          0.3446296</span></span>
+<span id="cb5-318"><a href="#cb5-318" aria-hidden="true"></a><span class="co">## C              0.1935843          0.2174643          0.1635127</span></span>
+<span id="cb5-319"><a href="#cb5-319" aria-hidden="true"></a><span class="co">## G              0.1818666          0.2063181          0.2360112</span></span>
+<span id="cb5-320"><a href="#cb5-320" aria-hidden="true"></a><span class="co">## T              0.3104622          0.2896749          0.2558465</span></span>
+<span id="cb5-321"><a href="#cb5-321" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-322"><a href="#cb5-322" aria-hidden="true"></a><span class="co">##       chr22_jh806586_fix chrX_gl877877_fix chrX_jh159150_fix chrX_jh720451_fix</span></span>
+<span id="cb5-323"><a href="#cb5-323" aria-hidden="true"></a><span class="co">## A              0.2662655         0.2681925         0.2668093         0.3067891</span></span>
+<span id="cb5-324"><a href="#cb5-324" aria-hidden="true"></a><span class="co">## C              0.2189330         0.2297814         0.2359276         0.1897542</span></span>
+<span id="cb5-325"><a href="#cb5-325" aria-hidden="true"></a><span class="co">## G              0.2372138         0.2284001         0.2352818         0.1841511</span></span>
+<span id="cb5-326"><a href="#cb5-326" aria-hidden="true"></a><span class="co">## T              0.2775877         0.2736261         0.2619812         0.3193056</span></span>
+<span id="cb5-327"><a href="#cb5-327" aria-hidden="true"></a><span class="co">## other          0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-328"><a href="#cb5-328" aria-hidden="true"></a><span class="co">##       chrX_jh720452_fix chrX_jh720453_fix chrX_jh720454_fix chrX_jh720455_fix</span></span>
+<span id="cb5-329"><a href="#cb5-329" aria-hidden="true"></a><span class="co">## A             0.2968263         0.3135900         0.3163970         0.3033951</span></span>
+<span id="cb5-330"><a href="#cb5-330" aria-hidden="true"></a><span class="co">## C             0.1945880         0.1965462         0.1990463         0.1957745</span></span>
+<span id="cb5-331"><a href="#cb5-331" aria-hidden="true"></a><span class="co">## G             0.1960832         0.1929587         0.1946928         0.1976351</span></span>
+<span id="cb5-332"><a href="#cb5-332" aria-hidden="true"></a><span class="co">## T             0.3125025         0.2969050         0.2898638         0.3031953</span></span>
+<span id="cb5-333"><a href="#cb5-333" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-334"><a href="#cb5-334" aria-hidden="true"></a><span class="co">##       chrX_jh806587_fix chrX_jh806588_fix chrX_jh806589_fix chrX_jh806590_fix</span></span>
+<span id="cb5-335"><a href="#cb5-335" aria-hidden="true"></a><span class="co">## A             0.2942685         0.3114334         0.3090234         0.2586284</span></span>
+<span id="cb5-336"><a href="#cb5-336" aria-hidden="true"></a><span class="co">## C             0.2089787         0.1854448         0.2036507         0.2109463</span></span>
+<span id="cb5-337"><a href="#cb5-337" aria-hidden="true"></a><span class="co">## G             0.2081990         0.1840315         0.1996342         0.2131978</span></span>
+<span id="cb5-338"><a href="#cb5-338" aria-hidden="true"></a><span class="co">## T             0.2885538         0.3190903         0.2876917         0.2634729</span></span>
+<span id="cb5-339"><a href="#cb5-339" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0537547</span></span>
+<span id="cb5-340"><a href="#cb5-340" aria-hidden="true"></a><span class="co">##       chrX_jh806591_fix chrX_jh806592_fix chrX_jh806593_fix chrX_jh806594_fix</span></span>
+<span id="cb5-341"><a href="#cb5-341" aria-hidden="true"></a><span class="co">## A             0.3195958         0.2987292         0.2897511         0.2874012</span></span>
+<span id="cb5-342"><a href="#cb5-342" aria-hidden="true"></a><span class="co">## C             0.1971436         0.2058772         0.2028997         0.2075181</span></span>
+<span id="cb5-343"><a href="#cb5-343" aria-hidden="true"></a><span class="co">## G             0.1928549         0.2015920         0.2090054         0.2064477</span></span>
+<span id="cb5-344"><a href="#cb5-344" aria-hidden="true"></a><span class="co">## T             0.2904058         0.2938016         0.2983438         0.2986330</span></span>
+<span id="cb5-345"><a href="#cb5-345" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-346"><a href="#cb5-346" aria-hidden="true"></a><span class="co">##       chrX_jh806595_fix chrX_jh806596_fix chrX_jh806597_fix chrX_jh806598_fix</span></span>
+<span id="cb5-347"><a href="#cb5-347" aria-hidden="true"></a><span class="co">## A             0.2834190         0.2896332         0.2917909         0.3067128</span></span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true"></a><span class="co">## C             0.2088728         0.2112015         0.2074660         0.1912189</span></span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true"></a><span class="co">## G             0.2105865         0.2112208         0.2095901         0.1945692</span></span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true"></a><span class="co">## T             0.2971217         0.2879445         0.2911530         0.3074990</span></span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-352"><a href="#cb5-352" aria-hidden="true"></a><span class="co">##       chrX_jh806599_fix chrX_jh806600_fix chrX_jh806601_fix chrX_jh806602_fix</span></span>
+<span id="cb5-353"><a href="#cb5-353" aria-hidden="true"></a><span class="co">## A             0.3180280         0.3058339         0.3191182         0.2962429</span></span>
+<span id="cb5-354"><a href="#cb5-354" aria-hidden="true"></a><span class="co">## C             0.1846529         0.1961708         0.1871598         0.1952624</span></span>
+<span id="cb5-355"><a href="#cb5-355" aria-hidden="true"></a><span class="co">## G             0.1845574         0.1967587         0.1865245         0.1969448</span></span>
+<span id="cb5-356"><a href="#cb5-356" aria-hidden="true"></a><span class="co">## T             0.3127617         0.3012365         0.3071975         0.3115500</span></span>
+<span id="cb5-357"><a href="#cb5-357" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-358"><a href="#cb5-358" aria-hidden="true"></a><span class="co">##       chrX_jh806603_fix chrX_kb021648_fix chr1_gl383518_alt chr1_gl383519_alt</span></span>
+<span id="cb5-359"><a href="#cb5-359" aria-hidden="true"></a><span class="co">## A             0.3150113         0.2737418         0.2608598         0.2446766</span></span>
+<span id="cb5-360"><a href="#cb5-360" aria-hidden="true"></a><span class="co">## C             0.1808646         0.2168874         0.2366380         0.2563844</span></span>
+<span id="cb5-361"><a href="#cb5-361" aria-hidden="true"></a><span class="co">## G             0.1878556         0.2170427         0.2339357         0.2585700</span></span>
+<span id="cb5-362"><a href="#cb5-362" aria-hidden="true"></a><span class="co">## T             0.3162685         0.2923281         0.2685665         0.2403689</span></span>
+<span id="cb5-363"><a href="#cb5-363" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-364"><a href="#cb5-364" aria-hidden="true"></a><span class="co">##       chr1_gl383520_alt chr2_gl383521_alt chr2_gl383522_alt chr2_gl582966_alt</span></span>
+<span id="cb5-365"><a href="#cb5-365" aria-hidden="true"></a><span class="co">## A             0.3039099         0.2988214         0.3154069         0.2649926</span></span>
+<span id="cb5-366"><a href="#cb5-366" aria-hidden="true"></a><span class="co">## C             0.1779453         0.1902015         0.2017348         0.2021200</span></span>
+<span id="cb5-367"><a href="#cb5-367" aria-hidden="true"></a><span class="co">## G             0.1801167         0.1989190         0.1917042         0.2286151</span></span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true"></a><span class="co">## T             0.3380281         0.3120580         0.2911542         0.3042723</span></span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true"></a><span class="co">##       chr3_gl383526_alt chr3_jh636055_alt chr4_gl383527_alt chr4_gl383528_alt</span></span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true"></a><span class="co">## A             0.3027547         0.2893371         0.3128252         0.3349345</span></span>
+<span id="cb5-372"><a href="#cb5-372" aria-hidden="true"></a><span class="co">## C             0.1840140         0.2191671         0.1860018         0.1736317</span></span>
+<span id="cb5-373"><a href="#cb5-373" aria-hidden="true"></a><span class="co">## G             0.1894715         0.2162852         0.1856797         0.1688894</span></span>
+<span id="cb5-374"><a href="#cb5-374" aria-hidden="true"></a><span class="co">## T             0.3237598         0.2752107         0.3154933         0.3225444</span></span>
+<span id="cb5-375"><a href="#cb5-375" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-376"><a href="#cb5-376" aria-hidden="true"></a><span class="co">##       chr4_gl383529_alt chr5_gl339449_alt chr5_gl383530_alt chr5_gl383531_alt</span></span>
+<span id="cb5-377"><a href="#cb5-377" aria-hidden="true"></a><span class="co">## A             0.3199473        0.28141802         0.2974190         0.3242726</span></span>
+<span id="cb5-378"><a href="#cb5-378" aria-hidden="true"></a><span class="co">## C             0.1555812        0.18531453         0.1816853         0.1813051</span></span>
+<span id="cb5-379"><a href="#cb5-379" aria-hidden="true"></a><span class="co">## G             0.2027607        0.18635240         0.1909503         0.1847929</span></span>
+<span id="cb5-380"><a href="#cb5-380" aria-hidden="true"></a><span class="co">## T             0.3217108        0.28491600         0.3299454         0.3096294</span></span>
+<span id="cb5-381"><a href="#cb5-381" aria-hidden="true"></a><span class="co">## other         0.0000000        0.06199905         0.0000000         0.0000000</span></span>
+<span id="cb5-382"><a href="#cb5-382" aria-hidden="true"></a><span class="co">##       chr5_gl383532_alt chr5_gl949742_alt chr6_gl383533_alt chr6_kb021644_alt</span></span>
+<span id="cb5-383"><a href="#cb5-383" aria-hidden="true"></a><span class="co">## A             0.3265158         0.3179298         0.3108886         0.2491961</span></span>
+<span id="cb5-384"><a href="#cb5-384" aria-hidden="true"></a><span class="co">## C             0.1739314         0.1752200         0.1928313         0.2111658</span></span>
+<span id="cb5-385"><a href="#cb5-385" aria-hidden="true"></a><span class="co">## G             0.1697249         0.1729718         0.1924384         0.2723933</span></span>
+<span id="cb5-386"><a href="#cb5-386" aria-hidden="true"></a><span class="co">## T             0.3298279         0.3338785         0.3038417         0.2672449</span></span>
+<span id="cb5-387"><a href="#cb5-387" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-388"><a href="#cb5-388" aria-hidden="true"></a><span class="co">##       chr7_gl383534_alt chr9_gl383539_alt chr9_gl383540_alt chr9_gl383541_alt</span></span>
+<span id="cb5-389"><a href="#cb5-389" aria-hidden="true"></a><span class="co">## A             0.2928270         0.2920767         0.2582913         0.2846292</span></span>
+<span id="cb5-390"><a href="#cb5-390" aria-hidden="true"></a><span class="co">## C             0.2071772         0.1931615         0.2262582         0.2024976</span></span>
+<span id="cb5-391"><a href="#cb5-391" aria-hidden="true"></a><span class="co">## G             0.2059774         0.2033094         0.2304091         0.2068762</span></span>
+<span id="cb5-392"><a href="#cb5-392" aria-hidden="true"></a><span class="co">## T             0.2940184         0.3114524         0.2850414         0.3059970</span></span>
+<span id="cb5-393"><a href="#cb5-393" aria-hidden="true"></a><span class="co">## other         0.0000000         0.0000000         0.0000000         0.0000000</span></span>
+<span id="cb5-394"><a href="#cb5-394" aria-hidden="true"></a><span class="co">##       chr9_gl383542_alt chr10_gl383545_alt chr10_gl383546_alt</span></span>
+<span id="cb5-395"><a href="#cb5-395" aria-hidden="true"></a><span class="co">## A             0.3008229          0.3003559          0.3054080</span></span>
+<span id="cb5-396"><a href="#cb5-396" aria-hidden="true"></a><span class="co">## C             0.2096049          0.1990862          0.2153279</span></span>
+<span id="cb5-397"><a href="#cb5-397" aria-hidden="true"></a><span class="co">## G             0.2174674          0.1978756          0.2112672</span></span>
+<span id="cb5-398"><a href="#cb5-398" aria-hidden="true"></a><span class="co">## T             0.2721049          0.3026822          0.2679970</span></span>
+<span id="cb5-399"><a href="#cb5-399" aria-hidden="true"></a><span class="co">## other         0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-400"><a href="#cb5-400" aria-hidden="true"></a><span class="co">##       chr11_gl383547_alt chr11_jh159136_alt chr11_jh159137_alt</span></span>
+<span id="cb5-401"><a href="#cb5-401" aria-hidden="true"></a><span class="co">## A              0.3173820          0.3304759          0.3196036</span></span>
+<span id="cb5-402"><a href="#cb5-402" aria-hidden="true"></a><span class="co">## C              0.1701607          0.1770764          0.1883767</span></span>
+<span id="cb5-403"><a href="#cb5-403" aria-hidden="true"></a><span class="co">## G              0.1712293          0.1754097          0.1842599</span></span>
+<span id="cb5-404"><a href="#cb5-404" aria-hidden="true"></a><span class="co">## T              0.3412281          0.3170380          0.3077598</span></span>
+<span id="cb5-405"><a href="#cb5-405" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-406"><a href="#cb5-406" aria-hidden="true"></a><span class="co">##       chr12_gl383549_alt chr12_gl383550_alt chr12_gl383551_alt</span></span>
+<span id="cb5-407"><a href="#cb5-407" aria-hidden="true"></a><span class="co">## A              0.3163885          0.3125879          0.2818809</span></span>
+<span id="cb5-408"><a href="#cb5-408" aria-hidden="true"></a><span class="co">## C              0.1952005          0.2043469          0.1980805</span></span>
+<span id="cb5-409"><a href="#cb5-409" aria-hidden="true"></a><span class="co">## G              0.1909705          0.1912424          0.2071463</span></span>
+<span id="cb5-410"><a href="#cb5-410" aria-hidden="true"></a><span class="co">## T              0.2974405          0.2918228          0.3128923</span></span>
+<span id="cb5-411"><a href="#cb5-411" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-412"><a href="#cb5-412" aria-hidden="true"></a><span class="co">##       chr12_gl383552_alt chr12_gl383553_alt chr12_gl877875_alt</span></span>
+<span id="cb5-413"><a href="#cb5-413" aria-hidden="true"></a><span class="co">## A              0.3060762          0.2847051          0.2497475</span></span>
+<span id="cb5-414"><a href="#cb5-414" aria-hidden="true"></a><span class="co">## C              0.1797916          0.1940160          0.2524370</span></span>
+<span id="cb5-415"><a href="#cb5-415" aria-hidden="true"></a><span class="co">## G              0.1853882          0.1997397          0.2547082</span></span>
+<span id="cb5-416"><a href="#cb5-416" aria-hidden="true"></a><span class="co">## T              0.3287440          0.3215393          0.2431072</span></span>
+<span id="cb5-417"><a href="#cb5-417" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-418"><a href="#cb5-418" aria-hidden="true"></a><span class="co">##       chr12_gl877876_alt chr12_gl949745_alt chr15_gl383554_alt</span></span>
+<span id="cb5-419"><a href="#cb5-419" aria-hidden="true"></a><span class="co">## A              0.3264866          0.3284864          0.2816135</span></span>
+<span id="cb5-420"><a href="#cb5-420" aria-hidden="true"></a><span class="co">## C              0.1866799          0.1863133          0.2170426</span></span>
+<span id="cb5-421"><a href="#cb5-421" aria-hidden="true"></a><span class="co">## G              0.1764539          0.1769388          0.2162029</span></span>
+<span id="cb5-422"><a href="#cb5-422" aria-hidden="true"></a><span class="co">## T              0.3103796          0.3082615          0.2851410</span></span>
+<span id="cb5-423"><a href="#cb5-423" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-424"><a href="#cb5-424" aria-hidden="true"></a><span class="co">##       chr15_gl383555_alt chr16_gl383556_alt chr16_gl383557_alt</span></span>
+<span id="cb5-425"><a href="#cb5-425" aria-hidden="true"></a><span class="co">## A              0.2660010          0.2907743          0.3029374</span></span>
+<span id="cb5-426"><a href="#cb5-426" aria-hidden="true"></a><span class="co">## C              0.2473989          0.2263668          0.2221541</span></span>
+<span id="cb5-427"><a href="#cb5-427" aria-hidden="true"></a><span class="co">## G              0.2416114          0.2177936          0.2162548</span></span>
+<span id="cb5-428"><a href="#cb5-428" aria-hidden="true"></a><span class="co">## T              0.2449887          0.2650653          0.2586538</span></span>
+<span id="cb5-429"><a href="#cb5-429" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-430"><a href="#cb5-430" aria-hidden="true"></a><span class="co">##       chr17_gl383563_alt chr17_gl383564_alt chr17_gl383565_alt</span></span>
+<span id="cb5-431"><a href="#cb5-431" aria-hidden="true"></a><span class="co">## A              0.2359719          0.2637307          0.3179000</span></span>
+<span id="cb5-432"><a href="#cb5-432" aria-hidden="true"></a><span class="co">## C              0.2819238          0.2279818          0.1853702</span></span>
+<span id="cb5-433"><a href="#cb5-433" aria-hidden="true"></a><span class="co">## G              0.2535179          0.2273359          0.1858925</span></span>
+<span id="cb5-434"><a href="#cb5-434" aria-hidden="true"></a><span class="co">## T              0.2285864          0.2809517          0.3108373</span></span>
+<span id="cb5-435"><a href="#cb5-435" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-436"><a href="#cb5-436" aria-hidden="true"></a><span class="co">##       chr17_gl383566_alt chr17_jh159146_alt chr17_jh159147_alt</span></span>
+<span id="cb5-437"><a href="#cb5-437" aria-hidden="true"></a><span class="co">## A              0.2286215          0.2889214          0.2720449</span></span>
+<span id="cb5-438"><a href="#cb5-438" aria-hidden="true"></a><span class="co">## C              0.2579723          0.1956596          0.2029711</span></span>
+<span id="cb5-439"><a href="#cb5-439" aria-hidden="true"></a><span class="co">## G              0.2632594          0.2072189          0.2047338</span></span>
+<span id="cb5-440"><a href="#cb5-440" aria-hidden="true"></a><span class="co">## T              0.2501469          0.3082001          0.3202502</span></span>
+<span id="cb5-441"><a href="#cb5-441" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-442"><a href="#cb5-442" aria-hidden="true"></a><span class="co">##       chr17_jh159148_alt chr18_gl383567_alt chr18_gl383568_alt</span></span>
+<span id="cb5-443"><a href="#cb5-443" aria-hidden="true"></a><span class="co">## A              0.2740547          0.2771063          0.3189418</span></span>
+<span id="cb5-444"><a href="#cb5-444" aria-hidden="true"></a><span class="co">## C              0.1994663          0.2079281          0.1905846</span></span>
+<span id="cb5-445"><a href="#cb5-445" aria-hidden="true"></a><span class="co">## G              0.2059271          0.2091219          0.1871222</span></span>
+<span id="cb5-446"><a href="#cb5-446" aria-hidden="true"></a><span class="co">## T              0.3205518          0.3058438          0.3033514</span></span>
+<span id="cb5-447"><a href="#cb5-447" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-448"><a href="#cb5-448" aria-hidden="true"></a><span class="co">##       chr18_gl383569_alt chr18_gl383570_alt chr18_gl383571_alt</span></span>
+<span id="cb5-449"><a href="#cb5-449" aria-hidden="true"></a><span class="co">## A              0.2778208          0.3148693          0.2407226</span></span>
+<span id="cb5-450"><a href="#cb5-450" aria-hidden="true"></a><span class="co">## C              0.2426139          0.1954499          0.1334944</span></span>
+<span id="cb5-451"><a href="#cb5-451" aria-hidden="true"></a><span class="co">## G              0.2356237          0.1955652          0.1375997</span></span>
+<span id="cb5-452"><a href="#cb5-452" aria-hidden="true"></a><span class="co">## T              0.2439416          0.2941155          0.2360121</span></span>
+<span id="cb5-453"><a href="#cb5-453" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.2521712</span></span>
+<span id="cb5-454"><a href="#cb5-454" aria-hidden="true"></a><span class="co">##       chr18_gl383572_alt chr19_gl383573_alt chr19_gl383574_alt</span></span>
+<span id="cb5-455"><a href="#cb5-455" aria-hidden="true"></a><span class="co">## A              0.2603433          0.2983221          0.2688241</span></span>
+<span id="cb5-456"><a href="#cb5-456" aria-hidden="true"></a><span class="co">## C              0.2419162          0.2124634          0.2153159</span></span>
+<span id="cb5-457"><a href="#cb5-457" aria-hidden="true"></a><span class="co">## G              0.2300639          0.1924767          0.2229764</span></span>
+<span id="cb5-458"><a href="#cb5-458" aria-hidden="true"></a><span class="co">## T              0.2676766          0.2967378          0.2928835</span></span>
+<span id="cb5-459"><a href="#cb5-459" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-460"><a href="#cb5-460" aria-hidden="true"></a><span class="co">##       chr19_gl383575_alt chr19_gl383576_alt chr19_gl949746_alt</span></span>
+<span id="cb5-461"><a href="#cb5-461" aria-hidden="true"></a><span class="co">## A              0.3049782          0.2951485          0.2260468</span></span>
+<span id="cb5-462"><a href="#cb5-462" aria-hidden="true"></a><span class="co">## C              0.2015016          0.1956931          0.2190468</span></span>
+<span id="cb5-463"><a href="#cb5-463" aria-hidden="true"></a><span class="co">## G              0.2015368          0.1992618          0.2218462</span></span>
+<span id="cb5-464"><a href="#cb5-464" aria-hidden="true"></a><span class="co">## T              0.2919834          0.3098966          0.2267545</span></span>
+<span id="cb5-465"><a href="#cb5-465" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.1063059</span></span>
+<span id="cb5-466"><a href="#cb5-466" aria-hidden="true"></a><span class="co">##       chr19_gl949747_alt chr19_gl949748_alt chr19_gl949749_alt</span></span>
+<span id="cb5-467"><a href="#cb5-467" aria-hidden="true"></a><span class="co">## A             0.22975413          0.1063870         0.09904748</span></span>
+<span id="cb5-468"><a href="#cb5-468" aria-hidden="true"></a><span class="co">## C             0.22236432          0.1068483         0.09982232</span></span>
+<span id="cb5-469"><a href="#cb5-469" aria-hidden="true"></a><span class="co">## G             0.22754719          0.1099687         0.10185558</span></span>
+<span id="cb5-470"><a href="#cb5-470" aria-hidden="true"></a><span class="co">## T             0.22986379          0.1064697         0.09845399</span></span>
+<span id="cb5-471"><a href="#cb5-471" aria-hidden="true"></a><span class="co">## other         0.09047057          0.5703263         0.60082063</span></span>
+<span id="cb5-472"><a href="#cb5-472" aria-hidden="true"></a><span class="co">##       chr19_gl949750_alt chr19_gl949751_alt chr19_gl949752_alt</span></span>
+<span id="cb5-473"><a href="#cb5-473" aria-hidden="true"></a><span class="co">## A             0.09667579          0.1156837        0.253165839</span></span>
+<span id="cb5-474"><a href="#cb5-474" aria-hidden="true"></a><span class="co">## C             0.09859723          0.1157366        0.241468949</span></span>
+<span id="cb5-475"><a href="#cb5-475" aria-hidden="true"></a><span class="co">## G             0.09985756          0.1184882        0.246083477</span></span>
+<span id="cb5-476"><a href="#cb5-476" aria-hidden="true"></a><span class="co">## T             0.09721124          0.1155252        0.254216391</span></span>
+<span id="cb5-477"><a href="#cb5-477" aria-hidden="true"></a><span class="co">## other         0.60765818          0.5345663        0.005065343</span></span>
+<span id="cb5-478"><a href="#cb5-478" aria-hidden="true"></a><span class="co">##       chr19_gl949753_alt chr20_gl383577_alt chr21_gl383578_alt</span></span>
+<span id="cb5-479"><a href="#cb5-479" aria-hidden="true"></a><span class="co">## A              0.2145533          0.2764186          0.3033622</span></span>
+<span id="cb5-480"><a href="#cb5-480" aria-hidden="true"></a><span class="co">## C              0.2090529          0.2404175          0.1791229</span></span>
+<span id="cb5-481"><a href="#cb5-481" aria-hidden="true"></a><span class="co">## G              0.2116053          0.2383690          0.1825180</span></span>
+<span id="cb5-482"><a href="#cb5-482" aria-hidden="true"></a><span class="co">## T              0.2141252          0.2447950          0.3349969</span></span>
+<span id="cb5-483"><a href="#cb5-483" aria-hidden="true"></a><span class="co">## other          0.1506633          0.0000000          0.0000000</span></span>
+<span id="cb5-484"><a href="#cb5-484" aria-hidden="true"></a><span class="co">##       chr21_gl383579_alt chr21_gl383580_alt chr21_gl383581_alt</span></span>
+<span id="cb5-485"><a href="#cb5-485" aria-hidden="true"></a><span class="co">## A              0.3180002          0.2780502          0.2941126</span></span>
+<span id="cb5-486"><a href="#cb5-486" aria-hidden="true"></a><span class="co">## C              0.1705087          0.2086883          0.2192733</span></span>
+<span id="cb5-487"><a href="#cb5-487" aria-hidden="true"></a><span class="co">## G              0.1782672          0.2078176          0.2259748</span></span>
+<span id="cb5-488"><a href="#cb5-488" aria-hidden="true"></a><span class="co">## T              0.3332240          0.3054439          0.2606393</span></span>
+<span id="cb5-489"><a href="#cb5-489" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span>
+<span id="cb5-490"><a href="#cb5-490" aria-hidden="true"></a><span class="co">##       chr22_gl383582_alt chr22_gl383583_alt chr22_kb663609_alt</span></span>
+<span id="cb5-491"><a href="#cb5-491" aria-hidden="true"></a><span class="co">## A              0.2722482          0.2601007          0.2319998</span></span>
+<span id="cb5-492"><a href="#cb5-492" aria-hidden="true"></a><span class="co">## C              0.2369987          0.2331621          0.2528610</span></span>
+<span id="cb5-493"><a href="#cb5-493" aria-hidden="true"></a><span class="co">## G              0.2315630          0.2279208          0.2526448</span></span>
+<span id="cb5-494"><a href="#cb5-494" aria-hidden="true"></a><span class="co">## T              0.2591901          0.2788164          0.2624944</span></span>
+<span id="cb5-495"><a href="#cb5-495" aria-hidden="true"></a><span class="co">## other          0.0000000          0.0000000          0.0000000</span></span></code></pre></div>
+</section>
+<section id="biostrings-1" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>Here are two ways to ask if a specific pattern is present in one sequence <span class="math inline">\({\tt matchPattern}\)</span> or a set of sequences <span class="math inline">\({\tt vmatchPattern}\)</span>. Pattern matching and alignments are very central in biology.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>chr2 &lt;-<span class="st"> </span>Hsapiens<span class="op">$</span>chr2</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">matchPattern</span>( <span class="st">&quot;ATGATAAAAGAA&quot;</span>, chr2 )</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">## Views on a 243199373-letter DNAString subject</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">## subject: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">## views:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">##            start       end width</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">##    [1]   3093768   3093779    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">##    [2]   3924476   3924487    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">##    [3]   4662559   4662570    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">##    [4]   4967998   4968009    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">##    [5]   7734903   7734914    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">##    ...       ...       ...   ... ...</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co">##   [85] 218329792 218329803    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">##   [86] 227061871 227061882    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="co">##   [87] 233071842 233071853    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="co">##   [88] 240711797 240711808    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="co">##   [89] 240760809 240760820    12 [ATGATAAAAGAA]</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="kw">vmatchPattern</span>( <span class="st">&quot;ATGATAAAAGAA&quot;</span>, Hsapiens)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co">## GRanges object with 2313 ranges and 0 metadata columns:</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="co">##                    seqnames            ranges strand</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co">##                       &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="co">##      [1]               chr1   4721174-4721185      +</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="co">##      [2]               chr1 17504484-17504495      +</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="co">##      [3]               chr1 20292323-20292334      +</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="co">##      [4]               chr1 21316299-21316310      +</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a><span class="co">##      [5]               chr1 25001061-25001072      +</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="co">##      ...                ...               ...    ...</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="co">##   [2309]  chr9_gl383541_alt       90799-90810      +</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="co">##   [2310] chr11_jh159136_alt       61724-61735      +</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a><span class="co">##   [2311] chr11_jh159136_alt       92679-92690      -</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a><span class="co">##   [2312] chr11_jh159136_alt     199693-199704      -</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a><span class="co">##   [2313] chr12_gl383550_alt     144547-144558      +</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a><span class="co">##   -------</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="co">##   seqinfo: 298 sequences from an unspecified genome</span></span></code></pre></div>
+</section>
+<section id="biostrings-2" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>This is also an example of an alignment, but here N matches any nucleotide. This is an example of a regular expression.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>PpiI &lt;-<span class="st"> &quot;GAACNNNNNCTC&quot;</span>  <span class="co"># a restriction enzyme pattern</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>(align.PpiI &lt;-<span class="st"> </span><span class="kw">matchPattern</span>(PpiI, Hsapiens[[<span class="dv">1</span>]][<span class="dv">17000</span><span class="op">:</span><span class="dv">23000</span>], <span class="dt">fixed=</span><span class="ot">FALSE</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">## Views on a 6001-letter DNAString subject</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">## subject: ACATCAATCTCAGGCACCTGGCCCAGGTCTGGCA...CTTAAAGACCTGCATCCTCTTCCCTAGGTGTCCC</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">## views:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">##       start  end width</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">##   [1]  5695 5706    12 [GAACCCACACTC]</span></span></code></pre></div>
+</section>
+<section id="biostrings-3" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>There are more biologically relevant notions of alignment that ultimately are based in models of evolution. We will learn these in part 3 of the course.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>aligns &lt;-<span class="st"> </span><span class="kw">pairwiseAlignment</span>(<span class="st">&quot;ACTTACAGATTCGATGGAC&quot;</span>, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>                            <span class="st">&quot;CCCGATACTACGGAGATTCCGATGACATATGC&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>                            <span class="dt">type =</span> <span class="st">&quot;global-local&quot;</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>(aligns)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">## Global-Local PairwiseAlignmentsSingleSubject (1 of 1)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">## pattern:     ACTTAC--AGATTC-GATGGAC</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">## subject: [7] ACT-ACGGAGATTCCGATG-AC</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">## score: -26.31014</span></span></code></pre></div>
+</section>
+<section id="biostrings-4" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li><p>We will later explore several different notions of alignment.</p></li>
+<li><p>BLAST is perhaps the best known “industrial strength” tool for alignments (available at the NCBI).</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/string_match.png" width="600"/>
+</p>
+</figure>
+</section>
+<section id="annotations" class="slide level2">
+<h2>Annotations</h2>
+<ul>
+<li><p>We can annotate the genomes. For example, we can include single nucleotide polymorphims (mutations that have been observed between indivduals).</p></li>
+<li><p><a href="https://www.internationalgenome.org/">1000 Genomes Project</a></p></li>
+<li><p><a href="https://www.nature.com/articles/s41467-018-08053-5#:~:text=Genome%2Dwide%20association%20studies%20(GWAS)%20have%20detected%20more%20than,risk%20of%20breast%20cancer2.">Genome-wide association and transcriptome studies identify target genes and risk loci for breast cancer</a></p></li>
+<li><p><a href="https://science.sciencemag.org/content/365/6456/eaat7693">Large-scale GWAS reveals insights into the genetic architecture of same-sex sexual behavior</a></p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/SNP_diagram.png" width="300"/>
+</p>
+</figure>
+</section>
+<section id="annotations-1" class="slide level2">
+<h2>Annotations</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">available.SNPs</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">##  [1] &quot;SNPlocs.Hsapiens.dbSNP.20101109&quot;     </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">##  [2] &quot;SNPlocs.Hsapiens.dbSNP.20120608&quot;     </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">##  [3] &quot;SNPlocs.Hsapiens.dbSNP141.GRCh38&quot;    </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">##  [4] &quot;SNPlocs.Hsapiens.dbSNP142.GRCh37&quot;    </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">##  [5] &quot;SNPlocs.Hsapiens.dbSNP144.GRCh37&quot;    </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">##  [6] &quot;SNPlocs.Hsapiens.dbSNP144.GRCh38&quot;    </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">##  [7] &quot;SNPlocs.Hsapiens.dbSNP149.GRCh38&quot;    </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">##  [8] &quot;SNPlocs.Hsapiens.dbSNP150.GRCh38&quot;    </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co">##  [9] &quot;SNPlocs.Hsapiens.dbSNP151.GRCh38&quot;    </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">## [10] &quot;XtraSNPlocs.Hsapiens.dbSNP141.GRCh38&quot;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co">## [11] &quot;XtraSNPlocs.Hsapiens.dbSNP144.GRCh37&quot;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a><span class="co">## [12] &quot;XtraSNPlocs.Hsapiens.dbSNP144.GRCh38&quot;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="co"># BiocManager::install(&quot;SNPlocs.Hsapiens.dbSNP.20101109&quot;)</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="kw">library</span>(SNPlocs.Hsapiens.dbSNP<span class="fl">.20101109</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co">##   Please note that the SNPlocs.Hsapiens.dbSNP.20101109 package contains</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a><span class="co">##   outdated dbSNP data and will be deprecated in the near future. We</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a><span class="co">##   highly recommend that you use a SNPlocs package based on a more recent</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a><span class="co">##   dbSNP build for your analyses instead. See available.SNPs() for the</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a><span class="co">##   list of SNPlocs packages currently available and make sure to pick up</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="co">##   the most recent one.</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a>SnpHsapiens &lt;-<span class="st"> </span><span class="kw">injectSNPs</span>(Hsapiens, <span class="st">&quot;SNPlocs.Hsapiens.dbSNP.20101109&quot;</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a> <span class="kw">snpcount</span>(SnpHsapiens)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a><span class="co">##    chr1    chr2    chr3    chr4    chr5    chr6    chr7    chr8    chr9   chr10 </span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a><span class="co">## 1849438 1936836 1613418 1613633 1453710 1446827 1335745 1243129  995075 1158707 </span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a><span class="co">##   chr11   chr12   chr13   chr14   chr15   chr16   chr17   chr18   chr19   chr20 </span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a><span class="co">## 1147722 1105364  815729  740129  657719  757926  641905  645646  520666  586708 </span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a><span class="co">##   chr21   chr22    chrX    chrY </span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true"></a><span class="co">##  338254  331060  529608   67438</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true"></a> <span class="kw">head</span>(<span class="kw">snplocs</span>(SnpHsapiens, <span class="st">&quot;chr1&quot;</span>))</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true"></a><span class="co">##   RefSNP_id alleles_as_ambig   loc</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true"></a><span class="co">## 1 112750067                Y 10327</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true"></a><span class="co">## 2 112155239                M 10440</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true"></a><span class="co">## 3 117577454                S 10469</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true"></a><span class="co">## 4  55998931                Y 10492</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true"></a><span class="co">## 5  62636508                S 10519</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true"></a><span class="co">## 6 114315702                S 10533</span></span></code></pre></div>
+</section>
+<section id="addition-packages" class="slide level2">
+<h2>Addition packages</h2>
+<ul>
+<li><p>There are several additional packages that are very important for deadling with large genomes, especially human.</p></li>
+<li><p><span class="math inline">\({\tt annotatR}\)</span> is great for epigenetics and SNP (single nucleotide polymorphism) studies.</p></li>
+<li><p><span class="math inline">\({\tt rtracklayer}\)</span> can create and plot tracks like we see in the UCSC genome browser.</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/bioconductor_packages.png" width="400"/>
+</p>
+<figcaption>
+<small>From <em>Sequences, genomes and genes</em> (2013) M. Morgan </small>
+</figcaption>
+</figure>
+</section>
+<section id="genome-and-annotations-for-s.-cerevisiae" class="slide level2">
+<h2>Genome and annotations for S. cerevisiae</h2>
+<ul>
+<li><p>Baker’s yeast has served as a very important model organism.</p></li>
+<li><p>The genomes of this small fungi (eukaryote) has 16 chromosomes and one mitochondrial genome (total <span class="math inline">\(12.1M\)</span> bp). In total <span class="math inline">\(6,275\)</span> genes.</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/bakers_yeast.jpg" width="580"/>
+</p>
+</figure>
+</section>
+<section id="s.-cerevisiae" class="slide level2">
+<h2>S. cerevisiae</h2>
+<ul>
+<li><p><a href="https://www.yeastgenome.org/">SGD</a> has long served as an excellent curated bioinformatics resource.</p></li>
+<li><p>Let’s go live to RStudio Cloud and download its genome and annotations, and wrangle them into R.</p></li>
+</ul>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of reflection</h2>
+<ul>
+<li><p>Why are roman numerals not a great idea?</p></li>
+<li><p>Why is it perhaps inconvenient to have both a portion of a file in <span class="math inline">\({\tt gff}\)</span> format and a portion in <span class="math inline">\({\tt FASTA}\)</span> format? What sort of punishment would be appropriate for this type of design decision?</p></li>
+<li><p>What is the difference between a gene, transcript and CDS at SGD?</p></li>
+<li><p>What are some of the different types of entities that are cataloged and mapped to the genome of baker’s yeast?</p></li>
+</ul>
+</section>
+<section id="biol-480" class="slide level2">
+<h2>BIOL 480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="12-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="12-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '12-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '12-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '12-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '12-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '12-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

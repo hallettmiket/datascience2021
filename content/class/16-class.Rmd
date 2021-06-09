@@ -1,0 +1,33 @@
+---
+title: "Models of sequence evolution"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/16-slides.html)
+
+- [Aki's Hidden Markov Models](/slides/16-lab.html)
+
+
+# Action Items
+
+- Assignment 4
+
+
+# Points of Reflection
+
+
+- In our models, we used steps in our Markov model as a unit of time. More precisely, we "calibrated" the MMs so that they match with an expected number of mutations at the site. What are some of the problems of using time directly in the models?
+
+- Make sure you understand the difference between a mutation and a point mutation?
+
+
+- Regardless of the environment or type of organism or the environment it is living in, does the mutation rate (not accepted mutation rate, but the mutation rate) change? What influence would the cell cycle of the organism have on the notion of time?
+
+- How does the environment an organism is living in affect selection?
+

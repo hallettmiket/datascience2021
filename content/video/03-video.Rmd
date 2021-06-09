@@ -1,0 +1,13 @@
+---
+title: "Visualizaing Breast Cancer Transcriptomes"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 03 at Youtube: Breast Cancer Transcriptomes](https://youtu.be/8iLoIZ0tF4s)
+ 
+
+
+

@@ -1,0 +1,214 @@
+---
+title: Overview
+slug: overview
+citeproc: false
+bibliography: ../static/bib/references.bib
+csl: ../static/bib/chicago-syllabus-no-bib.csl
+---
+
+```{r load-libraries, message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(pander) 
+```
+
+# Course objectives
+
+Our fundamental goal is to ensure you have the necessary bioinformatics skills, both in terms of tools and underlying analytic approaches,in order to fully participate in modern life science approaches. 
+
+
+
+<span class="newthought">Biology is becoming increasingly quantitative.</span> [^courseinfo] There are many reasons for this including the development of high-throughput profiling approaches. Nucleotide sequencing, protein/lipid/small molecule mass spectrometry, and cellular/subcellular microscopy, but the list of 
+new technologies continues to expand rapidly. 
+All areas of life science research from basic biolgy to human health-related efforts have been fundamentally changed by this influx of technology.
+
+
+<span class="newthought">[Data Science]</span> A single -omics experiment now can produce a staggering amount of data which would be impossible to sift through using only human hands and eyes. The ability to develop software and analytic approaches to wrangle with this data, clean it up, kick it into shape and visualize it in a way that is both informative and honest is super important skill set to have as a modern life science student. This course will give you the fundamentals of data science in the context of many examples including metagenomics of ocean ecologies and transcriptomics of breast tumors.
+
+<span class="newthought">[Bioinformatics]</span> The ability to profile complete genomes, microbiomes, proteomes, interactomes and other "-omes" creates a need for computational infrastucture to capture and organize this data. This is often referred to as bioinformatics, and is focused on the development of tools, portals and databases to make this information available to all life scientists. This course will give many examples primarily centered on the resource available at the [NCBI](https://www.ncbi.nlm.nih.gov/). 
+
+<span class="newthought">[Computational Biology]</span> Computational biology concerns itself with the development of new analytic techniques, typically expressed as computer programs, to explore data. For example, if you were generating many high-content microscopy images and were interested identifying specific  events (eg expression of a rare cellular or subcellular phenotype), you would benefit from developing a machine learning algorithm to sift through the gigabytes of images automatically. At the end of this course, you wil understand the basics of machine learning including (Hidden) Markov Models, linear and logistic regression, and deep  convolution neural networks.
+
+
+
+
+# Course materials
+
+[^r4datasci] 
+
+<span class="newthought">[Text Book]</span> Throughout much of the course, we will follow
+
+- [@wickham_r_2017] [(free) online](http://r4ds.had.co.nz/) and from [<i class="fa fa-amazon" aria-hidden="true"></i>
+Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/)]
+
+However note that this is a general data science book and not specific to biology and the life sciences. For several lectures, I will provide additional reading to cover the biology [here](/schedule/).
+
+<span class="newthought">[Software]</span> The course will heavily utilize several software packages
+
+
+- <i class="fa fa-envelope-square" aria-hidden="true"></i> <a href="https://gmail.google.com">Google Gmail (free)</a> For security reasons and for simplicity, we ask each student to obtain a gmail account for the course. You will need to send it to the [biol480.concordia@gmail.com](mailto:biol480@gmail.com) at the beginning of the course.
+
+- <i class="fa fa-google"></i> <a href="https://drive.google.com">Google Drive (free)</a> We use the cloud-based text editor, drawing tool, spreadsheets, and storage offered by Drive to create and share files.
+
+- <i class="fa fa-youtube-square" aria-hidden="true"></i> <a href="https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber">YouTube (free)</a> All lectures are online at our YouTube channel. 
+
+- <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com"> Slack (free)</a>When you send me your gmail account, you will be added.
+
+- <i class="fa fa-video-camera" aria-hidden="true"></i><a href="https://concordia-ca.zoom.us/s/8992285958#success"> Zoom (free)</a> All lecture slots and TA sessions are on our Zoom channel available at the link above. When you have given us your gmail account, we will add you to Slack and you will see the password for the Zoom channel.
+
+- <i class="fa fa-rebel" aria-hidden="true"></i><a href="https://rstudio.com/products/cloud/"> RStudio Cloud (~$28.00)</a> This is a beautiful [Interactive Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) for the language ${\tt R}$. It is based in the cloud, so you will not have to install any software. All of the lecture  notes, code and datasets will be available to you at the website. We are hopeful currently that Concordia will cover this cost for each of you. 
+
+- There are other ad hoc tools that we will use throughout the course, but they are all free.
+
+- ***Total cost for the course is ~$28.***
+
+-------
+
+<span class="newthought">[Alternatives to R]</span> If students would prefer to complete the course using <code>Python</code> or <code>Julia</code>, they may do so. Note however that the lectures will still be given in <code>R</code>, and some coding exercises may require that you program in <code>R</code>. There are several reasons. For example, we make data available to you in an <code>R</code> datastructure, or we use a package that is specific to <code>R</code> which does not have an analog in the other language. Most packages do have versions in at least two of the languages. For example, the <code>Keras</code> package for R is actually built on top of the Python pacakge. You may experience increased difficulty installing these packages, compared to our RStudio Cloud version.
+
+<span class="newthought">[Ease of learning]</span>  I would like to stress that <code>R/RStudio</code> is a beautiful and very powerful system. In my opinion, if you are  student from the life sciences you will most likely need data science skills the most (over bioinformatics and computational biology). In my opinion, the best tool for you is R. Your needs and goals are not the same as those of acomputer scientist
+
+<span class="newthought">[Data science vs...]</span> The datascience toolkit for R remains more advanced than Python or Julia. Conversely, if you want to become a computational biologist and develop tools (software based on statitical and computational paradigm), a language like Python is more convenient to program in. If  the distinction between data science and computational biology is not clear at this point for you, I would recommend starting with R and perhaps exploring the other languages later. 
+
+<span class="newthought">[You'll be a bit on your own]</span> I would recommend using Python or Julia only if you are an advanced programmer, or if you already have a significant base in R (by this I mean you are experienced with writing functions, the tidyverse, S4 objects etc.). Note that the TA will have little knowledge outside of R and they do not have the time to solve problems and answer questions. I will try my best but solving conflicts in someone's conda environment can take hours, so you cannot expect that. 
+
+<span class="newthought">[Pythonic]</span> For people choosing [Python](https://www.python.org/downloads/), you should use version 3. We recommend that you install [anaconda3/conda](https://docs.anaconda.com/anaconda/install/) environments. We also recommend installing and becoming familiar with [Jupyter](https://jupyter.org/notebooks). There are [many](https://www.datacamp.com/community/tutorials/data-science-python-ide) Interactive Development Environments (IDEs) for Jupyter. I personaly prefer <code>RStudio</code> as it allows <code>R</code> and <code>Python</code> to run together; this will also address some of the aniticipated issues above. If you experience significant difficulties preparing this environment, we ask you to seriously reconsider your choice to use <code>Python</code>.
+
+If you are a relatively advanced  programmmer, we recommend the following [manual](https://www.oreilly.com/library/view/fluent-python/9781491946237/). Otherwise, there are many excellent beginner guides from publisher such as O'Reilly.
+
+<span class="newthought">[Julia is beautiful.]</span> For people choosing [Julia](https://julialang.org/), I personnally use [JuliaPro](https://juliacomputing.com/products/juliapro/) as my IDE (but find myself often using RStudio in the end). We also recommend installing and becoming familiar with [Jupyter](https://jupyter.org/notebooks). I am still a novice Julia programmer and do not have a good overview of the best tools and practices with this language yet. Bonus points if you can lead me to the light here! I do not know if the Julia has the full range of libraries to do all components of this course.
+
+-------
+
+<span class="newthought">[Hardware]</span> All of the tools listed above are in the cloud. This means that you need minimal computing equipment. It will likely be very hard to program with only a tablet however.
+If you do not have a laptop or machine at home, you should contact [IITS](https://www.concordia.ca/coronavirus/students.html) (they loan equipment for free) or the instructor (I have some Google Chrome notebooks). Note that you can purchase a Google Chrome notebook for under $300 on [<i class="fa fa-amazon" aria-hidden="true"></i>
+Amazon](https://www.amazon.ca/s?k=google+chrome+book&ref=nb_sb_noss_1).
+
+# Evaluation
+
+[^bonus]
+You can find descriptions and instructions for each exercise on the [assignments page](/assignments/).
+
+<span class="newthought">[Grading Scheme Undergraduates]</span>
+```{r assignments-grades, include=FALSE}
+assignments <- tribble(
+  ~Points, ~Assignment,
+  15     , "Quizzes, Puzzles, Opinions (3 x 5 pts)",
+  20     , "Midterm  (take home 1 hour)",
+  25     , "Final Exam (take home 2 hours)",
+  40     , "Homework assignments (4 x 10)"
+)
+
+```
+
+```{r show-assignments-table, echo=FALSE, results="asis"}
+assignments %>% 
+  select(Assignment, Points) %>% 
+  pandoc.table(justify = "lc")
+cat("Total pts: ", sum(assignments$Points), "\n")
+```
+
+<span class="newthought">[Grading Scheme Genomics Diploma and Gradaute Students]</span>
+```{r assignments-grades-grads, include=FALSE}
+assignments <- tribble(
+  ~Points, ~Assignment,
+  15     , "Quizzes, Puzzles, Opinions (3 x 5 pts)",
+  15     , "Midterm (take home 1 hour)",
+  20    ,   "Final Exam (2 hours)",
+  40     , "Homework assignments (4 x 10)",
+  10     , "Project"
+)
+
+```
+
+```{r show-assignments-table-grads, echo=FALSE, results="asis"}
+assignments %>% 
+  select(Assignment, Points) %>% 
+  pandoc.table(justify = "lc")
+cat("Total pts: ", sum(assignments$Points), "\n")
+```
+
+# A  day in the life ...
+
+[^candida]
+Although covid-19 is still a significant problem, the intention currently is to offer this course in class next term. As I am sure we all appreciate, this could change. The structure of the course is described below.
+
+1. The video for each lecture is available on <i class="fa fa-youtube" aria-hidden="true"></i> <a href= "https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber"> our YouTube channel</a>.
+You should watch the  video before the actual lecture. 
+
+2. We have a <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com"> Slack</a> workspace and you can ask questions in the #biol480 channel. You can get access to Slack by sending  your gmail account here: [biol480.concordia](mailto:biol480.concordia@gmail.com). Slack is great for asking questions. 
+
+3.  The lectures  will be used to discuss the material  you have read previously (see 1 above). Also, sometimes (8 in total) there will be small quizzess, or I will give a small puzzle, or ask for your opinion on a subject relevant to the material covered to date. These will last ~10 minutes. Otherwise, I will answer questions and provide more depth on specific aspects of the slides. The lectures will be in class.
+
+4. The labs will be in person but you should bring your computer (if possible). The TA (TBA) will answer questions and assist you with the assignments.
+
+5. Office hours will be in person. I am actually accessible almost always via Slack and find this a more efficient way to communicate. Slack does have video conferencing too that is very easy to use, and is more suitable for one on one discussion. 
+
+6. The midterm is take home, and the final is in class. You can make use of whatever resources you would like in the midterm, but you need to cite all such resources used. If you do not, it will be treated as academic dishonesty. Notebooks are allowed in the final.
+
+7. Submission of assignments, projects and other material will be discussed as we progress through the course.
+
+# Time management
+
+
+As a rule of thumb per week (2 lectures/week), 
+
+- readings  requires $3$ hours; 
+- lecture on average $2$ hours;
+- lab $1$ hour;
+- assignment or project work $3$ hours;
+- Slack questions or office hours (TA or instructor) $1$ hour;
+- studying for midterms or exams $1$ hour per week.
+
+In total over $13$ weeks, this consists $13 \cdot 11 = 143$ (credits $3$ at $45$ hours each).
+
+
+# Course policies
+
+[^hairball] 
+
+- Be nice and honest, defined at least partially here [Academic Code of Conduct](http://www.concordia.ca/academics/undergraduate/calendar/current/17-10.html).
+This New York Times article seems appropriate in the covid-19 era: [If everyone else is doing it ...](https://www.nytimes.com/2020/04/07/magazine/if-my-classmates-are-going-to-cheat-on-an-online-exam-why-cant-i.html). You might check out the 
+[ethos statement](https://www.mikehallett.science/ethos/) my lab designed;
+it clarifies everyone's roles and responsibilities.
+
+- Especially in these covid-19 times, things can be stressful. Concordia does have units that can help, ranging from financial assistance to mental health. 
+A good place to start is [Concordia's covid-19 resource page](https://www.concordia.ca/coronavirus.html).
+
+
+- In some exercises, we state explicitly that group work is encouraged. In all cases, you ***must*** cite  whomever helped you and state precisely what they helped you with. If this is not done, this constitutes academic dishonesty. Generally however discussion and interaction is encouraged in the course.
+
+- It is challenging to interact via Zoom and Slack. Although not a rule, I prefer if your cameras are on so that we can speak face to face. If that is problematic (eg slow internet, bad hair day), turning the camera on when asking questions is a nice gesture.
+
+
+
+# Non-Concordia students and auditors
+
+I am totally happy to allow you to audit or follow the course either in real time,
+or via the residual online resources.
+If you want to participate in virtual lectures, labs, office hours, you would need to have our Zoom access code, access to our Slack workspace and Google Drive resources.
+Please drop me an [email](mailto:hallett.mike.t@gmail.com).
+
+# Action items 
+Once you have read this entire overview, please email us at the course gmail  [biol480.concordia](mailto:biol480.concordia@gmail.com)  with your gmail account, last name, first name and student ID.
+Make sure it is easy for us to associate the name of your gmail account with your real name (if the username of your gmail account is e.g. "kingofeverything", it might be hard for us to guess who this is, unfortunately.
+For security reasons and for organizational simplicity for  TA, 
+we would ask that you send a Google mail [gmail](https://mail.google.ca)  address.
+
+
+[^courseinfo]: {-}
+  `r blogdown::shortcode("courseinfo")`
+
+[^r4datasci]: {-}
+ ![TextBook](/images/cover.png) Free on-line textbook [Grolemund Wickham](https://r4ds.had.co.nz/)
+
+[^candida]: {-}
+ ![CaMicroscopy](/images/ca.png) Deep learning-based tool to identify _Candida albicans_ morphologies [V Bettauer from Hallett lab](https://mikehallett.science/research)
+
+[^bonus]: {-}
+  ***Up to 5 pts*** can be added to your score (out of 100) from ***bonus*** $+1$ awarded to you by students, the instructor or TA. It goes like this: if someone
+  helps you very significantly with an assignment question or project, 
+  then you inform the instructor 
+  why that person deserves $+1$, in a paragraph. Little puzzles in lectures and labs can also earn people $+1$. Most $+1$s are earned however through answering each other's questions in the Slack channel for the course.
+  
+[^hairball]: {-}
+  ![CellMap](/images/hairball.png) Visualization of the Global Yeast Genetic Interaction Network [Usaj et al.](https://www.g3journal.org/content/7/5/1539)

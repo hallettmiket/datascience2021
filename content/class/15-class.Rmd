@@ -1,0 +1,20 @@
+---
+title: "Gene finding continued"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/15-slides.html)
+
+
+# Action Items
+
+
+## Points of Reflection
+
+- benefits/drawbacks of intrinsic versus extrinsic versus RNA-seq gene finding methods

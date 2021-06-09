@@ -1,0 +1,35 @@
+---
+title: "Visualizing breast cancer transcriptomes"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/03-slides.html)
+
+
+# Action Items
+
+- Assignment #1
+- Copy (and save permanently) Project 3 in RStudio Cloud. 
+- Try to work you way through the examples.
+- Try some of the exercises in Chapter 3 to increase your fluency in ${\tt ggplot}$.
+- Try changing the colour (using hex notation; this is the most flexible approach), 
+shape or size of the scatter plots created above.
+- If you would like, you can explore some of the other $79$ attributes (columns) across the samples.
+
+
+
+# Points of reflection
+
+
+- What limitations would transcriptome based studies face?
+- What privacy issues might arise in -omic studies? Specifically, consider a transcriptome based study versus a genomic DNA-based study.
+- Most, if not all, Human tissue is comprised of many different cell types. For example, a breast tumor will include epithelial cells, fibroblasts, immune cells of different kinds, adipocytes, and cells associated with the vasculature and lymphatics system. What kinds of affects could this happen on transcriptiona profiles like those found in TCGA?
+- Challenge: Find where ERBB2 and GRB7 lie on the human genome? What database would you used? What other genes are in that region?
+- What do lymph nodes do? Why might they be an important indicator in BC progression?
+

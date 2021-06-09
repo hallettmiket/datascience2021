@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Introduction and Orientation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="00-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="00-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="00-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <link href="00-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="00-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Introduction and Orientation</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="outline-for-today" class="slide level2">
+<h2>Outline for today</h2>
+<ul>
+<li class="fragment"><p>Introduce myself</p></li>
+<li class="fragment"><p>Provide context for the course</p></li>
+<li class="fragment"><p>Discuss logistics of the course</p></li>
+<li class="fragment"><p>Discuss what is expected of you and I</p></li>
+</ul>
+</section>
+<section id="me" class="slide level2">
+<h2>Me</h2>
+<p><a href="https://mikehallett.science">https://mikehallett.science</a> My lab website<br> <a href="https://jolly-curran-f9c8ba.netlify.app/">Data science for biologists</a> Course Website</p>
+<p><span class="math inline">\({\tt michael.hallett@concordia.ca}\)</span> e-mail<br> <span class="math inline">\({\tt @hallettmichael}\)</span> Twitter<br></p>
+<figure class="image">
+<p float="left">
+<img src="images/mygroup.png" width="435"/> <img src="images/mygroup2.jpg" width="360"/>
+</p>
+<figcaption>
+Left is our website; Right is a live action shot of the group preparing for our yearly workshop at the Bellairs Research Insitute, Barbados.
+</figcaption>
+</figure>
+</section>
+<section id="early-90s" class="slide level2">
+<h2>Early ’90s</h2>
+<figure class="image">
+<p float="left">
+<p><img src="images/Jordan-River.jpg" width="350"/> <img src="images/nyt1987.png" width="275"/> <img src="images/hallettthesis.png"  height= 265/></p>
+</p>
+<figcaption>
+Left. Me doing my PhD at the Univerity of Victoria and Sombrio Beach; Centre Early efforts to push the Human Genome Project forward; Right. A figure from my PhD thesis.
+</figcaption>
+</figure>
+</section>
+<section id="mid--to-late-90s" class="slide level2">
+<h2>Mid- to Late-’90s</h2>
+<figure class="image">
+<p float="left">
+<img src="images/zurich.jpg" width="350"/> <img src="images/firstgenome.png"  height="262"/> <img src="images/nature_magazine_cover.jpg" width="201"/>
+</p>
+</figure>
+<figcaption>
+Left: Zuerich. Center: 1st genome, H. influenzae 1.8M base pairs. (1995). Right: 1st complete draft of H. sapiens 3.7B b.p. (2001)
+</figcaption>
+<p>Even for the bacteria like H. influenzae, slow-throughput technologies were simply not enough to sequence complete genomes. It took high-throughput approaches to make it feasible.</p>
+<p><span class="math inline">\(1,800,000 = 1.8 \cdot 10^6\)</span> vs <span class="math inline">\(3,600,000,000 = 3.6 \cdot 10^9\)</span> base pairs. Three orders of magnitude in <span class="math inline">\(5\)</span> years.</p>
+</section>
+<section id="rapid-growth-and-diversification" class="slide level2">
+<h2>Rapid growth and diversification</h2>
+<p>In addition to increased sequencing capacity, many other high-throughput technologies that measured different levels of the centra dogma of biochemistry came on-line.</p>
+<figure class="image">
+<p float="left">
+<img src="images/microarrays.jpg" width="300px"/> <img src="images/screening.jpg"  height="200px"/> <img src="images/proteomics.jpg" width="355px"/>
+</p>
+</figure>
+<figcaption>
+Left: Microarrays for transcriptomics. Center: Robotic screening facilities for drug discovery. Right: Mass spectrometry for proteomics.
+</figcaption>
+<p>And many additional “-omics” approaches.</p>
+<p>Technology based on robotics, micromanipulation, nanofabrication, lasers, photolithography, microfluidics, microscopy …</p>
+<p>Driven by a better understanding of protein and small molecule biochemistry, and a robust calculus of ways to manipulate nucleic acids (molecular biology).</p>
+</section>
+<section id="s" class="slide level2">
+<h2>2000’s</h2>
+<p>I moved to McGill as a professor in 2000. Became interested in cancer genomics and informatics.</p>
+<p>The early 2000s saw a commoditization of equipment, the ability to apply these technologies in human contexts, and the development of so-called <strong>core</strong> facilities.</p>
+<figure class="image">
+<p float="left">
+<img src="images/bgi.jpg" width="390px"/> <img src="images/modes.png" width="260px"/> <img src="images/subtypes.jpg"  height="245px"/>
+</p>
+</figure>
+<figcaption>
+Left: BGI (China) Sequencing Facility. Center: Coordinate efforts such as TCGA to profile cancers at many levels. Right: Breast cancer has many molecular diverse subtypes.
+</figcaption>
+</section>
+<section id="s-1" class="slide level2">
+<h2>2010’s</h2>
+<p>Moved to Concordia in 2018. We are interested in how cells are wired (the molecular network), how this wiring can change in response to stimuli, and how the changes in the network provide cells with advantages.</p>
+<figure class="image">
+<p float="left">
+<img src="images/crispr.jpg" width="120px"/> <img src="images/syntheticbiology.jpg"  height="120px"/>
+</p>
+</figure>
+<figcaption>
+Left: No CRISP/Cas9 doesn’t really look like this. Right: Indeed, Synthetic Biology does involve tiny women changing colourful nucleotides.
+</figcaption>
+Single cell profiling have blossomed, permanently changing every area of life science research.
+<figure class="image">
+<p float="center">
+<img src="images/sc.png" width=480px"/>
+</p>
+</figure>
+</section>
+<section id="bioinformatics-computational-biology-and-data-science" class="slide level2">
+<h2>Bioinformatics, Computational Biology and Data Science</h2>
+<p>[Data Science in Biology] The ability to develop software and analytic approaches to wrangle with biological data, clean it up, kick it into shape and visualize it in a way that is both informative and honest.</p>
+<p>[Bioinformatics] The development of tools, portals and databases to make biological information available to all life scientists.</p>
+<p>[Computational Biology] The development of new analytic techniques, typically expressed as computer programs, to explore biological data and test hypotheses.</p>
+<p>This course will you give you the fundamentals in all three disciplines with an emphasis on data science.</p>
+</section>
+<section id="computational-biologist" class="slide level2">
+<h2><strike>Computational</strike> Biologist</h2>
+<ul>
+<li class="fragment"><p><u>Ice</u> Hockey <span class="math inline">\(\mapsto\)</span> huh?</p></li>
+<li class="fragment"><p><u>Hot</u> Sun, <u>Hard</u> Rock… and many other useless adjectives.</p></li>
+<li class="fragment"><p><u>Field</u> Hockey <span class="math inline">\(\mapsto\)</span> unfortunate misuse of word “hockey”.</p></li>
+<li class="fragment"><p><u>Field</u> Ball-Club Game <span class="math inline">\(\checkmark\)</span></p></li>
+<li class="fragment"><p>(<u>Road Hockey</u> … ok English is weird sometimes … a valid Canadian game in summer)</p></li>
+<li class="fragment"><p><span class="math inline">\(\Rightarrow\)</span> Hockey is ice hockey, therefore “ice” is obvious from the context and therefore no need to state explicitly.</p></li>
+<li class="fragment"><p><strike>Ice</strike> Hockey</p></li>
+<li class="fragment"><p><u>Computational</u> Biologist <span class="math inline">\(\mapsto\)</span> huh?</p></li>
+<li class="fragment"><p><u>Non-computational</u> Biologist ?, <u>Luddite</u> Biologist ?</p></li>
+<li class="fragment"><p><u>Cave</u> Biolgist ?</p></li>
+<li class="fragment"><p><span class="math inline">\(\Rightarrow\)</span> All biology is about information/computation, therefore all biologists are computational biologists (maybe just not good ones)</p></li>
+<li class="fragment"><p><strike>Computational</strike> Biologist</p></li>
+</ul>
+</section>
+<section id="much-information-hidden-in-bioinformatics-databases" class="slide level2">
+<h2>Much information “hidden” in bioinformatics databases</h2>
+<figure class="image">
+<p float="left">
+<img src="images/esr1.png" width="320px"/> <img src="images/esr1.ncbi.png"  height="380px"/>
+</p>
+</figure>
+<figcaption>
+Left: Number of papers that mention ESR1 in PubMed. Right: Number of recorded experiments/assays that have studied ESR1.
+</figcaption>
+<p>… <em>everytime</em> a human cell is sequenced ESR1 or its gene products are profiled.</p>
+<p>Clearly, if you lack bioinformatic and data science skills, you are restricted to just reading manuscripts.</p>
+</section>
+<section id="outline-for-today-1" class="slide level2">
+<h2>Outline for today</h2>
+<ul>
+<li class="fragment"><p>Introduce myself <span class="math inline">\(\checkmark\)</span></p></li>
+<li class="fragment"><p>Provide context for the course <span class="math inline">\(\checkmark\)</span></p></li>
+<li class="fragment"><p>Discuss logistics of the course <span class="math inline">\(\Leftarrow\)</span></p></li>
+<li class="fragment"><p>Discuss what is expected of you and <span class="math inline">\(\Leftarrow\)</span></p></li>
+</ul>
+<p>… but before re-directing to our course website, …</p>
+</section>
+<section id="some-advice" class="slide level2">
+<h2>Some advice</h2>
+<ul>
+<li class="fragment">Bioinformatics, computational biology, data science are important.</li>
+<li class="fragment">You need these skills; you cannot realistically expect to participate in modern biology without them.</li>
+<li class="fragment">The good news is that data science is an experimental science, just like what you are used to.</li>
+<li class="fragment">The primary means of doing experiments is through statistics and computation.</li>
+<li class="fragment">This requires programming.</li>
+<li class="fragment">Learning to program is like learning a natural language.</li>
+<li class="fragment">It is a serious investment. It takes an open mind and practice.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>BIOL480</p>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="00-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="00-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '00-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '00-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '00-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '00-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '00-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

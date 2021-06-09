@@ -1,0 +1,26 @@
+---
+title: "Data Science in Biology"
+author: "Mike Hallett"
+date: "2020-07-17"
+---
+
+^[{-} `r blogdown::shortcode("courseinfo")`] <span class="newthought"> This site contains</span> a description of the course material and the course structure for BIOL 480 (undergraduate), 510 (genomics diploma), 630 (graduate students) for the Fall 2020 at Concordia University.
+ 
+<span class="newthought">By the end of this course,</span> you will have: 
+ 
+- fluency with many bioinformatics tools in the context of molecular evolution, genomic organization, ecological systems,  cell biology, and human health related challenges;
+
+- important data science skills that will give you the ability to explore biological datasets;
+
+- solid programming skills primarily with `R`, `RStudio Cloud` and the  `tidyverse`;
+
+- the capacity to create rich, meaningful and interactive visualizations of  data;
+
+- insight into the many current issues including reproducibility in basic life sciencs and health research; 
+
+- a solid understanding of machine learning including deep networks. 
+
+
+![""](/images/developmental_trajectory.jpg){width=50%}
+
+<strong>Figure.</strong> Single cell reconstruction of developmental trajectories during zebrafish embryo. [Farrell et al. (2018) Science](https://science.sciencemag.org/content/360/6392/eaar3131) 

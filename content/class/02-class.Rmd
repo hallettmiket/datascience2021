@@ -1,0 +1,35 @@
+---
+title: "Modern Computing Paradigms"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/02-slides.html)
+
+
+# Action Items
+
+- Assignment #1
+- Try to get up and running with RStudio Cloud.
+
+
+
+# Points of reflection
+
+- The concept of computation has been around for a long time.
+- A lot of activity during the Industrial Revolution
+- ... and then an explosion circa WWII
+- Three fundamental properties of computation.
+- Computers versus computer science (informatics)
+- Computers versus Computer Science (also known as Information Science)
+- What can and cannot be expressed as an algorithm?
+- What is the difference between and algorithm and a computer program?
+- Try to get up and running with RStudio Cloud.
+- Are Antikythera, Napier's Bones, Jacquard Loom, and the Sun Shadow Board computers?
+- How have concepts of information and computer science drifted into the life sciences already?
+

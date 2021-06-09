@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Modern Computing Paradigms</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="02-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="02-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="02-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <link href="02-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="02-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Modern Computing Paradigms</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="outline-for-today" class="slide level2">
+<h2>Outline for today</h2>
+<ul>
+<li class="fragment">Part 1: Modern computing paradigms
+<ul>
+<li class="fragment">What is information science?</li>
+<li class="fragment">What does it mean to compute?</li>
+<li class="fragment">Fundamental properties of computing</li>
+<li class="fragment">How does this relate to biology?</li>
+</ul></li>
+<li class="fragment">Part 2: RStudio Cloud
+<ul>
+<li class="fragment">The first steps with RStudio</li>
+<li class="fragment">How to organize yourself in the system</li>
+<li class="fragment">Some examples of small R programs</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-is-fundamentally-a-computer" class="slide level2">
+<h2>What is fundamentally a computer?</h2>
+<p>Definition: computer. (Oxford English dictionary)</p>
+<ul>
+<li class="fragment"><p>An electronic device which is capable of receiving information (data) in a particular form and of performing a sequence of operations in accordance with a predetermined but variable set of procedural instructions (program) to produce a result in the form of information or signal.</p></li>
+<li class="fragment"><p>Well not really. It doesn’t need to be electronic.</p></li>
+<li class="fragment"><p>It doesn’t necessarily need to be digital (0s and 1s)</p></li>
+<li class="fragment"><p>Then, what are then the fundamental properties defining computers and computation?</p></li>
+</ul>
+</section>
+<section id="three-broad-properties-of-computation" class="slide level2">
+<h2>Three broad properties of computation</h2>
+<p><strong> Property 1: input <span class="math inline">\(\rightarrow\)</span> algorithm <span class="math inline">\(\rightarrow\)</span> output </strong></p>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 4%" />
+<col style="width: 21%" />
+<col style="width: 10%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">input</th>
+<th style="text-align: center;">to</th>
+<th style="text-align: center;">algorithm</th>
+<th style="text-align: center;">produces</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">voice to voice recognition software</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">translation program</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">sentence in 2nd language</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm takes something as input, uses that input to calculate an output.</p>
+<p><br> <br></p>
+<p><strong> Property 2: A notion of “reprogrammability” </strong></p>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 3%" />
+<col style="width: 17%" />
+<col style="width: 9%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">input</th>
+<th style="text-align: center;">to</th>
+<th style="text-align: center;">algorithm</th>
+<th style="text-align: center;">produces</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">physical action to a Xbox kinnect sensor</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">Call of Duty game</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">screen reports violence</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">↘</td>
+<td style="text-align: center;">Halo game</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">screen reports alien violence</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm can change. That is, different software can be used on the processor and memory. For example, you can switch which game you are playing.</p>
+</section>
+<section id="three-broad-properties-of-computational" class="slide level2">
+<h2>Three broad properties of computational</h2>
+<p><strong> Property 3: There is a notion of state and memory </strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">input</th>
+<th style="text-align: center;">to</th>
+<th style="text-align: center;">algorithm</th>
+<th style="text-align: center;">produces</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Sanny</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">if (moon is blue)</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">Sanny beats Mike at cricket</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">↘</td>
+<td style="text-align: center;">if (moon not blue)</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">Sanny loses, horribly.</td>
+</tr>
+</tbody>
+</table>
+<p>The algorithm makes choices depending on the input. Here, the algorithm would check the color of the moon knowing that Sanny was to bowl to me in cricket. Then, if the moon isn’t blue, it would predict that he would lose, miserably.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">input</th>
+<th style="text-align: center;">to</th>
+<th style="text-align: center;">algorithm</th>
+<th style="text-align: center;">produces</th>
+<th style="text-align: center;">output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Weather report</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">if (temperature &lt;= 24)</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">wear jacket</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">↘</td>
+<td style="text-align: center;">if (temperature &gt; 24)</td>
+<td style="text-align: center;">→</td>
+<td style="text-align: center;">do not wear jacket</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-is-an-algorithm" class="slide level2">
+<h2>What is an algorithm?</h2>
+<ul>
+<li class="fragment"><p>Problem: Given a list of numbers called L, find the largest number.<br></p>
+<ul>
+<li class="fragment">So the input is a list of numbers. For example, <span class="math inline">\(L = ( 6, 17, 4, 39, 6, 78, 4, 2)\)</span>. <br></li>
+</ul></li>
+<li class="fragment"><p>Here is an algorithm to solve this problem:</p>
+<ol type="1">
+<li class="fragment">If the list <span class="math inline">\(L\)</span> is empty , there is no largest number.</li>
+<li class="fragment">Assume that the first element of <span class="math inline">\(L\)</span> is the largest.</li>
+<li class="fragment">For each remaining number in the list
+<ul>
+<li class="fragment">if it is bigger than the current largest number, make it the new largest number.</li>
+</ul></li>
+<li class="fragment">When all numbers have been checked, the current largest number is the largest number in the list.</li>
+</ol></li>
+<li class="fragment"><p>So the output is one single number (the largest from <span class="math inline">\(L\)</span>, <span class="math inline">\(78\)</span>)</p></li>
+</ul>
+</section>
+<section id="example-of-executing-an-algorithm" class="slide level2">
+<h2>Example of executing an algorithm</h2>
+<ul>
+<li class="fragment"><p><span class="math inline">\(L = ( 6, 17, 4, 39, 6, 78, 4, 2)\)</span></p></li>
+<li class="fragment"><p>Step 1. It’s not empty so do nothing.</p></li>
+<li class="fragment"><p>Step 2. 6 is made the current largest number.</p></li>
+<li class="fragment"><p>Step 3. For all remaining numbers in <span class="math inline">\(L\)</span>:</p>
+<ul>
+<li class="fragment">Is <span class="math inline">\(17 &gt; 6\)</span>? Yes, so make the current largest number <span class="math inline">\(17\)</span>.</li>
+<li class="fragment">Is <span class="math inline">\(4 &gt; 17\)</span>? No.</li>
+<li class="fragment">Is <span class="math inline">\(39 &gt; 17\)</span>? Yes, so make the current largest number <span class="math inline">\(39\)</span>.</li>
+<li class="fragment">Is <span class="math inline">\(6 &gt; 39\)</span>? No.</li>
+<li class="fragment">Is <span class="math inline">\(78&gt; 39\)</span>? Yes, so make the current largest number <span class="math inline">\(78\)</span>.</li>
+<li class="fragment">Is <span class="math inline">\(4 &gt; 78\)</span>? No.</li>
+<li class="fragment">Is <span class="math inline">\(2 &gt; 78\)</span>? No.</li>
+</ul></li>
+<li class="fragment"><p>Step 4: So <span class="math inline">\(78\)</span> it is.</p></li>
+<li class="fragment"><p>Is this a computer program?</p></li>
+<li class="fragment"><p>No.</p></li>
+<li class="fragment"><p>Is it a precise recipe for solving a problem?</p></li>
+<li class="fragment"><p>Yes-ish. It depends on how precise we need to be. (Is it precise in your opinion?)</p></li>
+</ul>
+</section>
+<section id="definition-of-algorithm" class="slide level2">
+<h2>Definition of algorithm</h2>
+<ul>
+<li class="fragment"><p>An algorithm is a self-contained step-by-step set of operations to be performed.</p></li>
+<li class="fragment"><p>Computer program: A list of instructions that tell a computer what to do in order to achieve some predefined task.</p></li>
+<li class="fragment"><p>Computer language: A formal constructed language for expressing computer programs.</p></li>
+<li class="fragment"><p>Computer programming: The art and science of writing programs in a specific programming language.</p></li>
+</ul>
+</section>
+<section id="an-r-program-for-the-biggest-number-problem" class="slide level2">
+<h2>An R program for the biggest number problem</h2>
+<p>findmax &lt;- function(L) { if (length(L)==0) return(-1) if (length(L)==1) return(L[1]) current_largest &lt;- L[1]</p>
+<p>for (i in 2:length(L)) { if (L[i] &gt; current_largest) current_largest &lt;- L[i] } return(current_largest) }</p>
+</section>
+<section id="is-this-a-computing-device" class="slide level2">
+<h2>Is this a computing device?</h2>
+<figure class="image">
+<p float="center">
+<img src="images/abacus.png" width="700"/>
+</p>
+<figcaption>
+<small> My first computer shared with my brother Pythagoras</small>
+</figcaption>
+</figure>
+<p>input <span class="math inline">\(\rightarrow\)</span> algorithm <span class="math inline">\(\rightarrow\)</span> output? <br> notion of reprogrammability<br> notion of state and memory?<br></p>
+</section>
+<section id="is-this-a-computing-device-1" class="slide level2">
+<h2>Is this a computing device?</h2>
+<figure class="image">
+<p float="center">
+<img src="images/calculator.png" width="350"/>
+</p>
+</figure>
+<p>input <span class="math inline">\(\rightarrow\)</span> algorithm <span class="math inline">\(\rightarrow\)</span> output? <br> notion of reprogrammability<br> notion of state and memory?<br></p>
+</section>
+<section id="is-this-a-computing-device-2" class="slide level2">
+<h2>Is this a computing device?</h2>
+<figure class="image">
+<p float="center">
+<img src="images/watch.png" width="700"/>
+</p>
+</figure>
+<p>input <span class="math inline">\(\rightarrow\)</span> algorithm <span class="math inline">\(\rightarrow\)</span> output? <br> notion of reprogrammability<br> notion of state and memory?<br></p>
+</section>
+<section id="ok-first-what-is-this" class="slide level2">
+<h2>Ok first what is this?</h2>
+<figure class="image">
+<p float="center">
+<img src="images/whatisthis.png" width="700"/>
+</p>
+</figure>
+</section>
+<section id="answer-an-organ" class="slide level2">
+<h2>Answer: An organ</h2>
+<p>Before the computer, the organ was consider perhaps the most complex of human creations.</p>
+<figure class="image">
+<p float="center">
+<img src="images/organ.png" width="250"/>
+</p>
+</figure>
+<p>input <span class="math inline">\(\rightarrow\)</span> algorithm <span class="math inline">\(\rightarrow\)</span> output? <br> notion of reprogrammability<br> notion of state and memory?<br></p>
+</section>
+<section id="towards-systems-biology" class="slide level2">
+<h2>Towards Systems Biology</h2>
+<figure class="image">
+<p float="center">
+<img src="images/ikea.png" width="700"/>
+</p>
+</figure>
+<ul>
+<li class="fragment">What properties do modern commercial enterprises have with computing?</li>
+</ul>
+</section>
+<section id="the-ikea-maze-an-intentional-design" class="slide level2">
+<h2>The IKEA Maze: An intentional design</h2>
+<figure class="image">
+<p float="center">
+<img src="images/floorlayout.png" width="700"/>
+</p>
+</figure>
+<p>input <span class="math inline">\(\rightarrow\)</span> algorithm <span class="math inline">\(\rightarrow\)</span> output? <br> notion of reprogrammability<br> notion of state and memory?<br></p>
+</section>
+<section id="action-item-the-antikythera-device" class="slide level2">
+<h2>Action Item: The Antikythera Device</h2>
+<p>Read a little bit about this from the links <a href="https://en.wikipedia.org/wiki/Antikythera_mechanism">here</a></p>
+<figure class="image">
+<p float="center">
+<img src="images/anti.png" width="700"/>
+</p>
+</figure>
+<p>Is it a computing device?</p>
+</section>
+<section id="action-item-sun-shadow-board" class="slide level2">
+<h2>Action Item: Sun Shadow Board</h2>
+<ul>
+<li class="fragment"><p>Watch a little bit about this from the links <a href="https://www.youtube.com/watch?v=sl-XdT_ad4c">here</a></p></li>
+<li class="fragment"><p>Is it computing device?</p></li>
+</ul>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of Reflection</h2>
+<ul>
+<li class="fragment">The concept of computation has been around for a long time.</li>
+<li class="fragment">Three fundamental properties of computation.</li>
+<li class="fragment">How have concepts of information and computer science drifted into the life sciences already?</li>
+<li class="fragment">See also <a href="/class/">class notes</a> from lecture 02.</li>
+</ul>
+</section>
+<section id="biol480" class="slide level2">
+<h2>BIOL480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="02-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="02-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '02-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '02-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '02-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '02-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '02-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

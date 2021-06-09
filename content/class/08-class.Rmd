@@ -1,0 +1,39 @@
+---
+title: "How to wrange with marine microbes"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/08-slides.html)
+
+
+# Action Items
+
+- Midterm midterm midterm
+
+
+
+
+## Points of Reflection
+
+- What advantages are there for data scientists if there is a single data structure like the ${\tt tibble}$?
+
+- Do a bit of archaelogy and figure out what this ancient ${\tt data.frame}$ is.
+
+- Would science be better served if there were more standardized ways of making data and metadata available? (I'm considering Sunagawa et al's approach here.)
+
+- What is an OTU? What is a 97% OTU?
+
+- What is a prokaryote?
+
+- What are the filter sizes used by Tara Oceans?
+
+- Why is filtering important?
+
+
+

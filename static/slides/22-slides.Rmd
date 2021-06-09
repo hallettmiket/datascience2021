@@ -1,0 +1,83 @@
+---
+title: "Computational challenges of single cell profiling"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+data_path = "~/data"
+
+```
+
+
+## Goal today
+
+- What is single cell sequencing?
+
+- How does it help
+
+- Discuss the major computational challenges associated with single cell sequencing.
+
+- Short talk about a current project from my lab where we profile Candida albicans at the single cell level.
+
+
+
+
+
+## Information loss in bulk profiling
+
+<figure class="image">
+<p float="center">
+  <img src="images/trapnell.png" height = "500"> 
+</p>
+<figurecaption>From [Trapnell (2018) Defining cell types and states with single-cell genomes. Genome Research](https://genome.cshlp.org/content/25/10/1491).
+</figure>
+
+
+## scDNA-seq and tumoral evolution
+
+- [Eleven grand challenges in single-cell data science](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1926-6#Sec26)
+
+<figure class="image">
+<p float="center">
+  <img src="images/scDNA-seq.png" height = "500"> 
+</p>
+</figure>
+
+## Single cell in the fungal world
+
+- [Candida albicans single cell project (my lab)](https://youtu.be/udbD0xTuGG8)
+
+
+
+## BIOL 480
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

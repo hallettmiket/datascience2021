@@ -1,0 +1,46 @@
+---
+title: "IT for the Life Sciences"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+
+# Required
+
+- [Chapter 2 R for Data Science: Introduction](https://r4ds.had.co.nz/explore-intro.html) (1 page long)
+
+# Recommended
+
+- Try to understand 
+  - [Antikythera Mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism)
+  - [Napier’s Bones](https://en.wikipedia.org/wiki/Napier's_bones) and 
+  - [Jacquard Loom](https://www.youtube.com/watch?v=K6NgMNvK52A)
+  - [The Sun Shadow Board](https://www.youtube.com/watch?v=sl-XdT_ad4c)
+
+# Fun Reading
+
+- [Computers over Time](https://www.computerhistory.org/timeline/)
+- Computer Science: some of its flavours: 
+   - [Algorithms](https://en.wikipedia.org/wiki/Algorithm)
+   - [Cryptography](https://en.wikipedia.org/wiki/History_of_cryptography)
+   - [Computational Complexity](http://people.cs.uchicago.edu/~fortnow/papers/history.pdf)
+   - [Databases](https://en.wikipedia.org/wiki/Database)
+   - [Compilers](https://en.wikipedia.org/wiki/History_of_compiler_construction)
+
+
+- Read on-line resources with some passing familarity with computer developments
+	in the 20th century. 
+- [The Turing Award](https://en.wikipedia.org/wiki/Turing_Award)
+- Suggested readings: The Enigma, or at least the movie The Imitation Game
+- War Games, the best movie ever.
+
+
+# Action items  
+
+- Try to get up and running with RStudio Cloud.
+- Work through the examples in {\tt examples/examples.R}
+- Are Antikythera, Napier's Bones, Jacquard Loom, and the Sun Shadow Board computers?
+

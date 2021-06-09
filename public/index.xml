@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Science in Biology on Bioinformatics</title>
+    <link>/</link>
+    <description>Recent content in Data Science in Biology on Bioinformatics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Information Technology for Life Science</title>
+      <link>/class/01-class/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/01-class/</guid>
+      <description>Slides View lectures slide in your browser (html)
+Action Items  Note that Assignment 1 is made available today.
+ Please make sure you have sent us your gmail account at email
+  Points of reflection  Your devices contain an incredible amount of personal information. The consequences from misuse by malicious individuals for some of this information are quite easy to see (eg credit card numbers). How else can data be stolen from your machine and used in a malcious fashion?</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/class/00-class/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/00-class/</guid>
+      <description>Slides View lectures slide in your browser (html)They will also be made available to you in RStudio Cloud for direct viewing.
+
+Action items  If you haven’t doing the reading, please do so and address the action items at the bottom. This primarily involves sending us your gmail account and establishing accounts with some of the software we will use.
+ Prepare for Lecture 02 (readings + videos)</description>
+    </item>
+    
+    <item>
+      <title>Bioinformatics repositories: the NCBI and other tools</title>
+      <link>/reading/07-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/07-reading/</guid>
+      <description>Required  The NCBI Handbook Please read short chapter on Genome (page 89-94).
+ Also please read the definition of GenBank (page 381). This link gives a bit more information.
+ Please read The Entrez Search and Retrieval System (page 459-44). Then try it out using your favourite gene (choose an organism and gene at random otherwise).
+ Finally please read the short section on the NCBI Protein database (page 385-6)</description>
+    </item>
+    
+    <item>
+      <title>Bioinformatics repositories: the NCBI and other tools</title>
+      <link>/video/07-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/07-video/</guid>
+      <description>Lecture 07 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Exploratory data analysis of breast cancer transcriptomes</title>
+      <link>/reading/06-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/06-reading/</guid>
+      <description>Required  Chapter 7 for Data Science: Basics  Recommended Reading  magrittr package in R for pipes.
+ Chapter 8 for Data Science: Projects is very short and we have covered most of this material throughout the lecture. It might be of interest to you.
+  Deeper insight  DataCamp tutorial on pipes  Action items  You might investigate the code in Project L06 at RStudio Cloud.</description>
+    </item>
+    
+    <item>
+      <title>Exploratory data analysis of breast cancer transcriptomes</title>
+      <link>/video/06-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/06-video/</guid>
+      <description>Lecture 06 at Youtube: Exploratory data analysis of breast cancer transcriptomes</description>
+    </item>
+    
+    <item>
+      <title>Exploring microbial diversity across our oceans</title>
+      <link>/reading/10-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/10-reading/</guid>
+      <description>  Required  Sample Variance
+ Chapters 12, 13, 15: R for Data If you haven’t completed them.
+  Recommended Reading Action items  Assignment #2  </description>
+    </item>
+    
+    <item>
+      <title>Exploring microbial diversity across our oceans</title>
+      <link>/video/10-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/10-video/</guid>
+      <description>Lecture 10 at Youtube
+Lab October 20th - Visualization of Tara Oceans</description>
+    </item>
+    
+    <item>
+      <title>Gene finding with Hidden Markov Models</title>
+      <link>/reading/14-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/14-reading/</guid>
+      <description>  Required  Textbook, Chapter 22  Recommended Reading  Measures of performance Try to understand the basic definitions of accuracy, sensitivity, specificity, true/false positive/negative.
+ S4 Object-oriented programming Try to understand the basics of S3 classes in R.
+  Action items  Assignment #3  </description>
+    </item>
+    
+    <item>
+      <title>Gene finding with Hidden Markov Models</title>
+      <link>/video/14-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/14-video/</guid>
+      <description>Lecture 14 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Genome annotations</title>
+      <link>/reading/12-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/12-reading/</guid>
+      <description>  Required  Annotate Bioconductor package  Recommended Reading  1000 Genomes Project
+ Biostrings
+  Action items  Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+  </description>
+    </item>
+    
+    <item>
+      <title>Genome annotations</title>
+      <link>/video/12-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/12-video/</guid>
+      <description>Lecture 12 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>How to wrangle with marine microbes</title>
+      <link>/reading/08-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/08-reading/</guid>
+      <description>Required (Spread over L08 and L09)  Chapters 10-13: R for Data Sience (they are short and most of the material is already familiar to you)
+ Intro. to Metagenomics
+  Recommended Reading (Spread over L08 and L09)  Sunagawa et al. (2015) Structure and function of the global ocean microbiome  You will need to be logged into the Concordia VPN to access this paper.
+ Metagenonomics (wiki)</description>
+    </item>
+    
+    <item>
+      <title>How to wrangle with marine microbes</title>
+      <link>/video/08-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/08-video/</guid>
+      <description>Lecture 08 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/reading/00-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/00-reading/</guid>
+      <description>This is the first class, so allow me to run through how the Readings pages work.
+Both Readings and Video should be completed before the actual lecture. The lecture itself is intended for you to ask questions, for me to give out small quizzes/puzzles/questions (for grades), and for me to provide deeper insight into the material.
+Required  Please read the Overview for the course.Required reading represents fundamental material that you are expected to master.</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/reading/01-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/01-reading/</guid>
+      <description>Required  Please read the Resources for the course.
+ These are interesting short articles on different approaches towards keeping lab notebooks, and the pros and cons of electronic laboratory notebooks (ELNs) versus traditional paper notebooks. E Pain (2019) Science and R Kwok (2018) Nature.
+  Recommended  Read a little bit about RStudio here and specifically RStudio Cloud
+ If you have difficulties with Google Drive, this seems like a reasonable tutorial.</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/video/00-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/00-video/</guid>
+      <description>Lecture 00 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>IT for the Life Sciences</title>
+      <link>/reading/02-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/02-reading/</guid>
+      <description>Required  Chapter 2 R for Data Science: Introduction (1 page long)  Recommended  Try to understand  Antikythera Mechanism Napier’s Bones and Jacquard Loom The Sun Shadow Board   Fun Reading  Computers over Time Computer Science: some of its flavours:  Algorithms Cryptography Computational Complexity Databases Compilers  Read on-line resources with some passing familarity with computer developments in the 20th century. The Turing Award Suggested readings: The Enigma, or at least the movie The Imitation Game War Games, the best movie ever.</description>
+    </item>
+    
+    <item>
+      <title>IT for the Life Sciences</title>
+      <link>/video/01-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/01-video/</guid>
+      <description>Lecture 01 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Modern Computing Paradigms</title>
+      <link>/video/02-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/02-video/</guid>
+      <description>Lecture 02 Part 1 at Youtube: Computing Paradigms
+Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
+    </item>
+    
+    <item>
+      <title>Organizing the Tara Oceans data</title>
+      <link>/video/09-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/09-video/</guid>
+      <description>Lecture 09 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Organzing the Tara Oceans data</title>
+      <link>/reading/09-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/09-reading/</guid>
+      <description>Required (Spread over L08 and L09)  Chapters 12, 13, 15: R for Data (they are short and most of the material is already familiar to you)
+ The Bermuda Principles
+ Bioconductor
+  Recommended Reading (Spread over L08 and L09)  Sunagawa et al. (2015) Structure and function of the global ocean microbiome  You will need to be logged into the Concordia VPN to access this paper.</description>
+    </item>
+    
+    <item>
+      <title>Representing and Manipulating Data in R</title>
+      <link>/reading/04-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/04-reading/</guid>
+      <description>  Required  Chapter 4 for Data Science: Basics  Deeper insight  Introduction to R (DataCamp) Datacamp has some excellent short courses in R.  Action items  You might investigate the code in Project L04 at RStudio Cloud.  </description>
+    </item>
+    
+    <item>
+      <title>Representing biological data in R</title>
+      <link>/video/04-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/04-video/</guid>
+      <description>Lecture 04 at Youtube: Representing data in R</description>
+    </item>
+    
+    <item>
+      <title>Representing genomes and their annotations</title>
+      <link>/reading/11-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/11-reading/</guid>
+      <description>  Required  Chapters 14 - Strings  Recommended Reading  Lab October 20th Video
+ Integrative Genome Viewer
+  Action items  Oct 22 Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+  </description>
+    </item>
+    
+    <item>
+      <title>Representing genomes and their annotations</title>
+      <link>/video/11-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/11-video/</guid>
+      <description>Lecture 11 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Transcription factor binding sites in Baker’s yeast</title>
+      <link>/reading/13-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/13-reading/</guid>
+      <description>  Required  Oxford lecture Around 2:45mins, they start to talk about binding sites.
+ Overview of the Gene Ontology
+  Recommended Reading  TFs the Movie From Wyeth Wasserman (UBC), a founder of JASPAR.
+ Primer on Gene Ontologies
+  Action items  Oct 29 Midterm  </description>
+    </item>
+    
+    <item>
+      <title>Transcription factor binding sites in Baker’s yeast</title>
+      <link>/video/13-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/13-video/</guid>
+      <description>Lecture 13 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Transformations of breast cancer transcriptional cohorts</title>
+      <link>/reading/05-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/05-reading/</guid>
+      <description>  Required  Chapter 5 for Data Science: Basics
+ Simpson’s Paradox
+  Recommended Reading  If you didn’t have time previously to explore TCGA, perhaps take a look at the project now.  Deeper insight  dplyr tutorial Datacamp’s dpylyr tutorial  Action items  You might investigate the code in Project L05 at RStudio Cloud.  </description>
+    </item>
+    
+    <item>
+      <title>Transformations of breast cancer transcriptional cohorts</title>
+      <link>/video/05-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/05-video/</guid>
+      <description>Lecture 04 at Youtube: Transforming breast cancer transcriptional cohorts</description>
+    </item>
+    
+    <item>
+      <title>Visualizaing Breast Cancer Transcriptomes</title>
+      <link>/video/03-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/03-video/</guid>
+      <description>Lecture 03 at Youtube: Breast Cancer Transcriptomes</description>
+    </item>
+    
+    <item>
+      <title>Visualizing breast cancer transcriptomes</title>
+      <link>/reading/03-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/03-reading/</guid>
+      <description>Required  Chapter 3 R for Data Science: Introduction
+ Sequencing by Synthesis
+ Sequencing by Synthesis (more background including DNA chemistry)
+  Recommended  Transcriptomics Excellent set of slides describing sequencing technologies and trends. Includes nice grpahics about Illumina technology. [From D Beiting, UPenn]
+ History of Sequencing and Illumina’s Sequencing by Synthesis[From D Beiting, UPenn]
+  Deeper insight  DIY Transcriptomics A nice course covering the central topics of transcriptomic bioinformatic analysis.</description>
+    </item>
+    
+    <item>
+      <title>Bioinformatics repositories: the NCBI and other tools</title>
+      <link>/class/07-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/07-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Assignment #2 will be now available. I would look that over.  Points of Reflection  What are the pros and cons with simply making your data available through a self-made website?
+ Similarly, what are the pros and cons with an approach of data release at the journal website?</description>
+    </item>
+    
+    <item>
+      <title>Exploratory data analysis of breast cancer transcriptomes</title>
+      <link>/class/06-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/06-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Today’s material is the final material included in Midterm #1.  Challenge Points of Reflection  Many of us are familiar with representing data in spreadsheets (eg Excel of Google Sheets). Describe the fundamental differences between the two dimensional table of spreadsheets and the tibble.
+ With respect to the discussion at the beginning of Chapter 6 in the textbook, what are some fundamental differences between an academic course environment where you are given a dataset and specific questions to complete on an assignment versus data science in research or idustrial settings?</description>
+    </item>
+    
+    <item>
+      <title>Exploring microbial diversity across our oceans</title>
+      <link>/class/10-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/10-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)
+ PDF of my hand written notes
+  Action Items  Assignment 2
+ Make sure you understand the concept of sample variance
+  Points of Reflection  Do you have data from your research project or from one of your courses?
+ Is it tidy?
+ What would it take to wrangle it into a tibble?</description>
+    </item>
+    
+    <item>
+      <title>Gene finding with Hidden Markov Models</title>
+      <link>/class/14-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/14-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Oct 29 Midterm  Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.
+ What other aspects of gene regulation are not well modelled by our approach?
+ How could we improve our mdoel to better reflect the bioogical reality of transcription factors, binding sites and gene regulation in general?</description>
+    </item>
+    
+    <item>
+      <title>Genome annotations</title>
+      <link>/class/12-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/12-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  See if you can understand the \({\tt sapply}\) and \({\tt for}\) loops.
+ Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+ Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.</description>
+    </item>
+    
+    <item>
+      <title>How to wrange with marine microbes</title>
+      <link>/class/08-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/08-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Midterm midterm midterm  Points of Reflection  What advantages are there for data scientists if there is a single data structure like the \({\tt tibble}\)?
+ Do a bit of archaelogy and figure out what this ancient \({\tt data.frame}\) is.
+ Would science be better served if there were more standardized ways of making data and metadata available?</description>
+    </item>
+    
+    <item>
+      <title>Modern Computing Paradigms</title>
+      <link>/class/02-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/02-class/</guid>
+      <description>Contents  Slides Action Items Points of reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 Try to get up and running with RStudio Cloud.  Points of reflection  The concept of computation has been around for a long time. A lot of activity during the Industrial Revolution … and then an explosion circa WWII Three fundamental properties of computation.</description>
+    </item>
+    
+    <item>
+      <title>Organzing the Tara Oceans data</title>
+      <link>/class/09-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/09-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Assignment 2 and prepare for Quiz on Thursday (midterm revisited)  Points of Reflection  Why are primary and foreign keys so important?
+ Why are concepts such as the Bermuda Principles so important? How could they be applied outside of genomics?
+ How are “business models” challenged by open source, open access approaches?</description>
+    </item>
+    
+    <item>
+      <title>Representing and Manipulating Data in R</title>
+      <link>/class/04-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/04-class/</guid>
+      <description>  Contents  Slides Action Items Points of reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 Copy (and save permanently) Project 4 in RStudio Cloud. Try to work you way through the examples. Try some of the exercises in Chapter 4 to increase your fluency inthe basics of R.  Points of reflection </description>
+    </item>
+    
+    <item>
+      <title>Representing genomes and their annotations</title>
+      <link>/class/11-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/11-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Oct 22 Project outline due for genomics diploma and grad students (1 page)
+ Oct 29 Midterm
+ Assignment #3 is available
+  Action items  Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.  Points of Reflection  Which organism has the largest genome?</description>
+    </item>
+    
+    <item>
+      <title>Transcription factor binding sites in Baker’s yeast</title>
+      <link>/class/13-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/13-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Oct 29 Midterm
+ Work your way through the \({\tt my\_scan}\) function. Trace through the execution of the algorithm using the ARR1 binding site and a short sequence three base pairs longer than it.
+  Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.</description>
+    </item>
+    
+    <item>
+      <title>Transformations of breast cancer transcriptional cohorts</title>
+      <link>/class/05-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/05-class/</guid>
+      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 due this week.  Challenge  The last \(50\) variables give expression values for \(50\) genes. When I was wrangling this data into a \({\tt tibble}\), I just used teh gene name.
+ Arguably, it would have been better to us variables names of the form \({\tt Gene.</description>
+    </item>
+    
+    <item>
+      <title>Visualizing breast cancer transcriptomes</title>
+      <link>/class/03-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/03-class/</guid>
+      <description>Contents  Slides Action Items Points of reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment #1 Copy (and save permanently) Project 3 in RStudio Cloud. Try to work you way through the examples. Try some of the exercises in Chapter 3 to increase your fluency in \({\tt ggplot}\). Try changing the colour (using hex notation; this is the most flexible approach), shape or size of the scatter plots created above.</description>
+    </item>
+    
+    <item>
+      <title>Assignment 1</title>
+      <link>/assignment/01-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/01-assignment/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Assignment 2</title>
+      <link>/assignment/02-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/02-assignment/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Assignment 3</title>
+      <link>/assignment/03-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/03-assignment/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Assignments</title>
+      <link>/assignments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignments/</guid>
+      <description>Homework assignments &amp;#8853;Course
+ TuTh
+ September 8–December 7, 2020
+ 13:15-14:30
+Zoom
+ Slack
+Github repo
+Lectures
+RStudio Cloud
+Labs
+Aki Kirbizakis
+e.kirbizakis@gmail.com
+ Tu 10:15-11:30
+Zoom
+ Wed 10-11
+
+A homework assignment will be due approximately every three weeks.
+Generally, each assignment covers material we recently covered in class.
+They are designed so that you can explore concepts and tools in more depth.
+Seeking assistance You should complete the assignments alone, however it is perfectly ok to ask for help.</description>
+    </item>
+    
+    <item>
+      <title>Midterm 1</title>
+      <link>/assignment/01-midterm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/01-midterm/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Midterm 1 Solutions</title>
+      <link>/solutions/01-midterm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solutions/01-midterm/</guid>
+      <description>Question 1.
+I think that lecture 01 sufficiently covers the different concepts and you received significant marks if you acknowledged some of the central issues discussed there.
+I did remove marks if there wasn’t care taken to discuss security and address the fact that Cloud solutions are likely not possible with clinical samples (unless extreme care is given either through cryptography or through special types of cloud computing). This aspect of the question builds on Question 1 of assignment 1 that asked you to investigate what rights Google reserves when data is stored on their server.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/overview/</guid>
+      <description>Course objectives Our fundamental goal is to ensure you have the necessary bioinformatics skills, both in terms of tools and underlying analytic approaches,in order to fully participate in modern life science approaches.
+Biology is becoming increasingly quantitative.&amp;#8853;Instructor
+Mike Hallett
+ GE120.07
+ Office TuTh 12-13
+hallett.mike.t@gmail.com
+@hallettmichael
+Course
+ TuTh
+ September 8–December 7, 2020
+ 13:15-14:30
+Zoom
+ Slack
+Github repo
+Lectures
+RStudio Cloud
+Labs
+Aki Kirbizakis</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/</guid>
+      <description>Contents  Project Outline Idea 1. Bio-Data Science in Python Idea 2. Bio-Data Science in Julia Idea 3. Web-development via RStudio’s blogdown Idea 4. Interactive visualization for a biological dataset Idea 5. Deep learning in biology. Idea 6. Develop a new tool for a problem arising in biology Idea 7. Dashboards for your research project   &amp;#8853;Circos plot depicting the patterns of genetic variations for a patient with Li-Fraumeni syndrome Li et al.</description>
+    </item>
+    
+    <item>
+      <title>Resources</title>
+      <link>/resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/resources/</guid>
+      <description>Contents  Information technologies for life science labs Modern lab notebooks Time management Resource management Community Support Scientific literature Bioinformatic resources R, RStudio and tidyverse resources How to select the appropriate chart type Colors and fonts Markdown Citations and bibliography   Information technologies for life science labs   Google Drive An excellent and convenient collection of tools (documents, images, spreadsheets, presentations) with lots of storage space. This is cloud-based so teams can work on documents simultaneously.</description>
+    </item>
+    
+    <item>
+      <title>Syllabus</title>
+      <link>/syllabus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/syllabus/</guid>
+      <description>  Readings and assignments should be completed before each class session. Assignments, and instructions for submitting assignments, can be found at at the Assignments page.
+  Date Number Topic Reading Video Slides+ Assignment Solutions      Part I Data Science        Sept 8 L0 Introduction and orientation        Sept 10 L1 Information technology for managing science        Sept 15 L2 Modern computing paradigms        Sept 17 L3 Visualizing breast cancer transcriptomes        Sept 22 L4 Representing &amp;amp; manipulating data        Sept 24 L5 Transformations of breast cancer transcriptomes        Sept 28 -- Assignment 1 due        Sept 29 L6 Exploratory data analysis of breast cancer transcriptomes         Part II Bioinformatics        Oct 1 L7 The NCBI: a rich resource for the life sciences        Oct 6 L8 How to wrangle with marine microbes        Oct 8 -- Midterm 1 (1hr; open book; Zoom)        Oct 13 L9 Organzing the Tara Ocean&amp;rsquo;s data        Oct 15 L10 Exploring microbial diversity across our oceans        Oct 19 -- Assignment 2 due        Oct 20 L11 Representing genomes in R        Oct 22 L12 Genome annotations        Oct 22 -- Quiz 2        Oct 22 -- Project outline due for genomics diploma and grad students (1 page)         Part III Computational Biology        Oct 27 L13 Transcription factor binding sites in Baker&amp;rsquo;s yeast        Oct 26 -- Quiz 3        Oct 29 -- Midterm 2 (1hr, open book, Zoom)        Nov 3 L14 Gene finding with Hidden Markov Models        Nov 5 L15 Modelling cancer as a stochastic process        Nov 9 -- Assignment 3 due        Nov 10 L16 Sequence alignment        Nov 12 L17 Exploring the tree of life        Nov 17 L18 Discovering subtypes in breast cancer: unsupervised analysis        Nov 19 L19 Predicting breast cancer patient outcome from expression data: supervised analysis        Nov 24 L20 Identifying new cell types from single cell expression data and deep learning        Nov 26 L21 Deep learning approach to identifying cell type in human tissue        Nov 27 -- Assignment 4 due        Dec 1 L22 Deep learning: profliferative index of a cancer cell with microscopy         Part IV Reproducible Science and Communication        Dec 3 L23 Reproducibility in life science research        Dec 10 -- Project due        Dec TBA -- Final (2hr, take home, open book)         </description>
+    </item>
+    
+  </channel>
+</rss>

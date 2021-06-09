@@ -1,0 +1,31 @@
+---
+title: "Transcription factor binding sites in Baker’s yeast"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+
+- [Oxford lecture](https://www.youtube.com/watch?v=Sd3imcsvXxI) Around 2:45mins, they start to talk about binding sites.
+
+- [Overview of the Gene Ontology](http://geneontology.org/docs/ontology-documentation/)
+
+# Recommended Reading
+
+
+- [TFs the Movie](https://www.youtube.com/watch?v=MkUgkDLp2iE) From Wyeth Wasserman (UBC), a founder of JASPAR.
+
+- [Primer on Gene Ontologies](https://link.springer.com/protocol/10.1007/978-1-4939-3743-1_1)
+
+# Action items  
+
+
+- Oct 29 Midterm
+
+
+
+

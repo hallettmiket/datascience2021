@@ -1,0 +1,36 @@
+---
+title: "Exploring microbial diversity across our oceans"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/10-slides.html)
+
+- [PDF of my hand written notes](/slides/images/L09_10.pdf)
+
+
+# Action Items
+
+- Assignment 2 
+
+- Make sure you understand the concept of sample variance
+
+
+
+## Points of Reflection
+
+- Do you have data from  your research project or from one of your courses? 
+
+- Is it tidy? 
+
+- What would it take to wrangle it into a tibble? 
+
+- Is it appropriate as a course project (for diploma and graduate students)?
+
+
+

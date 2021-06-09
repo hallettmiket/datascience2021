@@ -1,0 +1,47 @@
+---
+title: "Transformations of breast cancer transcriptional cohorts"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+ 
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Contents</h2>
+<div id="TOC">
+<ul>
+<li><a href="#slides">Slides</a></li>
+<li><a href="#action-items">Action Items</a></li>
+</ul>
+</div>
+
+<h3 id="slides">Slides</h3>
+<ul>
+<li><a href="/slides/05-slides.html">View lectures slide in your browser (html)</a></li>
+</ul>
+<h3 id="action-items">Action Items</h3>
+<ul>
+<li>Assignment #1 due this week.</li>
+</ul>
+<h4 id="challenge">Challenge</h4>
+<ul>
+<li><p>The last <span class="math inline">\(50\)</span> variables give expression values for <span class="math inline">\(50\)</span> genes. When I was <em>wrangling</em> this data into a <span class="math inline">\({\tt tibble}\)</span>, I just used teh gene name.</p></li>
+<li><p>Arguably, it would have been better to us variables names of the form <span class="math inline">\({\tt Gene.ANIN, Gene.FOXC1, Gene.CDH3,}\)</span> etc.</p></li>
+<li><p>Why? Because this clearly marks these variables as different than the first <span class="math inline">\(29\)</span> variables which are not gene expression.</p></li>
+<li><p>If I wanted to add or delete these variables with <span class="math inline">\({\tt select()}\)</span>, I could have used something like the <span class="math inline">\({\tt starts_with()}\)</span> function.</p></li>
+<li><p>Create a <span class="math inline">\({\tt tibble}\)</span> called <span class="math inline">\({\tt pure_expression}\)</span> that contains only the <span class="math inline">\({\tt participant}\)</span> variables, and the expression of all <span class="math inline">\(50\)</span> genes, after changing the gene names as discussed above.</p></li>
+</ul>
+<h4 id="points-of-reflection">Points of Reflection</h4>
+<ul>
+<li><p>What advantages or disadvantages are there between traditional spreadsheets and these types of transformations in <span class="math inline">\({\tt R}\)</span>?</p></li>
+<li><p>How does the Transform <span class="math inline">\(\rightarrow\)</span> Visualize <span class="math inline">\(\rightarrow\)</span> Model cycle relate to Simpson’s paradox?</p></li>
+<li><p>In the slids above, we focused on removing observations (rows) to reduce the heterogeneity in our dataset. It might be easier to see interesting patterns when technical and nuisance biological variability is reduced. What are the potential downsides of reducing the number of observations?</p></li>
+<li><p>Although data scientists speak about the Transform <span class="math inline">\(\rightarrow\)</span> Visualize <span class="math inline">\(\rightarrow\)</span> Model cycle,
+what similarities and differences do you see between this cycle and what you experience as a bench
+scientist?</p></li>
+</ul>

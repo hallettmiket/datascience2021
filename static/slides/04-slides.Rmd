@@ -1,0 +1,64 @@
+---
+title: "Representing & manipulating data"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+
+## Outline for today
+
+- Our goal is to cover some very fundamental concepts underlying how data is represented and
+manipulated in R. 
+- Lecture 04 will be carried out directly in RStudio Cloud.
+- This suites the material and also gives me a chance to show you some tricks with RStudio.
+- The code and data I use today in in the ${\tt examples}$ and ${\tt data}$ folders in RStudio project L04.
+- We don't cover all the basics of programming here. Just a few key concepts.
+
+# Action Items
+
+- Solve the swap problem discussed in the lecture.
+   
+
+## Points of Reflection
+
+- Why do you think the notion of data has a specific class is important?
+- You have __operators__ $(+, -, *, /)$ and __operands__, the objects that the operators are applied to; eg in the equation $x + y$, $x$ and $y$ are operands.
+- Does every operator work on every class of data? 
+- Notice that we used the $+$ operator when building the layers of the ${\tt ggplot}$ objects.
+- What are the operands here and what class do they have?
+
+
+## BIOL480 
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

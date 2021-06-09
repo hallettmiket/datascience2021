@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Representing genomes and their annotations</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="11-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="11-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="11-slides_files/header-attrs-2.4/header-attrs.js"></script>
+    <link href="11-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="11-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="11-slides_files/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+    <link href="11-slides_files/str_view-0.1.0/str_view.css" rel="stylesheet" />
+    <script src="11-slides_files/str_view-binding-1.4.0/str_view.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Representing genomes and their annotations</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="genomes" class="slide level2">
+<h2>Genomes</h2>
+<ul>
+<li><p>Not surprisingly, genomes are commonly required for analysis (otherwise, why would we be doing all this sequencing?)</p></li>
+<li><p>Some are small (viruses) and some are big (plants). <a href="https://saladi.shinyapps.io/Genome_size_vs_protein_count/">R Shiny app</a></p></li>
+<li><p>Some are circular including virsuses, prokaryotes (that is, Bacteria and Archae/without nucleus) and mitochondria of Eukaryota.</p></li>
+<li><p>Some are linear (Eukaryota but some bacteria have linear genomes).</p></li>
+</ul>
+<figure>
+<img data-src="images/borrelia.jpg" alt="" /><figcaption>Borrelia burgdorferi; what disease is this?</figcaption>
+</figure>
+</section>
+<section id="cancer-genomes" class="slide level2">
+<h2>Cancer genomes</h2>
+<ul>
+<li><p>A hallmark of cancer is genomic instability.</p></li>
+<li><p>The neoplasticity of cancer genomes results in novel point mutations, chromosomal amplifications, loss, loss of heterozygosity, aneuploidies, euploidies etc.</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/cancergenome.png" width="280"/>
+</p>
+<figcaption>
+<small>Circos plot comparing cancer versus normal genome </small>
+</figcaption>
+</figure>
+</section>
+<section id="genomes-1" class="slide level2">
+<h2>Genomes</h2>
+<ul>
+<li><p>How many genomes have been sequenced to date? It depends a bit on how you count.</p></li>
+<li><p><a href="https://www.ncbi.nlm.nih.gov/genome/browse/#!/overview/">Genomes at the NCBI</a></p></li>
+<li><p>Some organisms have multiple assemblies.</p></li>
+<li><p>Some organisms have been sequenced many many times (at least partially) <a href="https://www.23andme.com/en-ca/">23andme</a></p></li>
+</ul>
+</section>
+<section id="genomes-2" class="slide level2">
+<h2>Genomes</h2>
+<ul>
+<li>Some have multiple strains.</li>
+<li><a href="https://nextstrain.org/">Nextstrain</a></li>
+<li><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=wuhCor1&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=NC_045512v2%3A1%2D29903&amp;hgsid=918274855_AzGyruacrcnN3hPj2V9DUvhPYMoY">UCSC Genome Browser for SARS-CoV-2</a></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/covid.png" width="500"/>
+</p>
+</figure>
+<figure class="image">
+<p float="center">
+<img src="images/sars_msa.jpg" width="500"/>
+</p>
+</figure>
+</section>
+<section id="software-to-visualize-genomes" class="slide level2">
+<h2>Software to visualize genomes</h2>
+<ul>
+<li><p><a href="https://www.ncbi.nlm.nih.gov/guide/genomes-maps/">NCBI Genomes and Maps Tools</a></p></li>
+<li><p><a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hgsid=918274855_AzGyruacrcnN3hPj2V9DUvhPYMoY">UCSC Genome Browser</a> but not all orgnaisms are there.</p></li>
+<li><p><a href="https://uswest.ensembl.org/index.html">Ensembl</a> European effort. Started with Human, then vertebrates and now more species.</p></li>
+<li><p><a href="http://software.broadinstitute.org/software/igv/">Integrative Genomics Viewer (IGV)</a> Particularly good for visualizing DNA and RNA-seq data.</p></li>
+</ul>
+<p>(Except for IGV, all of these efforts also act as a repository for genomes. NCBI is most complete but UCSC and Ensembl have most model organisms.)</p>
+</section>
+<section id="what-are-the-issues-here" class="slide level2">
+<h2>What are the issues here?</h2>
+<ul>
+<li><p>What if you want to ask the question of the form: What binding sites are in the promoter of gene X? Where are the enhancers for gene Y? How do transcription start sites change across the genome? Where are all the cut sites for a restriction enzyme? For a region R on chromosome C of organism X, what is its syntenic regions across all fungi?</p></li>
+<li><p>For these kinds of questions, visualization tools won’t suffice.</p></li>
+<li><p>For that we need the data represented in good data structures and the capcity to manipulate it</p></li>
+</ul>
+</section>
+<section id="where-we-are-and-what-is-required" class="slide level2">
+<h2>Where we are and what is required</h2>
+<figure class="image">
+<p float="center">
+<img src="images/explore_cycle.png" width="600"/>
+</p>
+<figcaption>
+<small> From R for Datas Sience, Chapter 6. </small>
+</figcaption>
+</figure>
+<ul>
+<li>Where to get the genomes <strong>and</strong> annotations from?</li>
+<li>How to represent them in R? (not tidy data but other packages)</li>
+</ul>
+</section>
+<section id="different-ways-to-download-ncbi" class="slide level2">
+<h2>Different ways to download: NCBI</h2>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/genome">NCBI Genome</a></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/genome.png" width="600"/>
+</p>
+</figure>
+</section>
+<section id="example-ncbi-genbank-c.-albicans" class="slide level2">
+<h2>Example: NCBI Genbank C. albicans</h2>
+<ul>
+<li>Let’s check out that old lab classic strain SC5314</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/all_candida.png" width="600"/>
+</p>
+</figure>
+</section>
+<section id="example-ncbi-genbank-c.-albicans-1" class="slide level2">
+<h2>Example: NCBI Genbank C. albicans</h2>
+<figure class="image">
+<p float="left">
+<img src="images/candida.png" width="450"/> <img src="images/fasta.png" width="440"/>
+</p>
+</figure>
+<ul>
+<li><p>cds = coding sequence. rm = Repeat Masker. features = genes/exons.</p></li>
+<li><p>fna = FASTA nucleic acid. faa = FASTA amino acid.</p></li>
+<li><p>gbff = great best friends forever (I think). gff = Generic Feature Format. gtf = gene transfer format.</p></li>
+</ul>
+</section>
+<section id="different-ways-to-download-ucsc" class="slide level2">
+<h2>Different ways to download: UCSC</h2>
+<ul>
+<li><a href="https://genome.ucsc.edu/cgi-bin/hgGateway?hgsid=918274855_AzGyruacrcnN3hPj2V9DUvhPYMoY">UCSC Genome Browser</a> but not all organisms are there.</li>
+</ul>
+<figure class="image">
+<p float="left">
+<p><img src="images/fly.png" width="400"/> <img src="images/fly2.png" width="500"/></p>
+</p>
+</figure>
+<ul>
+<li><p>masked = repeat masker. 2bit = compressed FASTA with masks.</p></li>
+<li><p>bed = start:stop ranges for different genomic objects.</p></li>
+</ul>
+</section>
+<section id="many-data-formats" class="slide level2">
+<h2>Many data formats</h2>
+<figure class="image">
+<p float="center">
+<img src="images/formats.png" width="800"/>
+</p>
+<figcaption>
+<small>From: Sequences, genes and genomes (2013) M Morgan </small>
+</figcaption>
+</figure>
+<p><a href="http://genome.ucsc.edu/FAQ/FAQformat">Data File Formats</a>, a nice resource at the UCSC</p>
+</section>
+<section id="a-quick-note-about-different-versions-of-the-human-genome" class="slide level2">
+<h2>A quick note about different versions of the human genome</h2>
+<ul>
+<li><p>There are at least three major versions of the human reference genome. One from the Genome Reference Consortium, one from the UCSC genome browser database and one from the Broad Institute.</p></li>
+<li><p>Why? Mostly the same I believe but differ slightly on a few N bases (undetermined) and how the mitochondrial genome is reported.</p></li>
+<li><p>Have you discovered <a href="https://www.biostars.org">BioStars</a> yet?</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/grc.png" width="600"/>
+</p>
+</figure>
+</section>
+<section id="from-the-hard-drive-to-r." class="slide level2">
+<h2>From the hard drive to R.</h2>
+<ul>
+<li><p>NCBI has basically everything in every format.</p></li>
+<li><p>One route is to download via <span class="math inline">\({\tt ftp}\)</span> or <span class="math inline">\({\tt wget}\)</span> that data to your machine (actual or cloud).</p></li>
+<li><p>Once at your machine, getting the data into R can often tricky.</p></li>
+<li><p>There are R functions to read in almost all formats of bio-data. (Ok I don’t know that for sure, but it’s been my experience.)</p></li>
+<li><p><a href="https://www.rdocumentation.org/packages/seqinr/versions/3.6-1"><span class="math inline">\({\tt seqinr}\)</span></a> is a very broad and helpful package in R.</p></li>
+<li><p>But there are many formats and you need special <em>parsers</em> for each format.</p></li>
+</ul>
+</section>
+<section id="different-ways-to-download-biomart" class="slide level2">
+<h2>Different ways to download: biomaRt</h2>
+<ul>
+<li><p><a href="https://uswest.ensembl.org/index.html">Ensembl</a> European effort. Started wtih Human, then vertebrates and now more species.</p></li>
+<li><p><a href="http://uswest.ensembl.org/info/data/index.html">BioMart</a> allows you to specify what types of data you want about each genome (much like the other tools.)</p></li>
+<li><p>However, it is the <a href="http://uswest.ensembl.org/info/data/biomart/biomart_r_package.html">BiomaRt package</a> in R that gives you the most power.</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># library(biomaRt)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co"># ensembl &lt;-  useEnsembl(biomart=&quot;ensembl&quot;)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co"># head(listDatasets(ensembl))</span></span></code></pre></div>
+</section>
+<section id="more-biomart-examples" class="slide level2">
+<h2>More biomaRt examples</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># library(biomaRt)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co"># ensembl &lt;-  useEnsembl(biomart=&quot;ensembl&quot;)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"># head(listDatasets(ensembl))</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">#ensembl &lt;- useEnsembl(biomart=&quot;ensembl&quot;, dataset=&quot;hsapiens_gene_ensembl&quot;)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">#chr22_genes &lt;- getBM(attributes=c(&#39;ensembl_gene_id&#39;,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">#&#39;ensembl_transcript_id&#39;,&#39;hgnc_symbol&#39;,&#39;chromosome_name&#39;,&#39;start_position&#39;,&#39;end_position&#39;), filters =</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&#39;chromosome_name&#39;, values =&quot;22&quot;, mart = ensembl)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co"># hgnc_swissprot &lt;- getBM(attributes=c(&#39;ensembl_gene_id&#39;,&#39;ensembl_transcript_id&#39;,&#39;hgnc_symbol&#39;,&#39;uniprotswissprot&#39;),filters = &#39;ensembl_gene_id&#39;, values = &#39;ENSG00000139618&#39;, mart = ensembl)</span></span></code></pre></div>
+</section>
+<section id="using-bsgenome-with-ucsc" class="slide level2">
+<h2>Using BSgenome with UCSC</h2>
+<ul>
+<li><p>It is also possible to download genomes and annotations directly into R from the UCSC Genome Browser effort.</p></li>
+<li><p>The <span class="math inline">\({\tt BSGenome}\)</span> packages from Bioconductor are available for many organisms <a href="https://bioconductor.org/packages/release/BiocViews.html#___BSgenome">here</a>.</p></li>
+<li><p>The data is uploaded into a <span class="math inline">\({\tt Biostrings}\)</span> object (more in a bit).</p></li>
+</ul>
+</section>
+<section id="back-in-the-days-characters" class="slide level2">
+<h2>Back in the days… characters</h2>
+<p>In <em>base R</em> (the traditional version of the software), we had the <span class="math inline">\({\tt character}\)</span> class.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>x &lt;-<span class="st"> &quot;The rockets are distributing about London just as Poisson’s equation in the textbooks predicts&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">nchar</span>(x); <span class="kw">substr</span>(x, <span class="dt">start=</span><span class="dv">5</span>, <span class="dt">stop =</span> <span class="dv">11</span>); </span></code></pre></div>
+<pre><code>## [1] 94</code></pre>
+<pre><code>## [1] &quot;rockets&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>y &lt;-<span class="st"> &quot;As the data keep coming in, Roger looks more and more like a prophet.&quot;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">toupper</span>(y) <span class="co"># not to mention tolower</span></span></code></pre></div>
+<pre><code>## [1] &quot;AS THE DATA KEEP COMING IN, ROGER LOOKS MORE AND MORE LIKE A PROPHET.&quot;</code></pre>
+</section>
+<section id="back-in-the-days-characters-1" class="slide level2">
+<h2>Back in the days… characters</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>z &lt;-<span class="st"> </span><span class="kw">cat</span>(x, y); z  <span class="co"># careful</span></span></code></pre></div>
+<pre><code>## The rockets are distributing about London just as Poisson’s equation in the textbooks predicts As the data keep coming in, Roger looks more and more like a prophet.</code></pre>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>z &lt;-<span class="st"> </span><span class="kw">paste</span>(x, y, <span class="dt">sep =</span><span class="st">&quot;. &quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">gregexpr</span>(<span class="dt">pattern=</span><span class="st">&quot;on&quot;</span>, <span class="dt">text =</span> z)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 37 40 56 67
+## attr(,&quot;match.length&quot;)
+## [1] 2 2 2 2</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>(<span class="kw">gsub</span>(<span class="st">&quot;Roger&quot;</span>, <span class="st">&quot;Mike&quot;</span>, z))</span></code></pre></div>
+<pre><code>## [1] &quot;The rockets are distributing about London just as Poisson’s equation in the textbooks predicts. As the data keep coming in, Mike looks more and more like a prophet.&quot;</code></pre>
+</section>
+<section id="and-then-the-tidyverse-stringr" class="slide level2">
+<h2>And then the tidyverse: stringr</h2>
+<ul>
+<li>It’s nicer.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">str_length</span>( <span class="kw">c</span>(x, y))</span></code></pre></div>
+<pre><code>## [1] 94 69</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>z &lt;-<span class="st"> </span><span class="kw">str_c</span>(x, y, <span class="dt">sep=</span><span class="st">&quot;. &quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>pizza &lt;-<span class="st"> </span><span class="ot">TRUE</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a>num_kids &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="kw">str_c</span>( <span class="st">&quot;Ok my &quot;</span>, num_kids, <span class="st">&quot; spawn, we should&quot;</span>, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a>       <span class="cf">if</span> (pizza) <span class="st">&quot; order pizza.&quot;</span> <span class="cf">else</span>  <span class="st">&quot; eat lettuce.&quot;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>       )</span></code></pre></div>
+<pre><code>## [1] &quot;Ok my 3 spawn, we should order pizza.&quot;</code></pre>
+</section>
+<section id="stringr" class="slide level2">
+<h2>stringr</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">str_sub</span>( x, <span class="dt">start=</span><span class="dv">5</span>, <span class="dt">end=</span><span class="dv">11</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="co">## [1] &quot;rockets&quot;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="kw">str_to_upper</span>(x)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="co">## [1] &quot;THE ROCKETS ARE DISTRIBUTING ABOUT LONDON JUST AS POISSON’S EQUATION IN THE TEXTBOOKS PREDICTS&quot;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a><span class="kw">str_sort</span>( <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>, <span class="st">&quot;four&quot;</span>))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a><span class="co">## [1] &quot;four&quot;  &quot;one&quot;   &quot;three&quot; &quot;two&quot;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a><span class="co"># str_</span></span></code></pre></div>
+</section>
+<section id="stringr-1" class="slide level2">
+<h2>stringr</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="kw">str_view</span>(<span class="kw">c</span>(x,y), <span class="st">&quot;o.e&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-0c6895ce4573b5050a1e" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0c6895ce4573b5050a1e">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predicts<\/li>\n  <li>As the data keep coming in, R<span class='match'>oge<\/span>r looks more and more like a prophet.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">str_view</span>(<span class="kw">c</span>(x,y), <span class="st">&quot;..$&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-3374a7b7532473a92dce" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3374a7b7532473a92dce">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predic<span class='match'>ts<\/span><\/li>\n  <li>As the data keep coming in, Roger looks more and more like a prophe<span class='match'>t.<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">str_view</span>(z, <span class="st">&quot;keep(s|)&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-b3063925796ff5a822e3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b3063925796ff5a822e3">{"x":{"html":"<ul>\n  <li>The rockets are distributing about London just as Poisson’s equation in the textbooks predicts. As the data <span class='match'>keep<\/span> coming in, Roger looks more and more like a prophet.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+</section>
+<section id="biostrings" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li><p>Base R and stringr functions are for small short strings.</p></li>
+<li><p>Genomic data is much bigger and requires special data structures to efficiently store them.</p></li>
+<li><p>Also, genomic data requires functions especially designed to nucleic and amino acid sequences (eg alignments which we will talk much more about over the next few weeks).</p></li>
+<li><p><span class="math inline">\({\tt Biostrings}\)</span> is an important package for manipulating genomic strings.</p></li>
+</ul>
+</section>
+<section id="biostrings-1" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>Biostrings allows for DNA strings (DNAString), RNA strings (RNAString), and amino acid strings (AAString) with <em>generic classes</em> BString and XString (more about these last two later).</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="co"># BiocManager::install(&quot;Biostrings&quot;)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a><span class="kw">library</span>(Biostrings)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>dnastring =<span class="st"> </span><span class="kw">DNAString</span>(<span class="st">&quot;GCGATN-CTC&quot;</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a>dnastring</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a><span class="co">## seq: GCGATN-CTC</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a><span class="kw">length</span>(dnastring)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true"></a><span class="co">## [1] 10</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true"></a>DNA_ALPHABET</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true"></a><span class="co">##  [1] &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot; &quot;M&quot; &quot;R&quot; &quot;W&quot; &quot;S&quot; &quot;Y&quot; &quot;K&quot; &quot;V&quot; &quot;H&quot; &quot;D&quot; &quot;B&quot; &quot;N&quot; &quot;-&quot; &quot;+&quot; &quot;.&quot;</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true"></a><span class="kw">alphabetFrequency</span>(dnastring, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true"></a><span class="co">##     A     C     G     T other </span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true"></a><span class="co">##   0.1   0.3   0.2   0.2   0.2</span></span></code></pre></div>
+<ul>
+<li><p><a href="https://www.bioinformatics.org/sms/iupac.html">IUPAC</a>.</p></li>
+<li><p>The “-” indicates a gap (more about that later).</p></li>
+</ul>
+</section>
+<section id="biostrings-2" class="slide level2">
+<h2>Biostrings</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>dnastring</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="co">## seq: GCGATN-CTC</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a><span class="kw">reverseComplement</span>(dnastring)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a><span class="co">## 10-letter DNAString object</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a><span class="co">## seq: GAG-NATCGC</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a>dnastring[<span class="dv">8</span>]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a><span class="co">## 1-letter DNAString object</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true"></a><span class="co">## seq: C</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true"></a>dnastring[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true"></a><span class="co">## 7-letter DNAString object</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true"></a><span class="co">## seq: ATN-CTC</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true"></a>dnastring <span class="op">==</span><span class="st"> </span><span class="kw">reverseComplement</span>(<span class="kw">reverseComplement</span>(dnastring))</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true"></a>view =<span class="st"> </span><span class="kw">Views</span>(dnastring, <span class="dt">start=</span><span class="dv">3</span><span class="op">:</span><span class="dv">0</span>, <span class="dt">end=</span><span class="dv">5</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true"></a>view</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true"></a><span class="co">## Views on a 10-letter DNAString subject</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true"></a><span class="co">## subject: GCGATN-CTC</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true"></a><span class="co">## views:</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true"></a><span class="co">##       start end width</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true"></a><span class="co">##   [1]     3   5     3 [GAT]</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true"></a><span class="co">##   [2]     2   6     5 [CGATN]</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true"></a><span class="co">##   [3]     1   7     7 [GCGATN-]</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true"></a><span class="co">##   [4]     0   8     9 [ GCGATN-C]</span></span></code></pre></div>
+</section>
+<section id="biostrings-3" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>There is also a notion of a set of sequences</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>dna_seqs =<span class="st"> </span><span class="kw">DNAStringSet</span>(<span class="kw">c</span>(<span class="st">&quot;TATGCG&quot;</span>, <span class="st">&quot;TAACCG&quot;</span>, <span class="st">&quot;AATGGG&quot;</span>, <span class="st">&quot;TTACGG&quot;</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a><span class="kw">alphabetFrequency</span>(dna_seqs, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a><span class="co">##              A         C         G         T other</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a><span class="co">## [1,] 0.1666667 0.1666667 0.3333333 0.3333333     0</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a><span class="co">## [2,] 0.3333333 0.3333333 0.1666667 0.1666667     0</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a><span class="co">## [3,] 0.3333333 0.0000000 0.5000000 0.1666667     0</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a><span class="co">## [4,] 0.1666667 0.1666667 0.3333333 0.3333333     0</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true"></a>dna_seqs</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true"></a><span class="co">## DNAStringSet object of length 4:</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true"></a><span class="co">##     width seq</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true"></a><span class="co">## [1]     6 TATGCG</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true"></a><span class="co">## [2]     6 TAACCG</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true"></a><span class="co">## [3]     6 AATGGG</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true"></a><span class="co">## [4]     6 TTACGG</span></span></code></pre></div>
+</section>
+<section id="biostrings-4" class="slide level2">
+<h2>Biostrings</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="co">#BiocManager::install(&quot;BSgenome.Scerevisiae.UCSC.sacCer2&quot;)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a><span class="kw">library</span>(BSgenome.Scerevisiae.UCSC.sacCer2)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>yeast_<span class="dv">1</span> &lt;-<span class="st"> </span>Scerevisiae<span class="op">$</span>chrI; </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a><span class="kw">class</span>(yeast_<span class="dv">1</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a><span class="co">## [1] &quot;DNAString&quot;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a><span class="co">## attr(,&quot;package&quot;)</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a><span class="co">## [1] &quot;Biostrings&quot;</span></span></code></pre></div>
+</section>
+<section id="biostrings-5" class="slide level2">
+<h2>Biostrings</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>Sc &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">chromosome=</span><span class="ot">NA</span>, <span class="dt">A=</span><span class="ot">NA</span>, <span class="dt">C=</span><span class="ot">NA</span>, <span class="dt">G=</span><span class="ot">NA</span>, <span class="dt">T=</span><span class="ot">NA</span>, <span class="dt">other=</span><span class="ot">NA</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">17</span>) {</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a>  tmp &lt;-<span class="st"> </span><span class="kw">alphabetFrequency</span>(Scerevisiae[[i]], <span class="dt">as.prob=</span><span class="ot">TRUE</span>, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a>  Sc &lt;-<span class="st"> </span><span class="kw">add_row</span>( Sc, <span class="dt">chromosome =</span> <span class="kw">str_c</span>(<span class="st">&quot;Chr &quot;</span>, i), </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>                 <span class="dt">A=</span>tmp[<span class="dv">1</span>],  <span class="dt">C=</span>tmp[<span class="dv">2</span>] ,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>                 <span class="dt">G=</span>tmp[<span class="dv">3</span>],  <span class="dt">T=</span>tmp[<span class="dv">4</span>], <span class="dt">other =</span> tmp[<span class="dv">5</span>] )</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a>  }</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a>Sc &lt;-<span class="st"> </span>Sc <span class="op">%&gt;%</span><span class="st"> </span>drop_na <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(A, C, G, T, other),</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>                                            <span class="dt">names_to=</span><span class="st">&quot;nucleotide&quot;</span>)</span></code></pre></div>
+</section>
+<section id="biostrings-6" class="slide level2">
+<h2>Biostrings</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>Sc, <span class="kw">aes</span>(<span class="dt">x=</span>chromosome, <span class="dt">y=</span>value, <span class="dt">fill=</span>nucleotide)) <span class="op">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>))</span></code></pre></div>
+<p><img data-src="11-slides_files/figure-revealjs/unnamed-chunk-15-1.png" /><!-- --></p>
+</section>
+<section id="biostrings-7" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>Biostrings has some example data.</li>
+</ul>
+<pre><code>## DNAStringSet object of length 6:
+##     width seq                                               names               
+## [1]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA Genbank
+## [2]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA RF70s
+## [3]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA SS78
+## [4]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA Bull
+## [5]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA G97
+## [6]  5386 GAGTTTTATCGCTTCCATGACGC...ATGATTGGCGTATCCAACCTGCA NEB03</code></pre>
+<pre><code>## [1] &quot;DNAStringSet&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;Biostrings&quot;</code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre><code>## [1] 5386
+## [1] 5386
+## [1] 5386
+## [1] 5386
+## [1] 5386
+## [1] 5386</code></pre>
+</section>
+<section id="biostrings-8" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>Whereas the previous slide gave the full length genomes, we also have access to approximatley 1000 short reads from a sequencer.</li>
+</ul>
+<pre><code>## DNAStringSet object of length 1113:
+##        width seq
+##    [1]    35 GTTATTATACCGTCAAGGACTGTGTGACTATTGAC
+##    [2]    35 GGTGGTTATTATACCGTCAAGGACTGTGTGACTAT
+##    [3]    35 TACCGTCAAGGACTGTGTGACTATTGACGTCCTTC
+##    [4]    35 GTACGCCGGGCAATAATGTTTATGTTGGTTTCATG
+##    [5]    35 GGTTTCATGGTTTGGTCTAACTTTACCGCTACTAA
+##    ...   ... ...
+## [1109]    35 ATAATGTTTATGTTGGTTTCATGGTTTGTTCTATC
+## [1110]    35 GGGCAATAATGTTTATGTTGGTTTCATTTTTTTTT
+## [1111]    35 CAATAATGTTTATGTTGGTTTCATGGTTTGTTTTA
+## [1112]    35 GACGTCCTTCCTCGTACGCCGGGCAATGATGTTTA
+## [1113]    35 ACGCCGGGCAATAATGTTTATGTTGTTTTCATTGT</code></pre>
+</section>
+<section id="biostrings-9" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>An important concept in computational biology is the notion of an alignment: how to find one string within another string.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a>PpiI &lt;-<span class="st"> &quot;GAACNNNNNCTC&quot;</span>  <span class="co"># a restriction enzyme pattern</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a>(align.PpiI &lt;-<span class="st"> </span><span class="kw">matchPattern</span>(PpiI, phiX174Phage[[<span class="dv">1</span>]], <span class="dt">fixed=</span><span class="ot">FALSE</span>))</span></code></pre></div>
+<pre><code>## Views on a 5386-letter DNAString subject
+## subject: GAGTTTTATCGCTTCCATGACGCAGAAGTTAACA...CTTCGATAAAAATGATTGGCGTATCCAACCTGCA
+## views: NONE</code></pre>
+</section>
+<section id="biostrings-10" class="slide level2">
+<h2>Biostrings</h2>
+<ul>
+<li>The previous slide explored a very simple notion of alignment, basically an “exact” match. There are more biologically relevant notions of alignment that ultimately are based in models of evolution. We will learn these in part 3 of the course.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true"></a>aligns &lt;-<span class="st"> </span><span class="kw">pairwiseAlignment</span>(srPhiX174, phiX174Phage[[<span class="st">&quot;Genbank&quot;</span>]],</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true"></a>                            <span class="dt">type =</span> <span class="st">&quot;global-local&quot;</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true"></a>aligns<span class="op">@</span>subject</span></code></pre></div>
+<pre><code>## QualityAlignedXStringSet (1 of 1113)
+## [2750] GTTATTATACCGTCAAGGACTGTGTGACTATTGAC</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a>aligns<span class="op">@</span>subject<span class="op">@</span>range</span></code></pre></div>
+<pre><code>## IRanges object with 1113 ranges and 0 metadata columns:
+##              start       end     width
+##          &lt;integer&gt; &lt;integer&gt; &lt;integer&gt;
+##      [1]      2750      2784        35
+##      [2]      2746      2780        35
+##      [3]      2757      2791        35
+##      [4]      2795      2829        35
+##      [5]      2821      2855        35
+##      ...       ...       ...       ...
+##   [1109]      2807      2841        35
+##   [1110]      2802      2836        35
+##   [1111]      2805      2839        35
+##   [1112]      2782      2816        35
+##   [1113]      2797      2831        35</code></pre>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of reflection</h2>
+<ul>
+<li><p>Which organism has the largest genome? And why on earth would such a large genome evolve in this organism?</p></li>
+<li><p>What are the advantages of special datastructures for genomes and molecular sequence data?</p></li>
+</ul>
+</section>
+<section id="biol-480" class="slide level2">
+<h2>BIOL 480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="11-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="11-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '11-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '11-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '11-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '11-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '11-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

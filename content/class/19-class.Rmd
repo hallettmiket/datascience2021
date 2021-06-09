@@ -1,0 +1,34 @@
+---
+title: "Discovery breast cancer subtypes: unsupervised analysis"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/19-slides.html)
+
+
+
+# Action Items
+
+- Assignment 4
+
+- Plase read [R for Data Science, Chapter 23](https://r4ds.had.co.nz/model-basics.html). It will provide more background and supporting concepts for the supervised analysis that comes next.
+
+
+
+# Points of Reflection
+
+- How did we know k in the k-means algorithm? Or did we?
+
+- How well do our $5$ subtypes line up with the $5$ subtypes from Parker et al.?
+
+- With respect to the breast cancer dataset, what happens when you change the number of clusters to $3$,$4$, or $10$ for example? What happens? And how does it compare again Parker et al.?
+
+- Please read Chapter 23
+
+

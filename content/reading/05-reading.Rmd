@@ -1,0 +1,30 @@
+---
+title: "Transformations of breast cancer transcriptional cohorts"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+# Required
+
+- [Chapter 5 for Data Science: Basics](https://r4ds.had.co.nz/)
+
+- [Simpson's Paradox](https://www.youtube.com/watch?v=ebEkn-BiW5k)
+
+
+# Recommended Reading
+
+- If you didn't have time previously to explore TCGA, perhaps take a look at the [project](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga) now.
+
+
+# Deeper insight
+
+- [dplyr tutorial](https://dplyr.tidyverse.org/)
+- [Datacamp's dpylyr tutorial](https://www.datacamp.com/courses/data-manipulation-with-dplyr-in-r)
+
+# Action items  
+
+- You might investigate the code in Project L05 at RStudio Cloud. 
+

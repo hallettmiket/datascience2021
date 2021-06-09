@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Transformations of breast cancer transcriptional cohorts</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="05-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="05-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="05-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <link href="05-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="05-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Transformations of breast cancer transcriptional cohorts</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="simpsons-paradox" class="slide level2">
+<h2>Simpson’s Paradox</h2>
+<ul>
+<li>Simpson’s paradox: The phenomenon where a trend appears in several different groups of data but disappears or reverses when these groups are combined.</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/simpson1.jpg" width="417"/> <img src="images/simpson2.jpg" width="363"/>
+</p>
+</figure>
+<ul>
+<li>Suppose here we asked a group of people how much they paid for their car and how satified they are with it.</li>
+<li>When we are not aware that the points (samples, people, objects) belong to two distinct groups (eg poor vs rich, tumor vs normal, patients vs healthy etc) the data suggests an upward trend.</li>
+<li>However if we were told that the blue points are low income people and red are high income, our interpretation might change.</li>
+<li>How would interpret these plots?</li>
+<li>Your challenge is to figure out how this relates to today’s lecture.</li>
+</ul>
+</section>
+<section id="outline-for-today" class="slide level2">
+<h2>Outline for today</h2>
+<ul>
+<li>Today we investigate the <strong>Transform</strong> in the the Transform <span class="math inline">\(\rightarrow\)</span> Visualize <span class="math inline">\(\rightarrow\)</span> Model cycle.</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/explore_cycle.png" width="600"/>
+</p>
+<figcaption>
+<small> From R for Datas Sience, Chapter 6. </small>
+</figcaption>
+</figure>
+<ul>
+<li><p>We will return to our <span class="math inline">\({\tt tcga\_brca}\)</span> breast cancer transcriptomics dataset.</p></li>
+<li><p>Transformations select specific subsets of the data for visualization and modelling.</p></li>
+</ul>
+</section>
+<section id="what-are-we-fighting-for" class="slide level2">
+<h2>What are we fighting for?</h2>
+<ul>
+<li>First let’s ask why do we want to do data science on BC transcriptomes, or any other dataset for that matter? What are our goals? What motivates the study?</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=DiWcDt8566g">Old Protest Song</a></p>
+<ul>
+<li><p>Ok, it’s certainly not warfare but the analysis of datasets can quickly result in a quagmire that takes months or years to complete.</p></li>
+<li><p>It’s important to go into the analysis with a set of questions that are as clear and well-defined as posible. Not perhaps as precise as clinical trials, but awareness of the design, power and goals of the experiment really help avoid long protracted struggles with the data and false findings.</p></li>
+</ul>
+</section>
+<section id="common-goals-in-cancer-informatics" class="slide level2">
+<h2>Common goals in cancer informatics</h2>
+<ul>
+<li><p>Basic science, for sure.</p></li>
+<li><p>Better underestanding of the molecular basis of BC. Eg which genes, pathways and processes are at play in each subtype of the disease. This might lead to new therapies or therapeutic avenues.</p></li>
+<li><p>Discover ways to intervene clinically. What is the clinical end-point of the study?</p></li>
+<li><p>Clinical endpoints are distinct measurements or analyses of disease characteristics observed in a research study or a clinical trial that reflect the effect of a therapeutic intervention.</p></li>
+</ul>
+</section>
+<section id="examples-of-research-projects-for-different-clinical-endpoints" class="slide level2">
+<h2>Examples of research projects for different clinical endpoints</h2>
+<ul>
+<li><p><strong>Disease Marker</strong> Find a gene(s) that indicates a woman (in the population) is at risk of developing breast cancer.</p></li>
+<li><p><strong>Screening</strong> Build image analysis technology to identify with high accuracy very small tumors in the mammary gland.</p></li>
+<li><p><strong>Diagnosis</strong> Find a gene(s) or gene products that accurately confirm that a woman does or does not have breast cancer (eg analogous to a pregnancy test).</p></li>
+<li><p><strong>Classification</strong> Given that a woman has been diagnosed with BC, find a gene(s) or gene products that classify her tumor into the correct subtype.</p></li>
+<li><p><strong>Prognosis</strong> Given that a woman has been diagnosed with a specific type of BC, predict how long she will live disease-free post-initial treatment/surgery.</p></li>
+<li><p><strong>Benefit from Therapy</strong> Given the characteristics of a woman’s tumor, predict whether she will or will not benefit from a specific therapy.</p></li>
+<li><p><strong>Monitoring</strong> Find a gene(s) or gene products that faithfully report if a new tumor (micrometastasis) has appeared in a woman post-treatment.</p></li>
+</ul>
+</section>
+<section id="clinical-validity-and-utility" class="slide level2">
+<h2>Clinical Validity and Utility</h2>
+<ul>
+<li><p>Whatever the endpoint is, ideally the endpoint has these two properties.</p></li>
+<li><p><strong>Clinical utility</strong> means that the result of your research can be used by clinicians to change their decision making in precise ways.</p></li>
+<li><p><strong>Clinicial validity</strong> means that the result of your research generalizes to the intended population, and remains able to function with sufficient efficacy.</p></li>
+</ul>
+</section>
+<section id="bottomline-here" class="slide level2">
+<h2>Bottomline here</h2>
+<ul>
+<li><p>Bio-data is inherently very noisey.</p></li>
+<li><p>Technical noise due to inaccurate measurements and bias in the measurements.</p></li>
+<li><p>Biological noise due to natural variability between patients (eg small genetic differences), cells (eg cell cycle fluctuations) and diferences due to lifestyle etc.</p></li>
+<li><p>When starting out your analysis, it is wise to search for a core <em>homogenous</em> subgroup. It might be easier to solve the problem (eg find the gene or gene products for your endpoint) in this core group first, and then expand your analysis out to the larger cohort.</p></li>
+<li><p>I will give some examples of <em>transformations</em> now.</p></li>
+</ul>
+</section>
+<section id="initialize-our-session" class="slide level2">
+<h2>Initialize our session</h2>
+<ul>
+<li><p>We are going to focus on a package called <span class="math inline">\({\tt dplyr}\)</span> today. It’s also part of the <span class="math inline">\({\tt tidyverse}\)</span>.</p></li>
+<li><p>If <span class="math inline">\({\tt ggplot2}\)</span> is the grammar of plots, <span class="math inline">\({\tt dplyr}\)</span> is the grammer of data transformation.</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;~/data/GDC/TCGA_BRCA/small_brca.Rdata&quot;</span>)   <span class="co"># load the BC dataset</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">#View(small_brca)                # handy to have that open for exploration</span></span></code></pre></div>
+</section>
+<section id="note-the-class-of-the-different-attributes" class="slide level2">
+<h2>Note the class of the different attributes</h2>
+<ul>
+<li>There are three classes here: <span class="math inline">\({\tt character (chr)}\)</span>, <span class="math inline">\({\tt lgl (logical)}\)</span> and <span class="math inline">\({\tt dbl (double)}\)</span>. Note that <span class="math inline">\({\tt double}\)</span> is the same as <span class="math inline">\({\tt numeric}\)</span>. Historical anomaly.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>small_brca               </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,215 x 79</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">##    id    tss   participant barcode bcr_patient_uuid form_completion…</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">##  1 TCGA… E9    A1NF        TCGA-E… a8b1f6e7-2bcf-4… 2011-6-23       </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">##  2 TCGA… D8    A27M        TCGA-D… ae65baeb-6b78-4… 2011-7-17       </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">##  3 TCGA… BH    A0GZ        TCGA-B… 27dfb9d4-3a2c-4… 2010-11-10      </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co">##  4 TCGA… BH    A18V        TCGA-B… 6b960b58-28e1-4… 2011-7-2        </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">##  5 TCGA… A7    A13G        TCGA-A… 6cd9baf5-bbe0-4… 2011-5-16       </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">##  6 TCGA… C8    A275        TCGA-C… ce887e90-0660-4… 2011-7-21       </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">##  7 TCGA… AN    A0XS        TCGA-A… 95e949d3-b1f3-4… 2011-3-28       </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="co">##  8 TCGA… OL    A5RW        TCGA-O… A82D0A57-4383-4… 2013-5-16       </span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a><span class="co">##  9 TCGA… OL    A5RX        TCGA-O… 43C0BEC6-6FAC-4… 2013-5-16       </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co">## 10 TCGA… E9    A1RD        TCGA-E… 5fe3c51f-65e2-4… 2011-7-28       </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">## # … with 1,205 more rows, and 73 more variables: birth_days_to &lt;chr&gt;,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="co">## #   gender &lt;chr&gt;, menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co">## #   tumor_status &lt;chr&gt;, vital_status &lt;chr&gt;, death_days_to &lt;chr&gt;,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, ajcc_pathologic_tumor_stage &lt;chr&gt;,</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="co">## #   er_status_by_ihc &lt;chr&gt;, er_status_ihc_Percent_Positive &lt;chr&gt;,</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="co">## #   pr_status_by_ihc &lt;chr&gt;, pr_status_ihc_percent_positive &lt;chr&gt;,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a><span class="co">## #   her2_fish_status &lt;chr&gt;, her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+<ul>
+<li>There are other classes not used here. We will see <span class="math inline">\({\tt fctr (factors)}\)</span> later.</li>
+</ul>
+</section>
+<section id="tt-dplyr-cheat-sheet-part-1" class="slide level2">
+<h2><span class="math inline">\({\tt dplyr}\)</span> cheat sheet (part 1)</h2>
+<ul>
+<li><strong>variables</strong> are columns; <strong>observations</strong> are rows.</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/dplyr.1.png" width="700"/>
+</p>
+</figure>
+</section>
+<section id="tt-dplyr-cheat-sheet-part-2" class="slide level2">
+<h2><span class="math inline">\({\tt dplyr}\)</span> cheat sheet (part 2)</h2>
+<ul>
+<li>Available <a href="https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf">here</a></li>
+<li>Mounted R cheat sheets make great gifts for Bioinformaticians!</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/dplyr.2.png" width="700"/>
+</p>
+</figure>
+</section>
+<section id="filtering-observations" class="slide level2">
+<h2>Filtering observations</h2>
+<ul>
+<li><p>Remember: <strong>variables</strong> are columns; <strong>observations</strong> are rows. Sometimes you want to analyze just a subset of all your observations (rows; samples). Before visualization, you need to remove unwanted rows. And that’s why the <span class="math inline">\({\tt filter()}\)</span> functions exist.</p></li>
+<li><p>For example, let’s remove the morphologically normal samples from the analysis.</p></li>
+</ul>
+<p><img src="05-slides_files/figure-revealjs/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="filtering-out-normal-samples" class="slide level2">
+<h2>Filtering out normal samples</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>(tumor_brca &lt;-<span class="st"> </span><span class="kw">filter</span>(small_brca, tumor<span class="op">==</span><span class="ot">TRUE</span>))               </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,102 x 79</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">##    id    tss   participant barcode bcr_patient_uuid form_completion…</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">##  1 TCGA… E9    A1NF        TCGA-E… a8b1f6e7-2bcf-4… 2011-6-23       </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">##  2 TCGA… D8    A27M        TCGA-D… ae65baeb-6b78-4… 2011-7-17       </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">##  3 TCGA… BH    A0GZ        TCGA-B… 27dfb9d4-3a2c-4… 2010-11-10      </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">##  4 TCGA… BH    A18V        TCGA-B… 6b960b58-28e1-4… 2011-7-2        </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">##  5 TCGA… A7    A13G        TCGA-A… 6cd9baf5-bbe0-4… 2011-5-16       </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">##  6 TCGA… C8    A275        TCGA-C… ce887e90-0660-4… 2011-7-21       </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">##  7 TCGA… AN    A0XS        TCGA-A… 95e949d3-b1f3-4… 2011-3-28       </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">##  8 TCGA… OL    A5RW        TCGA-O… A82D0A57-4383-4… 2013-5-16       </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">##  9 TCGA… OL    A5RX        TCGA-O… 43C0BEC6-6FAC-4… 2013-5-16       </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">## 10 TCGA… E9    A1RD        TCGA-E… 5fe3c51f-65e2-4… 2011-7-28       </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">## # … with 1,092 more rows, and 73 more variables: birth_days_to &lt;chr&gt;,</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">## #   gender &lt;chr&gt;, menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;,</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">## #   tumor_status &lt;chr&gt;, vital_status &lt;chr&gt;, death_days_to &lt;chr&gt;,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, ajcc_pathologic_tumor_stage &lt;chr&gt;,</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">## #   er_status_by_ihc &lt;chr&gt;, er_status_ihc_Percent_Positive &lt;chr&gt;,</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">## #   pr_status_by_ihc &lt;chr&gt;, pr_status_ihc_percent_positive &lt;chr&gt;,</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">## #   her2_fish_status &lt;chr&gt;, her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+</section>
+<section id="lets-make-sure-that-worked" class="slide level2">
+<h2>Let’s make sure that worked</h2>
+<p><img src="05-slides_files/figure-revealjs/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="filtering-out-samples-with-unknown-or-ill-defined-tnm-stage" class="slide level2">
+<h2>Filtering out samples with unknown or ill-defined TNM stage</h2>
+<ul>
+<li>Recall from Lecture 02 our disucssion of TNM staging.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">unique</span>(tumor_brca<span class="op">$</span>ajcc_pathologic_tumor_stage)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">##  [1] &quot;Stage IIA&quot;       &quot;Stage IA&quot;        &quot;Stage IIB&quot;       &quot;Stage IIIA&quot;     </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">##  [5] &quot;Stage IB&quot;        &quot;Stage I&quot;         &quot;Stage IIIC&quot;      &quot;Stage IV&quot;       </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">##  [9] &quot;[Discrepancy]&quot;   &quot;Stage II&quot;        &quot;Stage IIIB&quot;      &quot;[Not Available]&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">## [13] &quot;Stage X&quot;         NA                &quot;Stage III&quot;</span></span></code></pre></div>
+<ul>
+<li><p><span class="math inline">\({\tt unique()}\)</span> returns the distinct (or unique) objects observed in a (long) vector of objects. Try removing the <span class="math inline">\({\tt unique()}\)</span> call from above and see what happens.</p></li>
+<li><p>There are four (of 15) types of objects that I would like to remove from the analysis to begin with: 9, 12, 13, 14.</p></li>
+<li><p>Note the NA for #14. Not that same as the character “[Not Available]” #12 (but both must go!).</p></li>
+</ul>
+</section>
+<section id="filtering-by-tnm-stage" class="slide level2">
+<h2>Filtering by TNM stage</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>(tnm_tumor_brca &lt;-<span class="st"> </span><span class="kw">filter</span>(tumor_brca, <span class="op">!</span>( (<span class="kw">is.na</span>(ajcc_pathologic_tumor_stage) <span class="op">|</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="st">                                         </span>(ajcc_pathologic_tumor_stage <span class="op">==</span><span class="st"> &quot;[Discrepancy]&quot;</span>) <span class="op">|</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="st">                                         </span>(ajcc_pathologic_tumor_stage <span class="op">==</span><span class="st"> &quot;[Not Available]&quot;</span>) <span class="op">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="st">                                         </span>(ajcc_pathologic_tumor_stage <span class="op">==</span><span class="st"> &quot;Stage X&quot;</span>) ) )   ) )</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 79</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">##    id    tss   participant barcode bcr_patient_uuid form_completion…</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">##  1 TCGA… E9    A1NF        TCGA-E… a8b1f6e7-2bcf-4… 2011-6-23       </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">##  2 TCGA… D8    A27M        TCGA-D… ae65baeb-6b78-4… 2011-7-17       </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">##  3 TCGA… BH    A0GZ        TCGA-B… 27dfb9d4-3a2c-4… 2010-11-10      </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">##  4 TCGA… BH    A18V        TCGA-B… 6b960b58-28e1-4… 2011-7-2        </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">##  5 TCGA… A7    A13G        TCGA-A… 6cd9baf5-bbe0-4… 2011-5-16       </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">##  6 TCGA… C8    A275        TCGA-C… ce887e90-0660-4… 2011-7-21       </span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="co">##  7 TCGA… AN    A0XS        TCGA-A… 95e949d3-b1f3-4… 2011-3-28       </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co">##  8 TCGA… OL    A5RW        TCGA-O… A82D0A57-4383-4… 2013-5-16       </span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="co">##  9 TCGA… OL    A5RX        TCGA-O… 43C0BEC6-6FAC-4… 2013-5-16       </span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="co">## 10 TCGA… E9    A1RD        TCGA-E… 5fe3c51f-65e2-4… 2011-7-28       </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows, and 73 more variables: birth_days_to &lt;chr&gt;,</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co">## #   gender &lt;chr&gt;, menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="co">## #   tumor_status &lt;chr&gt;, vital_status &lt;chr&gt;, death_days_to &lt;chr&gt;,</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, ajcc_pathologic_tumor_stage &lt;chr&gt;,</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="co">## #   er_status_by_ihc &lt;chr&gt;, er_status_ihc_Percent_Positive &lt;chr&gt;,</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="co">## #   pr_status_by_ihc &lt;chr&gt;, pr_status_ihc_percent_positive &lt;chr&gt;,</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">## #   her2_fish_status &lt;chr&gt;, her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+<ul>
+<li>Note the logical expression using the <span class="math inline">\({\tt !~(not)}\)</span> operator and the <span class="math inline">\({\tt |~(or)}\)</span> operator.</li>
+<li>This also works (try to understand why <span class="math inline">\({\tt ? ~ grepl()}\)</span> ):</li>
+</ul>
+<p><code> filter(tumor_brca, grepl(“Stage”, ajcc_pathologic_tumor_stage)) </code></p>
+</section>
+<section id="arranging-the-observations" class="slide level2">
+<h2>Arranging the observations</h2>
+<ul>
+<li><p>Sometimes we don’t want to filter out observations but simply arrange them in a more informative manner.</p></li>
+<li><p>Our goal here is to sort first by TNM stage, and then according to how many days they survived since diagnosis.</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>sorted_tnm_tumor_brca &lt;-<span class="st"> </span><span class="kw">arrange</span>(tnm_tumor_brca, ajcc_pathologic_tumor_stage, death_days_to)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">head</span>(sorted_tnm_tumor_brca)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">## # A tibble: 6 x 79</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">##   id    tss   participant barcode bcr_patient_uuid form_completion…</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">## 1 TCGA… A1    A0SB        TCGA-A… 0045349c-69d9-4… 2011-6-30       </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">## 2 TCGA… A8    A08A        TCGA-A… 7fe4670d-4626-4… 2011-5-27       </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">## 3 TCGA… E2    A156        TCGA-E… f05d314c-5ec5-4… 2011-4-7        </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">## 4 TCGA… A8    A095        TCGA-A… 29df128d-ace2-4… 2011-5-27       </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">## 5 TCGA… AR    A255        TCGA-A… e8f3cc64-5e15-4… 2011-8-31       </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">## 6 TCGA… AR    A24S        TCGA-A… 074e8b06-3929-4… 2011-8-30       </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">## # … with 73 more variables: birth_days_to &lt;chr&gt;, gender &lt;chr&gt;,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co">## #   menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;, tumor_status &lt;chr&gt;,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">## #   vital_status &lt;chr&gt;, death_days_to &lt;chr&gt;, histologic_diagnosis_other &lt;chr&gt;,</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="co">## #   initial_pathologic_dx_year &lt;chr&gt;, age_at_diagnosis &lt;chr&gt;,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="co">## #   micromet_detection_by_ihc &lt;chr&gt;, lymph_nodes_examined_count &lt;chr&gt;,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="co">## #   ajcc_pathologic_tumor_stage &lt;chr&gt;, er_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co">## #   er_status_ihc_Percent_Positive &lt;chr&gt;, pr_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co">## #   pr_status_ihc_percent_positive &lt;chr&gt;, her2_fish_status &lt;chr&gt;,</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="co">## #   her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+</section>
+<section id="arranging-the-observations-by-tnm-and-survival-time" class="slide level2">
+<h2>Arranging the observations by TNM and survival time</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">tail</span>(sorted_tnm_tumor_brca)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">## # A tibble: 6 x 79</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">##   id    tss   participant barcode bcr_patient_uuid form_completion…</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">## 1 TCGA… A2    A0SW        TCGA-A… 991e1427-3c01-4… 2010-11-8       </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="co">## 2 TCGA… A2    A0T2        TCGA-A… 128d198e-9b22-4… 2010-11-12      </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">## 3 TCGA… B6    A0I9        TCGA-B… 44954053-0b93-4… 2010-11-2       </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">## 4 TCGA… B6    A0IB        TCGA-B… 157ec9e0-ca6e-4… 2010-11-2       </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">## 5 TCGA… BH    A18J        TCGA-B… cc074b7f-d3b2-4… 2011-6-8        </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co">## 6 TCGA… A2    A0SV        TCGA-A… ad01259b-d858-4… 2010-11-15      </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="co">## # … with 73 more variables: birth_days_to &lt;chr&gt;, gender &lt;chr&gt;,</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="co">## #   menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;, tumor_status &lt;chr&gt;,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="co">## #   vital_status &lt;chr&gt;, death_days_to &lt;chr&gt;, histologic_diagnosis_other &lt;chr&gt;,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="co">## #   initial_pathologic_dx_year &lt;chr&gt;, age_at_diagnosis &lt;chr&gt;,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="co">## #   micromet_detection_by_ihc &lt;chr&gt;, lymph_nodes_examined_count &lt;chr&gt;,</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a><span class="co">## #   ajcc_pathologic_tumor_stage &lt;chr&gt;, er_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="co">## #   er_status_ihc_Percent_Positive &lt;chr&gt;, pr_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a><span class="co">## #   pr_status_ihc_percent_positive &lt;chr&gt;, her2_fish_status &lt;chr&gt;,</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="co">## #   her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+<ul>
+<li><p>What happened here?</p></li>
+<li><p>Hint: What is the type of <span class="math inline">\({\tt deaths\_days\_to}\)</span>?</p></li>
+<li><p>How do we fix this?</p></li>
+</ul>
+</section>
+<section id="converting-the-type-of-a-variable-column" class="slide level2">
+<h2>Converting the type of a variable (column)</h2>
+<ul>
+<li><p>Currently, <span class="math inline">\({\tt death\_days\_to}\)</span> has type <span class="math inline">\({\tt character}\)</span>.</p></li>
+<li><p>lexicographical ordering: “a” &lt; “ab” &lt; “b”</p></li>
+<li><p>“1” &lt; “12” &lt; “2”</p></li>
+<li><p>1 &lt; 2 &lt; 12</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">tail</span>(sorted_tnm_tumor_brca[, <span class="kw">c</span>( <span class="st">&quot;ajcc_pathologic_tumor_stage&quot;</span>, <span class="st">&quot;vital_status&quot;</span>, <span class="st">&quot;death_days_to&quot;</span>)])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co">## # A tibble: 6 x 3</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">##   ajcc_pathologic_tumor_stage vital_status death_days_to</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                       &lt;chr&gt;        &lt;chr&gt;        </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">## 1 Stage IV                    Dead         1365         </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">## 2 Stage IV                    Dead         255          </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">## 3 Stage IV                    Dead         362          </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">## 4 Stage IV                    Dead         3941         </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="co">## 5 Stage IV                    Dead         612          </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="co">## 6 Stage IV                    Dead         825</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>sorted_tnm_tumor_brca<span class="op">$</span>death_days_to &lt;-<span class="st"> </span><span class="kw">as.numeric</span>( sorted_tnm_tumor_brca<span class="op">$</span>death_days_to )</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">## Warning: NAs introduced by coercion</span></span></code></pre></div>
+</section>
+<section id="converting-the-type-of-a-variable-column-1" class="slide level2">
+<h2>Converting the type of a variable (column)</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">tail</span>(sorted_tnm_tumor_brca[, <span class="kw">c</span>( <span class="st">&quot;ajcc_pathologic_tumor_stage&quot;</span>, <span class="st">&quot;vital_status&quot;</span>, <span class="st">&quot;death_days_to&quot;</span>)])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">## # A tibble: 6 x 3</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co">##   ajcc_pathologic_tumor_stage vital_status death_days_to</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                       &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="co">## 1 Stage IV                    Dead                  1365</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="co">## 2 Stage IV                    Dead                   255</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="co">## 3 Stage IV                    Dead                   362</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co">## 4 Stage IV                    Dead                  3941</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a><span class="co">## 5 Stage IV                    Dead                   612</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="co">## 6 Stage IV                    Dead                   825</span></span></code></pre></div>
+<ul>
+<li><p>Note that the <span class="math inline">\({\tt chr}\)</span> is now a <span class="math inline">\({\tt double~(dbl)}\)</span> (a real number).</p></li>
+<li><p>Note also that we haven’t re-sorted yet… That’s next…</p></li>
+</ul>
+</section>
+<section id="converting-the-type-of-a-variable-column-2" class="slide level2">
+<h2>Converting the type of a variable (column)</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>final_brca &lt;-<span class="st"> </span><span class="kw">arrange</span>(sorted_tnm_tumor_brca, ajcc_pathologic_tumor_stage, death_days_to)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>final_brca[<span class="dv">1058</span><span class="op">:</span><span class="dv">1068</span>, <span class="kw">c</span>( <span class="st">&quot;ajcc_pathologic_tumor_stage&quot;</span>,  <span class="st">&quot;death_days_to&quot;</span>)]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="co">## # A tibble: 11 x 2</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="co">##    ajcc_pathologic_tumor_stage death_days_to</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;                               &lt;dbl&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a><span class="co">##  1 Stage IIIC                             NA</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a><span class="co">##  2 Stage IV                              116</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="co">##  3 Stage IV                              255</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="co">##  4 Stage IV                              362</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a><span class="co">##  5 Stage IV                              612</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a><span class="co">##  6 Stage IV                              825</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co">##  7 Stage IV                             1034</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="co">##  8 Stage IV                             1127</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a><span class="co">##  9 Stage IV                             1365</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a><span class="co">## 10 Stage IV                             3941</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a><span class="co">## 11 Stage IV                               NA</span></span></code></pre></div>
+</section>
+<section id="section" class="slide level2">
+<h2>???</h2>
+<ul>
+<li>But TNM stage (variable <span class="math inline">\({\tt ajcc\_pathologic\_tumor\_stage}\)</span>) is also a <span class="math inline">\({\tt character}\)</span>; why did it sort correctly?</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>final_brca<span class="op">$</span>ajcc_pathologic_tumor_stage</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">##    [1] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">##    [6] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">##   [11] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">##   [16] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">##   [21] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">##   [26] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">##   [31] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">##   [36] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">##   [41] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">##   [46] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">##   [51] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">##   [56] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">##   [61] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co">##   [66] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a><span class="co">##   [71] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true"></a><span class="co">##   [76] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true"></a><span class="co">##   [81] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;   </span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true"></a><span class="co">##   [86] &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage I&quot;    &quot;Stage IA&quot;  </span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true"></a><span class="co">##   [91] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true"></a><span class="co">##   [96] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true"></a><span class="co">##  [101] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true"></a><span class="co">##  [106] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true"></a><span class="co">##  [111] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true"></a><span class="co">##  [116] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true"></a><span class="co">##  [121] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true"></a><span class="co">##  [126] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true"></a><span class="co">##  [131] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true"></a><span class="co">##  [136] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true"></a><span class="co">##  [141] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true"></a><span class="co">##  [146] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true"></a><span class="co">##  [151] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true"></a><span class="co">##  [156] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true"></a><span class="co">##  [161] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true"></a><span class="co">##  [166] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true"></a><span class="co">##  [171] &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;   &quot;Stage IA&quot;  </span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true"></a><span class="co">##  [176] &quot;Stage IA&quot;   &quot;Stage IB&quot;   &quot;Stage IB&quot;   &quot;Stage IB&quot;   &quot;Stage IB&quot;  </span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true"></a><span class="co">##  [181] &quot;Stage IB&quot;   &quot;Stage IB&quot;   &quot;Stage II&quot;   &quot;Stage II&quot;   &quot;Stage II&quot;  </span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true"></a><span class="co">##  [186] &quot;Stage II&quot;   &quot;Stage II&quot;   &quot;Stage II&quot;   &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true"></a><span class="co">##  [191] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true"></a><span class="co">##  [196] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true"></a><span class="co">##  [201] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true"></a><span class="co">##  [206] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true"></a><span class="co">##  [211] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true"></a><span class="co">##  [216] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true"></a><span class="co">##  [221] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true"></a><span class="co">##  [226] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true"></a><span class="co">##  [231] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true"></a><span class="co">##  [236] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true"></a><span class="co">##  [241] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true"></a><span class="co">##  [246] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true"></a><span class="co">##  [251] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true"></a><span class="co">##  [256] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true"></a><span class="co">##  [261] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true"></a><span class="co">##  [266] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true"></a><span class="co">##  [271] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true"></a><span class="co">##  [276] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true"></a><span class="co">##  [281] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true"></a><span class="co">##  [286] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true"></a><span class="co">##  [291] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true"></a><span class="co">##  [296] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true"></a><span class="co">##  [301] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true"></a><span class="co">##  [306] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true"></a><span class="co">##  [311] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true"></a><span class="co">##  [316] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true"></a><span class="co">##  [321] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true"></a><span class="co">##  [326] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true"></a><span class="co">##  [331] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true"></a><span class="co">##  [336] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true"></a><span class="co">##  [341] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true"></a><span class="co">##  [346] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true"></a><span class="co">##  [351] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true"></a><span class="co">##  [356] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true"></a><span class="co">##  [361] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true"></a><span class="co">##  [366] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true"></a><span class="co">##  [371] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true"></a><span class="co">##  [376] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true"></a><span class="co">##  [381] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true"></a><span class="co">##  [386] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true"></a><span class="co">##  [391] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true"></a><span class="co">##  [396] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true"></a><span class="co">##  [401] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true"></a><span class="co">##  [406] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true"></a><span class="co">##  [411] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true"></a><span class="co">##  [416] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true"></a><span class="co">##  [421] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true"></a><span class="co">##  [426] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true"></a><span class="co">##  [431] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true"></a><span class="co">##  [436] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true"></a><span class="co">##  [441] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true"></a><span class="co">##  [446] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true"></a><span class="co">##  [451] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true"></a><span class="co">##  [456] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true"></a><span class="co">##  [461] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true"></a><span class="co">##  [466] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true"></a><span class="co">##  [471] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true"></a><span class="co">##  [476] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true"></a><span class="co">##  [481] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true"></a><span class="co">##  [486] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true"></a><span class="co">##  [491] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true"></a><span class="co">##  [496] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true"></a><span class="co">##  [501] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true"></a><span class="co">##  [506] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true"></a><span class="co">##  [511] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true"></a><span class="co">##  [516] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true"></a><span class="co">##  [521] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true"></a><span class="co">##  [526] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true"></a><span class="co">##  [531] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true"></a><span class="co">##  [536] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true"></a><span class="co">##  [541] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true"></a><span class="co">##  [546] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIA&quot; </span></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true"></a><span class="co">##  [551] &quot;Stage IIA&quot;  &quot;Stage IIA&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true"></a><span class="co">##  [556] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true"></a><span class="co">##  [561] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true"></a><span class="co">##  [566] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true"></a><span class="co">##  [571] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true"></a><span class="co">##  [576] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true"></a><span class="co">##  [581] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true"></a><span class="co">##  [586] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true"></a><span class="co">##  [591] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true"></a><span class="co">##  [596] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true"></a><span class="co">##  [601] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true"></a><span class="co">##  [606] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true"></a><span class="co">##  [611] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true"></a><span class="co">##  [616] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true"></a><span class="co">##  [621] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true"></a><span class="co">##  [626] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true"></a><span class="co">##  [631] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true"></a><span class="co">##  [636] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true"></a><span class="co">##  [641] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true"></a><span class="co">##  [646] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true"></a><span class="co">##  [651] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true"></a><span class="co">##  [656] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true"></a><span class="co">##  [661] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true"></a><span class="co">##  [666] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true"></a><span class="co">##  [671] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true"></a><span class="co">##  [676] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true"></a><span class="co">##  [681] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true"></a><span class="co">##  [686] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true"></a><span class="co">##  [691] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true"></a><span class="co">##  [696] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true"></a><span class="co">##  [701] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true"></a><span class="co">##  [706] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true"></a><span class="co">##  [711] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true"></a><span class="co">##  [716] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true"></a><span class="co">##  [721] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true"></a><span class="co">##  [726] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true"></a><span class="co">##  [731] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true"></a><span class="co">##  [736] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true"></a><span class="co">##  [741] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true"></a><span class="co">##  [746] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true"></a><span class="co">##  [751] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true"></a><span class="co">##  [756] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true"></a><span class="co">##  [761] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true"></a><span class="co">##  [766] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true"></a><span class="co">##  [771] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true"></a><span class="co">##  [776] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true"></a><span class="co">##  [781] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true"></a><span class="co">##  [786] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true"></a><span class="co">##  [791] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-161"><a href="#cb12-161" aria-hidden="true"></a><span class="co">##  [796] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true"></a><span class="co">##  [801] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot; </span></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true"></a><span class="co">##  [806] &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage IIB&quot;  &quot;Stage III&quot; </span></span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true"></a><span class="co">##  [811] &quot;Stage III&quot;  &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true"></a><span class="co">##  [816] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true"></a><span class="co">##  [821] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true"></a><span class="co">##  [826] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true"></a><span class="co">##  [831] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true"></a><span class="co">##  [836] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true"></a><span class="co">##  [841] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true"></a><span class="co">##  [846] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true"></a><span class="co">##  [851] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true"></a><span class="co">##  [856] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true"></a><span class="co">##  [861] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true"></a><span class="co">##  [866] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true"></a><span class="co">##  [871] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true"></a><span class="co">##  [876] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true"></a><span class="co">##  [881] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true"></a><span class="co">##  [886] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true"></a><span class="co">##  [891] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true"></a><span class="co">##  [896] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true"></a><span class="co">##  [901] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true"></a><span class="co">##  [906] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true"></a><span class="co">##  [911] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true"></a><span class="co">##  [916] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true"></a><span class="co">##  [921] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-187"><a href="#cb12-187" aria-hidden="true"></a><span class="co">##  [926] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true"></a><span class="co">##  [931] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true"></a><span class="co">##  [936] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true"></a><span class="co">##  [941] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true"></a><span class="co">##  [946] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true"></a><span class="co">##  [951] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true"></a><span class="co">##  [956] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true"></a><span class="co">##  [961] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIA&quot;</span></span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true"></a><span class="co">##  [966] &quot;Stage IIIA&quot; &quot;Stage IIIA&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot;</span></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true"></a><span class="co">##  [971] &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot;</span></span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true"></a><span class="co">##  [976] &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot;</span></span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true"></a><span class="co">##  [981] &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot;</span></span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true"></a><span class="co">##  [986] &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot;</span></span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true"></a><span class="co">##  [991] &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIB&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true"></a><span class="co">##  [996] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true"></a><span class="co">## [1001] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-203"><a href="#cb12-203" aria-hidden="true"></a><span class="co">## [1006] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true"></a><span class="co">## [1011] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true"></a><span class="co">## [1016] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-206"><a href="#cb12-206" aria-hidden="true"></a><span class="co">## [1021] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-207"><a href="#cb12-207" aria-hidden="true"></a><span class="co">## [1026] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true"></a><span class="co">## [1031] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true"></a><span class="co">## [1036] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true"></a><span class="co">## [1041] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true"></a><span class="co">## [1046] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true"></a><span class="co">## [1051] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot;</span></span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true"></a><span class="co">## [1056] &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IIIC&quot; &quot;Stage IV&quot;   &quot;Stage IV&quot;  </span></span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true"></a><span class="co">## [1061] &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;  </span></span>
+<span id="cb12-215"><a href="#cb12-215" aria-hidden="true"></a><span class="co">## [1066] &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;  </span></span>
+<span id="cb12-216"><a href="#cb12-216" aria-hidden="true"></a><span class="co">## [1071] &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;  </span></span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true"></a><span class="co">## [1076] &quot;Stage IV&quot;   &quot;Stage IV&quot;   &quot;Stage IV&quot;</span></span></code></pre></div>
+</section>
+<section id="selecting-variables-columns" class="slide level2">
+<h2>Selecting variables (columns)</h2>
+<ul>
+<li><p>Sometimes after you have downloaded data and <em>wrangled</em> it into a <span class="math inline">\({\tt tibble}\)</span>, there are some variables (columns) that you are perhaps not interested in.</p></li>
+<li><p>The <span class="math inline">\({\tt select()}\)</span> function is designed to easily pick out variables you want from those you don’t.</p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>final_brca</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 79</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co">##    id    tss   participant barcode bcr_patient_uuid form_completion…</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co">##  1 TCGA… BH    A1FG        TCGA-B… d4e7426c-9739-4… 2011-9-8        </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="co">##  2 TCGA… BH    A18P        TCGA-B… 557cb0a3-6f1b-4… 2011-6-22       </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="co">##  3 TCGA… BH    A1FD        TCGA-B… 3c8b5af9-c34d-4… 2011-9-8        </span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="co">##  4 TCGA… BH    A1EU        TCGA-B… a1093598-d3a8-4… 2011-9-7        </span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a><span class="co">##  5 TCGA… AO    A03U        TCGA-A… 0685edd2-ce1c-4… 2011-1-9        </span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="co">##  6 TCGA… GM    A2D9        TCGA-G… 1133B8A9-6B11-4… 2011-9-28       </span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="co">##  7 TCGA… BH    A18S        TCGA-B… 433427a1-bacf-4… 2011-7-2        </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="co">##  8 TCGA… BH    A1ET        TCGA-B… 8986a141-eae7-4… 2011-9-7        </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="co">##  9 TCGA… BH    A18K        TCGA-B… 50619f8c-10aa-4… 2011-6-9        </span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a><span class="co">## 10 TCGA… B6    A0X0        TCGA-B… 1e68e760-a4cf-4… 2011-3-15       </span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows, and 73 more variables: birth_days_to &lt;chr&gt;,</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true"></a><span class="co">## #   gender &lt;chr&gt;, menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;,</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true"></a><span class="co">## #   tumor_status &lt;chr&gt;, vital_status &lt;chr&gt;, death_days_to &lt;dbl&gt;,</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, ajcc_pathologic_tumor_stage &lt;chr&gt;,</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true"></a><span class="co">## #   er_status_by_ihc &lt;chr&gt;, er_status_ihc_Percent_Positive &lt;chr&gt;,</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true"></a><span class="co">## #   pr_status_by_ihc &lt;chr&gt;, pr_status_ihc_percent_positive &lt;chr&gt;,</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true"></a><span class="co">## #   her2_fish_status &lt;chr&gt;, her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+</section>
+<section id="selecting-variables-columns-1" class="slide level2">
+<h2>Selecting variables (columns)</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>(mini_brca &lt;-<span class="st"> </span><span class="kw">select</span>(final_brca, participant, birth_days_to, menopause_status, race, ethnicity))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 5</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="co">##    participant birth_days_to menopause_status race  ethnicity             </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;                 </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="co">##  1 A1FG        -32295        Post             WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="co">##  2 A18P        -22222        Not Available    WHITE [Not Available]       </span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="co">##  3 A1FD        -24940        Post             WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="co">##  4 A1EU        -30339        Post             WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a><span class="co">##  5 A03U        -11354        Pre              WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a><span class="co">##  6 A2D9        -25490        Post             WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a><span class="co">##  7 A18S        -28974        Post             WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true"></a><span class="co">##  8 A1ET        -20425        Not Available    WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true"></a><span class="co">##  9 A18K        -16824        Not Available    WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true"></a><span class="co">## 10 A0X0        -19802        Indeterminate    WHITE NOT HISPANIC OR LATINO</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows</span></span></code></pre></div>
+<ul>
+<li>But suppose we wanted to retain many columns (not just a few). Wearisome to type all of the columns into the <span class="math inline">\({\tt select()}\)</span> call.</li>
+</ul>
+</section>
+<section id="selecting-many-variables-with-the-colon-operator" class="slide level2">
+<h2>Selecting many variables with the colon operator</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>(mini_brca &lt;-<span class="st"> </span><span class="kw">select</span>(final_brca, participant, ANLN<span class="op">:</span>TMEM45B ))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 51</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co">##    participant  ANLN FOXC1  CDH3 FGFR4 UBE2T NDC80   PGR BIRC5  ORC6   ESR1</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="co">##  1 A1FG          816   436   542   187   384   475 10737  1795   425 102256</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="co">##  2 A18P         4099   276  1145 12773  1059   677    98  1867   222   4550</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="co">##  3 A1FD         2762   265  4416   913  1409   686 29929  4622   597  58483</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="co">##  4 A1EU          415   611   638    55   194   133 35489   323    72  75875</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="co">##  5 A03U          914  3998  9772    68   221   309   125   679   140    475</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a><span class="co">##  6 A2D9          850   405  2725  1878   505   365   756   308    75  40483</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a><span class="co">##  7 A18S          532   172   128  1577   570   170  8338   498   134  57101</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a><span class="co">##  8 A1ET          336   617   692   744   159   141 19071   411    83  73208</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a><span class="co">##  9 A18K         2541   351  1509   835  1636   610  3397  1849   205  18863</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a><span class="co">## 10 A0X0          629   226  3504   301  1054   579 15244  1370   198  23790</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows, and 40 more variables: PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;,</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a><span class="co">## #   MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;, CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;,</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true"></a><span class="co">## #   EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;, TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;,</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true"></a><span class="co">## #   CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;, MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;,</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true"></a><span class="co">## #   BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;, CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;,</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true"></a><span class="co">## #   KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;, ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;,</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true"></a><span class="co">## #   CEP55 &lt;dbl&gt;, SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;,</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true"></a><span class="co">## #   NUF2 &lt;dbl&gt;, EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+<ul>
+<li><span class="math inline">\({\tt x:y}\)</span> selects all variables between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> inclusive.</li>
+</ul>
+</section>
+<section id="removing-variables-with-the-minus-operator" class="slide level2">
+<h2>Removing variables with the minus operator</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>(mini_brca &lt;-<span class="st"> </span><span class="kw">select</span>(final_brca,  <span class="op">-</span><span class="kw">c</span>(id, tss, barcode<span class="op">:</span>birth_days_to) ))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 73</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="co">##    participant gender menopause_status race  ethnicity tumor_status vital_status</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;       </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="co">##  1 A1FG        FEMALE Post             WHITE NOT HISP… [Not Availa… Dead        </span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="co">##  2 A18P        FEMALE Not Available    WHITE [Not Ava… WITH TUMOR   Dead        </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="co">##  3 A1FD        FEMALE Post             WHITE NOT HISP… WITH TUMOR   Dead        </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a><span class="co">##  4 A1EU        FEMALE Post             WHITE NOT HISP… TUMOR FREE   Dead        </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="co">##  5 A03U        FEMALE Pre              WHITE NOT HISP… TUMOR FREE   Dead        </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a><span class="co">##  6 A2D9        FEMALE Post             WHITE NOT HISP… WITH TUMOR   Dead        </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a><span class="co">##  7 A18S        FEMALE Post             WHITE NOT HISP… TUMOR FREE   Dead        </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a><span class="co">##  8 A1ET        FEMALE Not Available    WHITE NOT HISP… TUMOR FREE   Dead        </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a><span class="co">##  9 A18K        FEMALE Not Available    WHITE NOT HISP… WITH TUMOR   Dead        </span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a><span class="co">## 10 A0X0        FEMALE Indeterminate    WHITE NOT HISP… [Not Availa… Dead        </span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows, and 66 more variables: death_days_to &lt;dbl&gt;,</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, ajcc_pathologic_tumor_stage &lt;chr&gt;,</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true"></a><span class="co">## #   er_status_by_ihc &lt;chr&gt;, er_status_ihc_Percent_Positive &lt;chr&gt;,</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true"></a><span class="co">## #   pr_status_by_ihc &lt;chr&gt;, pr_status_ihc_percent_positive &lt;chr&gt;,</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true"></a><span class="co">## #   her2_fish_status &lt;chr&gt;, her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+<ul>
+<li><span class="math inline">\({\tt -}\)</span> removes all variables between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> inclusive.</li>
+</ul>
+</section>
+<section id="re-ordering-variables" class="slide level2">
+<h2>Re-ordering variables</h2>
+<ul>
+<li>Sometimes you don’t want to remove variables but just highlight certain variables you look at more often.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>(hilite_brca &lt;-<span class="st"> </span><span class="kw">select</span>(final_brca, participant, ajcc_pathologic_tumor_stage, vital_status, death_days_to, <span class="kw">everything</span>() ))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 79</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="co">##    participant ajcc_pathologic… vital_status death_days_to id    tss   barcode</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a><span class="co">##  1 A1FG        Stage I          Dead                   577 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a><span class="co">##  2 A18P        Stage I          Dead                   921 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a><span class="co">##  3 A1FD        Stage I          Dead                  1009 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a><span class="co">##  4 A1EU        Stage I          Dead                  1286 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a><span class="co">##  5 A03U        Stage I          Dead                  1793 TCGA… AO    TCGA-A…</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a><span class="co">##  6 A2D9        Stage I          Dead                  1812 TCGA… GM    TCGA-G…</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a><span class="co">##  7 A18S        Stage I          Dead                  2009 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a><span class="co">##  8 A1ET        Stage I          Dead                  2520 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a><span class="co">##  9 A18K        Stage I          Dead                  2763 TCGA… BH    TCGA-B…</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a><span class="co">## 10 A0X0        Stage I          Dead                  3945 TCGA… B6    TCGA-B…</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows, and 72 more variables: bcr_patient_uuid &lt;chr&gt;,</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a><span class="co">## #   form_completion_date &lt;chr&gt;, birth_days_to &lt;chr&gt;, gender &lt;chr&gt;,</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true"></a><span class="co">## #   menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;, tumor_status &lt;chr&gt;,</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, er_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true"></a><span class="co">## #   er_status_ihc_Percent_Positive &lt;chr&gt;, pr_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true"></a><span class="co">## #   pr_status_ihc_percent_positive &lt;chr&gt;, her2_fish_status &lt;chr&gt;,</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true"></a><span class="co">## #   her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+</section>
+<section id="renaming-variables" class="slide level2">
+<h2>Renaming variables</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>(simple_brca &lt;-<span class="st"> </span><span class="kw">rename</span>(hilite_brca,  <span class="dt">stage =</span> ajcc_pathologic_tumor_stage ))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 79</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="co">##    participant stage vital_status death_days_to id    tss   barcode</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="co">##  1 A1FG        Stag… Dead                   577 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a><span class="co">##  2 A18P        Stag… Dead                   921 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a><span class="co">##  3 A1FD        Stag… Dead                  1009 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a><span class="co">##  4 A1EU        Stag… Dead                  1286 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="co">##  5 A03U        Stag… Dead                  1793 TCGA… AO    TCGA-A…</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a><span class="co">##  6 A2D9        Stag… Dead                  1812 TCGA… GM    TCGA-G…</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a><span class="co">##  7 A18S        Stag… Dead                  2009 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a><span class="co">##  8 A1ET        Stag… Dead                  2520 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a><span class="co">##  9 A18K        Stag… Dead                  2763 TCGA… BH    TCGA-B…</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a><span class="co">## 10 A0X0        Stag… Dead                  3945 TCGA… B6    TCGA-B…</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a><span class="co">## # … with 1,068 more rows, and 72 more variables: bcr_patient_uuid &lt;chr&gt;,</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a><span class="co">## #   form_completion_date &lt;chr&gt;, birth_days_to &lt;chr&gt;, gender &lt;chr&gt;,</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a><span class="co">## #   menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;, tumor_status &lt;chr&gt;,</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, er_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true"></a><span class="co">## #   er_status_ihc_Percent_Positive &lt;chr&gt;, pr_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true"></a><span class="co">## #   pr_status_ihc_percent_positive &lt;chr&gt;, her2_fish_status &lt;chr&gt;,</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true"></a><span class="co">## #   her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+</section>
+<section id="grouping-by-variables-and-summarizing" class="slide level2">
+<h2>Grouping by variables and summarizing</h2>
+<ul>
+<li>Suppose we ask the question: For each stage of the disease, what is the mean number of days patients survived before passing away?</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>reordered_brca &lt;-<span class="st"> </span><span class="kw">group_by</span>(simple_brca,  stage, vital_status )</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">print</span>(reordered_brca[<span class="dv">8</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="co">## # A tibble: 23 x 4</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="co">## # Groups:   stage, vital_status [2]</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a><span class="co">##    participant stage   vital_status death_days_to</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a><span class="co">##  1 A1ET        Stage I Dead                  2520</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a><span class="co">##  2 A18K        Stage I Dead                  2763</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true"></a><span class="co">##  3 A0X0        Stage I Dead                  3945</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true"></a><span class="co">##  4 A209        Stage I Dead                  3959</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true"></a><span class="co">##  5 A0SB        Stage I Alive                   NA</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true"></a><span class="co">##  6 A08A        Stage I Alive                   NA</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true"></a><span class="co">##  7 A156        Stage I Alive                   NA</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true"></a><span class="co">##  8 A095        Stage I Alive                   NA</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true"></a><span class="co">##  9 A255        Stage I Alive                   NA</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true"></a><span class="co">## 10 A24S        Stage I Alive                   NA</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true"></a><span class="co">## # … with 13 more rows</span></span></code></pre></div>
+</section>
+<section id="grouping-by-variables-and-summarizing-1" class="slide level2">
+<h2>Grouping by variables and summarizing</h2>
+<ul>
+<li>Suppose we ask the question: For each stage of the disease, what is the mean number of days patients survived before passing away?</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>(answer &lt;-<span class="st"> </span><span class="kw">summarize</span>(reordered_brca, <span class="dt">mean_survive =</span> <span class="kw">mean</span>(death_days_to),</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>                          <span class="dt">st_dev =</span> <span class="kw">sd</span>(death_days_to),</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>                          <span class="dt">n =</span> <span class="kw">n</span>()  <span class="co"># this counts the number in each group</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>                     ))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a><span class="co">## `summarise()` regrouping output by &#39;stage&#39; (override with `.groups` argument)</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a><span class="co">## # A tibble: 20 x 5</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a><span class="co">## # Groups:   stage [11]</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="co">##    stage      vital_status mean_survive st_dev     n</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a><span class="co">##  1 Stage I    Alive                 NA     NA     78</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a><span class="co">##  2 Stage I    Dead                2054   1149.    11</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a><span class="co">##  3 Stage IA   Alive                 NA     NA     85</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a><span class="co">##  4 Stage IA   Dead                 992.   985.     2</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a><span class="co">##  5 Stage IB   Alive                 NA     NA      6</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true"></a><span class="co">##  6 Stage II   Alive                 NA     NA      6</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true"></a><span class="co">##  7 Stage IIA  Alive                 NA     NA    340</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true"></a><span class="co">##  8 Stage IIA  Dead                1672.   975.    24</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true"></a><span class="co">##  9 Stage IIB  Alive                 NA     NA    237</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true"></a><span class="co">## 10 Stage IIB  Dead                1954.  1207.    20</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true"></a><span class="co">## 11 Stage III  Alive                 NA     NA      1</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true"></a><span class="co">## 12 Stage III  Dead                 616     NA      1</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true"></a><span class="co">## 13 Stage IIIA Alive                 NA     NA    138</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true"></a><span class="co">## 14 Stage IIIA Dead                1331.  1011.    18</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true"></a><span class="co">## 15 Stage IIIB Alive                 NA     NA     22</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true"></a><span class="co">## 16 Stage IIIB Dead                 779.   598.     5</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true"></a><span class="co">## 17 Stage IIIC Alive                 NA     NA     59</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true"></a><span class="co">## 18 Stage IIIC Dead                 472.   260.     5</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true"></a><span class="co">## 19 Stage IV   Alive                 NA     NA     11</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true"></a><span class="co">## 20 Stage IV   Dead                1071.  1155.     9</span></span></code></pre></div>
+<ul>
+<li>hhhmmm is that what you expected? Does the standard deviation (<span class="math inline">\({\tt st\_dev}\)</span>) and count (<span class="math inline">\(n\)</span>) influence your intepretation?</li>
+</ul>
+</section>
+<section id="adding-new-variable-to-your-tt-tibble" class="slide level2">
+<h2>Adding new variable to your <span class="math inline">\({\tt tibble}\)</span></h2>
+<p>It is often useful to add new columns that are functions of existing columns.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>augmented_brca &lt;-<span class="st"> </span><span class="kw">mutate</span>(reordered_brca, <span class="dt">death_yrs =</span> death_days_to <span class="op">/</span><span class="st"> </span><span class="dv">365</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>augmented_brca &lt;-<span class="st"> </span><span class="kw">select</span>(augmented_brca, participant, death_days_to, death_yrs, <span class="kw">everything</span>() )</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="kw">print</span>(augmented_brca, <span class="dt">n=</span><span class="dv">15</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="co">## # A tibble: 1,078 x 80</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="co">## # Groups:   stage, vital_status [20]</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a><span class="co">##    participant death_days_to death_yrs stage vital_status id    tss   barcode</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="co">##    &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a><span class="co">##  1 A1FG                  577      1.58 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a><span class="co">##  2 A18P                  921      2.52 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a><span class="co">##  3 A1FD                 1009      2.76 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a><span class="co">##  4 A1EU                 1286      3.52 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a><span class="co">##  5 A03U                 1793      4.91 Stag… Dead         TCGA… AO    TCGA-A…</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a><span class="co">##  6 A2D9                 1812      4.96 Stag… Dead         TCGA… GM    TCGA-G…</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a><span class="co">##  7 A18S                 2009      5.50 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a><span class="co">##  8 A1ET                 2520      6.90 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a><span class="co">##  9 A18K                 2763      7.57 Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a><span class="co">## 10 A0X0                 3945     10.8  Stag… Dead         TCGA… B6    TCGA-B…</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a><span class="co">## 11 A209                 3959     10.8  Stag… Dead         TCGA… BH    TCGA-B…</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a><span class="co">## 12 A0SB                   NA     NA    Stag… Alive        TCGA… A1    TCGA-A…</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a><span class="co">## 13 A08A                   NA     NA    Stag… Alive        TCGA… A8    TCGA-A…</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a><span class="co">## 14 A156                   NA     NA    Stag… Alive        TCGA… E2    TCGA-E…</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a><span class="co">## 15 A095                   NA     NA    Stag… Alive        TCGA… A8    TCGA-A…</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true"></a><span class="co">## # … with 1,063 more rows, and 72 more variables: bcr_patient_uuid &lt;chr&gt;,</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="co">## #   form_completion_date &lt;chr&gt;, birth_days_to &lt;chr&gt;, gender &lt;chr&gt;,</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a><span class="co">## #   menopause_status &lt;chr&gt;, race &lt;chr&gt;, ethnicity &lt;chr&gt;, tumor_status &lt;chr&gt;,</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a><span class="co">## #   histologic_diagnosis_other &lt;chr&gt;, initial_pathologic_dx_year &lt;chr&gt;,</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="co">## #   age_at_diagnosis &lt;chr&gt;, micromet_detection_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a><span class="co">## #   lymph_nodes_examined_count &lt;chr&gt;, er_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a><span class="co">## #   er_status_ihc_Percent_Positive &lt;chr&gt;, pr_status_by_ihc &lt;chr&gt;,</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true"></a><span class="co">## #   pr_status_ihc_percent_positive &lt;chr&gt;, her2_fish_status &lt;chr&gt;,</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true"></a><span class="co">## #   her2_copy_number &lt;chr&gt;, histological_type &lt;chr&gt;,</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true"></a><span class="co">## #   metastatic_tumor_indicator &lt;chr&gt;, tumor &lt;lgl&gt;, ANLN &lt;dbl&gt;, FOXC1 &lt;dbl&gt;,</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true"></a><span class="co">## #   CDH3 &lt;dbl&gt;, FGFR4 &lt;dbl&gt;, UBE2T &lt;dbl&gt;, NDC80 &lt;dbl&gt;, PGR &lt;dbl&gt;, BIRC5 &lt;dbl&gt;,</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true"></a><span class="co">## #   ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;, PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;,</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true"></a><span class="co">## #   CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;, RRM2 &lt;dbl&gt;, GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;,</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true"></a><span class="co">## #   TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;, MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;,</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true"></a><span class="co">## #   MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;, BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;,</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true"></a><span class="co">## #   CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;, KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;,</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true"></a><span class="co">## #   ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;, CEP55 &lt;dbl&gt;,</span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true"></a><span class="co">## #   SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;, NUF2 &lt;dbl&gt;,</span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true"></a><span class="co">## #   EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</span></span></code></pre></div>
+</section>
+<section id="complete-the-transform-rightarrow-visualize-rightarrow-model-cycle" class="slide level2">
+<h2>Complete the Transform <span class="math inline">\(\rightarrow\)</span> Visualize <span class="math inline">\(\rightarrow\)</span> Model cycle</h2>
+<ul>
+<li>Let’s visualize the survival times stratified by TNM Stage.</li>
+<li>For clarity, let’s start from the top with <span class="math inline">\({\tt small\_brca}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>b0 &lt;-<span class="st"> </span><span class="kw">rename</span>(small_brca,  <span class="dt">stage =</span> ajcc_pathologic_tumor_stage )</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>b1 &lt;-<span class="st"> </span><span class="kw">filter</span>(b0, (<span class="kw">grepl</span>(<span class="st">&quot;Stage&quot;</span>, stage) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">&quot;Stage X&quot;</span>, stage) <span class="op">&amp;</span><span class="st"> </span>tumor<span class="op">==</span><span class="ot">TRUE</span>)) </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>b2 &lt;-<span class="st"> </span><span class="kw">select</span>(b1, participant, stage, vital_status, death_days_to)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>b3 &lt;-<span class="st"> </span><span class="kw">filter</span>(b2, vital_status<span class="op">==</span><span class="st">&quot;Dead&quot;</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a>b4 &lt;-<span class="st"> </span><span class="kw">mutate</span>(b3, <span class="dt">death_yrs =</span> <span class="kw">as.numeric</span>(death_days_to) <span class="op">/</span><span class="st"> </span><span class="dv">365</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a>g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>b4)  <span class="op">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_point</span>(  <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(participant, death_yrs), <span class="dt">y=</span> death_yrs, <span class="dt">color=</span>stage), <span class="dt">size=</span><span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Survival Times by Stage&quot;</span>) <span class="op">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Patient&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Time to Death (Yrs)&quot;</span>) <span class="op">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">lineheight=</span>.<span class="dv">8</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>, <span class="dt">size =</span> <span class="dv">20</span>)) <span class="op">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">11</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true"></a><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>stage, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<ul>
+<li>This looks pretty hardcore. We are making progress.</li>
+</ul>
+</section>
+<section id="the-output" class="slide level2">
+<h2>The output</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>g</span></code></pre></div>
+<p><img src="05-slides_files/figure-revealjs/unnamed-chunk-24-1.png" style="display: block; margin: auto auto auto 0;" /></p>
+</section>
+<section id="the-output-1" class="slide level2">
+<h2>The output</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true"></a>b5 &lt;-<span class="st"> </span><span class="kw">group_by</span>(b4, stage)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true"></a>(b6 &lt;-<span class="st"> </span><span class="kw">summarise</span>(b5, <span class="dt">n=</span><span class="kw">n</span>(), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true"></a>                    <span class="dt">mean_death_yrs =</span> <span class="kw">mean</span>(death_yrs)))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true"></a><span class="co">## `summarise()` ungrouping output (override with `.groups` argument)</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true"></a><span class="co">## # A tibble: 9 x 3</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true"></a><span class="co">##   stage          n mean_death_yrs</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;      &lt;int&gt;          &lt;dbl&gt;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true"></a><span class="co">## 1 Stage I       11           5.63</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true"></a><span class="co">## 2 Stage IA       2           2.72</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true"></a><span class="co">## 3 Stage IIA     24           4.58</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true"></a><span class="co">## 4 Stage IIB     20           5.35</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true"></a><span class="co">## 5 Stage III      1           1.69</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true"></a><span class="co">## 6 Stage IIIA    18           3.65</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true"></a><span class="co">## 7 Stage IIIB     5           2.13</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true"></a><span class="co">## 8 Stage IIIC     5           1.29</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true"></a><span class="co">## 9 Stage IV       9           2.93</span></span></code></pre></div>
+</section>
+<section id="the-output-2" class="slide level2">
+<h2>The output</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>g <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span>b6<span class="op">$</span>mean_death_yrs[<span class="dv">1</span>], <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span>b6<span class="op">$</span>mean_death_yrs[<span class="dv">9</span>], <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="05-slides_files/figure-revealjs/unnamed-chunk-26-1.png" style="display: block; margin: auto auto auto 0;" /></p>
+</section>
+<section id="challenge" class="slide level2">
+<h2>Challenge</h2>
+<ul>
+<li><p>The last <span class="math inline">\(50\)</span> variables give expression values for <span class="math inline">\(50\)</span> genes. When I was <em>wrangling</em> this data into a <span class="math inline">\({\tt tibble}\)</span>, I just used the gene name.</p></li>
+<li><p>Arguably, it would have been better to us variables names of the form <span class="math inline">\({\tt Gene.ANIN, Gene.FOXC1, Gene.CDH3,}\)</span> etc.</p></li>
+<li><p>Why? Because this clearly marks these variables as different than the first <span class="math inline">\(29\)</span> variables which are not gene expression.</p></li>
+<li><p>If I wanted to add or delete these variables with <span class="math inline">\({\tt select()}\)</span>, I could have used something like the <span class="math inline">\({\tt starts\_with()}\)</span> function.</p></li>
+<li><p>Create a <span class="math inline">\({\tt tibble}\)</span> called <span class="math inline">\({\tt pure\_expression}\)</span> that contains only the <span class="math inline">\({\tt participant}\)</span> variables, and the expression of all <span class="math inline">\(50\)</span> genes, after changing the gene names as discussed above.</p></li>
+</ul>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of Reflection</h2>
+<ul>
+<li><p>What advantages or disadvantages are there between traditional spreadsheets and these types of transformations in <span class="math inline">\({\tt R}\)</span>?</p></li>
+<li><p>How does the Transform <span class="math inline">\(\rightarrow\)</span> Visualize <span class="math inline">\(\rightarrow\)</span> Model cycle relate to Simpson’s paradox?</p></li>
+<li><p>In the slids above, we focused on removing observations (rows) to reduce the heterogeneity in our dataset. It might be easier to see interesting patterns when technical and nuisance biological variability is reduced. What are the potential downsides of reducing the number of observations?</p></li>
+<li><p>Although data scientists speak about the Transform <span class="math inline">\(\rightarrow\)</span> Visualize <span class="math inline">\(\rightarrow\)</span> Model cycle, what similarities and differences do you see between this cycle and what you experience as a bench scientist?</p></li>
+</ul>
+</section>
+<section id="biol480" class="slide level2">
+<h2>BIOL480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="05-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="05-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '05-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '05-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '05-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '05-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '05-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

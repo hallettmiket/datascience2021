@@ -1,0 +1,141 @@
+---
+title: "Deep learning: proliferative index of a cancer cell with microscopy"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+data_path = "~/data"
+
+```
+
+
+## Goal today
+
+- Show a few examples of deep learning in different domains
+
+- Explore a little bit about how it works
+
+- Show an example of supervised learning using microscopy and breast cancer cell lines
+
+## Examples
+
+- These systems learn a task without being given implicit instructions. This is an unsupervised approach.
+
+- [Learning to drive](https://www.youtube.com/watch?v=wL7tSgUpy8w)
+
+
+- [Learning to converse](https://www.youtube.com/watch?v=lXUQ-DdSDoE)
+
+- [Hide and Seek - Reinforcement learning](https://www.youtube.com/watch?v=Lu56xVlZ40M)
+
+- [DeepMind versus Atari games](https://www.youtube.com/watch?v=dJ4rWhpAGFI)
+
+## Convolution neural networks (CNNs)
+  
+- There is considerable high quality material out there covering the majority of subjects related to deep learning. 
+
+
+- I highly recmomend [fastai](https://course.fast.ai/videos/?lesson=1), an excellent accessible course from UCSF that does not require sophisticated mathematis nor computing power.
+
+  - Lecture 1, 23mins Jupyter (R Notebook), Python (R), PyTorch (Keras)
+  
+  - Lecture 2, 22-28mins, Transfer learning
+
+  - Lecture 2, 1hr18mins, Data wrangling for deep image analysis
+
+  - Lecture 2  1hr20mins and start of Lecture 3, Supervised learning
+
+  - Lecture 5, Ethics of deep learning
+ 
+- There are also many mini-lectures on different topics that are quite accessible.
+
+- Here is one on [Convolution Neural Networks (CNNs)](https://www.youtube.com/watch?v=YRhxdVk_sIs) which is the topic for today.
+
+## Transfer learning
+
+  - [Finding gold with Siraj](https://www.youtube.com/watch?v=Ui1KbmutX0k)
+  
+  - [OpenAI (Vision models)](https://microscope.openai.com/models) 
+
+## Image to Image Translation. 
+
+- Consider microscopy for example. 
+
+  - [Cross-model interpolations](https://twitter.com/arfafax/status/1296084902928986113)
+
+  - [Supervised Image-to-Image Translation](https://www.youtube.com/watch?v=nlyXoX2aIek)
+
+  - [Winter to Summer](https://www.vice.com/en/article/xwvz9a/watch-an-algorithm-turn-winter-into-summer-in-any-video-image-to-image-translation)
+
+  -[Image to Image Translation](https://www.youtube.com/watch?v=ab64TWzWn40&feature=emb_rel_end)
+
+  -[AI assisted fake porn](https://www.vice.com/en/article/gydydm/gal-gadot-fake-ai-porn)
+
+
+  
+## Fun examples
+
+- The following are interesting fun examples that might appear at first irrelevant to biology or science in general. However that is not likely the case. The basic techniques underlying each could be applied in a braod spectrum of life science domains.
+
+- [Jukebox for music](https://openai.com/blog/jukebox/)
+
+- [Learning to walk](https://www.youtube.com/watch?v=gn4nRCC9TwQ)
+
+- [If you are a fan of chess...](https://www.youtube.com/watch?v=g0O3QmAhoeA)
+
+
+- [DeepMind versus StarCraft](https://www.youtube.com/watch?v=DMXvkbAtHNY)
+
+
+- [Not perfect](https://www.iflscience.com/technology/ai-camera-ruins-soccar-game-for-fans-after-mistaking-referees-bald-head-for-ball/)
+
+## Some examples in biology
+
+ 
+- [Microscopy](https://www.youtube.com/watch?v=U6ht5fFy06o)
+ 
+- [Radiology](https://www.youtube.com/watch?v=Gigd1rkZTSE)
+ 
+- [McKinney et al. (2020) International evaluation of an AI system for breast cancer screening. Nature](https://www.nature.com/articles/s41586-019-1799-6)
+
+
+## Several movies/documentaries of interest
+
+ - [AlphaGo, the movie](https://www.youtube.com/watch?v=WXuK6gekU1Y)
+ 
+ - [Do you trust this computer?](https://www.youtube.com/watch?v=aV_IZye14vs)
+ 
+
+
+## BIOL 480
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

@@ -1,0 +1,22 @@
+---
+title: "Introduction and orientation"
+date: "2020-09-10"
+---
+
+# Slides
+
+[View lectures slide in your browser (html)](/slides/00-slides.html)
+^[They will also be made available  to you in RStudio Cloud for direct viewing.]
+
+# Action items
+
+- If you haven't doing the reading, please do so and address the action items at the bottom.
+This primarily involves sending us your gmail account and establishing accounts with some 
+of the software we will use.
+
+- Prepare for Lecture 02 (readings + videos)
+
+# Points of reflection
+
+- What preconceived ideas do you have about computers, mathematics and statistics? What preconceived ideas do you have about the use of computation, statistics and mathematics in biology?  
+

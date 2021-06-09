@@ -1,0 +1,25 @@
+---
+title: "Discovery breast cancer subtypes: unsupervised analysis"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+[R for Data Science, Chapter 23](https://r4ds.had.co.nz/model-basics.html)
+
+# Recommended Reading
+
+
+
+# Action items  
+
+- Assignment #4
+
+- Project
+
+
+

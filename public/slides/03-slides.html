@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="M Hallett" />
+  <title>Visualizing breast cancer transcriptomes</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="03-slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="03-slides_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="solar.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="03-slides_files/header-attrs-2.3/header-attrs.js"></script>
+    <link href="03-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="03-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Visualizing breast cancer transcriptomes</h1>
+    <h2 class="author">M Hallett</h2>
+    <h3 class="date">21/07/2020</h3>
+</section>
+
+<section id="outline-for-today" class="slide level2">
+<h2>Outline for today</h2>
+<ul>
+<li>A little bit about breast cancer
+<ul>
+<li>Clinical perspective</li>
+<li>Molecular perspective</li>
+</ul></li>
+<li>Transcriptomes</li>
+<li>Sequencing by Synthesis (Illumina)</li>
+<li>The Cancer Genome Atlas (TCGA)</li>
+<li>A small TCGA dataset for us to explore</li>
+<li>Exploration via visualization</li>
+</ul>
+</section>
+<section id="clinical-perspective-of-breast-cancer-bc" class="slide level2">
+<h2>Clinical perspective of breast cancer (BC)</h2>
+<ul>
+<li>Most commonly diagnosed cancer among Canadian women</li>
+<li>25% of all cancers in women (1 in 9 women will have BC in their life time)</li>
+<li>2nd leading cause of death from cancer.</li>
+<li>In Canada 2020, ~27,400 new breast cancer cases</li>
+<li>and 5,100 breast cancer deaths</li>
+<li>Men are also susceptible (not common)</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/bc_pie.png" width="350"/>
+</p>
+</figure>
+</section>
+<section id="ductal-breast-carcinoma" class="slide level2">
+<h2>Ductal breast carcinoma</h2>
+<p>Ductal in situ and invasive breast carcinoma begins in the cells of the duct.</p>
+<figure class="image">
+<p float="left">
+<img src="images/milk.png" width="290"/> <img src="images/duct.png" width="327"/>
+</p>
+<figcaption>
+<small>Left: From Associate Degree Nursing Physiology Review (2020). Right: From Muschler J, Streuli CH (2010) Cold Spring Harb Perspect Biol. </small>
+</figcaption>
+</figure>
+</section>
+<section id="tumor-progression" class="slide level2">
+<h2>Tumor progression</h2>
+<figure class="image">
+<p float="center">
+<img src="images/tumor_progression.png" width="700"/>
+</p>
+<figcaption>
+<small> <a href="https://www.saintjohnscancer.org/breast/breast-cancer/types-of-breast-cancer/">From St-John’s Cancer</a> </small>
+</figcaption>
+</figure>
+</section>
+<section id="ductal-breast-cancer" class="slide level2">
+<h2>Ductal Breast Cancer</h2>
+<ul>
+<li>Clinical oncologists consider many types of information when deciding the therapeutic avenue for a breast cancer patient.</li>
+<li>Tumour, Node, Metastasis (TNM) staging systems describe the extent of the breast cancer in the patient.</li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/tnm.png" width="700"/>
+</p>
+</figure>
+<ul>
+<li>There are many additional ways that clinical and molecular oncologists evaluate a breast tumor.</li>
+<li>Examples: Tumor grade, proliferative index, estrogen receptor status, progesterone receptor status, HER2 amplification.</li>
+<li>This information is combined with patient attributes including age, lifestyle, BMI, genotype, history etc.</li>
+</ul>
+</section>
+<section id="immunohistochemistry-ihc-for-key-breast-cancer-proteins" class="slide level2">
+<h2>Immunohistochemistry (IHC) for key breast cancer proteins</h2>
+<p>Estrogen (ER) and Progesterone (PR) Receptors, and Human Epidermal Growth Factor (HER2)</p>
+<figure class="image">
+<p float="center">
+<img src="images/ihc.jpg" width="250"/>
+</p>
+<figcaption>
+<small> From Allot et al. (2016) Cancer Epidemiology, Biomarkers and Prevention. </small>
+</figcaption>
+</figure>
+<ul>
+<li><p>The expression of these three proteins has been used for <span class="math inline">\(30\)</span> years to classify breast tumors into subtypes.</p></li>
+<li><p>Tumors of the three subtypes have very different clinical and molecular characteristics.</p></li>
+<li><p>Each subtype has different treatments. For example, Tamoxifen for ER+ tumors and Herceptin for HER2+ tumors.</p></li>
+</ul>
+<p>-<small>In clincial settings, HER2 status is usually measured by Flourescence In Situ Hybridization (FISH).</small></p>
+</section>
+<section id="subtypes-of-breast-cancer" class="slide level2">
+<h2>Subtypes of breast cancer</h2>
+<p>High-throughput profiling of the transcripts (gene expression profling or “transcriptomics”) has provided a more robust detailed perspective on BC hetergeniety.</p>
+<figure class="image">
+<p float="center">
+<img src="images/subtypes.png" width="450"/>
+</p>
+<figcaption>
+<small> From Ruangpratheep 2011, Bombonati, Sgroi 2011, Lim et al. 2009, Prat, Perou 2009) </small>
+</figcaption>
+</figure>
+<ul>
+<li>It is not just ER, PR and HER2. Many genes (and gene products) combine to determine the molecular subtype of a tumor.</li>
+</ul>
+</section>
+<section id="transcriptomics" class="slide level2">
+<h2>Transcriptomics?</h2>
+<ul>
+<li><p><a href="https://www.icloud.com/keynote/0n2tSKAVc2chal9Wt8cj-uDiQ#Lecture01%5FRNAseqIntro">Transcriptomics</a> Excellent set of slides describing sequencing technologies and trends. Includes nice graphics about Illumina technology. [From D Beiting, UPenn]</p></li>
+<li><p>Let’s take a brief look at some of these.</p></li>
+</ul>
+</section>
+<section id="sequencing-by-synthesis-illumina-technologies" class="slide level2">
+<h2>Sequencing by Synthesis (Illumina technologies)</h2>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=CZeN-IgjYCo">Sequencing by Synthesis</a> I would recommend starting with this one. It is quite high level. [From Henrik’s World]</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=mI0Fo9kaWqo">Sequencing by Synthesis II</a> This video is more detailed, providing my background information on the underlying chemistry. [Eric Chow, UCSF]</p></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/seq_cost.png" width="600"/>
+</p>
+</figure>
+</section>
+<section id="the-cancer-genome-atlas-tcga" class="slide level2">
+<h2>The Cancer Genome Atlas (TCGA)</h2>
+<ul>
+<li>TCGA is a USA project across several institutes (incl The National Cancer Institute) that has profiled <span class="math inline">\(&gt; 20,000\)</span> tumors (with matched normal) across <span class="math inline">\(33\)</span> different cancer types.</li>
+</ul>
+<ul>
+<li class="fragment">Each tumor/sample has a rich array of clinical, pathological and lifestyle information.</li>
+<li class="fragment">Each tumor/sample is profiled by different technologies including genomic (DNA sequencing), epigenomic (methylation profiles), transcriptomic (gene expression), and proteomic (protein expression) data for each tumor sample.</li>
+<li class="fragment">The data is publicly available and can be used by researchers to explore cancer.</li>
+<li class="fragment">I would recommend you read a little bit about the TCGA project <a href="https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga">here</a></li>
+</ul>
+<figure class="image">
+<p float="center">
+<img src="images/tcga.png" width="700"/>
+</p>
+</figure>
+</section>
+<section id="a-minaturized-tcga-bc-dataset" class="slide level2">
+<h2>A minaturized TCGA BC dataset</h2>
+<figure class="image">
+<p float="center">
+<img src="images/tcga-brca.png" width="600"/>
+</p>
+</figure>
+<figure class="image">
+<p float="center">
+<img src="images/omics.png" width = 500"/>
+</p>
+</figure>
+<ul>
+<li><p>A lot of data of different types. Just transcriptome and (some) clinico-pathological data for now.</p></li>
+<li><p>But you can go back and get more anytime you would like from the <a href="https://portal.gdc.cancer.gov/">GDC</a></p></li>
+</ul>
+</section>
+<section id="ok-here-we-go." class="slide level2">
+<h2>Ok, here we go.</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)   </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">## ── Attaching packages ────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">## ✓ tibble  3.0.3     ✓ dplyr   1.0.1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">## ✓ tidyr   1.1.1     ✓ stringr 1.4.0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">## ✓ readr   1.3.1     ✓ forcats 0.5.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">## ── Conflicts ───────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">## x dplyr::filter() masks stats::filter()</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">## x dplyr::lag()    masks stats::lag()</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"># this is an R package that contains ggplot graphing tools </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">#  amongst other things</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;~/data/GDC/TCGA_BRCA/small_brca.Rdata&quot;</span>) <span class="co"># load the TCGA dataset for breast cancer </span></span></code></pre></div>
+<p>Find <span class="math inline">\({\tt small\_brca}\)</span> object in the environment.</p>
+</section>
+<section id="the-tt-view-function" class="slide level2">
+<h2>The <span class="math inline">\({\tt View()}\)</span> function</h2>
+<p>A tibble is a rectangular collection of variables (in the columns) and observations (in the rows).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">dim</span>(small_brca); <span class="kw">nrow</span>(small_brca); <span class="kw">ncol</span>(small_brca)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">## [1] 1215   79</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">## [1] 1215</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">## [1] 79</span></span></code></pre></div>
+<p>Here I’ve just selected <span class="math inline">\(50\)</span> well studied breast cancer genes (of <span class="math inline">\(&gt;23,000\)</span> gene total).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">colnames</span>(small_brca)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">##  [1] &quot;id&quot;                             &quot;tss&quot;                           </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">##  [3] &quot;participant&quot;                    &quot;barcode&quot;                       </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">##  [5] &quot;bcr_patient_uuid&quot;               &quot;form_completion_date&quot;          </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">##  [7] &quot;birth_days_to&quot;                  &quot;gender&quot;                        </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">##  [9] &quot;menopause_status&quot;               &quot;race&quot;                          </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">## [11] &quot;ethnicity&quot;                      &quot;tumor_status&quot;                  </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">## [13] &quot;vital_status&quot;                   &quot;death_days_to&quot;                 </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">## [15] &quot;histologic_diagnosis_other&quot;     &quot;initial_pathologic_dx_year&quot;    </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">## [17] &quot;age_at_diagnosis&quot;               &quot;micromet_detection_by_ihc&quot;     </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">## [19] &quot;lymph_nodes_examined_count&quot;     &quot;ajcc_pathologic_tumor_stage&quot;   </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">## [21] &quot;er_status_by_ihc&quot;               &quot;er_status_ihc_Percent_Positive&quot;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">## [23] &quot;pr_status_by_ihc&quot;               &quot;pr_status_ihc_percent_positive&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">## [25] &quot;her2_fish_status&quot;               &quot;her2_copy_number&quot;              </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">## [27] &quot;histological_type&quot;              &quot;metastatic_tumor_indicator&quot;    </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">## [29] &quot;tumor&quot;                          &quot;ANLN&quot;                          </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">## [31] &quot;FOXC1&quot;                          &quot;CDH3&quot;                          </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">## [33] &quot;FGFR4&quot;                          &quot;UBE2T&quot;                         </span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">## [35] &quot;NDC80&quot;                          &quot;PGR&quot;                           </span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">## [37] &quot;BIRC5&quot;                          &quot;ORC6&quot;                          </span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">## [39] &quot;ESR1&quot;                           &quot;PHGDH&quot;                         </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">## [41] &quot;PTTG1&quot;                          &quot;MELK&quot;                          </span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">## [43] &quot;NAT1&quot;                           &quot;CXXC5&quot;                         </span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">## [45] &quot;BCL2&quot;                           &quot;RRM2&quot;                          </span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="co">## [47] &quot;GPR160&quot;                         &quot;EXO1&quot;                          </span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co">## [49] &quot;UBE2C&quot;                          &quot;TYMS&quot;                          </span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">## [51] &quot;KRT5&quot;                           &quot;KRT14&quot;                         </span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">## [53] &quot;MAPT&quot;                           &quot;CDC6&quot;                          </span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="co">## [55] &quot;MMP11&quot;                          &quot;MYBL2&quot;                         </span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="co">## [57] &quot;SFRP1&quot;                          &quot;CCNE1&quot;                         </span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">## [59] &quot;BLVRA&quot;                          &quot;BAG1&quot;                          </span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="co">## [61] &quot;MLPH&quot;                           &quot;CDC20&quot;                         </span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="co">## [63] &quot;CENPF&quot;                          &quot;MIA&quot;                           </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a><span class="co">## [65] &quot;KRT17&quot;                          &quot;FOXA1&quot;                         </span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a><span class="co">## [67] &quot;ACTR3B&quot;                         &quot;CCNB1&quot;                         </span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="co">## [69] &quot;MDM2&quot;                           &quot;MYC&quot;                           </span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="co">## [71] &quot;CEP55&quot;                          &quot;SLC39A6&quot;                       </span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a><span class="co">## [73] &quot;ERBB2&quot;                          &quot;GRB7&quot;                          </span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="co">## [75] &quot;KIF2C&quot;                          &quot;NUF2&quot;                          </span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a><span class="co">## [77] &quot;EGFR&quot;                           &quot;MKI67&quot;                         </span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a><span class="co">## [79] &quot;TMEM45B&quot;</span></span></code></pre></div>
+</section>
+<section id="first-3-samples-of-1215" class="slide level2">
+<h2>First 3 samples (of 1215)</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 4</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">##   id                           tss   participant barcode     </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                        &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;       </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">## 1 TCGA-E9-A1NF-01A-11R-A14D-07 E9    A1NF        TCGA-E9-A1NF</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">## 2 TCGA-D8-A27M-01A-11R-A16F-07 D8    A27M        TCGA-D8-A27M</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">## 3 TCGA-BH-A0GZ-01A-11R-A056-07 BH    A0GZ        TCGA-BH-A0GZ</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">8</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 4</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">##   bcr_patient_uuid                     form_completion_date birth_days_to gender</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;                                &lt;chr&gt;                &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">## 1 a8b1f6e7-2bcf-460d-b1c6-1792a9801119 2011-6-23            -21981        FEMALE</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">## 2 ae65baeb-6b78-492a-8c63-bb7e93e83dc2 2011-7-17            -21910        FEMALE</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">## 3 27dfb9d4-3a2c-44bc-9acf-8f638d3f3004 2010-11-10           -22714        FEMALE</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">print</span>(small_brca[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">13</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">## # A tibble: 3 x 5</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">##   menopause_status race  ethnicity              tumor_status vital_status</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">##   &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;                  &lt;chr&gt;        &lt;chr&gt;       </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">## 1 Post             WHITE NOT HISPANIC OR LATINO TUMOR FREE   Alive       </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">## 2 Post             WHITE NOT HISPANIC OR LATINO TUMOR FREE   Alive       </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">## 3 Post             WHITE [Not Available]        TUMOR FREE   Alive</span></span></code></pre></div>
+</section>
+<section id="scatterplot" class="slide level2">
+<h2>Scatterplot</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2))</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /></p>
+<ul>
+<li>ERBB2 is the official gene name for HER2.</li>
+<li>The <span class="math inline">\({\tt ggplot()}\)</span> function is where it all begins. Here we specify the tibble that stores the data we are going to use.</li>
+<li>We add layers to the plot using the + operator. A <span class="math inline">\({\tt geom}\)</span> species the type of geometric object. - Here we specify points for a scatterplot.</li>
+</ul>
+</section>
+<section id="scatterplot-1" class="slide level2">
+<h2>Scatterplot</h2>
+<p>Ok, I don’t like the black and the points are too big.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>,  <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /></p>
+<ul>
+<li><span class="math inline">\({\tt size}\)</span> is in mm.</li>
+<li>Want some colors? Go <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour">here</a> or use Hex <a href="https://www.google.com/search?rlz=1C5CHFA_enCA892CA893&amp;sxsrf=ALeKk03E_3TwFW5hGqlW1oarFO2ZBcWfPA%3A1597095361721&amp;ei=wb0xX8XAK6SV_QbtiaCQCg&amp;q=%23ffffff&amp;oq=%23ffffff&amp;gs_lcp=CgZwc3ktYWIQAzoECCMQJ1CEPViEPWCBQGgBcAB4AIAB9gKIAdoIkgEDMy0zmAEAoAEBqgEHZ3dzLXdpesABAQ&amp;sclient=psy-ab&amp;ved=0ahUKEwiFpdTty5HrAhWkSt8KHe0ECKIQ4dUDCAw&amp;uact=5">here</a></li>
+</ul>
+</section>
+<section id="aesthetic-mappings" class="slide level2">
+<h2>Aesthetic mappings</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1, <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p>Some of our samples are tumors and some are <em>matched normal</em>. Perhaps not surprisingly, the normals have low expression of both oncogenes.</p></li>
+<li><p>Note that the aesthetic (<span class="math inline">\({\tt aes}\)</span>) contains a third argument <span class="math inline">\({\tt color}\)</span> that uses the <span class="math inline">\({\tt tumor}\)</span> attribute/column. Careful, note that the color is <strong>inside</strong> the <span class="math inline">\({\tt aes}\)</span>!</p></li>
+</ul>
+</section>
+<section id="aesthetic-mappings-race" class="slide level2">
+<h2>Aesthetic mappings: Race</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>                           <span class="dt">color =</span> race), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="aesthetic-mappings-tnm-staging" class="slide level2">
+<h2>Aesthetic mappings: TNM staging</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>                          <span class="dt">shape =</span> tumor, <span class="dt">color =</span> ajcc_pathologic_tumor_stage), <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /></p>
+<ul>
+<li>A bit noisey</li>
+</ul>
+</section>
+<section id="facets-tnm-staging-revisited" class="slide level2">
+<h2>Facets: TNM staging revisited</h2>
+<ul>
+<li>Facets partition the data (ESR1 vs HER2 expression) according to a third attribute (tumor stage). Notice the tilde (<span class="math inline">\(\sim\)</span>). This species a <em>formula</em> (more about this later).</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>ajcc_pathologic_tumor_stage, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="facets-histological-type" class="slide level2">
+<h2>Facets: Histological Type</h2>
+<ul>
+<li>I’m not too convinced in a relationship between ER, HER2 and TNM staging. What about histological type?</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ESR1,  <span class="dt">y =</span> ERBB2, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>histological_type, <span class="dt">nrow =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="geometric-objects" class="slide level2">
+<h2>Geometric objects</h2>
+<ul>
+<li>GRB7 and ERBB2 (aka HER2) show correlation in their expression. This makes sense because high expression of HER2 in BC is very often due to amplification of the chromosomal region that contains HER2. In some patients, this genomic locus is amplified (duplicated) 30-50x. GRB7 lies very close to HER2 in this so-called <em>amplicon</em>.</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="smoothing" class="slide level2">
+<h2>Smoothing</h2>
+<ul>
+<li>Often we would just like to capture the essence of the relationship. Here for example that could be represented by a curve and a confidence interval <span class="math inline">\({\tt geom\_smooth}\)</span> rather than the actual points <span class="math inline">\({\tt geom\_point}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="smoothing-1" class="slide level2">
+<h2>Smoothing</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">linetype =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="smoothing-2" class="slide level2">
+<h2>Smoothing</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">color =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> ERBB2,  <span class="dt">y =</span> GRB7, <span class="dt">linetype =</span> tumor), <span class="dt">size =</span> <span class="dv">1</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="co">## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</span></span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /></p>
+</section>
+<section id="statistical-transformations" class="slide level2">
+<h2>Statistical transformations</h2>
+<ul>
+<li>Lymph node status has long been used by clinicians to measure how far a tumor has progressed. They count the number of positive lymph nodes and pay particular attention to the so-called <em>sentinal</em> lymph node (the one closest to the tumor).</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>lymph_nodes_examined_count))</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /></p>
+<ul>
+<li>It is possible to reorder the x-axis but not for today….</li>
+</ul>
+</section>
+<section id="statistical-transformations-are-beautiful" class="slide level2">
+<h2>Statistical transformations are beautiful</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> small_brca) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>lymph_nodes_examined_count, <span class="dt">fill =</span> ajcc_pathologic_tumor_stage))</span></code></pre></div>
+<p><img src="03-slides_files/figure-revealjs/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Notice how low stages “disappear” in patients with many lymph nodes.</li>
+</ul>
+</section>
+<section id="ggplot2-a-grammar-for-graphs" class="slide level2">
+<h2>ggplot2: a grammar for graphs</h2>
+<ul>
+<li>Perhaps you can begin to see the power of programming.</li>
+<li>ggplot2, like many R packages, offer a type of grammar where you build whatever you imagine</li>
+<li>This is how I operate:
+<ul>
+<li><a href="https://www.r-graph-gallery.com/">R Graph Catalog</a>: R code for 124 ggplot graphs..</li>
+<li>See all <a href="/resources">Our Resource Page</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="points-of-reflection" class="slide level2">
+<h2>Points of Reflection</h2>
+<ul>
+<li>What limitations would transcriptome based studies face?</li>
+<li>What privacy issues might arise in -omic studies? Specifically, consider a transcriptome based study versus a genomic DNA-based study.</li>
+<li>Most, if not all, Human tissue is comprised of many different cell types. For example, a breast tumor will include epithelial cells, fibroblasts, immune cells of different kinds, adipocytes, and cells associated with the vasculature and lymphatics system. What kinds of affects could this happen on transcriptional profiles like those found in TCGA?</li>
+<li>Challenge: Find where ERBB2 and GRB7 lie on the human genome? What database would you used? What other genes are in that region?</li>
+<li>What do lymph nodes do? Why might they be an important indicator in BC progression?</li>
+</ul>
+</section>
+<section id="biol480" class="slide level2">
+<h2>BIOL480</h2>
+<p>© M Hallett, 2020 Concordia University</p>
+<figure>
+<img data-src="images/apple-touch-icon-114x114.png" alt="" /><figcaption>Computational Biology Concordia</figcaption>
+</figure>
+</section>
+    </div>
+  </div>
+
+  <script src="03-slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="03-slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '03-slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '03-slides_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: '03-slides_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '03-slides_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: '03-slides_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

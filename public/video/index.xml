@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Videos on Bioinformatics</title>
+    <link>/video/</link>
+    <description>Recent content in Videos on Bioinformatics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/video/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bioinformatics repositories: the NCBI and other tools</title>
+      <link>/video/07-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/07-video/</guid>
+      <description>Lecture 07 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Computational challenges of single cell profiling</title>
+      <link>/video/22-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/22-video/</guid>
+      <description>Lecture 22 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
+      <link>/video/21-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/21-video/</guid>
+      <description>Lecture 21 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Discovering subtypes in breast cancer: unsupervised analysis</title>
+      <link>/video/18-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/18-video/</guid>
+      <description>Lecture 18 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Discovery breast cancer subtypes: unsupervised analysis</title>
+      <link>/video/19-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/19-video/</guid>
+      <description>Lecture 19 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Exploratory data analysis of breast cancer transcriptomes</title>
+      <link>/video/06-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/06-video/</guid>
+      <description>Lecture 06 at Youtube: Exploratory data analysis of breast cancer transcriptomes</description>
+    </item>
+    
+    <item>
+      <title>Exploring microbial diversity across our oceans</title>
+      <link>/video/10-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/10-video/</guid>
+      <description>Lecture 10 at Youtube
+Lab October 20th - Visualization of Tara Oceans</description>
+    </item>
+    
+    <item>
+      <title>Gene finding continued</title>
+      <link>/video/15-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/15-video/</guid>
+      <description>Lecture 15 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Gene finding with Hidden Markov Models</title>
+      <link>/video/14-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/14-video/</guid>
+      <description>Lecture 14 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Genome annotations</title>
+      <link>/video/12-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/12-video/</guid>
+      <description>Lecture 12 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>How to wrangle with marine microbes</title>
+      <link>/video/08-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/08-video/</guid>
+      <description>Lecture 08 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/video/00-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/00-video/</guid>
+      <description>Lecture 00 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>IT for the Life Sciences</title>
+      <link>/video/01-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/01-video/</guid>
+      <description>Lecture 01 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Models of sequence evolution</title>
+      <link>/video/16-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/16-video/</guid>
+      <description>Lecture 16 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Modern Computing Paradigms</title>
+      <link>/video/02-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/02-video/</guid>
+      <description>Lecture 02 Part 1 at Youtube: Computing Paradigms
+Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
+    </item>
+    
+    <item>
+      <title>Organizing the Tara Oceans data</title>
+      <link>/video/09-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/09-video/</guid>
+      <description>Lecture 09 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Phylogenies and alignments</title>
+      <link>/video/17-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/17-video/</guid>
+      <description>Lecture 17 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
+      <link>/video/20-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/20-video/</guid>
+      <description>Lecture 20 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Representing biological data in R</title>
+      <link>/video/04-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/04-video/</guid>
+      <description>Lecture 04 at Youtube: Representing data in R</description>
+    </item>
+    
+    <item>
+      <title>Representing genomes and their annotations</title>
+      <link>/video/11-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/11-video/</guid>
+      <description>Lecture 11 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Reproducibility in life science research</title>
+      <link>/video/23-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/23-video/</guid>
+      <description>Lecture 23 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Transcription factor binding sites in Baker’s yeast</title>
+      <link>/video/13-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/13-video/</guid>
+      <description>Lecture 13 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Transformations of breast cancer transcriptional cohorts</title>
+      <link>/video/05-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/05-video/</guid>
+      <description>Lecture 04 at Youtube: Transforming breast cancer transcriptional cohorts</description>
+    </item>
+    
+    <item>
+      <title>Visualizaing Breast Cancer Transcriptomes</title>
+      <link>/video/03-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/03-video/</guid>
+      <description>Lecture 03 at Youtube: Breast Cancer Transcriptomes</description>
+    </item>
+    
+  </channel>
+</rss>

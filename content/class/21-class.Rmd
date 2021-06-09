@@ -1,0 +1,31 @@
+---
+title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/21-slides.html)
+
+
+
+# Action Items
+
+- Assignment 4
+
+- Project
+
+
+
+# Points of Reflection
+
+- How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
+
+- Does it matter if computer intelligence is or isn't the same time of intelligence we associate with humans? What are the positives and negatives?
+
+- What sort of ethical issues does this all raise?
+

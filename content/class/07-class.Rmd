@@ -1,0 +1,38 @@
+---
+title: "Bioinformatics repositories: the NCBI and other tools"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/07-slides.html)
+
+
+# Action Items
+
+- Assignment #2 will be now available. I would look that over.
+
+
+
+
+
+## Points of Reflection
+
+- What are the pros and cons with simply making your data available through a self-made website? 
+
+- Similarly, what are the pros and cons with an approach of data release at the journal website?
+
+- What ethical issues can you see that could arise when releasing biological data? Can you
+give an example of what types of data would potential violate privacy laws and which types of data
+wouldn't?
+
+- Why are standardized formats perhaps hard to define in the life sciences?
+
+- Suppose I want to store single nucleotide polymorphisms (SNPs)[https://ghr.nlm.nih.gov/primer/genomicresearch/snp] across a cohort of a thousand humans. So each individual will have  perhaps a few that thousand cites (out of 3.7 billion sites in total) in their genome that are different than the other  members of the cohort. How would you store this data? Would you simply store all 1000 genomes in their totality? Would you do something else that saves space? How would you do it? What would happen to you scheme is a new assembly of the human genome was released?
+
+- Suppose you write a paper and you use a specific human gene called X. When your paper was published you referenced gene X and gave its GI and/or accession number in the NCBI. Suppose later the community realized that there was mistake in the sequencing of X and a new version X' is released. What issues arise for the NCBI? Should they remove X from the database? If they do not remove X, what are some issues that could arise? 
+

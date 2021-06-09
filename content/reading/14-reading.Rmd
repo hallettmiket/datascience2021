@@ -1,0 +1,26 @@
+---
+title: "Gene finding with Hidden Markov Models"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Textbook, Chapter 22](https://r4ds.had.co.nz/model-intro.html)
+
+
+
+# Recommended Reading
+
+- [Measures of performance](https://en.wikipedia.org/wiki/Sensitivity_and_specificity#:~:text=In%20medical%20diagnosis%2C%20test%20sensitivity,disease%20(true%20negative%20rate).) Try to understand the basic definitions of accuracy, sensitivity, specificity, true/false positive/negative.
+
+
+- [S4 Object-oriented programming](https://www.cyclismo.org/tutorial/R/s4Classes.html) Try to understand the basics of S3 classes in R.
+
+# Action items  
+
+- Assignment #3
+

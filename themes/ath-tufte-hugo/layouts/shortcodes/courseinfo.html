@@ -1,0 +1,24 @@
+<span class="fake-header">Instructor</span><br>
+<span class="fake-li"><i class="fa fa-user" aria-hidden="true"></i><a href="{{ .Site.Params.instructor.url }}"> {{ .Site.Params.instructor.name }}</a></span><br>
+<span class="fake-li"><i class="fa fa-university" aria-hidden="true"></i> {{ .Site.Params.instructor.office }}</span><br>
+<span class="fake-li"><i class="fa fa-question-circle" aria-hidden="true"></i> {{ .Site.Params.instructor.officehours }}</span><br>
+<span class="fake-li"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ .Site.Params.instructor.email }}"> {{ .Site.Params.instructor.email }}</a></span><br>
+<span class="fake-li"><i class="fa fa-twitter" aria-hidden="true"></i><a href="https://twitter.com/{{ .Site.Params.instructor.twitter }}"> @{{ .Site.Params.instructor.twitter }}</a></span><br>
+<br>
+<span class="fake-header">Course</span><br>
+<span class="fake-li"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ .Site.Params.course.days }}</span><br>
+<span class="fake-li"><i class="fa fa-calendar" aria-hidden="true"></i> {{ .Site.Params.course.dates }}</span><br>
+<span class="fake-li"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ .Site.Params.course.time }}</span><br>
+<span class="fake-li"><i class="fa fa-university" aria-hidden="true"></i><a href="{{ .Site.Params.course.location }}"> Zoom</a></span><br>
+{{ if isset .Site.Params.course "slack" }}<span class="fake-li"><i class="fa fa-slack" aria-hidden="true"></i> <a href="{{ .Site.Params.course.slack }}">Slack</a></span><br>{{ end }}
+<span class="fake-li"><i class="fa fa-github" aria-hidden="true"></i><a href="{{ .Site.Params.course.github }}"> Github repo</a></span><br>
+<span class="fake-li"><i class="fa fa-youtube" aria-hidden="true"></i><a href="{{ .Site.Params.course.youtube }}"> Lectures</a></span><br>
+<span class="fake-li"><i class="fa fa-rebel" aria-hidden="true"></i><a href="{{ .Site.Params.course.rstudiocloud }}"> RStudio Cloud</a></span><br>
+<br>
+<span class="fake-header">Labs</span><br>
+<span class="fake-li"><i class="fa fa-user" aria-hidden="true"></i><a href="{{ .Site.Params.instructor.url }}"> {{ .Site.Params.labs.TA }}</a></span><br>
+<span class="fake-li"><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:{{ .Site.Params.labs.email }}"> {{ .Site.Params.labs.email }}</a></span><br>
+<span class="fake-li"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ .Site.Params.labs.labtime }}</span><br>
+<span class="fake-li"><i class="fa fa-university" aria-hidden="true"></i><a href="{{ .Site.Params.course.location }}"> Zoom</a></span><br>
+<span class="fake-li"><i class="fa fa-question-circle" aria-hidden="true"></i> {{ .Site.Params.labs.officehours }}</span><br>
+

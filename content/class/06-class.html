@@ -1,0 +1,43 @@
+---
+title: "Exploratory data analysis of breast cancer transcriptomes"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+<!-- BLOGDOWN-HEAD -->
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+ 
+<!-- /BLOGDOWN-HEAD -->
+
+<h2>Contents</h2>
+<div id="TOC">
+<ul>
+<li><a href="#slides">Slides</a></li>
+<li><a href="#action-items">Action Items</a></li>
+</ul>
+</div>
+
+<h3 id="slides">Slides</h3>
+<ul>
+<li><a href="/slides/06-slides.html">View lectures slide in your browser (html)</a></li>
+</ul>
+<h3 id="action-items">Action Items</h3>
+<ul>
+<li>Today’s material is the final material included in Midterm #1.</li>
+</ul>
+<h4 id="challenge">Challenge</h4>
+<h4 id="points-of-reflection">Points of Reflection</h4>
+<ul>
+<li><p>Many of us are familiar with representing data in spreadsheets (eg Excel of Google Sheets). Describe the fundamental differences between the two dimensional table of spreadsheets and the tibble.</p></li>
+<li><p>With respect to the discussion at the beginning of Chapter 6 in the textbook, what are some fundamental differences between an academic course environment where you are given a dataset and specific questions to complete on an assignment versus data science in research or idustrial settings?</p></li>
+<li><p>Go through the <span class="math inline">\({\tt small\_brca}\)</span> object and figure out whether each variable is categorical, ordered categorical or continuous.</p></li>
+<li><p>Temperature does have a lower bound, if not also an upper bound in a physics sense. So it has a finite range. Why is it still considered a continuous variable?</p></li>
+<li><p>What about the expression of a gene such as <span class="math inline">\({\tt ESR1}\)</span>? Argue for or against it being a continuous variable. Why is it best modelled as a continuous variable? What properties call in to question it being a continuous variable?</p></li>
+<li><p>Make sure you understand how and why the <span class="math inline">\({\tt brca}\)</span> tibble was melted to <span class="math inline">\({\tt lava}\)</span>. It’s a bit tricky.</p></li>
+<li><p>What would be the advantage of using UBE2T <strong>and</strong> ANLN simultaneously to predict tissue type (tumor vs normal) rather than either one alone?</p></li>
+<li><p>So transformations and visualization allow us to identify genes etc. that may be useful for predicting clinical endpoints. What is meant by a model here and why is it needed? What is the purpose of the model?</p></li>
+<li><p>Why is it a data science cycle and simply not Transform, Visualize, Model, Beer-o-clock?</p></li>
+</ul>

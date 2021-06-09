@@ -1,0 +1,26 @@
+---
+title: "Exploring microbial diversity across our oceans"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Sample Variance](https://www.youtube.com/watch?v=p6IBmueHHdw)
+
+- [Chapters 12, 13, 15](https://r4ds.had.co.nz/tidy-data.html): R for Data 
+If you haven't completed them.
+
+# Recommended Reading
+
+
+# Action items  
+
+
+- Assignment #2 
+
+
+

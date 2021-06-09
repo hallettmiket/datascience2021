@@ -1,0 +1,56 @@
+---
+title: "Bioinformatics repositories: the NCBI and other tools"
+author: "M Hallett"
+date: "21/07/2020"
+header-includes:
+   - \usepackage{bbm}
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: false
+    theme: black
+    highlight: kate
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Plan for Today
+
+- Start into bioinformatics
+
+- Definition of bioinformatics and how it interfaces with computational biology and data science
+
+- A framework for bioinformatics 
+
+- GeneCards
+ 
+- UCSC Genome Browser
+
+- Saccharomyces Genome Databases (SGD)
+
+- NCBI
+
+- Using browser and drawing on white board
+
+## BIOL480 
+
+&copy; M Hallett, 2020 Concordia University
+
+![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+
+

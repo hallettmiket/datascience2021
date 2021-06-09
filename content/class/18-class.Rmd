@@ -1,0 +1,27 @@
+---
+title: "Discovering subtypes in breast cancer: unsupervised analysis"
+date: "2020-07-20"
+output:
+  blogdown::html_page:
+    template: ../../pandoc/toc-title_html.template
+    toc: true
+---
+
+# Slides
+
+- [View lectures slide in your browser (html)](/slides/18-slides.html)
+
+
+
+# Action Items
+
+- Assignment 4
+
+- Complete the dynamic programming
+
+
+# Points of Reflection
+
+- Consider all the factors that went into choosing between box 1 and box 0 in the example of supervised learning (shapes and colors example). 
+
+- Consider again the iris example and make sure you understand what is meant by the model $M$.

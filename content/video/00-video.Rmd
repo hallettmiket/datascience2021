@@ -1,0 +1,13 @@
+---
+title: "Introduction and orientation"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 00 at Youtube](https://youtu.be/Md7QhHd1PHc) 
+
+
+
+

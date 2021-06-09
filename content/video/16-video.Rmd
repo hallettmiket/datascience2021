@@ -1,0 +1,14 @@
+---
+title: "Models of sequence evolution"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+[Lecture 16 at Youtube](https://youtu.be/usMVjPZZj7s)
+
+
+
+
+

@@ -1,0 +1,33 @@
+---
+title: "Visualizing breast cancer transcriptomes"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+---
+
+
+
+# Required
+
+- [Chapter 3 R for Data Science: Introduction](https://r4ds.had.co.nz/data-visualisation.html)
+
+- [Sequencing by Synthesis](https://www.youtube.com/watch?v=CZeN-IgjYCo)
+
+- [Sequencing by Synthesis (more background including DNA chemistry)](https://www.youtube.com/watch?v=mI0Fo9kaWqo)
+
+# Recommended
+
+- [Transcriptomics](https://www.icloud.com/keynote/0n2tSKAVc2chal9Wt8cj-uDiQ#Lecture01%5FRNAseqIntro) Excellent set of slides describing sequencing technologies and trends. Includes nice grpahics about Illumina technology. [From D Beiting, UPenn]
+
+- History of Sequencing and Illumina's Sequencing by Synthesis<iframe title="vimeo-player" src="https://player.vimeo.com/video/408044306" width="640" height="267" frameborder="0" allowfullscreen></iframe>[From D Beiting, UPenn]
+
+# Deeper insight
+
+- [DIY Transcriptomics](http://diytranscriptomics.com/) A nice course covering the central topics of transcriptomic bioinformatic analysis.
+- [RNA-seqlopedia](https://rnaseq.uoregon.edu/) A great resource for all things related to RNA-seq.
+
+# Action items  
+
+- You might investigate the small dataset in Project TCGA-BRCA at RStudio Cloud. We will discuss this at length in the lecture.
+

@@ -16,7 +16,7 @@ lessons:
     video: "01-video"
     class: "01-class"
   - number: "L2"
-    title: "Modern computing paradigms"
+    title: "Modern computing paradigms: theory but also R, Python, Julia"
     date: "Sept 14"
     reading: "02-reading"
     video: "02-video"

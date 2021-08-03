@@ -40,7 +40,11 @@ All areas of life science research from basic biolgy to human health-related eff
 - [@wickham_r_2017] [(free) online](http://r4ds.had.co.nz/) and from [<i class="fa fa-amazon" aria-hidden="true"></i>
 Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/)]
 
-However note that this is a general data science book and not specific to biology and the life sciences. For several lectures, I will provide additional reading to cover the biology [here](/schedule/).
+This is the recommmended textbook if you plan to complete the course primarily using R. If you prefer to complete the course using Python, we recommend the following textbook
+
+- [Python for Data Analysis, Wes McKinney ~$50](https://www.oreilly.com/library/view/python-for-data/9781491957653/)
+
+However note that both are general data science book and not specific to biology and the life sciences. For several lectures, I will provide additional reading to cover the biology [here](/schedule/).
 
 <span class="newthought">[Software]</span> The course will heavily utilize several software packages
 
@@ -61,7 +65,11 @@ However note that this is a general data science book and not specific to biolog
 
 - ***Total cost for the course is ~$28.***
 
+<span class="newthought">[RStudio for Python too]</span> Whether you plan to complete the course using R or Python (or Julia), we still recommend using RStudio. You will learn about Jupyter, a web based IDE which was designed for Julia, Python and R, but RStudio still has some advantages, especially with packages like <code>reticulate</code> which we will learn about. 
+
 -------
+
+
 
 <span class="newthought">[Alternatives to R]</span> If students would prefer to complete the course using <code>Python</code> or <code>Julia</code>, they may do so. Note however that the lectures will still be given in <code>R</code>, and some coding exercises may require that you program in <code>R</code>. There are several reasons. For example, we make data available to you in an <code>R</code> datastructure, or we use a package that is specific to <code>R</code> which does not have an analog in the other language. Most packages do have versions in at least two of the languages. For example, the <code>Keras</code> package for R is actually built on top of the Python pacakge. You may experience increased difficulty installing these packages, compared to our RStudio Cloud version.
 
@@ -73,7 +81,7 @@ However note that this is a general data science book and not specific to biolog
 
 <span class="newthought">[Pythonic]</span> For people choosing [Python](https://www.python.org/downloads/), you should use version 3. We recommend that you install [anaconda3/conda](https://docs.anaconda.com/anaconda/install/) environments. We also recommend installing and becoming familiar with [Jupyter](https://jupyter.org/notebooks). There are [many](https://www.datacamp.com/community/tutorials/data-science-python-ide) Interactive Development Environments (IDEs) for Jupyter. I personaly prefer <code>RStudio</code> as it allows <code>R</code> and <code>Python</code> to run together; this will also address some of the aniticipated issues above. If you experience significant difficulties preparing this environment, we ask you to seriously reconsider your choice to use <code>Python</code>.
 
-If you are a relatively advanced  programmmer, we recommend the following [manual](https://www.oreilly.com/library/view/fluent-python/9781491946237/). Otherwise, there are many excellent beginner guides from publisher such as O'Reilly.
+If you are a relatively advanced  programmmer, we recommend the following [manual](https://www.oreilly.com/library/view/fluent-python/9781491946237/). Otherwise, there are many excellent beginner guides from publishers such as O'Reilly.
 
 <span class="newthought">[Julia is beautiful.]</span> For people choosing [Julia](https://julialang.org/), I personnally use [JuliaPro](https://juliacomputing.com/products/juliapro/) as my IDE (but find myself often using RStudio in the end). We also recommend installing and becoming familiar with [Jupyter](https://jupyter.org/notebooks). I am still a novice Julia programmer and do not have a good overview of the best tools and practices with this language yet. Bonus points if you can lead me to the light here! I do not know if the Julia has the full range of libraries to do all components of this course.
 

@@ -40,7 +40,7 @@ All areas of life science research from basic biolgy to human health-related eff
 - [@wickham_r_2017] [(free) online](http://r4ds.had.co.nz/) and from [<i class="fa fa-amazon" aria-hidden="true"></i>
 Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/)]
 
-This is the recommmended textbook if you plan to complete the course primarily using R. If you prefer to complete the course using Python, we recommend the following textbook
+This is the recommmended textbook if you plan to complete the course primarily using R. If you prefer to complete the course using Python, we recommend the following textbook.
 
 - [Python for Data Analysis, Wes McKinney ~$50](https://www.oreilly.com/library/view/python-for-data/9781491957653/)
 

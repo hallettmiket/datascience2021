@@ -73,6 +73,7 @@ However note that both are general data science book and not specific to biology
 
 <span class="newthought">[Alternatives to R]</span> If students would prefer to complete the course using <code>Python</code> or <code>Julia</code>, they may do so. Note however that the lectures will still be given in <code>R</code>, and some coding exercises may require that you program in <code>R</code>. There are several reasons. For example, we make data available to you in an <code>R</code> datastructure, or we use a package that is specific to <code>R</code> which does not have an analog in the other language. Most packages do have versions in at least two of the languages. For example, the <code>Keras</code> package for R is actually built on top of the Python pacakge. You may experience increased difficulty installing these packages, compared to our RStudio Cloud version.
 
+
 <span class="newthought">[Ease of learning]</span>  I would like to stress that <code>R/RStudio</code> is a beautiful and very powerful system. In my opinion, if you are  student from the life sciences you will most likely need data science skills the most (over bioinformatics and computational biology). In my opinion, the best tool for you is R. Your needs and goals are not the same as those of acomputer scientist
 
 <span class="newthought">[Data science vs...]</span> The datascience toolkit for R remains more advanced than Python or Julia. Conversely, if you want to become a computational biologist and develop tools (software based on statitical and computational paradigm), a language like Python is more convenient to program in. If  the distinction between data science and computational biology is not clear at this point for you, I would recommend starting with R and perhaps exploring the other languages later. 
@@ -208,6 +209,11 @@ we would ask that you send a Google mail [gmail](https://mail.google.ca)  addres
 
 [^r4datasci]: {-}
  ![TextBook](/images/cover.png) Free on-line textbook [Grolemund Wickham](https://r4ds.had.co.nz/)
+ 
+ 
+[^r4datascipython]: {-}
+ ![TextBook2](/images/python.jpg) Not-free Python textbook [McKinney](https://www.oreilly.com/library/view/python-for-data/9781491957653/)
+
 
 [^candida]: {-}
  ![CaMicroscopy](/images/ca.png) Deep learning-based tool to identify _Candida albicans_ morphologies [V Bettauer from Hallett lab](https://mikehallett.science/research)

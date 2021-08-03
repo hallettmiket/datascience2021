@@ -40,11 +40,15 @@ All areas of life science research from basic biolgy to human health-related eff
 - [@wickham_r_2017] [(free) online](http://r4ds.had.co.nz/) and from [<i class="fa fa-amazon" aria-hidden="true"></i>
 Amazon](https://www.amazon.com/R-Data-Science-Hadley-Wickham/dp/1491910399/)]
 
-This is the recommmended textbook if you plan to complete the course primarily using R. If you prefer to complete the course using Python, we recommend the following textbook.
+Although th electures are styled following this R based textbook, we recommend 
 
 - [Python for Data Analysis, Wes McKinney ~$50](https://www.oreilly.com/library/view/python-for-data/9781491957653/)
 
+if you plan to complete the course primarily using Python. This will give you tips for that  language.
+
 However note that both are general data science book and not specific to biology and the life sciences. For several lectures, I will provide additional reading to cover the biology [here](/schedule/).
+
+[^r4datascipython]
 
 <span class="newthought">[Software]</span> The course will heavily utilize several software packages
 

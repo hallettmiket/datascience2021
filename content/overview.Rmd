@@ -46,7 +46,13 @@ Although th electures are styled following this R based textbook, we recommend
 
 if you plan to complete the course primarily using Python. This will give you tips for that  language.
 
-However note that both are general data science book and not specific to biology and the life sciences. For several lectures, I will provide additional reading to cover the biology [here](/schedule/).
+Similarily, if you would like to complete the course using the Julia language, we recommend
+
+- [Julia for Beginners](https://docs.julialang.org/en/v1/manual/getting-started/)
+
+as a starting point. In general, the literature for Julia is sparser than for R and Python. We really recommend Julia only for those with significant prior programming experience.
+
+However note that all of these are general data science book and not specific to biology and the life sciences. For several lectures, I will provide additional reading to cover the biology [here](/schedule/).
 
 [^r4datascipython]
 
@@ -58,6 +64,9 @@ However note that both are general data science book and not specific to biology
 - <i class="fa fa-google"></i> <a href="https://drive.google.com">Google Drive (free)</a> We use the cloud-based text editor, drawing tool, spreadsheets, and storage offered by Drive to create and share files.
 
 - <i class="fa fa-youtube-square" aria-hidden="true"></i> <a href="https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber">YouTube (free)</a> All lectures are online at our YouTube channel. 
+
+
+[^julia]
 
 - <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com"> Slack (free)</a>When you send me your gmail account, you will be added.
 
@@ -217,6 +226,10 @@ we would ask that you send a Google mail [gmail](https://mail.google.ca)  addres
  
 [^r4datascipython]: {-}
  ![TextBook2](/images/python.jpg) Not-free Python textbook [McKinney](https://www.oreilly.com/library/view/python-for-data/9781491957653/)
+
+
+[^julia]: {-}
+ ![TextBook3](/images/download.png) Free Julia documentation [Julia](https://julialang.org/)
 
 
 [^candida]: {-}

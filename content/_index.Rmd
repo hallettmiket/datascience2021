@@ -5,6 +5,8 @@ date: "2020-07-17"
 ---
 
 ^[{-} `r blogdown::shortcode("courseinfo")`] <span class="newthought"> This site contains</span> a description of the course material and the course structure for BIOL 480 (undergraduate), 510 (genomics diploma), 630 (graduate students) for the Fall 2020 at Concordia University.
+
+
  
 <span class="newthought">By the end of this course,</span> you will have: 
  
@@ -12,7 +14,7 @@ date: "2020-07-17"
 
 - important data science skills that will give you the ability to explore biological datasets;
 
-- solid programming skills primarily with `R`, `RStudio Cloud` and the  `tidyverse`;
+- solid programming skills primarily with `R`, `RStudio Cloud` and the  `tidyverse`, or if you choose, with `Python` or `Julia`;
 
 - the capacity to create rich, meaningful and interactive visualizations of  data;
 

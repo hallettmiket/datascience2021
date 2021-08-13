@@ -173,7 +173,7 @@ You should watch the  video before the actual lecture.
 
 
 As a rule of thumb per week (2 lectures/week), 
-
+ 
 - readings  requires $3$ hours; 
 - lecture on average $2$ hours;
 - lab $1$ hour;
@@ -183,6 +183,15 @@ As a rule of thumb per week (2 lectures/week),
 
 In total over $13$ weeks, this consists $13 \cdot 11 = 143$ (credits $3$ at $45$ hours each).
 
+
+# Extraordinary circumstances
+
+In the event of extraordinary circumstances and pursuant to the Academic Regulations the University may modify the delivery, content, structure, forum, location and/or evaluation scheme. In the event of such extraordinary circumstances, students will be informed of the changes.
+
+# Behaviour
+All individuals participating in courses are expected to be professional and constructive throughout the course, including in their communications.
+
+Concordia students are subject to the Code of Rights and Responsibilities which applies both when students are physically and virtually engaged in any University activity, including classes, seminars, meetings, etc. Students engaged in University activities must respect this Code when engaging with any members of the Concordia community, including faculty, staff, and students, whether such interactions are verbal or in writing, face to face or online/virtual. Failing to comply with the Code may result in charges and sanctions, as outlined in the Code.
 
 # Course policies
 

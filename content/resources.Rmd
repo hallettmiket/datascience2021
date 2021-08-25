@@ -83,6 +83,17 @@ It is difficult to keep up to date with new publications in your area(s) of inte
 -  [<i class="fa fa-google"></i> Google Scholar](https://scholar.google.com/) Not surprisingly, this is a very powerful search engine for academic groups and publications. I recommend every student to establish a profile at Google Scholar.
 
 - Otherwise, I greatly rely on my group to post interesting articles to our ${\tt Slack}$ workspace and to give mini-presentations of potentially interesting papers in our lab meetings.
+
+# Machine learning/Deep learning
+
+- [FASTAI](https://www.fast.ai/) An incredible course that teaches deep learning in a very accessible manner for non-mathematicians. Prof. Jeremy Howard's teaching approach is unique and effective.
+
+- [PLAIDML](https://github.com/plaidml/plaidml) If you like Macs and you want to use your AMD GPU to apply deep learning, this is the place to start.
+
+- [Keras](https://keras.rstudio.com/) for R is built on Python-Keras which in turn is built on [Tensorflow](https://tensorflow.rstudio.com/), all within the comfort of RStudio.
+
+- [Towards Data Science](https://towardsdatascience.com/tagged/tds-features) is part of my daily regimine; it is a nice accessile way to keep up on developments in  data science. 
+
  
 # Bioinformatic resources
 
@@ -112,6 +123,8 @@ There is now likely an uncountably infinite number^[well perhaps not **that** ma
 - [R and RStudio cheat sheets](https://www.rstudio.com/resources/cheatsheets/): A large collection of simple cheat sheets for RStudio, `ggplot2`, and other R-related things. RStudio also has an excellent series of [webinars](https://rstudio.com/resources/webinars/) covering almost all aspects of R and RStudio. I highly recommend these easy to follow videos.
 
 - [Bioconductor](http://www.bioconductor.org/) is a collection of packages and tools for the biosciences. It is an open source effort. Although not strictly limited to R, Bioconductor is certainly well integrated with R. 
+
+- [Introverse](https://twitter.com/stephspiel/status/1430200830527950856?s=20) is an R package that provides alternative help and instruction for base R and the ${\tt tidyverse}$.
 
 - [DataCamp](https://www.datacamp.com/) has excellent R tutorials where lectures are intermixed with hands-on programming exercises similar to the ${\tt LearnR}$ modules you will experience in this course. You might consider trying the ${\tt tidyverse}$ tutorial that is very high quality in my opinion. There are many competitors to DataCamp, some of which are free. DataCamp allows for limited free access.
 

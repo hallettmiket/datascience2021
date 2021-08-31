@@ -4,7 +4,12 @@
   
   <url>
     <loc>/class/</loc>
-    <lastmod>2020-09-10T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/class/23-class/</loc>
+    <lastmod>2021-07-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -118,6 +123,11 @@
   </url>
   
   <url>
+    <loc>/video/23-video/</loc>
+    <lastmod>2020-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/reading/08-reading/</loc>
     <lastmod>2020-09-08T00:00:00+00:00</lastmod>
   </url>
@@ -223,12 +233,12 @@
   </url>
   
   <url>
-    <loc>/reading/23-reading/</loc>
+    <loc>/reading/24-reading/</loc>
     <lastmod>2020-09-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/video/23-video/</loc>
+    <loc>/video/24-video/</loc>
     <lastmod>2020-09-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -358,7 +368,7 @@
   </url>
   
   <url>
-    <loc>/class/23-class/</loc>
+    <loc>/class/24-class/</loc>
     <lastmod>2020-07-20T00:00:00+00:00</lastmod>
   </url>
   

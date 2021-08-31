@@ -47,27 +47,27 @@ params:
     github: hallettmiket
     bitbucket: hallettlab
     office: GE120.07
-    officehours: "Office TuTh 12-13"
+    officehours: "Office Hours Th 12-13"
   course:
     number: BIOL 480/510/630
     semester: Fall 2021
-    days: TuTh
+    days: TuTh HB 130 LOY
     time: "13:15-14:30"
     location: "https://concordia-ca.zoom.us/s/8992285958#success"
     twitter: hallettmichael
     slack: "https://biol480-18-concordia.slack.com/"
-    dates: "September 8–December 7, 2021"
+    dates: "September 7–December 6, 2021"
     youtube: "https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber"
     github: "https://github.com/hallettmiket/hallettmiket.github.io"
     copyrightYear: "2021"
     contactDetails: Slack
     rstudiocloud: "private"
   labs:
-    TA: TBA
-    email: TBA
-    location:  "HC 155 Loy"
-    labtime: "Tu 10:15-11:30"
-    officehours: "TBA" 
+    TA: Samira Massahi
+    email: samiram2244@gmail.com
+    location:  "CC 321 Loy"
+    labtime: "Lab Tu 10:15-11:30 CC321"
+    officehours: "Office Hourse: TBA" 
   university: 
     name: Concordia University
     url: "https://www.concordia.ca"

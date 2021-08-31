@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="M Hallett" />
-  <title>Reproducibility in life science research</title>
+  <title>Graph Convolutional Neural Networks</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -452,7 +452,7 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <script src="23-slides_files/header-attrs-2.4/header-attrs.js"></script>
+    <script src="23-slides_files/header-attrs-2.7/header-attrs.js"></script>
     <link href="23-slides_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="23-slides_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 </head>
@@ -461,139 +461,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">Reproducibility in life science research</h1>
+    <h1 class="title">Graph Convolutional Neural Networks</h1>
     <h2 class="author">M Hallett</h2>
-    <h3 class="date">21/07/2020</h3>
+    <h3 class="date">21/07/2021</h3>
 </section>
 
-<section id="tools-to-facilitate-reproducibility" class="slide level2">
-<h2>Tools to facilitate reproducibility</h2>
-<ul>
-<li><p>Where things can go wrong</p></li>
-<li><p>Solutions and mitigators</p></li>
-</ul>
-<figure class="image">
-<p float="center">
-<img src="images/communication.png" height = "300">
-</p>
-</figure>
-</section>
-<section id="towards-systems-biology" class="slide level2">
-<h2>Towards Systems Biology</h2>
-<figure class="image">
-<p float="center">
-<img src="images/ikea.png" width="700"/>
-</p>
-</figure>
-<ul>
-<li>Systems Commerce, Information Systems, Systems Biology: what advantages does good design have?</li>
-</ul>
-</section>
-<section id="reproducibility-crisis" class="slide level2">
-<h2>Reproducibility crisis</h2>
-<ul>
-<li><p>Reproducibility crisis. The wiki page gives a decent overview to the problem and surveys the major angles for addressing this issue.</p></li>
-<li><p>The fundamental observation is that many studies in the literature are not reproducible by third parties.</p></li>
-<li><p>Some <a href="https://www.pnas.org/content/115/11/2628">disagreement</a> as to the severity of the problem or how to deal with the problem.</p></li>
-<li><p>What can we do as quantitative life sciencists (data scientists, bioinformaticians, computational biologists)?</p></li>
-</ul>
-</section>
-<section id="complete-dishonesty" class="slide level2">
-<h2>Complete dishonesty</h2>
-<ul>
-<li><p>There are examples of clear dishonesty in life science research.</p></li>
-<li><p><a href="https://www.nytimes.com/2011/07/08/health/research/08genes.html?_r=2&amp;hp">Duke scandal</a></p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Theranos">Elizabeth Holmes and Theranos</a></p></li>
-<li><p>However issues of reproducibility (or lack thereof) are more insidious.</p></li>
-</ul>
-</section>
-<section id="the-causes-of-irreproducibility" class="slide level2">
-<h2>The causes of irreproducibility</h2>
-<ul>
-<li><p>Simple clerical mistakes</p></li>
-<li><p>Poor or incomplete description of the result</p></li>
-<li><p>Poor or incomplete description of method</p></li>
-<li><p>Problems (eg technical or selection bias) in profiling</p></li>
-<li><p>Inaccessible supporting data incl. training set</p></li>
-<li><p>Improper use of training/validation dataset</p></li>
-<li><p>Bugs in computer code</p></li>
-<li><p>Lack of statistical power in the study</p></li>
-<li><p>Improper or naive use of statistics (eg pvalues) <a href="https://upload.wikimedia.org/wikipedia/commons/8/8e/Ioannidis_%282005%29_Why_Most_Published_Research_Findings_Are_False.pdf">Why most published research findings are false, Ioannidis</a></p></li>
-<li><p>Society and human nature: competition, time constraints, poverty, acknowledegment</p></li>
-<li><p>Other?</p></li>
-</ul>
-</section>
-<section id="how-can-the-quantitative-life-sciences-contribute" class="slide level2">
-<h2>How can the quantitative life sciences contribute?</h2>
-<ul>
-<li><p>Bioinformatics’ mandatesinclude development of ethical guidelines, standards and education.</p></li>
-<li><p>Data science contributes methods for better expressing our results.</p></li>
-<li><p>Computational biology continues to improve methodology and integration with solid statistical foundations.</p></li>
-</ul>
-</section>
-<section id="incomplete-information-in-manuscript" class="slide level2">
-<h2>Incomplete information in manuscript</h2>
-<ul>
-<li><p>For example,</p></li>
-<li><p><strong>Problem</strong> Poor or incomplete description of the result</p></li>
-<li><p><strong>Problem</strong> Poor or incomplete description of method</p></li>
-<li><p><strong>Mitigation</strong> <a href="https://distill.pub/">Distill</a> A new way of publishing?</p></li>
-<li><p><strong>Mitigation</strong> <a href="https://rstudio.github.io/distill/">Distill for R</a></p></li>
-</ul>
-</section>
-<section id="poor-description-of-methodology-lack-of-code" class="slide level2">
-<h2>Poor description of methodology; lack of code</h2>
-<figure class="image">
-<p float="left">
-<img src="images/Rnotebook.png" height = "350"> <img src="images/Jupyternotebook.png" height = "350">
-</p>
-<figurecaption>Left: R notebook; Right: Jupyter notebook </figurecaption>
-</figure>
-</section>
-<section id="git" class="slide level2">
-<h2>GIT</h2>
-<ul>
-<li>GIT is software that guarantees persistent and consistent code wtihin collaborative projects.</li>
-</ul>
-<figure class="image">
-<p float="left">
-<img src="images/git.png" height = "200"> <img src="images/gitflow.png" height = "200">
-</p>
-<figurecaption> GIT flow. Nodes represent changes in a file. </figurecaption>
-</figure>
-</section>
-<section id="bitbucket-github-and-other-sites" class="slide level2">
-<h2>Bitbucket, Github and other sites</h2>
-<ul>
-<li>There are websites that specialize in hosting GIT repositories. This makes your projects accessible everywhere.</li>
-</ul>
-<figure class="image">
-<p float="left">
-<img src="images/bb.png" height = "500">
-</p>
-<figurecaption> Bitbucket is our labs’ choice for day to day operations </figurecaption>
-</figure>
-</section>
-<section id="github-bitbucket-and-other-sites" class="slide level2">
-<h2>Github, Bitbucket and other sites</h2>
-<figure class="image">
-<p float="left">
-<img src="images/github.png" height = "500">
-</p>
-<figurecaption> This course is available through Github. </figurecaption>
-</figure>
-</section>
-<section id="acknowledgement" class="slide level2">
-<h2>Acknowledgement</h2>
-<ul>
-<li>Outdated method of listing authors</li>
-</ul>
-<figure class="image">
-<p float="center">
-<img src="images/tofigh.png" height = "300">
-</p>
-</figure>
-</section>
 <section id="biol-480" class="slide level2">
 <h2>BIOL 480</h2>
 <p>© M Hallett, 2020 Concordia University</p>

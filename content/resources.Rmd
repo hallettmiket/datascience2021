@@ -134,7 +134,7 @@ There is now likely an uncountably infinite number^[well perhaps not **that** ma
 
 # How to select the appropriate chart type
 
-[^dataviz-cat] I find the collections below very useful: when I want to make a plot, I typically search through hundreds of images to find the most suitable/exciting.^[Thank you to [A Heiss](https://www.andrewheiss.com) for compiling this selection.] Here are some of the best:
+I find the collections below very useful: when I want to make a plot, I typically search through hundreds of images to find the most suitable/exciting.^[Thank you to [A Heiss](https://www.andrewheiss.com) for compiling this selection.] Here are some of the best:
 
 - [The Data Visualisation Catalogue](http://www.datavizcatalogue.com/): Descriptions, explanations, examples, and tools for creating 60 different types of visualizations.
 - [The Data Viz Project](http://datavizproject.com/): Descriptions and examples for 150 different types of visualizations. Also allows you to search by data shape and chart function (comparison, correlation, distribution, geographical, part to whole, trend over time, etc.).
@@ -142,7 +142,6 @@ There is now likely an uncountably infinite number^[well perhaps not **that** ma
 - [R Graph Catalog](https://www.r-graph-gallery.com/): R code for 124 ggplot graphs.
 - [Emery's Essentials](http://annkemery.com/essentials/): Descriptions and examples of 26 different chart types.
 
-[^dataviz-cat]: {-} [![The Data Visualisation Catalogue](/images/reference/dataviz-catalogue.png)](http://www.datavizcatalogue.com/) *The Data Visualisation Catalogue*
 
 
 
@@ -158,7 +157,10 @@ There is now likely an uncountably infinite number^[well perhaps not **that** ma
 
 The slides and website for this course were developed in Markdown, specifically a dialect deigned for R (${\tt RMarkdown}$). Fluency in Markdown is a useful skill to have as more and more tools and information migrates to the cloud.
 
-- ^[{-} ![Markdown logo](/images/reference/markdown.png)] [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/): A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.
+[^markdown]
+
+
+- [The Plain Person’s Guide to Plain Text Social Science](http://plain-text.co/): A comprehensive explanation and tutorial about why you should write data-based reports in Markdown.
 - [Markdown tutorial](https://www.markdowntutorial.com/): An interactive tutorial to practice using Markdown.
 - [Markdown cheatsheet](http://packetlife.net/media/library/16/Markdown.pdf): Useful one-page reminder of Markdown syntax.
 

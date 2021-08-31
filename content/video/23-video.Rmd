@@ -1,12 +1,12 @@
 ---
-title: "Reproducibility in life science research"
+title: "Graph Convolutional Neural Networks"
 date: "2020-09-08"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 ---
 
-[Lecture 23 at Youtube](https://youtu.be/3u7SCC0qsqw)
+[Lecture 23 at Youtube](TBA)
 
 
 

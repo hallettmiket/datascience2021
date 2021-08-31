@@ -1,6 +1,6 @@
 ---
-title: "Reproducibility in life science research"
-date: "2020-07-20"
+title: "Graph Convolutional Neural Networks"
+date: "2021-07-20"
 output:
   blogdown::html_page:
     template: ../../pandoc/toc-title_html.template
@@ -8,8 +8,6 @@ output:
 ---
 
 # Slides
-
-- [View lectures slide in your browser (html)](/slides/23-slides.html)
 
 
 
@@ -25,8 +23,4 @@ output:
 
 # Points of Reflection
 
-
-- What from the course have you learnt that could help increase the reproducibility of your own research?
-
-- Could an approach such as Distill work for the life sciences?
 

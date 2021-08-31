@@ -1,0 +1,46 @@
+---
+title: "Reproducibility in life science research"
+date: "2020-09-08"
+citeproc: false
+bibliography: ../../static/bib/references.bib
+csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
+--- 
+
+
+# Required 
+
+- [Chapters 26-30](https://r4ds.had.co.nz/communicate-intro.html) They are very short and most of the material is at least passingly familiar to you.
+
+- [Duke scandal](https://www.nytimes.com/2011/07/08/health/research/08genes.html?_r=2&hp) This event prompted an indepth study and guidelines; see OMICS below.
+
+- [Reproducibility crisis](https://en.wikipedia.org/wiki/Replication_crisis) The wiki page gives a decent overview to the problem and surveys the major angles for addressing this issue.
+
+# Recommended Reading
+
+- [OMICS - lessons learned and the path forward](https://www.nap.edu/read/13297/chapter/1)
+
+- [Distill](https://distill.pub/) A new way of publishing?
+
+- [Distill for R](https://rstudio.github.io/distill/)
+
+- [1,500 scientists lift the lid on reproducibility](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970)
+
+- [Disagreement](https://www.pnas.org/content/115/11/2628)
+
+- [Elizabeth Holmes and Theranos](https://en.wikipedia.org/wiki/Theranos)
+
+
+
+# Action items  
+
+- Assignment #4
+
+- Project
+
+- Start to prepare for final
+
+# Points of Reflection 
+
+- What from the course have you learnt that could help increase the reproducibility of your own research?
+
+- Could an approach such as Distill work for the life sciences?

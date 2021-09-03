@@ -6,10 +6,22 @@
     <description>Recent content in Data Science in Biology on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Graph Convolutional Neural Networks</title>
+      <link>/class/23-class/</link>
+      <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/class/23-class/</guid>
+      <description>  Contents  Slides Action Items Points of Reflection   Slides Action Items  Assignment 4
+ Project
+ Start to prepare for final
+  Points of Reflection </description>
+    </item>
     
     <item>
       <title>Information Technology for Life Science</title>
@@ -255,6 +267,15 @@ Lab October 20th - Visualization of Tara Oceans</description>
     </item>
     
     <item>
+      <title>Graph Convolutional Neural Networks</title>
+      <link>/video/23-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/23-video/</guid>
+      <description>Lecture 23 at Youtube</description>
+    </item>
+    
+    <item>
       <title>How to wrangle with marine microbes</title>
       <link>/reading/08-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
@@ -466,10 +487,10 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Reproducibility in life science research</title>
-      <link>/reading/23-reading/</link>
+      <link>/reading/24-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/reading/23-reading/</guid>
+      <guid>/reading/24-reading/</guid>
       <description>Required  Chapters 26-30 They are very short and most of the material is at least passingly familiar to you.
  Duke scandal This event prompted an indepth study and guidelines; see OMICS below.
  Reproducibility crisis The wiki page gives a decent overview to the problem and surveys the major angles for addressing this issue.
@@ -478,11 +499,11 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Reproducibility in life science research</title>
-      <link>/video/23-video/</link>
+      <link>/video/24-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/video/23-video/</guid>
-      <description>Lecture 23 at Youtube</description>
+      <guid>/video/24-video/</guid>
+      <description>Lecture 24 at Youtube</description>
     </item>
     
     <item>
@@ -756,10 +777,10 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Reproducibility in life science research</title>
-      <link>/class/23-class/</link>
+      <link>/class/24-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/class/23-class/</guid>
+      <guid>/class/24-class/</guid>
       <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
  Project
  Start to prepare for final
@@ -804,8 +825,8 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
       
       <guid>/assignments/</guid>
       <description>Homework assignments &amp;#8853;Course
- TuTh
- September 8–December 7, 2021
+ TuTh HB 130 LOY
+ September 7–December 6, 2021
  13:15-14:30
 Zoom
  Slack
@@ -813,16 +834,15 @@ Github repo
 Lectures
 RStudio Cloud
 Labs
-TBA
-TBA
- Tu 10:15-11:30
+Samira Massahi
+samiram2244@gmail.com
+ Lab Tu 10:15-11:30 CC321
 Zoom
- TBA
+ Office Hourse: TBA
 
 A homework assignment will be due approximately every three weeks.
 Generally, each assignment covers material we recently covered in class.
-They are designed so that you can explore concepts and tools in more depth.
-Seeking assistance You should complete the assignments alone, however it is perfectly ok to ask for help.</description>
+They are designed so that you can explore concepts and tools in more depth.</description>
     </item>
     
     <item>
@@ -835,21 +855,18 @@ Seeking assistance You should complete the assignments alone, however it is perf
 Biology is becoming increasingly quantitative.&amp;#8853;Instructor
 Mike Hallett
  GE120.07
- Office TuTh 12-13
+ Office Hours Th 12-13
 hallett.mike.t@gmail.com
 @hallettmichael
 Course
- TuTh
- September 8–December 7, 2021
+ TuTh HB 130 LOY
+ September 7–December 6, 2021
  13:15-14:30
 Zoom
  Slack
 Github repo
 Lectures
-RStudio Cloud
-Labs
-TBA
-TBA</description>
+RStudio Cloud</description>
     </item>
     
     <item>
@@ -867,7 +884,7 @@ TBA</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/resources/</guid>
-      <description>Contents  Information technologies for life science labs Modern lab notebooks Time management Resource management Community Support Scientific literature Bioinformatic resources R, RStudio and tidyverse resources How to select the appropriate chart type Colors and fonts Markdown Citations and bibliography   Information technologies for life science labs   Google Drive An excellent and convenient collection of tools (documents, images, spreadsheets, presentations) with lots of storage space. This is cloud-based so teams can work on documents simultaneously.</description>
+      <description>Contents  Information technologies for life science labs Modern lab notebooks Time management Resource management Community Support Scientific literature Machine learning/Deep learning Bioinformatic resources R, RStudio and tidyverse resources How to select the appropriate chart type Colors and fonts Markdown Citations and bibliography   Information technologies for life science labs   Google Drive An excellent and convenient collection of tools (documents, images, spreadsheets, presentations) with lots of storage space.</description>
     </item>
     
     <item>
@@ -877,7 +894,7 @@ TBA</description>
       
       <guid>/syllabus/</guid>
       <description>Readings and assignments should be completed before each class session. Assignments, and instructions for submitting assignments, can be found at at the Assignments page.
-  Date Number Topic Reading Video Slides+ Assignment Solutions      Part I Data Science        Sept 7 L0 Introduction and orientation        Sept 9 L1 Information technology for managing science        Sept 14 L2 Modern computing paradigms        Sept 16 L3 Visualizing breast cancer transcriptomes        Sept 21 L4 Representing &amp;amp; manipulating data        Sept 23 L5 Transformations of breast cancer transcriptomes        Sept 27 -- Assignment 1 due        Sept 28 L6 Exploratory data analysis of breast cancer transcriptomes         Part II Bioinformatics        Sept 30 L7 The NCBI: a rich resource for the life sciences        Oct 5 L8 How to wrangle with marine microbes        Oct 7 L9 Organzing the Tara Ocean&amp;rsquo;s data        Oct 12 L10 Exploring microbial diversity across our oceans        Oct 14 L11 Representing genomes in R        Oct 19 -- Midterm (1.</description>
+  Date Number Topic Reading Video Slides+ Assignment Solutions      Part I Data Science        Sept 7 L0 Introduction and orientation        Sept 9 L1 Information technology for managing science        Sept 9 -- Assignment 1 start        Sept 14 L2 Modern computing paradigms and RStudio Cloud        Sept 16 L3 Visualizing breast cancer transcriptomes        Sept 21 L4 Representing &amp;amp; manipulating data        Sept 23 L5 Transformations of breast cancer transcriptomes        Sept 27 -- Assignment 1 due        Sept 28 L6 Exploratory data analysis of breast cancer transcriptomes        Sept 28 -- Assignment 2 start         Part II Bioinformatics        Sept 30 L7 The NCBI: a rich resource for the life sciences        Oct 5 L8 How to wrangle with marine microbes        Oct 7 L9 Organzing the Tara Ocean&amp;rsquo;s data        Oct 12 L10 Exploring microbial diversity across our oceans        Oct 14 L11 Representing genomes in R        Oct 19 -- Midterm (1.</description>
     </item>
     
   </channel>

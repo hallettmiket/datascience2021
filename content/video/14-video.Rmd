@@ -6,7 +6,9 @@ bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 ---
 
-[Lecture 14 at Youtube](https://youtu.be/6IoZtqgjQhw)
+[Lecture 14 Part I at YouTube](https://youtu.be/-ABl4cW31M0) 
+ 
+[Lecutre 14 Part II (HMMs) at YouTube](https://youtu.be/VRpCJgWJalY)
 
 
 

@@ -6,10 +6,19 @@
     <description>Recent content in Readings on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/reading/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Graph Convolutional Neural Networks</title>
+      <link>/reading/23-reading/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/23-reading/</guid>
+      <description>  Required Recommended Reading Action items Points of Reflection </description>
+    </item>
     
     <item>
       <title>Bioinformatics repositories: the NCBI and other tools</title>

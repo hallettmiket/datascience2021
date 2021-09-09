@@ -1,0 +1,141 @@
+---
+title: "Assignment 1"
+author: "M Hallett"
+date: "21/07/2020"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")
+
+```
+
+Please note that due dates can be found in the [Syllabus](/Syllabus); submission instructions can be found on the [Assignment Instructions](/Assignments) page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your ${\tt R}$ code via Google Drive. 
+Samira will go over the submission process in the lab.
+
+${\bf 60}$ total marks.
+
+__Question 1 [7 points]__ You obtained a ${\tt gmail}$ account for this course. With this account, you can also initiate your Google Drive workspace. (i) Does Google have the right to look at your emails, documents, drawings or other objects? (ii) Does Google have the right to use this information? What is meta-data? Can it collect meta-data about your information? (iii) How can you turn on or off the geographical tracking mechanism associated with your account? (iv) Are you satisfied with the level of security and user agreement with Google? (Answer in ~10 sentences please.)
+
+__Question 2 [10 points]__ Given what you read about Google, highlight any differences with Apple Cloud or other Cloud service provider of your choice. Comment overall on what you found.
+
+
+__Question 3 [3 points]__ Explain how cloud computing can reduce the overall cost for computers and computation for a small business or research group? If so, how? Make reference to the definitions and components of cloud and traditional computing from the lecture notes. 4 or 5 sentences.
+
+
+__Question 4 [4 points]__ Argue for and against each of the following items as a computing device (make references to the 3 fundamental properties of modern computers).
+
+1. a bacterium
+2. a plant
+3. a squid
+4. a human
+5. an assembly line to make household appliances
+
+__Question 5 [4 points]__
+Create an ${\tt R}$ script under ${\tt File/NewFile}$. 
+Write  R code to load the ${\tt tidyverse}$ library and the ${\tt small\_brca}$ dataset.
+Note that in the course slides, I load the dataset from my directory specific to my computer.
+However, if you look in the R code in the ${\tt src}$ on RStudio Cloud (Project 03), you will find the correct path for you.  
+
+Make a comment that this is Question 6, Assignment 1 before your code. Find the function in ${\tt R}$ that reports the date and the version of ${\tt R}$ that you are using. Put the code in your file.
+
+Save your R code in your ${\tt src}$ directory of the project and name the file ${\tt lastname\_assignment1.R}$. Take a screenshot with your file open (top left), the Environment list showing (top right), the code executed in your R session (bottom left), and the contents of the ${\tt src}$ folder (bottom right). Congratulations, you are now an R programmer.
+
+__For Questions 6-8 below.__ Put a comment in your file that states what question you are working on and put your code below it. For any pictures (eg the plot that your code generates) and text, put them into a text document (eg using Google Docs) stating what question you are working on. 
+
+__Question 6 [5 points]__
+
+Recall from the lecture that ${\tt HER2}$ is an important protein in some subtypes of breast cancer, and remmeber that ${\tt ERBB2}$ is the official name for ${\tt HER2}$.
+
+The variable ${\tt ERBB2}$ in our tibble corresponds to estimates of the number of transcripts present in each sample (row). This is obtained using RNA-seq technologies as discussed in the lecture. 
+Clinically, ${\tt HER2}$ is not measured using transcriptomics. Typically the
+copy number of ${\tt HER2}$ is measured at at the DNA level. This is because we believe that 
+ ${\tt HER2}$ over-expression at the transcript and protein levels are due to a  amplification of  the genomic region tha contains ${\tt HER2}$. In the clinic, Fluorescence In Situ Hybridization [(FISH)](https://www.genome.gov/about-genomics/fact-sheets/Fluorescence-In-Situ-Hybridization) is used.
+ 
+ The variable ${\tt her2\_fish\_status}$ gives exactly this, although it is not available for many observations (rows/patient samples).
+
+
+Using ggplot, making the following scatter plot. Put your R code with your answer.
+
+```{r echo=FALSE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+ggplot(data = small_brca) + 
+  geom_point(mapping = aes(x = ERBB2,  y = GRB7, color = her2_fish_status, shape=tumor), size = 2) 
+```
+Comment or interpret the graph in 1 or 2 sentences: does it make sense? is it what you expected? are there issues? etc.
+
+__Question 7 [5 points]__
+
+It is a little bit hard to see the status of ${\tt tumor}$ and  ${\tt her2\_fish\_status}$ in the figure of Question 6 because so many points are bunched up around the origin of the graph.
+Using online resources, figure out how to log-transform the both the $x$ and $y$ axis. Log-transformations will be revisited several times but they are very common transformations of gene expresion data. Recreate the scatterplot with the log-transformed data. Show your code and the image it generates. Comment on whether this transformation helped and if it changes your conclusions from Question 6.
+
+
+__Question 8 [7 points]__ 
+
+Create a boxplot in ${\tt ggplot}$  as below. Hint: I logged transformed the expresion of ${\tt ERBB2}$). Comparing positive and negative samples, is there any hypotheses you could form?
+
+```{r echo=FALSE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+ggplot(data = small_brca,  aes(x=factor(her2_fish_status), y=log(ERBB2), fill=tumor))  + 
+  geom_boxplot()
+```
+  
+__Question 9 [5 points]__
+
+The expression of ${\tt GRB7}$ and ${\tt ERBB2}$ are highly correlated. We will revisit the concept of correlation later in the course, but for now you can see a (positive) linear relationship between the two. Using ${\tt PubMed}$ or other resources, can you hypothesize why these two genes have such high correlation in their expression (what is the biological reason that their expression is correlated)?
+
+
+
+__Question 10 [10 point]__
+Suppose there are three friends who are discussing the possibilty of going on
+vacation together.
+We can call these individuals $X, Y, Z$.
+Each friend has two issues to resolve: money, time. These are both logical variables themselves.
+For example, the money issue for $X$ can be a logical variable $XM$ and it is ${\tt TRUE}$ if and only if $X$ has enough money. 
+Similarly, the time issue is a logical variable $XT$ that is ${\tt TRUE}$ if and only if $X$ has enough vacation time.
+
+So you might have R code that looks like this. 
+
+```{r echo=TRUE, fig.align='left', collapse=TRUE, class.source="watch-out"}
+XM <- TRUE; XT <- FALSE; YM <- TRUE; YT <- TRUE; ZM <- FALSE; ZT <- FALSE
+```
+In thi particular assignment of ${\tt TRUE}$ and ${\tt FALSE}$ to the variables, it is the case that only $Z$ does not have enough money. There are many other asignments that are possible. For instance, it might be the case as follows
+
+
+```{r echo=TRUE, fig.align='left', collapse=TRUE, class.source="watch-out"}
+XM <- TRUE; XT <- TRUE; YM <- TRUE; YT <- TRUE; ZM <- TRUE; ZT <- TRUE
+```
+
+I would like you to write a logical expression in R code that evaluates to ${\tt TRUE}$ (they will go on vacation) or ${\tt FALSE}$ (they will not go on vacation) for each of the condition below.
+
+(a) _The condition is that all three people have enough money and enough time._
+
+(b) _The condition is that all three people have enough money but time does not matter._  (Maybe they decide to go for a weekend instead of two weeks.)
+
+(c) _The condition is that all three people have enough time but at least one  person must have enough money._ (The rich one will pay for the other two.)
+
+(d) _The condition is that all three people have enough time but at least two  people must have enough money._
+```
+
+
+Good luck!
+

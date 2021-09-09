@@ -24,11 +24,10 @@ output:
         numbers: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE} 
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")
-
+load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")  
 ```
 
 Please note that due dates can be found in the [Syllabus](/Syllabus); submission instructions can be found on the [Assignment Instructions](/Assignments) page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your ${\tt R}$ code via Google Drive. 

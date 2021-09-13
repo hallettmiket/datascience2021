@@ -9,9 +9,11 @@ output:
 
 # Slides
 
-- [View lectures slide in your browser (html)](/slides/14-slides.html)
+- [Object Orientation  lecture slides (html)](/slides/14-slides.html)
 
-- [Aki's S4 objects for Markov Models](/slides/14-lab.html)
+- [S4 objects for Markov Models](/slides/14-lab.html)
+
+- [Hidden Markov Models](/slides/hmm.pdf)
 
 
 # Action Items

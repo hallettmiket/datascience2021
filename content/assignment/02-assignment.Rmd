@@ -1,0 +1,158 @@
+---
+title: "Assignment 2"
+author: "M Hallett"
+date: "29/09/2021"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(reshape2)
+load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")
+```
+
+Please note that due dates can be found in the [Syllabus](/Syllabus); submission instructions can be found on the [Assignment Instructions](/Assignments) page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your ${\tt R}$ code via Google Drive. 
+Aki will go over the submission process in the lab.
+
+You might consider (but it is not mandatory) using R Markdown to write your answers.
+
+${\bf 67}$ total marks.
+
+__Question 1 [10 points]__ 
+_A._ Re-express the following small program using pipes. 
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+c <- 18
+f <- c*(9/5) + 32
+```
+
+_B._
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+x <- 1e10
+y <- sqrt( factorial(x) )
+```
+
+_C._
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+x<-3; mu<-5; sigma <-7
+nrm <- ( 1 / (sigma * sqrt( 2 * pi ))) * exp( -(1/2) * ( (x - mu)/ sigma )^2)
+```
+
+Hint: 
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+p <- c( first = "a", second = "b", third = "c")
+```
+
+_D._ What is this equation?
+
+_E._ 
+```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
+site <- 15
+gsub(";", "/", paste(paste( paste( "~hallett", paste("raw", "tara", sep = ";"), sep = ";"), 
+      paste("site", site, sep="_"), sep=";"), 
+      "dna_seq.fa", sep=";"))
+```
+
+__Question 2 [5 points]__
+
+In total, how many black, african or asian  women are included in the ${\tt small\_brca}$ dataset?
+
+
+Create a histogram of all asian individuals grouped by age. Each bar in the histogram should have two colours corresponding to male and females. (For example, red might be used for the fraction of women in some age group while blue is used for men in that same age group). Choose the number of bins (or binsize) in a way that makes your plot informative.
+
+
+Show code for both parts.
+
+__Question 3 [7 points]__ 
+
+How many participants are there? (Careful: not samples but participants.) Show code.
+
+List all of the ${\tt participant}$ that have more than one sample. Show code.
+
+For the participants identfied in 4b, create a scatter plot with the tumor  on the $x$ axis and the normal  on the $y$ axis (as specified by the ${\tt tumor}$ variable in the tibble) with points representing the expression of gene ${\tt ESR1}$.
+
+Show your code for each step.
+
+
+
+__Question 4 [23 points]__
+
+__Show your code for each step below.__
+
+Part a [1 point] Load the ${\tt tidyverse}$ library and load the ${\tt small\_brca}$ dataset. 
+
+Part b [1 point] Write code that determines the number of rows (observations) and columns (variables) in  ${\tt small\_brca}$.
+
+Part c [1 point] Write code that displays the column names (names of variable) for columns $21$ to columns $24$ inclusive.
+
+Part d [2 points] What is the mean expression level of FOXC1?
+
+Part e [3 points] How many samples are there with FOXC1 expression levels above $245$?
+
+Part f [5 points] Create a new tibble called ${\tt bw}$ that contains only those rows (observations) from ${\tt small\_brca}$ that
+correspond to tumor samples of BLACK OR AFRICAN AMERICAN women.
+
+Part g [5 points] Using ${\tt small\_brca}$, select the variables ${\tt participant}$, ${\tt vital\_status}$, and all genes __except__ ${\tt RRM2}$. 
+
+Part h [5 points] Create a new variable called ${\tt triplenegative}$ in the tibble ${\tt small\_brca}$ 
+that is TRUE (logical) if the sample is "Positive" for ${\tt er\_status\_by\_ihc}$, and __not__ "Positive" for ${\tt her2\_fish\_status}$.
+Otherwise,  in all other cases it is FALSE.
+
+__Question 5 [12 points]__
+
+Using the ${\tt small\_brca}$ tibble, create the following plot.
+
+```{r, ECHO=FALSE, fig.align='center'}
+ggplot(data = small_brca) +  
+  geom_point(mapping = aes(x = GRB7, y = EGFR, color=tumor)) + 
+  facet_wrap(~ tumor_status, nrow = 2) +
+  scale_y_continuous(trans='log')   + scale_x_continuous(trans='log') + 
+  ggtitle("GRB7 and EGFR expression by tumor_status") +
+  xlab("log GRB7 expression") +  ylab("log EGFR expression")
+
+```
+
+__Question 6 [5 points]__
+
+The variable ${\tt race}$ in ${\tt small\_brca}$ has several different possible values including "WHITE", "ASIAN", "BLACK OR AFRICAN AMERICAN", "AMERICAN INDIAN OR ALASKA NATIVE", "[Not Available]", "[Not Evaluated]", or NA.
+
+It is better to simply use NA instead of"[Not Available]", "[Not Evaluated]", or NA.
+It will simplify your code in downstream analyses.
+
+Write R code to create a new ${\tt race\_modified}$ variable where all samples with  "[Not Available]", "[Not Evaluated]" are changed to NA  (Note: you shouldn't use "NA", but NA. They are not the same)
+
+__Question 7 [5 points]__
+Pick one of the $50$ genes from ${\tt small\_brca}$ uniformly randomly (see the ${\tt runif}$ function). Using the NCBI, provide the following information or note that it is not availalbe:
+
+10a Full name of the gene and the official name according to the HGNC.<br>
+10b First time it was reported in the literature.<br>
+10c Where it is located in the genome.<br>
+10d Its ${\tt gi}$ acccession code or codes (if it has been modified).<br>
+10e The number of exons.<br>
+10f The number of alternative transcripts that have been record. <br>
+10g Its full amino acid sequence. Provide its protein ID.<br>
+10h Its protein structure, if known.<br>
+
+
+
+Good luck!
+

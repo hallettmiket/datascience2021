@@ -1,0 +1,160 @@
+---
+title: "Assignment 2"
+author: "M Hallett"
+date: "29/09/2021"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+
+<p>Please note that due dates can be found in the <a href="/Syllabus">Syllabus</a>; submission instructions can be found on the <a href="/Assignments">Assignment Instructions</a> page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your <span class="math inline">\({\tt R}\)</span> code via Google Drive.
+Aki will go over the submission process in the lab.</p>
+<p>You might consider (but it is not mandatory) using R Markdown to write your answers.</p>
+<p><span class="math inline">\({\bf 67}\)</span> total marks.</p>
+<p><strong>Question 1 [10 points]</strong>
+<em>A.</em> Re-express the following small program using pipes.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>c &lt;-<span class="st"> </span><span class="dv">18</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>f &lt;-<span class="st"> </span>c<span class="op">*</span>(<span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="dv">32</span></span></code></pre></div>
+<p><em>B.</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="fl">1e10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">sqrt</span>( <span class="kw">factorial</span>(x) )</span></code></pre></div>
+<p><em>C.</em></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>x&lt;-<span class="dv">3</span>; mu&lt;-<span class="dv">5</span>; sigma &lt;-<span class="dv">7</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>nrm &lt;-<span class="st"> </span>( <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(sigma <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>( <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi ))) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>( <span class="op">-</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span>( (x <span class="op">-</span><span class="st"> </span>mu)<span class="op">/</span><span class="st"> </span>sigma )<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<p>Hint:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="dt">first =</span> <span class="st">&quot;a&quot;</span>, <span class="dt">second =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">third =</span> <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
+<p><em>D.</em> What is this equation?</p>
+<p><em>E.</em></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>site &lt;-<span class="st"> </span><span class="dv">15</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">gsub</span>(<span class="st">&quot;;&quot;</span>, <span class="st">&quot;/&quot;</span>, <span class="kw">paste</span>(<span class="kw">paste</span>( <span class="kw">paste</span>( <span class="st">&quot;~hallett&quot;</span>, <span class="kw">paste</span>(<span class="st">&quot;raw&quot;</span>, <span class="st">&quot;tara&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>      <span class="kw">paste</span>(<span class="st">&quot;site&quot;</span>, site, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>), <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>), </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>      <span class="st">&quot;dna_seq.fa&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">## [1] &quot;~hallett/raw/tara/site_15/dna_seq.fa&quot;</span></span></code></pre></div>
+<p><strong>Question 2 [5 points]</strong></p>
+<p>In total, how many black, african or asian women are included in the <span class="math inline">\({\tt small\_brca}\)</span> dataset?</p>
+<p>Create a histogram of all asian individuals grouped by age. Each bar in the histogram should have two colours corresponding to male and females. (For example, red might be used for the fraction of women in some age group while blue is used for men in that same age group). Choose the number of bins (or binsize) in a way that makes your plot informative.</p>
+<p>Show code for both parts.</p>
+<p><strong>Question 3 [7 points]</strong></p>
+<p>How many participants are there? (Careful: not samples but participants.) Show code.</p>
+<p>List all of the <span class="math inline">\({\tt participant}\)</span> that have more than one sample. Show code.</p>
+<p>For the participants identfied in 4b, create a scatter plot with the tumor on the <span class="math inline">\(x\)</span> axis and the normal on the <span class="math inline">\(y\)</span> axis (as specified by the <span class="math inline">\({\tt tumor}\)</span> variable in the tibble) with points representing the expression of gene <span class="math inline">\({\tt ESR1}\)</span>.</p>
+<p>Show your code for each step.</p>
+<p><strong>Question 4 [23 points]</strong></p>
+<p><strong>Show your code for each step below.</strong></p>
+<p>Part a [1 point] Load the <span class="math inline">\({\tt tidyverse}\)</span> library and load the <span class="math inline">\({\tt small\_brca}\)</span> dataset.</p>
+<p>Part b [1 point] Write code that determines the number of rows (observations) and columns (variables) in <span class="math inline">\({\tt small\_brca}\)</span>.</p>
+<p>Part c [1 point] Write code that displays the column names (names of variable) for columns <span class="math inline">\(21\)</span> to columns <span class="math inline">\(24\)</span> inclusive.</p>
+<p>Part d [2 points] What is the mean expression level of FOXC1?</p>
+<p>Part e [3 points] How many samples are there with FOXC1 expression levels above <span class="math inline">\(245\)</span>?</p>
+<p>Part f [5 points] Create a new tibble called <span class="math inline">\({\tt bw}\)</span> that contains only those rows (observations) from <span class="math inline">\({\tt small\_brca}\)</span> that
+correspond to tumor samples of BLACK OR AFRICAN AMERICAN women.</p>
+<p>Part g [5 points] Using <span class="math inline">\({\tt small\_brca}\)</span>, select the variables <span class="math inline">\({\tt participant}\)</span>, <span class="math inline">\({\tt vital\_status}\)</span>, and all genes <strong>except</strong> <span class="math inline">\({\tt RRM2}\)</span>.</p>
+<p>Part h [5 points] Create a new variable called <span class="math inline">\({\tt triplenegative}\)</span> in the tibble <span class="math inline">\({\tt small\_brca}\)</span>
+that is TRUE (logical) if the sample is “Positive” for <span class="math inline">\({\tt er\_status\_by\_ihc}\)</span>, and <strong>not</strong> “Positive” for <span class="math inline">\({\tt her2\_fish\_status}\)</span>.
+Otherwise, in all other cases it is FALSE.</p>
+<p><strong>Question 5 [12 points]</strong></p>
+<p>Using the <span class="math inline">\({\tt small\_brca}\)</span> tibble, create the following plot.</p>
+<p><img src="/assignment/02-assignment_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Question 6 [5 points]</strong></p>
+<p>The variable <span class="math inline">\({\tt race}\)</span> in <span class="math inline">\({\tt small\_brca}\)</span> has several different possible values including “WHITE”, “ASIAN”, “BLACK OR AFRICAN AMERICAN”, “AMERICAN INDIAN OR ALASKA NATIVE”, “[Not Available]”, “[Not Evaluated]”, or NA.</p>
+<p>It is better to simply use NA instead of“[Not Available]”, “[Not Evaluated]”, or NA.
+It will simplify your code in downstream analyses.</p>
+<p>Write R code to create a new <span class="math inline">\({\tt race\_modified}\)</span> variable where all samples with “[Not Available]”, “[Not Evaluated]” are changed to NA (Note: you shouldn’t use “NA”, but NA. They are not the same)</p>
+<p><strong>Question 7 [5 points]</strong>
+Pick one of the <span class="math inline">\(50\)</span> genes from <span class="math inline">\({\tt small\_brca}\)</span> uniformly randomly (see the <span class="math inline">\({\tt runif}\)</span> function). Using the NCBI, provide the following information or note that it is not availalbe:</p>
+<p>10a Full name of the gene and the official name according to the HGNC.<br>
+10b First time it was reported in the literature.<br>
+10c Where it is located in the genome.<br>
+10d Its <span class="math inline">\({\tt gi}\)</span> acccession code or codes (if it has been modified).<br>
+10e The number of exons.<br>
+10f The number of alternative transcripts that have been record. <br>
+10g Its full amino acid sequence. Provide its protein ID.<br>
+10h Its protein structure, if known.<br></p>
+<p>Good luck!</p>

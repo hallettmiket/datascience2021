@@ -20,10 +20,10 @@ csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 # Action items  
 
 -  Project outline due for genomics diploma and grad students (1 page)
+ 
+- Oct 19 Midterm
 
-- Oct 29 Midterm
-
-- Assignment #3 is available
+- Finish up Assignment #2
 
 
 

@@ -18,10 +18,6 @@ output:
 
 - Project outline due for genomics diploma and grad students (1 page)
 
-- Oct 29 Midterm
-
-- Assignment #3 is available
-
 
 
 - Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.

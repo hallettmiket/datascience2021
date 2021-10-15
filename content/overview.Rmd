@@ -92,7 +92,7 @@ However note that all of these are general data science book and not specific to
 <span class="newthought">[Data science vs...]</span> The datascience toolkit for R remains more advanced than Python or Julia. Conversely, if you want to become a computational biologist and develop tools (software based on statitical and computational paradigm), a language like Python is more convenient to program in. If  the distinction between data science and computational biology is not clear at this point for you, I would recommend starting with R and perhaps exploring the other languages later. 
 
 <span class="newthought">[You'll be a bit on your own]</span> I would recommend using Python or Julia only if you are an advanced programmer, or if you already have a significant base in R (by this I mean you are experienced with writing functions, the tidyverse, S4 objects etc.). Note that the TA will have little knowledge outside of R and they do not have the time to solve problems and answer questions. I will try my best but solving conflicts in someone's conda environment can take hours, so you cannot expect that. 
-
+ 
 <span class="newthought">[Pythonic]</span> For people choosing [Python](https://www.python.org/downloads/), you should use version 3. We recommend that you install [anaconda3/conda](https://docs.anaconda.com/anaconda/install/) environments. We also recommend installing and becoming familiar with [Jupyter](https://jupyter.org/notebooks). There are [many](https://www.datacamp.com/community/tutorials/data-science-python-ide) Interactive Development Environments (IDEs) for Jupyter. I personaly prefer <code>RStudio</code> as it allows <code>R</code> and <code>Python</code> to run together; this will also address some of the aniticipated issues above. If you experience significant difficulties preparing this environment, we ask you to seriously reconsider your choice to use <code>Python</code>.
 
 If you are a relatively advanced  programmmer, we recommend the following [manual](https://www.oreilly.com/library/view/fluent-python/9781491946237/). Otherwise, there are many excellent beginner guides from publishers such as O'Reilly.
@@ -115,8 +115,8 @@ You can find descriptions and instructions for each exercise on the [assignments
 assignments <- tribble(
   ~Points, ~Assignment,
   15     , "Quizzes, Puzzles, Opinions (3 x 5 pts)",
-  20     , "Midterm  (take home 1 hour)",
-  25     , "Final Exam (take home 2 hours)",
+  20     , "Midterm  (open book 1 hour)",
+  25     , "Final Exam (open book 2 hours)",
   40     , "Homework assignments (4 x 10)"
 )
 
@@ -134,8 +134,8 @@ cat("Total pts: ", sum(assignments$Points), "\n")
 assignments <- tribble(
   ~Points, ~Assignment,
   15     , "Quizzes, Puzzles, Opinions (3 x 5 pts)",
-  15     , "Midterm (take home 1 hour)",
-  20    ,   "Final Exam (2 hours)",
+  15     , "Midterm (open book, 1 hour)",
+  20    ,   "Final Exam (open book, 2 hours)",
   40     , "Homework assignments (4 x 10)",
   10     , "Project"
 )
@@ -165,7 +165,6 @@ You should watch the  video before the actual lecture.
 
 5. Office hours will be in person. I am actually accessible almost always via Slack and find this a more efficient way to communicate. Slack does have video conferencing too that is very easy to use, and is more suitable for one on one discussion. 
 
-6. The midterm is take home, and the final is in class. You can make use of whatever resources you would like in the midterm, but you need to cite all such resources used. If you do not, it will be treated as academic dishonesty. Notebooks are allowed in the final.
 
 7. Submission of assignments, projects and other material will be discussed as we progress through the course.
   

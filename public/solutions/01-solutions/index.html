@@ -185,7 +185,7 @@ However, if you look in the R code in the <span class="math inline">\({\tt src}\
 ## language       R                           
 ## version.string R version 4.0.3 (2020-10-10)
 ## nickname       Bunny-Wunnies Freak Out
-## [1] &quot;Sun Oct 17 16:05:58 2021&quot;</code></pre>
+## [1] &quot;Sun Oct 17 16:10:07 2021&quot;</code></pre>
 <p><strong>For Questions 6-8 below.</strong> Put a comment in your file that states what question you are working on and put your code below it. For any pictures (eg the plot that your code generates) and text, put them into a text document (eg using Google Docs) stating what question you are working on.</p>
 <p><strong>Question 6 [5 points]</strong></p>
 <p>Recall from the lecture that <span class="math inline">\({\tt HER2}\)</span> is an important protein in some subtypes of breast cancer, and remmeber that <span class="math inline">\({\tt ERBB2}\)</span> is the official name for <span class="math inline">\({\tt HER2}\)</span>.</p>
@@ -244,12 +244,12 @@ XM&lt;-T; XT&lt;- T; YM&lt;-T; YT&lt;- F; ZM&lt;- F; ZT&lt;-T
 <ol start="3" style="list-style-type: lower-alpha">
 <li><em>The condition is that all three people have enough time but at least one person must have enough money.</em> (The rich one will pay for the other two.)</li>
 </ol>
-<pre class="r watch-out"><code>(((XT&amp;&amp;YT)&amp;&amp;ZT) &amp;&amp; ((XM||YM)||ZM))
+<pre class="r watch-out"><code>(((XT&amp;YT)&amp;ZT) &amp; ((XM|YM)|ZM))
 ## [1] FALSE</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li><em>The condition is that all three people have enough time but at least two people must have enough money.</em></li>
 </ol>
-<pre class="r watch-out"><code>(((XT&amp;YT)&amp;ZT) &amp;&amp; ((XM&amp;YM)||(XM&amp;ZM)||(YM&amp;ZM) ) )
+<pre class="r watch-out"><code>(((XT&amp;YT)&amp;ZT) &amp; ((XM&amp;YM)|(XM&amp;ZM)|(YM&amp;ZM) ) )
 ## [1] FALSE</code></pre>
 <p>Good luck!</p>
 

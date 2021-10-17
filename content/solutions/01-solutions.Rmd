@@ -181,13 +181,13 @@ XM<-T; XT<- T; YM<-T; YT<- F; ZM<- F; ZT<-T
 (c) _The condition is that all three people have enough time but at least one  person must have enough money._ (The rich one will pay for the other two.)
 
 ```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
-(((XT&&YT)&&ZT) && ((XM||YM)||ZM))
+(((XT&YT)&ZT) & ((XM|YM)|ZM))
 
 ```
 (d) _The condition is that all three people have enough time but at least two  people must have enough money._
 
 ```{r echo=TRUE, fig.align='center', collapse=TRUE, class.source="watch-out"}
-(((XT&YT)&ZT) && ((XM&YM)||(XM&ZM)||(YM&ZM) ) )
+(((XT&YT)&ZT) & ((XM&YM)|(XM&ZM)|(YM&ZM) ) )
 ```
 
 Good luck!

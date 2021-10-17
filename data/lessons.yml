@@ -45,7 +45,7 @@ lessons:
   - number: "--"
     date: "Sept 27"
     title: "**Assignment 1 due**"
-#    solutions: "01-solutions"
+    solutions: "01-solutions"
   - number: "L6"
     title: "Exploratory data analysis of breast cancer transcriptomes"
     date: "Sept 28"

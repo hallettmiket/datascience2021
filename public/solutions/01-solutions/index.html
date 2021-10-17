@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mike Hallett">
+    <meta name="description" content="Explore and model biological data">
+
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@hallettmichael">
+    <meta name="twitter:title" content="01-solution | BIOL 480/510/630: Bioinformatics">
+    <meta name="twitter:creator" content="@hallettmichael">
+    <meta name="twitter:image" content="/images/sys-small1.png">
+    <meta name="twitter:description" content="Explore and model biological data" />
+
+    <meta property="og:site_name" content="BIOL 480/510/630: Bioinformatics"/>
+    <meta property="og:title" content="01-solution | BIOL 480/510/630: Bioinformatics">
+    <meta property="og:type" content="article" />
+    <meta property="article:author" content="" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/images/sys-small1.png">
+    <meta property="og:description" content="Explore and model biological data" />
+
+    <meta name="generator" content="Hugo 0.74.1" />    
+
+    <title>01-solution | BIOL 480/510/630: Bioinformatics</title>
+    <link rel="canonical" href="/solutions/01-solutions/">
+    <link href="/theme/css/tufte.css" rel="stylesheet">
+    <link href="/theme/css/latex.css" rel="stylesheet">
+    <link href="/theme/css/custom.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .wrap a, .wrap a:visited {
+            color: #1663BA;
+        }
+
+        .wrap a:hover {
+            color: #398AE6;
+        }
+
+        .wrap p > a {
+            color: #1663BA;
+        }
+
+        article .sidenote-number:after, article .sidenote:before {
+            color: #1663BA;
+        }
+
+        article .sidenote:before {
+            color: #1663BA;
+        }
+
+        @media (max-width: 760px) {
+            label.margin-toggle:not(.sidenote-number) {
+                color: #1663BA;
+            }
+        }
+
+        .contrast a, .contrast a:visited {
+            color: #1663BA; 
+        }
+
+        header > nav a {
+            color: #1663BA;
+        }
+
+        .credits a {
+            color: #1663BA;
+        }
+
+        .wrap .tag {
+            background: #1663BA;
+        }
+    </style>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="BIOL 480/510/630: Bioinformatics"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" /> 
+    <meta name="msapplication-TileImage" content="/images/mstile-144x144.png" />
+
+    
+    <script src="//use.typekit.net/vpe6zfl.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+ 
+
+</head>
+
+<body>
+<div class="wrap">
+    <header>
+        <nav class="group logo-wrap">
+            <a href="/" class="logo"><img src="/images/sys-small1.png" alt="Data Science in Biology"></a>
+            <h1 class="websitetitle"><a href="/">BIOL 480/510/630: Bioinformatics</a></h1>
+        </nav>
+        <nav class="bottom-group">
+            
+            <a href="/overview/">Overview</a>
+            
+            <a href="/syllabus/">Syllabus</a>
+            
+            <a href="/resources/">Resources</a>
+            
+            <a href="/assignments/">Assignments</a>
+            
+            <a href="/projects/">Projects</a>
+            
+        </nav>
+    </header>
+ 
+
+    <article class="group">
+    <h1>01-solution</h1>
+
+    <h2>0001/01/01</h2>
+    
+    
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Note that due dates can be found in the <a href="/Syllabus">Syllabus</a>; submission instructions can be found on the <a href="/Assignments">Assignment Instructions</a> page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your <span class="math inline">\({\tt R}\)</span> code via Google Drive.
+Samira will go over the submission process in the lab.</p>
+<p><span class="math inline">\({\bf 60}\)</span> total marks.</p>
+<p><strong>Question 1 [7 points]</strong> You obtained a <span class="math inline">\({\tt gmail}\)</span> account for this course. With this account, you can also initiate your Google Drive workspace. (i) Does Google have the right to look at your emails, documents, drawings or other objects? (ii) Does Google have the right to use this information? What is meta-data? Can it collect meta-data about your information? (iii) How can you turn on or off the geographical tracking mechanism associated with your account? (iv) Are you satisfied with the level of security and user agreement with Google? (Answer in ~10 sentences please.)</p>
+<ol style="list-style-type: lower-roman">
+<li>Google has the right to look at and collect any content that you provide to them</li>
+<li>Google has the right to use the information you give to them although it promises that it doesn’t sell your data and just use it to make the ads relevant to your need. Meta-data is the “data about data”. The data that describes and gives information about other data. Google can and does collect the meta-data about your information.</li>
+<li>You can do it by going to the “Location History” section of your Google account and turn it off or on.
+iv)answer as your personal opinion.</li>
+</ol>
+<p><strong>Question 2 [10 points]</strong> Given what you read about Google, highlight any differences with Apple Cloud or other Cloud service provider of your choice. Comment overall on what you found.</p>
+<p><strong>Answer</strong> Apple Cloud offers better security compare to Google as Google offers no end-to-end encryption. It means that the data can be accessed by anyone that Google provide the data to. However, Google Drive is accessible from all platform while Apple Cloud is just accessible from Apple devices. Google provides more free storage than Apple. Google also is better for collaboration as its features are more useful for that matter. In general, Google is a better provider compare to many other platforms.</p>
+<p><strong>Question 3 [3 points]</strong> Explain how cloud computing can reduce the overall cost for computers and computation for a small business or research group? If so, how? Make reference to the definitions and components of cloud and traditional computing from the lecture notes. 4 or 5 sentences.</p>
+<p><strong>Answer</strong> Cloud computing can reduce the overall cost and save time for small business by providing stores data, improving their productivity and collaboration and also promoting innovation. With cloud computing, small businesses can have access information wherever and whenever they want. The data always synced between all people in the group therefore members have access to the most recent version of their documents. As there is no need for business owner to buy and maintain server equipment anymore, the labor cost to maintain the server would not be an issue anymore. Although they still should pay for cloud services monthly, it is more manageable and cheaper than before.</p>
+<p><strong>Question 4 [4 points]</strong> Argue for and against each of the following items as a computing device (make references to the 3 fundamental properties of modern computers).</p>
+<ol style="list-style-type: decimal">
+<li>a bacterium</li>
+<li>a plant</li>
+<li>a squid</li>
+<li>a human</li>
+<li>an assembly line to make household appliances</li>
+</ol>
+<p><strong>Answer</strong> Your answer (for or against) should mention all the properties:
+Property 1: Input → algorithm → output
+Property 2: Notion of reprogrammability
+Property 3: Notion of state and memory</p>
+<p><strong>Question 5 [4 points]</strong>
+Create an <span class="math inline">\({\tt R}\)</span> script under <span class="math inline">\({\tt File/NewFile}\)</span>.
+Write R code to load the <span class="math inline">\({\tt tidyverse}\)</span> library and the <span class="math inline">\({\tt small\_brca}\)</span> dataset.
+Note that in the course slides, I load the dataset from my directory specific to my computer.
+However, if you look in the R code in the <span class="math inline">\({\tt src}\)</span> on RStudio Cloud (Project 03), you will find the correct path for you.</p>
+<p>Make a comment that this is Question 5, Assignment 1 before your code. Find the function in <span class="math inline">\({\tt R}\)</span> that reports the date and the version of <span class="math inline">\({\tt R}\)</span> that you are using. Put the code in your file.</p>
+<p>Save your R code in your <span class="math inline">\({\tt src}\)</span> directory of the project and name the file <span class="math inline">\({\tt lastname\_assignment1.R}\)</span>. Take a screenshot with your file open (top left), the Environment list showing (top right), the code executed in your R session (bottom left), and the contents of the <span class="math inline">\({\tt src}\)</span> folder (bottom right). Congratulations, you are now an R programmer.</p>
+<pre><code>##                _                           
+## platform       x86_64-apple-darwin17.0     
+## arch           x86_64                      
+## os             darwin17.0                  
+## system         x86_64, darwin17.0          
+## status                                     
+## major          4                           
+## minor          0.3                         
+## year           2020                        
+## month          10                          
+## day            10                          
+## svn rev        79318                       
+## language       R                           
+## version.string R version 4.0.3 (2020-10-10)
+## nickname       Bunny-Wunnies Freak Out
+## [1] &quot;Sun Oct 17 16:05:58 2021&quot;</code></pre>
+<p><strong>For Questions 6-8 below.</strong> Put a comment in your file that states what question you are working on and put your code below it. For any pictures (eg the plot that your code generates) and text, put them into a text document (eg using Google Docs) stating what question you are working on.</p>
+<p><strong>Question 6 [5 points]</strong></p>
+<p>Recall from the lecture that <span class="math inline">\({\tt HER2}\)</span> is an important protein in some subtypes of breast cancer, and remmeber that <span class="math inline">\({\tt ERBB2}\)</span> is the official name for <span class="math inline">\({\tt HER2}\)</span>.</p>
+<p>The variable <span class="math inline">\({\tt ERBB2}\)</span> in our tibble corresponds to estimates of the number of transcripts present in each sample (row). This is obtained using RNA-seq technologies as discussed in the lecture.
+Clinically, <span class="math inline">\({\tt HER2}\)</span> is not measured using transcriptomics. Typically the
+copy number of <span class="math inline">\({\tt HER2}\)</span> is measured at at the DNA level. This is because we believe that
+<span class="math inline">\({\tt HER2}\)</span> over-expression at the transcript and protein levels are due to a amplification of the genomic region tha contains <span class="math inline">\({\tt HER2}\)</span>. In the clinic, Fluorescence In Situ Hybridization <a href="https://www.genome.gov/about-genomics/fact-sheets/Fluorescence-In-Situ-Hybridization">(FISH)</a> is used.</p>
+<p>The variable <span class="math inline">\({\tt her2\_fish\_status}\)</span> gives exactly this, although it is not available for many observations (rows/patient samples).</p>
+<p>Using ggplot, making the following scatter plot. Put your R code with your answer.</p>
+<pre class="r watch-out"><code>ggplot(data = small_brca) + 
+  geom_point(mapping = aes(x = ERBB2,  y = GRB7, color = her2_fish_status, shape=tumor), size = 2) </code></pre>
+<p><img src="/solutions/01-solutions_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" />
+Comment or interpret the graph in 1 or 2 sentences: does it make sense? is it what you expected? are there issues? etc.</p>
+<p><strong>Question 7 [5 points]</strong></p>
+<p>It is a little bit hard to see the status of <span class="math inline">\({\tt tumor}\)</span> and <span class="math inline">\({\tt her2\_fish\_status}\)</span> in the figure of Question 6 because so many points are bunched up around the origin of the graph.
+Using online resources, figure out how to log-transform the both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axis. Log-transformations will be revisited several times but they are very common transformations of gene expresion data. Recreate the scatterplot with the log-transformed data. Show your code and the image it generates. Comment on whether this transformation helped and if it changes your conclusions from Question 6.</p>
+<pre class="r watch-out"><code>ggplot(data = small_brca) + 
+  geom_point(mapping = aes(x = GRB7,  y = ERBB2, color = her2_fish_status, shape=tumor), size = 2) +
+   scale_x_log10()+
+  scale_y_log10()</code></pre>
+<p><img src="/solutions/01-solutions_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Question 8 [7 points]</strong></p>
+<p>Create a boxplot in <span class="math inline">\({\tt ggplot}\)</span> as below. Hint: I logged transformed the expresion of <span class="math inline">\({\tt ERBB2}\)</span>). Comparing positive and negative samples, is there any hypotheses you could form?</p>
+<p><strong>Answer</strong></p>
+<pre class="r watch-out"><code>ggplot(data = small_brca,  aes(x=factor(her2_fish_status), y=log(ERBB2), fill=tumor))  + 
+  geom_boxplot()</code></pre>
+<p><img src="/solutions/01-solutions_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>HER2 gene expression is definitely higher in tumors than in nomral tissue. Also HER2 fish status largely agrees with the gene expression data.</p>
+<p><strong>Question 9 [5 points]</strong></p>
+<p>The expression of <span class="math inline">\({\tt GRB7}\)</span> and <span class="math inline">\({\tt ERBB2}\)</span> are highly correlated. We will revisit the concept of correlation later in the course, but for now you can see a (positive) linear relationship between the two. Using <span class="math inline">\({\tt PubMed}\)</span> or other resources, can you hypothesize why these two genes have such high correlation in their expression (what is the biological reason that their expression is correlated)?</p>
+<p><strong>Answer</strong> Since both genes are located on chromosome 17q in a close distance to each other, any amplification of that region would result in co-amplification of both genes together. Therefore, there is a high correlation in their expression. This region is part of the so-called HER2-amplicon and is frequently amplified in breast cancer (<span class="math inline">\(\tilde 15\%\)</span>).</p>
+<p><strong>Question 10 [10 point]</strong>
+Suppose there are three friends who are discussing the possibilty of going on
+vacation together.
+We can call these individuals <span class="math inline">\(X, Y, Z\)</span>.
+Each friend has two issues to resolve: money, time. These are both logical variables themselves.
+For example, the money issue for <span class="math inline">\(X\)</span> can be a logical variable <span class="math inline">\(XM\)</span> and it is <span class="math inline">\({\tt TRUE}\)</span> if and only if <span class="math inline">\(X\)</span> has enough money.
+Similarly, the time issue is a logical variable <span class="math inline">\(XT\)</span> that is <span class="math inline">\({\tt TRUE}\)</span> if and only if <span class="math inline">\(X\)</span> has enough vacation time.</p>
+<p>So you might have R code that looks like this.</p>
+<pre class="r watch-out"><code>XM &lt;- TRUE; XT &lt;- FALSE; YM &lt;- TRUE; YT &lt;- TRUE; ZM &lt;- FALSE; ZT &lt;- FALSE</code></pre>
+<p>In this particular assignment of <span class="math inline">\({\tt TRUE}\)</span> and <span class="math inline">\({\tt FALSE}\)</span> to the variables, it is the case that only <span class="math inline">\(Z\)</span> does not have enough money. There are many other asignments that are possible. For instance, it might be the case as follows</p>
+<pre class="r watch-out"><code>XM &lt;- TRUE; XT &lt;- TRUE; YM &lt;- TRUE; YT &lt;- TRUE; ZM &lt;- TRUE; ZT &lt;- TRUE</code></pre>
+<p>I would like you to write a logical expression in R code that evaluates to <span class="math inline">\({\tt TRUE}\)</span> (they will go on vacation) or <span class="math inline">\({\tt FALSE}\)</span> (they will not go on vacation) for each of the condition below.</p>
+<ol style="list-style-type: lower-alpha">
+<li><em>The condition is that all three people have enough money and enough time.</em></li>
+</ol>
+<pre class="r watch-out"><code>
+XM&lt;-T; XT&lt;- T; YM&lt;-T; YT&lt;- F; ZM&lt;- F; ZT&lt;-T
+((XM&amp;XT)&amp;(YM&amp;YT)&amp;(ZM&amp;ZT))
+## [1] FALSE</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><em>The condition is that all three people have enough money but time does not matter.</em> (Maybe they decide to go for a weekend instead of two weeks.)</li>
+</ol>
+<pre class="r watch-out"><code>((XM&amp;YM)&amp;ZM)
+## [1] FALSE</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><em>The condition is that all three people have enough time but at least one person must have enough money.</em> (The rich one will pay for the other two.)</li>
+</ol>
+<pre class="r watch-out"><code>(((XT&amp;&amp;YT)&amp;&amp;ZT) &amp;&amp; ((XM||YM)||ZM))
+## [1] FALSE</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><em>The condition is that all three people have enough time but at least two people must have enough money.</em></li>
+</ol>
+<pre class="r watch-out"><code>(((XT&amp;YT)&amp;ZT) &amp;&amp; ((XM&amp;YM)||(XM&amp;ZM)||(YM&amp;ZM) ) )
+## [1] FALSE</code></pre>
+<p>Good luck!</p>
+
+
+    </article>
+
+    <footer>
+        <hr class="slender">
+        <div class="course-info">
+        <span class="course-name">
+            BIOL 480/510/630: Bioinformatics (Fall 2021)
+        </span><br>
+        <span>
+            <em><a href="https://www.concordia.ca">Concordia University</a></em> | 
+            <em><a href="https://www.concordia.ca/artsci/biology.html">Department of Biology | CSFG | CASB</a></em>
+        </span>
+        </div>
+
+        <ul class="footer-links">
+            <li>
+            <a href="https://mikehallett.science"><i class="fa fa-user" aria-hidden="true"></i> Mike Hallett</a>
+            </li>
+
+            <li>
+            <a href="mailto:hallett.mike.t@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i> gmail</a>
+            </li>
+
+            <li>
+            <i class="fa fa-calendar" aria-hidden="true"></i> TuTh HB 130 LOY
+            </li>
+
+            <li>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> 13:15-14:30
+            </li>
+
+            <li>
+                <a href=""><i class="fa fa-university" aria-hidden="true"></i> Zoom</a>
+            </li>
+            
+
+            <li>
+            <a href="https://twitter.com/hallettmichael"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+            </li>
+
+            <li>
+            <a href="https://github.com/https://github.com/hallettmiket/hallettmiket.github.io"><i class="fa fa-github" aria-hidden="true"></i></a>
+            </li>
+            <span class="fake-li"><i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com/">Slack</a></span><br>
+
+            
+        </ul>
+
+        <div class="credits">
+        <span>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons</a>.
+        Content © 2021 <a href="https://mikehallett.science">mike hallett</a>
+        </span><br><br>
+<br><br>
+        <span>We thank <a href="https://www.andrewheiss.com/">A Heiss</a> for the modified Tufte scheme.</span><br><br>
+
+        <span>This site modified the <a href="https://github.com/andrewheiss/ath-tufte-hugo">ath-tufte-hugo theme</a> in <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> and <a href="https://gohugo.io/">hugo</a>.</span>
+        </div>
+    </footer>
+
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+</div>
+</body>
+</html>
+

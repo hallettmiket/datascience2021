@@ -21,5 +21,16 @@
 Question 1 [7 points] You obtained a \({\tt gmail}\) account for this course.</description>
     </item>
     
+    <item>
+      <title>02-solution</title>
+      <link>/solutions/02-solutions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solutions/02-solutions/</guid>
+      <description>\({\bf 67}\) total marks.
+Question 1 [10 points] A. Re-express the following small program using pipes.
+c &amp;lt;- 18 f &amp;lt;- c*(9/5) + 32 print(f) ## [1] 64.4 f &amp;lt;- c %&amp;gt;% .[[1]]*(9/5) + 32 print(f) ## [1] 64.4 It’s pretty trick but just remember that whatever you pass through a pipe is called \({\tt .}\) and it’s actually a list. So if it is just a single item, it’s the first item in the list \({\tt .</description>
+    </item>
+    
   </channel>
 </rss>

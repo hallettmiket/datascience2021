@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mike Hallett">
+    <meta name="description" content="Explore and model biological data">
+
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@hallettmichael">
+    <meta name="twitter:title" content="02-solution | BIOL 480/510/630: Bioinformatics">
+    <meta name="twitter:creator" content="@hallettmichael">
+    <meta name="twitter:image" content="/images/sys-small1.png">
+    <meta name="twitter:description" content="Explore and model biological data" />
+
+    <meta property="og:site_name" content="BIOL 480/510/630: Bioinformatics"/>
+    <meta property="og:title" content="02-solution | BIOL 480/510/630: Bioinformatics">
+    <meta property="og:type" content="article" />
+    <meta property="article:author" content="" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/images/sys-small1.png">
+    <meta property="og:description" content="Explore and model biological data" />
+
+    <meta name="generator" content="Hugo 0.74.1" />    
+
+    <title>02-solution | BIOL 480/510/630: Bioinformatics</title>
+    <link rel="canonical" href="/solutions/02-solutions/">
+    <link href="/theme/css/tufte.css" rel="stylesheet">
+    <link href="/theme/css/latex.css" rel="stylesheet">
+    <link href="/theme/css/custom.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .wrap a, .wrap a:visited {
+            color: #1663BA;
+        }
+
+        .wrap a:hover {
+            color: #398AE6;
+        }
+
+        .wrap p > a {
+            color: #1663BA;
+        }
+
+        article .sidenote-number:after, article .sidenote:before {
+            color: #1663BA;
+        }
+
+        article .sidenote:before {
+            color: #1663BA;
+        }
+
+        @media (max-width: 760px) {
+            label.margin-toggle:not(.sidenote-number) {
+                color: #1663BA;
+            }
+        }
+
+        .contrast a, .contrast a:visited {
+            color: #1663BA; 
+        }
+
+        header > nav a {
+            color: #1663BA;
+        }
+
+        .credits a {
+            color: #1663BA;
+        }
+
+        .wrap .tag {
+            background: #1663BA;
+        }
+    </style>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="BIOL 480/510/630: Bioinformatics"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" /> 
+    <meta name="msapplication-TileImage" content="/images/mstile-144x144.png" />
+
+    
+    <script src="//use.typekit.net/vpe6zfl.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+ 
+
+</head>
+
+<body>
+<div class="wrap">
+    <header>
+        <nav class="group logo-wrap">
+            <a href="/" class="logo"><img src="/images/sys-small1.png" alt="Data Science in Biology"></a>
+            <h1 class="websitetitle"><a href="/">BIOL 480/510/630: Bioinformatics</a></h1>
+        </nav>
+        <nav class="bottom-group">
+            
+            <a href="/overview/">Overview</a>
+            
+            <a href="/syllabus/">Syllabus</a>
+            
+            <a href="/resources/">Resources</a>
+            
+            <a href="/assignments/">Assignments</a>
+            
+            <a href="/projects/">Projects</a>
+            
+        </nav>
+    </header>
+ 
+
+    <article class="group">
+    <h1>02-solution</h1>
+
+    <h2>0001/01/01</h2>
+    
+    
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p><span class="math inline">\({\bf 67}\)</span> total marks.</p>
+<p><strong>Question 1 [10 points]</strong>
+<em>A.</em> Re-express the following small program using pipes.</p>
+<pre class="r watch-out"><code>c &lt;- 18
+f &lt;- c*(9/5) + 32
+print(f)
+## [1] 64.4
+
+f &lt;- c %&gt;% .[[1]]*(9/5) + 32
+print(f)
+## [1] 64.4</code></pre>
+<p>It’s pretty trick but just remember that whatever you pass through a pipe is called <span class="math inline">\({\tt .}\)</span> and it’s actually a list. So if it is just a single item, it’s the first item in the list <span class="math inline">\({\tt .[[1]]}\)</span></p>
+<p><em>B.</em></p>
+<pre class="r watch-out"><code>x &lt;- 1e10
+y &lt;- sqrt( factorial(x) )
+y &lt;- x %&gt;% factorial %&gt;% sqrt %&gt;% print
+## [1] Inf</code></pre>
+<p><em>C.</em></p>
+<pre class="r watch-out"><code>x&lt;-3; mu&lt;-5; sigma &lt;-7
+nrm &lt;- ( 1 / (sigma * sqrt( 2 * pi ))) * exp( -(1/2) * ( (x - mu)/ sigma )^2)
+
+p &lt;- c(x = 3, mu = 5, sigma = 7)
+p %&gt;%
+  { ( 1 / (.[[&quot;sigma&quot;]] * sqrt( 2 * pi ))) * exp( -(1/2) * ( (.[[&quot;x&quot;]] - .[[&quot;mu&quot;]])/ .[[&quot;sigma&quot;]] )^2 ) }
+## [1] 0.05471239</code></pre>
+<p>So the trick is to combine the multiple parameters into a single vector first! That single vector is passed
+down the epipe.</p>
+<pre class="r watch-out"><code>p &lt;- c( first = &quot;a&quot;, second = &quot;b&quot;, third = &quot;c&quot;)</code></pre>
+<p><em>D.</em> What is this equation?</p>
+<p>Normal probablity distribution function.</p>
+<p><em>E.</em></p>
+<pre class="r watch-out"><code>site &lt;- 15
+gsub(&quot;;&quot;, &quot;/&quot;, paste(paste( paste( &quot;~hallett&quot;, paste(&quot;raw&quot;, &quot;tara&quot;, sep = &quot;;&quot;), sep = &quot;;&quot;), 
+      paste(&quot;site&quot;, site, sep=&quot;_&quot;), sep=&quot;;&quot;), 
+      &quot;dna_seq.fa&quot;, sep=&quot;;&quot;))
+## [1] &quot;~hallett/raw/tara/site_15/dna_seq.fa&quot;
+
+site %&gt;%
+  paste(&quot;site&quot;, ., sep=&quot;_&quot;) %&gt;% 
+  paste(&quot;dna_seq.fa&quot;, sep=&quot;;&quot;) %&gt;%
+  paste(&quot;raw&quot;, &quot;tara&quot;, ., sep = &quot;;&quot;) %&gt;%
+  paste(&quot;~hallett&quot;, ., sep = &quot;;&quot;) %&gt;%
+  gsub(&quot;;&quot;, &quot;/&quot;, .)
+## [1] &quot;~hallett/raw/tara/site_15/dna_seq.fa&quot;</code></pre>
+<p>The pipes makes this one a bit easier to read; do you agree?</p>
+<p><strong>Question 2 [5 points]</strong></p>
+<p>In total, how many black, african or asian women are included in the <span class="math inline">\({\tt small\_brca}\)</span> dataset?</p>
+<pre class="r"><code>q2 &lt;- small_brca %&gt;% filter(gender==&quot;FEMALE&quot;, race==&quot;BLACK OR AFRICAN AMERICAN&quot; | race==&quot;ASIAN&quot;) %&gt;%
+  group_by(participant) %&gt;% distinct %&gt;% nrow
+print(q2)</code></pre>
+<pre><code>## [1] 249</code></pre>
+<p>Create a histogram of all asian individuals grouped by age. Each bar in the histogram should have two colours corresponding to male and females. (For example, red might be used for the fraction of women in some age group while blue is used for men in that same age group). Choose the number of bins (or binsize) in a way that makes your plot informative.</p>
+<pre class="r"><code>small_brca %&gt;%
+  filter(race == &quot;ASIAN&quot;) %&gt;%
+  distinct(participant, .keep_all = TRUE) %&gt;%
+  mutate(age_at_diagnosis = as.numeric(age_at_diagnosis)) %&gt;%
+  ggplot(aes(x = age_at_diagnosis, fill = gender)) +
+  geom_histogram(binwidth = 5)</code></pre>
+<p><img src="/solutions/02-solutions_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+So there are no males that fit this criterion. That’s ok. Also, you could use <span class="math inline">\({\tt birth\_days\_to}\)</span> but you should divide by 365 first and take the absolute value (to make it more readable). Which to use is a bit of an esoteric issue: are you interested in their age at diagnosis or at last followup appointment?</p>
+<p><strong>Question 3 [7 points]</strong></p>
+<p>How many participants are there? (Careful: not samples but participants.) Show code.</p>
+<pre class="r"><code>small_brca %&gt;% .[&quot;participant&quot;] %&gt;% distinct %&gt;% nrow</code></pre>
+<pre><code>## [1] 1092</code></pre>
+<p>A non-tidy way to do this would be as follows:</p>
+<pre class="r"><code>unique(small_brca$participant) %&gt;% length</code></pre>
+<pre><code>## [1] 1092</code></pre>
+<p>Both are perfectly ok. Do you undestand why we use <span class="math inline">\({\tt nrow}\)</span> above but <span class="math inline">\({\tt length}\)</span> in the non-tidy version?</p>
+<p>List all of the <span class="math inline">\({\tt participant}\)</span> that have more than one sample. Show code.</p>
+<pre class="r"><code>num_multi &lt;- small_brca %&gt;% group_by(participant) %&gt;% summarise(count=n(), tumor, ESR1) %&gt;%
+          filter(count &gt; 1) %&gt;% arrange(participant) </code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;participant&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>num_multi %&gt;% nrow %&gt;% print</code></pre>
+<pre><code>## [1] 238</code></pre>
+<p>For the participants identified in 4b, create a scatter plot with the tumor on the <span class="math inline">\(x\)</span> axis and the normal on the <span class="math inline">\(y\)</span> axis (as specified by the <span class="math inline">\({\tt tumor}\)</span> variable in the tibble) with points representing the expression of gene <span class="math inline">\({\tt ESR1}\)</span>.</p>
+<pre class="r"><code>for_plot &lt;- num_multi %&gt;% select(-count) %&gt;%
+    pivot_wider(names_from = tumor, values_from = ESR1, values_fn=mean) %&gt;% rename(tumor=&#39;TRUE&#39;, normal=&#39;FALSE&#39;)
+
+ggplot(data = for_plot, mapping = aes(x = tumor, y = normal)) +
+  geom_point()</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<p><img src="/solutions/02-solutions_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>So that is some tricky coding! If you managed that, congratulations. Do you understand why the <span class="math inline">\({\tt values\_fn}\)</span> is necessary? Here I have chosen the <span class="math inline">\({\tt mean}\)</span> (average) to combine when a patient has more than one normal or tumor samples. In such a dataset, can you suggest why it might be advantageous to have more than one sample for tumor or normal for a patient? I included the <span class="math inline">\({\tt arrange}\)</span> and <span class="math inline">\({\tt rename}\)</span> calls just to make things a bit more readable; they aren’t strictly necessary.</p>
+<p><strong>Question 4 [23 points]</strong></p>
+<p><strong>Show your code for each step below.</strong></p>
+<p>When I made the assignment, I had intended to put this question as <strong>Question 2</strong>. I was a bit sloppy. It should be easy by now!</p>
+<p>Part a [1 point] Load the <span class="math inline">\({\tt tidyverse}\)</span> library and load the <span class="math inline">\({\tt small\_brca}\)</span> dataset.</p>
+<p>Part b [1 point] Write code that determines the number of rows (observations) and columns (variables) in <span class="math inline">\({\tt small\_brca}\)</span>.</p>
+<p>Part c [1 point] Write code that displays the column names (names of variable) for columns <span class="math inline">\(21\)</span> to columns <span class="math inline">\(24\)</span> inclusive.</p>
+<p>Part d [2 points] What is the mean expression level of FOXC1?</p>
+<p>Part e [3 points] How many samples are there with FOXC1 expression levels above <span class="math inline">\(245\)</span>?</p>
+<p>Part f [5 points] Create a new tibble called <span class="math inline">\({\tt bw}\)</span> that contains only those rows (observations) from <span class="math inline">\({\tt small\_brca}\)</span> that
+correspond to tumor samples of BLACK OR AFRICAN AMERICAN women.</p>
+<p>Part g [5 points] Using <span class="math inline">\({\tt small\_brca}\)</span>, select the variables <span class="math inline">\({\tt participant}\)</span>, <span class="math inline">\({\tt vital\_status}\)</span>, and all genes <strong>except</strong> <span class="math inline">\({\tt RRM2}\)</span>.</p>
+<p>Part h [5 points] Create a new variable called <span class="math inline">\({\tt triplenegative}\)</span> in the tibble <span class="math inline">\({\tt small\_brca}\)</span>
+that is TRUE (logical) if the sample is “Positive” for <span class="math inline">\({\tt er\_status\_by\_ihc}\)</span>, and <strong>not</strong> “Positive” for <span class="math inline">\({\tt her2\_fish\_status}\)</span>.
+Otherwise, in all other cases it is FALSE.</p>
+<pre class="r"><code>#a
+library(tidyverse)  # dont&#39; need to install it; it&#39;s already been installed by MH
+load(&quot;~/data/GDC/TCGA_BRCA/small_brca.Rdata&quot;) 
+
+#b
+(dim(small_brca)) # one way to do it.</code></pre>
+<pre><code>## [1] 1215   79</code></pre>
+<pre class="r"><code>(nrow(small_brca))</code></pre>
+<pre><code>## [1] 1215</code></pre>
+<pre class="r"><code>(ncol(small_brca))</code></pre>
+<pre><code>## [1] 79</code></pre>
+<pre class="r"><code>#c
+colnames(small_brca)[21:24]</code></pre>
+<pre><code>## [1] &quot;er_status_by_ihc&quot;               &quot;er_status_ihc_Percent_Positive&quot;
+## [3] &quot;pr_status_by_ihc&quot;               &quot;pr_status_ihc_percent_positive&quot;</code></pre>
+<pre class="r"><code>#d
+small_brca %&gt;% summarize( my_mean= mean(FOXC1, na.rm=TRUE) ) %&gt;% .[[&#39;my_mean&#39;]] %&gt;% print</code></pre>
+<pre><code>## [1] 1717.955</code></pre>
+<pre class="r"><code>#e 
+small_brca %&gt;% filter( FOXC1 &gt; 245 ) %&gt;% nrow</code></pre>
+<pre><code>## [1] 909</code></pre>
+<pre class="r"><code>#f 
+bw &lt;- small_brca %&gt;% filter( race==&quot;BLACK OR AFRICAN AMERICAN&quot;, gender==&quot;FEMALE&quot;, tumor==TRUE  )
+
+#g 
+small_brca %&gt;% select( participant, vital_status, ANLN:TMEM45B ) %&gt;% select( -RRM2 )</code></pre>
+<pre><code>## # A tibble: 1,215 x 51
+##    participant vital_status  ANLN FOXC1  CDH3 FGFR4 UBE2T NDC80   PGR BIRC5
+##    &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 A1NF        Alive         2124   235   485   261  1002  1184   710  1242
+##  2 A27M        Alive         4679  2068 15686   150   634   856    99  3429
+##  3 A0GZ        Alive         1192   284  3999   171  1314   732  8793  1738
+##  4 A18V        Dead         10191  2981 27406   473  1720  1853    76  4542
+##  5 A13G        Alive          823   142   435    46    77    45  8804   152
+##  6 A275        Alive        10198   265  6903  8835  2997  1887    76  5517
+##  7 A0XS        Alive          669   294  1407   159   305   352 57567   673
+##  8 A5RW        Alive         1342  5638  2975   195  2275  2572    12  5022
+##  9 A5RX        Alive          420   531  5030   327   509   122 19520   284
+## 10 A1RD        Alive         1124   189   299   649   679   550 21586   982
+## # … with 1,205 more rows, and 41 more variables: ORC6 &lt;dbl&gt;, ESR1 &lt;dbl&gt;,
+## #   PHGDH &lt;dbl&gt;, PTTG1 &lt;dbl&gt;, MELK &lt;dbl&gt;, NAT1 &lt;dbl&gt;, CXXC5 &lt;dbl&gt;, BCL2 &lt;dbl&gt;,
+## #   GPR160 &lt;dbl&gt;, EXO1 &lt;dbl&gt;, UBE2C &lt;dbl&gt;, TYMS &lt;dbl&gt;, KRT5 &lt;dbl&gt;, KRT14 &lt;dbl&gt;,
+## #   MAPT &lt;dbl&gt;, CDC6 &lt;dbl&gt;, MMP11 &lt;dbl&gt;, MYBL2 &lt;dbl&gt;, SFRP1 &lt;dbl&gt;, CCNE1 &lt;dbl&gt;,
+## #   BLVRA &lt;dbl&gt;, BAG1 &lt;dbl&gt;, MLPH &lt;dbl&gt;, CDC20 &lt;dbl&gt;, CENPF &lt;dbl&gt;, MIA &lt;dbl&gt;,
+## #   KRT17 &lt;dbl&gt;, FOXA1 &lt;dbl&gt;, ACTR3B &lt;dbl&gt;, CCNB1 &lt;dbl&gt;, MDM2 &lt;dbl&gt;, MYC &lt;dbl&gt;,
+## #   CEP55 &lt;dbl&gt;, SLC39A6 &lt;dbl&gt;, ERBB2 &lt;dbl&gt;, GRB7 &lt;dbl&gt;, KIF2C &lt;dbl&gt;,
+## #   NUF2 &lt;dbl&gt;, EGFR &lt;dbl&gt;, MKI67 &lt;dbl&gt;, TMEM45B &lt;dbl&gt;</code></pre>
+<pre class="r"><code>#h within the tidyverse
+
+small_brca &lt;- small_brca %&gt;% mutate( triplenegative = ifelse(er_status_by_ihc==&quot;Positive&quot;,  TRUE , FALSE    ) )
+
+#h - non-tidy verse way
+small_brca$triplenegative &lt;- ifelse(small_brca$er_status_by_ihc==&quot;Positive&quot;,  TRUE , FALSE    )</code></pre>
+<p>Note that when I work on my machine at home, the path is different. Your path for the <span class="math inline">\({\tt load}\)</span> should look something like <span class="math inline">\(data/small_brca.Rdata\)</span> because you are on RStudio Cloud and your directory structure looks the same. That’s one of the advantages of RStudio Cloud: you don’t need to struggle with paths on your own machine as much.</p>
+<p>There are different ways to do part (d). For example, in a none-tidyverse way:</p>
+<pre class="r"><code>( mean( as.numeric(small_brca$FOXC1 ), na.rm=TRUE ) )</code></pre>
+<pre><code>## [1] 1717.955</code></pre>
+<p>In both cases, do you understand the reason for <span class="math inline">\({\tt na.rm}\)</span>? Also, the <span class="math inline">\({\tt as.numeric}\)</span> is necessary because when you use the <span class="math inline">\({\tt \$}\)</span> to select a column, it is still a tibble (it’s just a single column tibble). You need to turn that tibble into a vector of numbers. Make sure you understand the <span class="math inline">\({\tt ifelse}\)</span> function; it’s handy.</p>
+<p><strong>Question 5 [12 points]</strong></p>
+<p>Using the <span class="math inline">\({\tt small\_brca}\)</span> tibble, create the following plot.</p>
+<pre class="r"><code>ggplot(data = small_brca) +  
+  geom_point(mapping = aes(x = GRB7, y = EGFR, color=tumor)) + 
+  facet_wrap(~ tumor_status, nrow = 2) +
+  scale_y_continuous(trans=&#39;log&#39;)   + scale_x_continuous(trans=&#39;log&#39;) + 
+  ggtitle(&quot;GRB7 and EGFR expression by tumor_status&quot;) +
+  xlab(&quot;log GRB7 expression&quot;) +  ylab(&quot;log EGFR expression&quot;)</code></pre>
+<p><img src="/solutions/02-solutions_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Question 6 [5 points]</strong></p>
+<p>The variable <span class="math inline">\({\tt race}\)</span> in <span class="math inline">\({\tt small\_brca}\)</span> has several different possible values including “WHITE”, “ASIAN”, “BLACK OR AFRICAN AMERICAN”, “AMERICAN INDIAN OR ALASKA NATIVE”, “[Not Available]”, “[Not Evaluated]”, or NA.</p>
+<p>It is better to simply use NA instead of“[Not Available]”, “[Not Evaluated]”, or NA.
+It will simplify your code in downstream analyses.</p>
+<p>Write R code to create a new <span class="math inline">\({\tt race\_modified}\)</span> variable where all samples with “[Not Available]”, “[Not Evaluated]” are changed to NA (Note: you shouldn’t use “NA”, but NA. They are not the same)</p>
+<pre class="r"><code>print(unique(small_brca$race))</code></pre>
+<pre><code>## [1] &quot;WHITE&quot;                            &quot;ASIAN&quot;                           
+## [3] &quot;BLACK OR AFRICAN AMERICAN&quot;        &quot;[Not Available]&quot;                 
+## [5] &quot;[Not Evaluated]&quot;                  NA                                
+## [7] &quot;AMERICAN INDIAN OR ALASKA NATIVE&quot;</code></pre>
+<pre class="r"><code>small_brca &lt;- small_brca %&gt;% mutate(race_modified = ifelse((race==&quot;[Not Available]&quot; | 
+                                                             race==&quot;[Not Evaluated]&quot; |
+                                                             race==&quot;NA&quot;), NA, race))
+print(unique(small_brca$race_modified))</code></pre>
+<pre><code>## [1] &quot;WHITE&quot;                            &quot;ASIAN&quot;                           
+## [3] &quot;BLACK OR AFRICAN AMERICAN&quot;        NA                                
+## [5] &quot;AMERICAN INDIAN OR ALASKA NATIVE&quot;</code></pre>
+<p><strong>Question 7 [5 points]</strong>
+Pick one of the <span class="math inline">\(50\)</span> genes from <span class="math inline">\({\tt small\_brca}\)</span> uniformly randomly (see the <span class="math inline">\({\tt runif}\)</span> function). Using the NCBI, provide the following information or note that it is not availalbe:</p>
+<pre class="r"><code>colnames(small_brca)[runif(1, min=37, max=79)] %&gt;% print</code></pre>
+<pre><code>## [1] &quot;ESR1&quot;</code></pre>
+<p>The rest of the answers for Question 7 are specific to the invividual.</p>
+<p>10a Full name of the gene and the official name according to the HGNC.<br>
+10b First time it was reported in the literature.<br>
+10c Where it is located in the genome.<br>
+10d Its <span class="math inline">\({\tt gi}\)</span> acccession code or codes (if it has been modified).<br>
+10e The number of exons.<br>
+10f The number of alternative transcripts that have been record. <br>
+10g Its full amino acid sequence. Provide its protein ID.<br>
+10h Its protein structure, if known.<br></p>
+
+
+    </article>
+
+    <footer>
+        <hr class="slender">
+        <div class="course-info">
+        <span class="course-name">
+            BIOL 480/510/630: Bioinformatics (Fall 2021)
+        </span><br>
+        <span>
+            <em><a href="https://www.concordia.ca">Concordia University</a></em> | 
+            <em><a href="https://www.concordia.ca/artsci/biology.html">Department of Biology | CSFG | CASB</a></em>
+        </span>
+        </div>
+
+        <ul class="footer-links">
+            <li>
+            <a href="https://mikehallett.science"><i class="fa fa-user" aria-hidden="true"></i> Mike Hallett</a>
+            </li>
+
+            <li>
+            <a href="mailto:hallett.mike.t@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i> gmail</a>
+            </li>
+
+            <li>
+            <i class="fa fa-calendar" aria-hidden="true"></i> TuTh HB 130 LOY
+            </li>
+
+            <li>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> 13:15-14:30
+            </li>
+
+            <li>
+                <a href=""><i class="fa fa-university" aria-hidden="true"></i> Zoom</a>
+            </li>
+            
+
+            <li>
+            <a href="https://twitter.com/hallettmichael"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+            </li>
+
+            <li>
+            <a href="https://github.com/https://github.com/hallettmiket/hallettmiket.github.io"><i class="fa fa-github" aria-hidden="true"></i></a>
+            </li>
+            <span class="fake-li"><i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com/">Slack</a></span><br>
+
+            
+        </ul>
+
+        <div class="credits">
+        <span>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons</a>.
+        Content © 2021 <a href="https://mikehallett.science">mike hallett</a>
+        </span><br><br>
+<br><br>
+        <span>We thank <a href="https://www.andrewheiss.com/">A Heiss</a> for the modified Tufte scheme.</span><br><br>
+
+        <span>This site modified the <a href="https://github.com/andrewheiss/ath-tufte-hugo">ath-tufte-hugo theme</a> in <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> and <a href="https://gohugo.io/">hugo</a>.</span>
+        </div>
+    </footer>
+
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+</div>
+</body>
+</html>
+

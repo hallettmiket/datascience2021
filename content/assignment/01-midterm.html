@@ -1,0 +1,78 @@
+---
+title: "Midterm"
+author: "M Hallett"
+date: "26/10/2021"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>The midterm must be submitted by <strong>2:30pm</strong> on Tuesday, October 26th, 2021 to <span class="math inline">\({\tt biol480.concordia@gmail.com}\)</span></p>
+<p>All answers in one email.</p>
+<p>Subject header of email is <strong>Midterm, Lastname, Firstname, student ID</strong>.</p>
+<p>You can use which ever media you prefer to answer your questions.</p>
+<p>This is open book, so you can use whatever resources you would like, but you must cite them. You are not allowed to speak to each other or other experts in this field (eg students who previously took the course).</p>
+<p><span class="math inline">\({\bf 40}\)</span> total marks.</p>
+<p>Point form, clear sentences for the following please.</p>
+<p><strong>Question 1 [4 points]</strong></p>
+<p>How do cloud based approaches reduce the financial burden for researchers and companies?</p>
+<p><strong>Question 2 [6 points]</strong></p>
+<p>What is the difference between an algorithm and a computer program? What is the difference between a computer program and a computer language? What is the difference between a computer language and an interactive development environment (IDE)?</p>
+<p><strong>Question 3 [10 points]</strong></p>
+<p>For each item below, indicate whether you believe this is a data science, bioinformatics or computational biology issue. It could also be a combination of zero or more of these. At most one sentence to justify your answer.</p>
+<p>Part a. Establishing a communication system (e.g. Slack) and a Cloud space for writing/sharing documents (e.g. Drive) for a group project</p>
+<p>Part b. Building software that takes as input thousands of RNA-sequencing samples and evaluates the technical quality (number of reads, number of reads that do not align to the genome etc.) of each sample and automatically detects those samples that are likely to be of poor quality.</p>
+<p>Part c. In a project aimed to profile the transcriptome of 1,000 tumors, identifying genes that are highly correlated with one aother, and with a clinical variable such as <em>time to recurrence</em>.</p>
+<p>Part d. Your collaborator has a new assay (sometimes called a <em>screen</em>) that identifies the sites of ubiquitination (or some other type of modification to genomes or proteins) across a whole genome. She gives you a file of all the sites that were identified for some specific organism. Your job is to design a web portal and software to make this available for users to examine and download.</p>
+<p>Part e. Your collaborator gives you the results of her ubiquitination screen from part d. She asks you to design software that predicts ubiquitination sites in a new organism (not the one where the original screen was performed.)</p>
+<p><strong>Question 4 [10 points]</strong></p>
+<p>Suppose you have a tibble that describes the genetic code and some amino acid properties (called <span class="math inline">\({\tt genetic\_code}\)</span>).
+For example, it might look something like this.</p>
+<pre><code>## # A tibble: 10 x 8
+##    pos1  pos2  pos3  amino_acid_long class      polarity charge   mass
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;
+##  1 U     U     U     Phe             aromatic   nonpolar neutral  165.
+##  2 U     U     C     Phe             aromatic   nonpolar neutral  165.
+##  3 U     U     A     Leu             aliphatic  nonpolar neutral  131.
+##  4 U     U     G     Leu             aliphatic  nonpolar neutral  131.
+##  5 C     U     U     Leu             aliphatic  nonpolar neutral  131.
+##  6 C     U     C     Leu             aliphatic  nonpolar neutral  131.
+##  7 C     U     A     Leu             aliphatic  nonpolar neutral  131.
+##  8 C     U     G     Leu             aliphatic  nonpolar neutral  131.
+##  9 U     C     U     Ser             hydroxilic polar    neutral  105.
+## 10 U     A     A     STOP            &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      NA</code></pre>
+<p>(Please note that I have not included the entire genetic code here. You can assume the rest of the genetic code
+is present in the tibble <span class="math inline">\({\tt genetic\_code}\)</span>.)</p>
+<p>Show code for each of the following questions.</p>
+<p>Part a. For some amino acid <span class="math inline">\(Z\)</span>, return all of the codons that code for <span class="math inline">\(Z\)</span>.</p>
+<p>Part b. For a given codon specified by <span class="math inline">\({\tt pos1, pos2, pos3}\)</span>, report which amino acid it codes for.</p>
+<p>Part c. Report all amino acids that begin with nucleic acid C.</p>
+<p>Part c. Identify the amino acid which has the most codons that code for it.</p>
+<p>Part d. The number of amino acids that are nonpolar, not neutral and have a mass above 100.</p>
+<p>Part e. The average mass of all aromatic amino acids.</p>
+<p><strong>Question 5 [10 points]</strong></p>
+<p>Using the <span class="math inline">\({\tt small\_brca}\)</span> tibble, show code for the following:</p>
+<p>Part a. What is the average age of women at time of diagnosis?</p>
+<p>Part b. For each stage (<span class="math inline">\({\tt ajcc\_pathologic\_tumor\_stage}\)</span>),
+what was the average age of death amongst those women that died? (You can ignore any missing values.)</p>
+<p>Good luck!</p>

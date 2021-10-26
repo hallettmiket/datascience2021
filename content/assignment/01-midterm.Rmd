@@ -1,0 +1,131 @@
+---
+title: "Midterm"
+author: "M Hallett"
+date: "26/10/2021"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(reshape2)
+load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")
+```
+
+The midterm must be submitted by __2:30pm__ on Tuesday, October 26th, 2021 to ${\tt biol480.concordia@gmail.com}$
+
+All answers in one email. 
+
+Subject header of email is __Midterm, Lastname, Firstname, student ID__.
+
+You can use which ever media you prefer to answer your questions.
+
+This is open book, so you can use whatever resources you would like, but you must cite them. You are not allowed to speak to each other or other experts in this field (eg students who previously took the course). 
+
+${\bf 40}$ total marks. 
+
+
+Point form, clear sentences for the following please.
+
+__Question 1 [4 points]__
+
+
+How do cloud based approaches reduce the financial burden for researchers and companies? 
+
+
+
+__Question 2 [6 points]__ 
+
+What is the difference between an algorithm and a computer program? What is the difference between a computer program and a computer language? What is the difference between a computer language and an interactive development environment (IDE)?
+
+
+__Question 3 [10 points]__
+
+For each item below, indicate whether you believe this is a data science, bioinformatics or computational biology issue. It could also be a combination of zero or more of these. At most one sentence to justify your answer.
+
+Part a. Establishing a communication system (e.g. Slack) and a Cloud space for writing/sharing documents (e.g. Drive) for a group project
+
+Part b. Building software that takes as input thousands of RNA-sequencing samples and evaluates the technical quality (number of reads, number of reads that do not align to the genome etc.) of each sample and automatically detects those samples that are likely to be of poor quality. 
+
+Part c. In a project aimed to profile the transcriptome of 1,000 tumors, identifying genes that are highly correlated with one aother, and with a clinical variable such as _time to recurrence_.
+
+Part d. Your collaborator has a new assay (sometimes called a _screen_) that identifies the sites of ubiquitination (or some other type of modification to genomes or proteins) across a whole genome. She gives you a file of all the sites that were identified for some specific organism. Your job is to design a web portal and software to make this available for users to examine and download. 
+
+Part e. Your collaborator gives you the results of her ubiquitination screen from part d. She asks you to design software that predicts ubiquitination sites in a new organism (not the one where the original screen was performed.)
+
+__Question 4 [10 points]__
+
+Suppose you have a tibble that describes the genetic code and some amino acid properties (called ${\tt genetic\_code}$). 
+For example, it might look something like this.
+```{r, echo=FALSE} 
+genetic_code <- tribble( 
+  ~pos1, ~pos2, ~pos3,  ~amino_acid_long, ~class, ~polarity, ~charge, ~mass,
+   'U',    'U',    'U',    'Phe',        'aromatic',  'nonpolar', 'neutral', 165.192,
+   'U',    'U',    'C',    'Phe',        'aromatic',  'nonpolar', 'neutral', 165.192,
+   'U',    'U',    'A',    'Leu',        'aliphatic', 'nonpolar', 'neutral', 131.175,
+   'U',    'U',    'G',    'Leu',       'aliphatic',  'nonpolar', 'neutral', 131.175,
+   'C',    'U',    'U',    'Leu',       'aliphatic',  'nonpolar', 'neutral', 131.175,
+   'C',    'U',    'C',    'Leu',       'aliphatic',  'nonpolar', 'neutral', 131.175,
+   'C',    'U',    'A',    'Leu',       'aliphatic',  'nonpolar', 'neutral', 131.175,
+   'C',    'U',    'G',    'Leu',       'aliphatic',  'nonpolar', 'neutral', 131.175,
+   'U',    'C',    'U',    'Ser',       'hydroxilic', 'polar',    'neutral', 105.093,
+   'U',    'A',    'A',    'STOP',       NA,           NA,        NA,        NA
+)
+print(genetic_code)
+```
+
+(Please note that I have not included the entire genetic code here. You can assume the rest of the genetic code
+is present in the tibble ${\tt genetic\_code}$.)
+
+
+
+Show code for each of the following questions.
+
+Part a. For some amino acid $Z$, return all of the codons that code for $Z$. 
+
+Part b. For a given codon specified by ${\tt pos1, pos2, pos3}$, report which amino acid it codes for.
+
+Part c. Report all amino acids that begin with nucleic acid C. 
+
+Part c. Identify the amino acid  which has the most codons that code for it.
+
+Part d. The number of amino acids that are nonpolar, not neutral and have a mass above 100.
+
+Part e. The average mass of all aromatic amino acids.
+
+
+
+__Question 5 [10 points]__
+
+
+Using the ${\tt small\_brca}$ tibble, show code for the following:
+
+Part a.  What is the average age of women at time of diagnosis? 
+
+
+Part b. For each stage (${\tt ajcc\_pathologic\_tumor\_stage}$), 
+what was the average age of death  amongst those women that died? (You can ignore any missing values.)
+
+
+ 
+Good luck!
+

@@ -1,0 +1,82 @@
+---
+title: "Assignment 3"
+author: "M Hallett"
+date: "29/10/2021"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Please note that due dates can be found in the [Syllabus](/Syllabus); submission instructions can be found on the [Assignment Instructions](/Assignments) page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your ${\tt R}$ code via Google Drive. 
+Aki will go over the submission process in the lab.
+
+You might consider (but it is not mandatory) using R Markdown to write your answers.
+
+${\bf 50}$ total marks.
+
+This assignment focuses on wrangling the [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) database into R and stored as a tibble. I would recommend that you start by becoming familiar with the database and how it is organized [here](https://www.ncbi.nlm.nih.gov/books/NBK21100/).
+
+__You will need to show your code and output for each step throughout the following parts. Sometimes screen shots can be used if you prefer.__
+
+_Part 1 [2 marks]_ Download ${\tt taxdmp}$ directly to RStudio Cloud and uncompress it if necessary. Follow good practices and store this information in  a folder ${\tt raw}$ as done in the lecture.
+
+_Part 2. [2 marks]_ The ${\tt readme.txt}$ file describes each file in the download of ${\tt taxdmp}$. We do not need to consider some of these files. We will just focus on ${\tt nodes, names, division}$. Show how to read each of these into their own tibble.
+
+_Part 3. [2 marks]_ Some variables of these three tibbles are no longer necessary because we don't consider here ${\tt gencode, merged, delnodes, citations}$. Remove these columns from the three tibbles. In addition remove any column with the term ${\tt flag}$ in it and ${\tt mitochondrial~genetic~code~id}$. We don't need these.
+
+_Part 4. [3 marks]_ For each tibble, is it tidy? Why or why not? 
+
+_Part 5. [3 marks]_ For each tibble, are the classes of the individual columns appropriate? Why or why not? If they are not, show how to correct this.
+
+(There is no single right or wrong answer for Parts 4 and 5. It depends on your design choices. You need to justify in point form your answer.)
+
+_Part 6. [4 marks]_ Show how to join the ${\tt nodes}$ and ${\tt names}$ tibbles. What is your primary and foreign keys? Which join function did you use and why?
+
+_Part 7. [6 marks]_ Show how to join the tibbles for Part 6 with the ${\tt division}$ tibble. What is your primary and foreign keys? Which join function did you use and why? Why or why isn't  joining the ${\tt division}$ tibble with the tibble from Part 6 a good idea? 
+
+_Part 8. [6 marks]_  Write a function that accepts as  arguments the tibble from question 6 and the name of a taxon. It should return the ${\tt tax\_id}$.
+
+_Part 9. [3 marks]_ Write a function that accepts as  arguments the tibble from question 6 and a ${\tt tax\_id}$ for a target taxon. The function  returns a tibble consisting of all the direct children of target.
+
+
+_Part 10. [6 marks]_ Which domain (Eukaryota, Bacteria, Archae) has the most species, and how many of them are there for each? What about genera?
+
+_Part 11. [6 marks]_ Write a function that accepts as  arguments the tibble from question 6 and a ${\tt division}$. The function  shoudl return a tibble consisting of taxa in that division.
+
+_Part 12. [7 marks ]_ Write a function called ${\tt path\_to\_root}$ that accepts as  arguments the tibble from question 6 and a ${\tt tax\_id}$ for a target taxon. The function returns a string vector whose order is the path of that taxon to the root of the tree of life.  For example, 
+
+```{r, echo=TRUE}
+#print( path_to_root( tax_id=632, taxonomy=part6_tibble) )
+#    root.cellular organisms, Bacteria, Proteobacteria, Gammaproteobacteria, Enterobacterales, Yersiniaceae, Yersinia, NA, Yersinia pestis
+```
+Note that some nodes along the path from the taxon to the root may not have a name. Your function should print out ${\tt NA}$
+
+
+
+
+
+
+
+Good luck!
+

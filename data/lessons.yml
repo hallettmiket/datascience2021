@@ -112,6 +112,7 @@ lessons:
   - number: "--"
     title: "**Midterm** (1.15 hr, open book)"
     date: "Oct 26"
+    assignment: "01-midterm"
   - number: "L14"
     title: "Gene finding with Hidden Markov Models"
     date: "Oct 28"

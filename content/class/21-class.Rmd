@@ -1,5 +1,5 @@
 ---
-title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
+title: "Transcriptomics: a deep dive"
 date: "2020-07-20"
 output:
   blogdown::html_page:
@@ -9,7 +9,8 @@ output:
 
 # Slides
 
-- [View lectures slide in your browser (html)](/slides/21-slides.html)
+- We are using slides from [Vanessa Dumeaux](https://lab-dumeaux.science/blog/transcriptomicsintro-lecture)
+)
 
 
 
@@ -23,9 +24,4 @@ output:
 
 # Points of Reflection
 
-- How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
-
-- Does it matter if computer intelligence is or isn't the same time of intelligence we associate with humans? What are the positives and negatives?
-
-- What sort of ethical issues does this all raise?
-
+- Why is a $t$-test not the appropriate test to use to detect differentially exprssed genes? Can you give several reasons?

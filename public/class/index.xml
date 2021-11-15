@@ -196,18 +196,6 @@ Action items  If you haven’t doing the reading, please do so and address the a
     
     <item>
       <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/class/21-class/</link>
-      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/class/21-class/</guid>
-      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
- Project
-  Points of Reflection  How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
- Does it matter if computer intelligence is or isn’t the same time of intelligence we associate with humans?</description>
-    </item>
-    
-    <item>
-      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
       <link>/class/22-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
@@ -269,6 +257,17 @@ Action items  If you haven’t doing the reading, please do so and address the a
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>/class/20-class/</guid>
+      <description>  Contents  Slides Action Items Points of Reflection   Slides  We are using slides from Vanessa Dumeaux )  Action Items  Assignment 4
+ Project
+  Points of Reflection  Why is a \(t\)-test not the appropriate test to use to detect differentially exprssed genes? Can you give several reasons?  </description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/class/21-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/21-class/</guid>
       <description>  Contents  Slides Action Items Points of Reflection   Slides  We are using slides from Vanessa Dumeaux )  Action Items  Assignment 4
  Project
   Points of Reflection  Why is a \(t\)-test not the appropriate test to use to detect differentially exprssed genes? Can you give several reasons?  </description>

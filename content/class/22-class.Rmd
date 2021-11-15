@@ -1,5 +1,5 @@
 ---
-title: "Computational challenges of single cell profiling"
+title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
 date: "2020-07-20"
 output:
   blogdown::html_page:
@@ -19,14 +19,13 @@ output:
 
 - Project
 
-- Start to prepare for final
-
 
 
 # Points of Reflection
 
-- How can Simpson's paradoxes be resolved with single cell sequencing?
+- How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
 
-- What are the reasons that isogenic cells vary from individual to individual? in mammalian tissue? in bacteria or fungal populations?
+- Does it matter if computer intelligence is or isn't the same time of intelligence we associate with humans? What are the positives and negatives?
 
-- In your area of interest, how could single cell technologies and analytics assist in our understanding of important biologies?
+- What sort of ethical issues does this all raise?
+

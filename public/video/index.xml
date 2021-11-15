@@ -6,10 +6,19 @@
     <description>Recent content in Videos on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/video/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction and orientation</title>
+      <link>/video/00-video/</link>
+      <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/video/00-video/</guid>
+      <description>Lecture 00 at Youtube</description>
+    </item>
     
     <item>
       <title>Bioinformatics repositories: the NCBI and other tools</title>
@@ -22,20 +31,20 @@
     
     <item>
       <title>Computational challenges of single cell profiling</title>
+      <link>/video/23-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/23-video/</guid>
+      <description>Lecture 23 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
       <link>/video/22-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/video/22-video/</guid>
       <description>Lecture 22 at Youtube</description>
-    </item>
-    
-    <item>
-      <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
-      <link>/video/21-video/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/video/21-video/</guid>
-      <description>Lecture 21 at Youtube</description>
     </item>
     
     <item>
@@ -104,30 +113,12 @@ Lecutre 14 Part II (HMMs) at YouTube</description>
     </item>
     
     <item>
-      <title>Graph Convolutional Neural Networks</title>
-      <link>/video/23-video/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/video/23-video/</guid>
-      <description>Lecture 23 at Youtube</description>
-    </item>
-    
-    <item>
       <title>How to wrangle with marine microbes</title>
       <link>/video/08-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/video/08-video/</guid>
       <description>Lecture 08 at Youtube</description>
-    </item>
-    
-    <item>
-      <title>Introduction and orientation</title>
-      <link>/video/00-video/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/video/00-video/</guid>
-      <description>Lecture 00 at Youtube</description>
     </item>
     
     <item>
@@ -178,11 +169,11 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/video/20-video/</link>
+      <link>/video/21-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/video/20-video/</guid>
-      <description>Lecture 20 at Youtube</description>
+      <guid>/video/21-video/</guid>
+      <description>Lecture 21 at Youtube</description>
     </item>
     
     <item>
@@ -219,6 +210,15 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
       
       <guid>/video/13-video/</guid>
       <description>Lecture 13 at Youtube</description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/video/20-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/20-video/</guid>
+      <description>Lecture in class (no video). Samira will give the presentation.</description>
     </item>
     
     <item>

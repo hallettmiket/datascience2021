@@ -1,13 +1,12 @@
 ---
-title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
+title: "Transcriptomics: a deep dive"
 date: "2020-09-08"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 ---
 
-[Lecture 20 at Youtube](https://youtu.be/fcxyQATE3Ec)
-
+Lecture in class (no video). Samira will give the presentation. 
 
 
 

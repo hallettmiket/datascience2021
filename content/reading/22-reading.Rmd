@@ -1,5 +1,5 @@
 ---
-title: "Computational challenges of single cell profiling"
+title: "Deep learning: proliferative index of a cancer cell with microscopy"
 date: "2020-09-08"
 citeproc: false
 bibliography: ../../static/bib/references.bib
@@ -9,17 +9,65 @@ csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 
 # Required 
 
-- [Macosko et al (2015) Cell] (https://www.cell.com/fulltext/S0092-8674%2915%2900549-8)(Please watch video and try to undestand up to  Figures 1, 2, and S2. You don't need to read the whole paper.)
+- [Convolution Neural Networks](https://www.youtube.com/watch?v=YRhxdVk_sIs)
 
-- [Candida albicans single cell project (my lab)](https://youtu.be/udbD0xTuGG8)
+- [Leanring to drive](https://www.youtube.com/watch?v=wL7tSgUpy8w)
+
+
+- [Learning to converse](https://www.youtube.com/watch?v=lXUQ-DdSDoE)
+
+  - [Hide and Seek - Reinforcement learning](https://www.youtube.com/watch?v=Lu56xVlZ40Mhttps://www.youtube.com/watch?v=Lu56xVlZ40M)
+  
+  
+- [DeepMind versus Atari games](https://www.youtube.com/watch?v=dJ4rWhpAGFI)
+
+- [OpenAI Microscope](https://microscope.openai.com/models)
 
 # Recommended Reading
 
 
-- [Laehnemann et al. (2020) Elevn grand challenges in single-cell data science. Genome Biology](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1926-6)  (Try to understand the intuition of each of the 11 challenges.)
-  
-- [Trapnell (2018) Defining cell types and states with single-cell genomes. Genome Research](https://genome.cshlp.org/content/25/10/1491)
+- [Learning to walk](https://www.youtube.com/watch?v=gn4nRCC9TwQ)
 
+- [If you are a fan of chess...](https://www.youtube.com/watch?v=g0O3QmAhoeA)
+
+- [Not perfect](https://www.iflscience.com/technology/ai-camera-ruins-soccar-game-for-fans-after-mistaking-referees-bald-head-for-ball/)
+
+- [DeepMind versus StarCraft](https://www.youtube.com/watch?v=DMXvkbAtHNY)
+
+
+- Image to Image Translation. Consider microscopy for example. 
+
+  - [Cross-model interpolations](https://twitter.com/arfafax/status/1296084902928986113)
+
+  - [Supervised Image-to-Image Translation](https://www.youtube.com/watch?v=nlyXoX2aIek)
+
+  - [Winter to Summer](https://www.vice.com/en/article/xwvz9a/watch-an-algorithm-turn-winter-into-summer-in-any-video-image-to-image-translation)
+
+  -[Image to Image Translation](https://www.youtube.com/watch?v=ab64TWzWn40&feature=emb_rel_end)
+
+  -[AI assisted fake porn](https://www.vice.com/en/article/gydydm/gal-gadot-fake-ai-porn)
+
+- Transfer learning
+
+  - [Finding gold with Siraj](https://www.youtube.com/watch?v=Ui1KbmutX0k)
+# Further reading
+
+- [fastai, a famous accessible course on deep learning for everyone](https://course.fast.ai/videos/?lesson=1)
+
+
+ - Lecture 1,  20mins 7 principles for educators
+ - Lecture 1, 23mins Jupyter (R Notebook), Python (R), PyTorch (Keras)
+ - Lecture 2, 22-28mins, Transfer learning
+ - Lecture 2, 1hr18mins, Data wrangling for deep image analysis
+ - Lecture 2  1hr20mins and start of Lecture 3, Supervised learning
+ - Lecture 5, Ethics of deep learning
+ 
+ 
+ - [AlphaGo, the movie](https://www.youtube.com/watch?v=WXuK6gekU1Y)
+ 
+ - [Microscopy](https://www.youtube.com/watch?v=U6ht5fFy06o)
+ 
+ - [Radiology](https://www.youtube.com/watch?v=Gigd1rkZTSE)
 
 # Action items  
 
@@ -27,14 +75,5 @@ csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 
 - Project
 
-- Start to prepare for final
-
-# Points of Reflection 
-
-- How can Simpson's paradoxes be resolved with single cell sequencing?
-
-- What are the reasons that isogenic cells vary from individual to individual? in mammalian tissue? in bacteria or fungal populations?
-
-- In your area of interest, how could single cell technologies and analytics assist in our understanding of important biologies?
 
 

@@ -6,22 +6,10 @@
     <description>Recent content in Classes on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/class/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Graph Convolutional Neural Networks</title>
-      <link>/class/23-class/</link>
-      <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/class/23-class/</guid>
-      <description>  Contents  Slides Action Items Points of Reflection   Slides Action Items  Assignment 4
- Project
- Start to prepare for final
-  Points of Reflection </description>
-    </item>
     
     <item>
       <title>Information Technology for Life Science</title>
@@ -59,10 +47,10 @@ Action items  If you haven’t doing the reading, please do so and address the a
     
     <item>
       <title>Computational challenges of single cell profiling</title>
-      <link>/class/22-class/</link>
+      <link>/class/23-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/class/22-class/</guid>
+      <guid>/class/23-class/</guid>
       <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
  Project
  Start to prepare for final
@@ -134,8 +122,9 @@ Action items  If you haven’t doing the reading, please do so and address the a
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>/class/14-class/</guid>
-      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)
- Aki’s S4 objects for Markov Models
+      <description>Contents  Slides Action Items   Slides  Object Orientation lecture slides (html)
+ S4 objects for Markov Models
+ Hidden Markov Models
   Action Items  Oct 29 Midterm  Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.
  What other aspects of gene regulation are not well modelled by our approach?</description>
     </item>
@@ -207,22 +196,22 @@ Action items  If you haven’t doing the reading, please do so and address the a
     
     <item>
       <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/class/20-class/</link>
-      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/class/20-class/</guid>
-      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
- Project
-  Points of Reflection  What are the social and the economic benefits of tests like Oncotype DX or MammaPrint? They are quite expensive (costing thousands of dollars). How can they nevetheless save our health care systems money?
- What advantages does multivariate prediction have over univariate prediction in this domain?</description>
-    </item>
-    
-    <item>
-      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
       <link>/class/21-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>/class/21-class/</guid>
+      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
+ Project
+  Points of Reflection  How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
+ Does it matter if computer intelligence is or isn’t the same time of intelligence we associate with humans?</description>
+    </item>
+    
+    <item>
+      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
+      <link>/class/22-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/22-class/</guid>
       <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
  Project
   Points of Reflection  How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
@@ -272,6 +261,17 @@ Action items  If you haven’t doing the reading, please do so and address the a
       <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  Oct 29 Midterm
  Work your way through the \({\tt my\_scan}\) function. Trace through the execution of the algorithm using the ARR1 binding site and a short sequence three base pairs longer than it.
   Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.</description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/class/20-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/20-class/</guid>
+      <description>  Contents  Slides Action Items Points of Reflection   Slides  We are using slides from Vanessa Dumeaux )  Action Items  Assignment 4
+ Project
+  Points of Reflection  Why is a \(t\)-test not the appropriate test to use to detect differentially exprssed genes? Can you give several reasons?  </description>
     </item>
     
     <item>

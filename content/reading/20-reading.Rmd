@@ -1,13 +1,17 @@
 ---
-title: "Predicting breast cancer patient outcome from expression data: supervised analysis"
+title: "Transcriptomics: a deep dive"
 date: "2020-09-08"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 --- 
 
+This is the reading material for the next two lectures.
 
 # Required 
+
+
+- We are using slides from [Vanessa Dumeaux](https://lab-dumeaux.science/blog/transcriptomicsintro-lecture)
 
 - [Oncotype Dx](https://www.breastcancer.org/symptoms/testing/types/oncotype_dx)
 

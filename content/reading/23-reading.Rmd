@@ -1,6 +1,6 @@
 ---
-title: "Graph Convolutional Neural Networks"
-date: "2021-09-08"
+title: "Computational challenges of single cell profiling"
+date: "2020-09-08"
 citeproc: false
 bibliography: ../../static/bib/references.bib
 csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
@@ -9,10 +9,32 @@ csl: ../../static/bib/chicago-fullnote-bibliography-no-bib.csl
 
 # Required 
 
+- [Macosko et al (2015) Cell] (https://www.cell.com/fulltext/S0092-8674%2915%2900549-8)(Please watch video and try to undestand up to  Figures 1, 2, and S2. You don't need to read the whole paper.)
+
+- [Candida albicans single cell project (my lab)](https://youtu.be/udbD0xTuGG8)
 
 # Recommended Reading
 
 
+- [Laehnemann et al. (2020) Elevn grand challenges in single-cell data science. Genome Biology](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1926-6)  (Try to understand the intuition of each of the 11 challenges.)
+  
+- [Trapnell (2018) Defining cell types and states with single-cell genomes. Genome Research](https://genome.cshlp.org/content/25/10/1491)
+
+
 # Action items  
 
+- Assignment #4
+
+- Project
+
+- Start to prepare for final
+
 # Points of Reflection 
+
+- How can Simpson's paradoxes be resolved with single cell sequencing?
+
+- What are the reasons that isogenic cells vary from individual to individual? in mammalian tissue? in bacteria or fungal populations?
+
+- In your area of interest, how could single cell technologies and analytics assist in our understanding of important biologies?
+
+

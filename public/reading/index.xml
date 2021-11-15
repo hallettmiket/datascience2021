@@ -6,19 +6,10 @@
     <description>Recent content in Readings on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/reading/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Graph Convolutional Neural Networks</title>
-      <link>/reading/23-reading/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/reading/23-reading/</guid>
-      <description>  Required Recommended Reading Action items Points of Reflection </description>
-    </item>
     
     <item>
       <title>Bioinformatics repositories: the NCBI and other tools</title>
@@ -34,10 +25,10 @@
     
     <item>
       <title>Computational challenges of single cell profiling</title>
-      <link>/reading/22-reading/</link>
+      <link>/reading/23-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/reading/22-reading/</guid>
+      <guid>/reading/23-reading/</guid>
       <description>Required  [Macosko et al (2015) Cell] (https://www.cell.com/fulltext/S0092-8674%2915%2900549-8)(Please watch video and try to undestand up to Figures 1, 2, and S2. You don’t need to read the whole paper.)
  Candida albicans single cell project (my lab)
   Recommended Reading  Laehnemann et al. (2020) Elevn grand challenges in single-cell data science. Genome Biology (Try to understand the intuition of each of the 11 challenges.)
@@ -46,10 +37,10 @@
     
     <item>
       <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
-      <link>/reading/21-reading/</link>
+      <link>/reading/22-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/reading/21-reading/</guid>
+      <guid>/reading/22-reading/</guid>
       <description>Required  Convolution Neural Networks
  Leanring to drive
  Learning to converse
@@ -232,19 +223,6 @@ Recommended Reading  Junk DNA This is a reply by Ford Doolittle (Dalhousie Unive
     </item>
     
     <item>
-      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/reading/20-reading/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/reading/20-reading/</guid>
-      <description>  Required  Oncotype Dx
- MammaPrint
-  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
- Project
-  </description>
-    </item>
-    
-    <item>
       <title>Representing and Manipulating Data in R</title>
       <link>/reading/04-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
@@ -290,6 +268,36 @@ Recommended Reading  Junk DNA This is a reply by Ford Doolittle (Dalhousie Unive
   Recommended Reading  TFs the Movie From Wyeth Wasserman (UBC), a founder of JASPAR.
  Primer on Gene Ontologies
   Action items  Oct 29 Midterm  </description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/reading/20-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/20-reading/</guid>
+      <description>  This is the reading material for the next two lectures.
+Required  We are using slides from Vanessa Dumeaux
+ Oncotype Dx
+ MammaPrint
+  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/reading/21-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/21-reading/</guid>
+      <description>  This is the reading material for the next two lectures.
+Required  We are using slides from Vanessa Dumeaux
+ Oncotype Dx
+ MammaPrint
+  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
+ Project
+  </description>
     </item>
     
     <item>

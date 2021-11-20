@@ -1,0 +1,44 @@
+---
+title: "Assignment 4"
+author: "M Hallett"
+date: "21/07/2020"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Please note that due dates can be found in the <a href="/Syllabus">Syllabus</a>; submission instructions can be found on the <a href="/Assignments">Assignment Instructions</a> page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your <span class="math inline">\({\tt R}\)</span> code via Google Drive.
+Aki will go over the submission process in the lab.</p>
+<p>You might consider (but it is not mandatory) using R Markdown to write your answers.</p>
+<p><span class="math inline">\({\bf 50}\)</span> total marks.</p>
+<p><strong>Question 1 [points 10]</strong>
+Using the S. cerevisiae (Baker’s yeast) data that we imported into R in Lectures 11 and 12, show R code of how you would estimate the frequency of A, C, G, T nucleotides in <em>coding</em> regions only. Use only chromosome 1.</p>
+<p><strong>Question 2 [points 10]</strong>
+Using the S. cerevisiae (Baker’s yeast) data that we imported into R in Lectures 11 and 12, show R code of how you would estimate the frequency of A, C, G, T nucleotides in <em>non-coding</em> regions only. Use only chromosome 1. Estimate the self-transition probabilties (coding to coding, non-coding to non-coding) to transition probabilities to and from coding and non-coding.</p>
+<p><strong>Question 3 [points 20]</strong>
+Using the <span class="math inline">\({\tt HMM}\)</span> package in R (available in {<span class="math inline">\(\tt A04-Assignment/src/A04-Assginment.Rmd}\)</span>), implement your model. The documentation for this package is <a href="https://cran.r-project.org/web/packages/HMM/HMM.pdf">here</a>. Note that you might want to look at the <span class="math inline">\({\tt dishonestCasino()}\)</span> function as an example.
+Perhaps follow the <span class="math inline">\({\tt viterbi}\)</span> function and the example there.
+Show your code. Apply it back to chromosome 1. Apply it chromosome 2 too.</p>
+<p><strong>Questiom 4 [points 10]</strong>
+Compute the specificity, sensitivity and accuracy on both chromosomes individually. Comment on your findings.</p>
+<p>Good luck!</p>

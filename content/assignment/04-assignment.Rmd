@@ -1,0 +1,57 @@
+---
+title: "Assignment 4"
+author: "M Hallett"
+date: "21/07/2020"
+output: 
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: true
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["search", "zoom", "notes", "chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard: 
+        theme: chalkboard
+        toggleNotesButton: true
+      menu:
+        numbers: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Please note that due dates can be found in the [Syllabus](/Syllabus); submission instructions can be found on the [Assignment Instructions](/Assignments) page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your ${\tt R}$ code via Google Drive. 
+Aki will go over the submission process in the lab.
+
+You might consider (but it is not mandatory) using R Markdown to write your answers.
+
+${\bf 50}$ total marks.
+
+__Question 1 [points 10]__
+Using the S. cerevisiae (Baker's yeast) data that we imported into R in Lectures 11 and 12, show R code of how you would estimate the frequency of A, C, G, T nucleotides in _coding_ regions only.  Use only chromosome 1. 
+
+
+__Question 2 [points 10]__
+Using the S. cerevisiae (Baker's yeast) data that we imported into R in Lectures 11 and 12, show R code of how you would estimate the frequency of A, C, G, T nucleotides in _non-coding_ regions only. Use only chromosome 1. Estimate the self-transition probabilties (coding to coding, non-coding to non-coding) to transition probabilities to and from coding and non-coding.
+
+
+__Question 3 [points 20]__
+Using the ${\tt HMM}$ package in R (available in {$\tt A04-Assignment/src/A04-Assginment.Rmd}$), implement your model. The documentation for this package is [here](https://cran.r-project.org/web/packages/HMM/HMM.pdf). Note that you might want to look at the ${\tt dishonestCasino()}$ function as an example.
+Perhaps follow  the ${\tt viterbi}$ function and the example there.
+Show your code. Apply it back to chromosome 1. Apply it chromosome 2 too.
+
+__Questiom 4 [points 10]__
+Compute the specificity, sensitivity and accuracy on both chromosomes individually. Comment on your findings.
+
+
+
+Good luck!
+

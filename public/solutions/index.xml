@@ -33,11 +33,11 @@ c &amp;lt;- 18 f &amp;lt;- c*(9/5) + 32 print(f) ## [1] 64.4 f &amp;lt;- c %&amp
     </item>
     
     <item>
-      <title>02-solution</title>
-      <link>/solutions/03-solution/</link>
+      <title>03-solution</title>
+      <link>/solutions/03-solutions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/solutions/03-solution/</guid>
+      <guid>/solutions/03-solutions/</guid>
       <description>Part1 1
 You can do it in R. (I don’t want to run this so it’s commented out.)
 # Create raw directory #dir.create(&amp;quot;/cloud/project/raw&amp;quot;) # Download file #download.file(url = &amp;quot;ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip&amp;quot;, # destfile = &amp;quot;/cloud/project/raw/taxdmp.zip&amp;quot;, # method = &amp;quot;wget&amp;quot;) # Unzip #unzip(&amp;quot;/cloud/project/raw/taxdmp.zip&amp;quot;, exdir = &amp;quot;/cloud/project/raw/taxdmp&amp;quot;) Or you can do it in Unix.

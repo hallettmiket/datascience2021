@@ -32,5 +32,17 @@ Question 1 [10 points] A. Re-express the following small program using pipes.
 c &amp;lt;- 18 f &amp;lt;- c*(9/5) + 32 print(f) ## [1] 64.4 f &amp;lt;- c %&amp;gt;% .[[1]]*(9/5) + 32 print(f) ## [1] 64.4 It’s pretty trick but just remember that whatever you pass through a pipe is called \({\tt .}\) and it’s actually a list. So if it is just a single item, it’s the first item in the list \({\tt .</description>
     </item>
     
+    <item>
+      <title>02-solution</title>
+      <link>/solutions/03-solution/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solutions/03-solution/</guid>
+      <description>Part1 1
+You can do it in R. (I don’t want to run this so it’s commented out.)
+# Create raw directory #dir.create(&amp;quot;/cloud/project/raw&amp;quot;) # Download file #download.file(url = &amp;quot;ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip&amp;quot;, # destfile = &amp;quot;/cloud/project/raw/taxdmp.zip&amp;quot;, # method = &amp;quot;wget&amp;quot;) # Unzip #unzip(&amp;quot;/cloud/project/raw/taxdmp.zip&amp;quot;, exdir = &amp;quot;/cloud/project/raw/taxdmp&amp;quot;) Or you can do it in Unix.
+# Create raw directory #mkdir /cloud/project/raw # Download file #wget ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip \ /cloud/project/raw/taxdmp.zip # Unzip #cd /cloud/project/raw #gunzip /cloud/project/raw/taxdmp Part 2</description>
+    </item>
+    
   </channel>
 </rss>

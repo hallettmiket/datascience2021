@@ -153,7 +153,7 @@ lessons:
   - number: "--"
     date: "Nov 13"
     title: "**Assignment 3 due**"
- #   solutions: "03-solutions"
+    solutions: "03-solutions"
   - number: "--"
     date: "Nov 15"
     title: "**Assignment 4 start**"

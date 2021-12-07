@@ -1,0 +1,384 @@
+---
+title: "02-solution"
+author: "M Hallett"
+date: "22/10/2021"
+output:
+  html_document:
+    df_print: paged
+  revealjs::revealjs_presentation:
+    css: solar.css
+    incremental: yes
+    theme: black
+    highlight: haddock
+    transition: convex
+    fig_width: 7
+    fig_height: 6
+    fig_caption: yes
+    self_contained: no
+    reveal_plugins:
+    - search
+    - zoom
+    - notes
+    - chalkboard
+    - menu
+    reveal_options:
+      slideNumber: yes
+      previewLinks: yes
+      chalkboard:
+        theme: chalkboard
+        toggleNotesButton: yes
+      menu:
+        numbers: yes
+---
+
+
+
+_Part1 1_
+
+
+You can do it in R. (I don't want to run this so it's commented out.)
+```{r, eval=FALSE}
+# Create raw directory
+#dir.create("/cloud/project/raw")
+
+# Download file
+#download.file(url = "ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip", 
+#              destfile = "/cloud/project/raw/taxdmp.zip",
+#              method = "wget")
+
+# Unzip
+#unzip("/cloud/project/raw/taxdmp.zip", exdir = "/cloud/project/raw/taxdmp")
+```
+
+Or you can do it in Unix.
+
+```{r, eval=FALSE}
+# Create raw directory
+#mkdir /cloud/project/raw
+
+# Download file
+#wget ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip \
+      /cloud/project/raw/taxdmp.zip
+
+# Unzip
+#cd /cloud/project/raw
+#gunzip /cloud/project/raw/taxdmp
+```
+
+_Part 2_
+
+```{r, eval=FALSE}
+require(purrr); require(tidyverse)
+```
+
+```{r, eval=FALSE}
+# File names + dir
+files <- c("division" = "/cloud/project/raw/taxdmp/division.dmp", 
+           "nodes" = "/cloud/project/raw/taxdmp/nodes.dmp", 
+           "names" = "/cloud/project/raw/taxdmp/names.dmp")
+
+dir.create("/cloud/project/refined")
+
+# A solution from last year's TA Aky Eftyhios (many other ways to do this.)
+read_dmp <- function(dmp_file) {
+  out <- readLines(dmp_file) %>%
+    gsub(pattern = "\t\\|$", replacement = "") %>% 
+    str_split(., pattern = "\t\\|\t", simplify = TRUE) %>%
+    as_tibble()
+  
+  return(out)
+}
+
+res <- map(.x = files, .f=read_dmp)
+```
+
+You'll see that the tables do no thave column names with Aki's solutions. We could carefully add them here. As a side note: this is not my preferred solution; it can be dangerous to lose the original column names rather than changing them individually afterwards. I also don't find optimal the use of spaces in the names or the mixed upper and lower case, as discussed in the lecture.
+
+```{r, eval=FALSE}
+fields <- list("division" = c("division id", "division cde", "division name", "comments"),
+               
+               "nodes" = c("tax_id", "parent tax_id", "rank", "embl code", "division id",
+                           "inherited div flag", "genetic code id", "inherited GC flag", 
+                           "mitochondrial genetic code id", "inherited MGC flag",
+                           "GenBank hidden flag", "hidden subtree root flag", "comments"),
+               
+               "names" = c("tax_id", "name_txt", "unique name", "name class")
+               )
+
+colnames(res$nodes) <- fields$nodes
+colnames(res$division) <- fields$division
+colnames(res$names) <- fields$names
+```
+
+Now we just save the refined version.
+```{r, eval=FALSE}
+dir.create("/cloud/project/refined")
+#saveRDS(res, "/cloud/project/refined/master.rds")
+```
+
+_Part 3_
+
+```{r, eval=FALSE}
+filter_terms <- c("comments", "mitochondrial genetic code id", "inherited div flag",
+                  "genetic code id", "inherited GC flag", "inherited MGC flag", 
+                  "GenBank hidden flag", "hidden subtree root flag")
+
+# Filter
+refined <- map(
+  .x = res,
+  .f = ~ select(.x, -any_of(filter_terms))
+  )
+saveRDS(refined, "/cloud/project/refined/master.rds")  # save updated version
+```
+
+_Part 4_ 
+
+Is it tidy? Well... As I mentioned above, I don't like the column names in some cases but that's a minor point. Mostly the three tibbles are tidy, except for ${\tt unique name}$ in my opinion. There is both the name name of the taxon and then extra information in these angle brackets. We'll leave it for now though. 
+
+Do you agree?
+
+_Part 5_ 
+
+```{r, eval=FALSE}
+str(refined)
+```
+
+
+No there are many problems here mostly where characers like ${\tt tax\id}$ probably should be integers or numeric.
+
+```{r, eval=FALSE}
+refined$division[["division id"]] <- as.numeric(refined$division[["division id"]])
+
+# Nodes
+refined$nodes <-  refined$nodes %>%
+  mutate_at(vars("tax_id", "parent tax_id", "division id"), ~ as.numeric(.))
+
+# Names
+refined$names[["tax_id"]] <- as.numeric(refined$names[["tax_id"]])
+
+# Print
+str(refined)
+```
+
+
+_Part 6_
+
+Is ${\tt tax\_id}$ unique in its own table? That is, does each observation have a unique ${\tt tax\_id}$? Yes, it can serve as a primary key in the ${\tt refined\$nodes}$ tibble.
+```{r, eval=FALSE}
+refined$nodes %>%
+  count(tax_id) %>% 
+  filter(n > 1) %>% 
+  nrow
+```
+
+It is also present in the ${\tt names}$ tibble but it i not unique, so it serves as the foreign key.
+
+```{r, eval=FALSE}
+refined$names %>%
+  count(tax_id) %>% 
+  filter(n > 1) %>%
+  nrow
+```
+
+We can check if any observation in either table is NA.
+
+```{r, eval=FALSE}
+length(which(is.na(refined$nodes["tax_id"]))); length(which(is.na(refined$names["tax_id"])))
+
+```
+
+We can use ${\tt left\_join$  because we want to keep all the observations in 
+${\tt refined\$names}$. These entries match ${\tt refined\$nodes}$, therefore we don't lose any data. It keeps the one-to-many relationship intact
+
+```{r, eval=FALSE}
+tbl <- refined$names %>%
+  left_join(refined$nodes, by = "tax_id")
+tbl
+```
+
+_Part 7_
+
+Primary key is ${\tt division id}$ because it uniquely 
+identifies each observation. 
+
+```{r, eval=FALSE}
+refined$division %>%
+  count(`division id`) %>% 
+  filter(n > 1) %>%
+  nrow
+```
+
+Foreign key is `division id` in our new tbl from Part 6 because it appears in the
+refined$division table, where it matches each division to a unique id.
+
+We use the ${\tt left\_join}$ because we would like to keep all the observations in the original tibble (${\tt tbl}$) and add the additional information found in the ${\tt dividsion}$ tibble.
+
+
+```{r, eval=FALSE}
+tbl <- tbl %>%
+    left_join(refined$division, by = "division id")
+```
+
+_Part 8_
+
+```{r, eval=FALSE}
+get_taxon_name <- function(tbl, target_tax_name) {
+  tmp <- tbl %>% filter(name_txt == target_tax_name) %>% .[["tax_id"]]
+  return(tmp)
+}
+```
+
+_Part 9_
+
+```{r, eval=FALSE}
+get_children <- function(tbl, target_tax_id) {
+  tmp <- tbl %>% filter(`parent tax_id` == target_tax_id) 
+  return(tmp)
+}
+```
+
+_Part 10_
+
+This is a very hard question. First we write a function to return all of the species below a node in the tree
+
+```{r, eval=FALSE}
+collect_all <- function(tbl, start_tax_id, target_rank="species") {
+  
+  to_do <- start_tax_id  # this vector keeps track of every taxon we need to visit
+  good_ones <- c()  # use this to store all tax_id that have the right rank
+  
+  while (length(to_do)>0) {   # we are finished when it's empty
+    
+    current <- to_do[1]   # look at the first entry of to_do
+    to_do <- to_do[-1]  # remove first entry from to_do
+    
+    tmp <- tbl %>% filter(tax_id==current) %>% .[['rank']]
+    
+    # check if one of them is the right rank (there could be more than one)
+    for (j in 1:length(tmp)) {
+      if (tmp[j]==target_rank) {
+        good_ones <- c(good_ones, current)
+        break
+      }
+    }
+    currents_kids <- unique(get_children(tbl, current)[['tax_id']])
+    to_do <- c(to_do, currents_kids) 
+  }
+  return(length(good_ones))
+}
+```
+
+Ok so now all that is left is to run this for the three kingdoms first with rank species and then rank genera.
+
+```{r, eval=FALSE}
+bacteria_tax_id <- 2
+eukaryota_tax_id <- 2759
+archaea_tax_id <- 2157
+# 
+# bac_num_species <- collect_all(tbl, start_tax_id=bacteria_tax_id, target_rank="species") 
+# (bac_num_species)
+# euk_num_species <- collect_all(tbl, start_tax_id=eukaryota_tax_id, target_rank="species") 
+# (euk_num_species)
+# arch_num_species <- collect_all(tbl, start_tax_id=archaea_tax_id, target_rank="species") 
+# (arch_num_species)
+# 
+# bac_num_genera <- collect_all(tbl, start_tax_id=bacteria_tax_id, target_rank="genus") 
+# (bac_num_genera)
+# euk_num_genera <- collect_all(tbl, start_tax_id=eukaryota_tax_id, target_rank="genus") 
+# (euk_num_genera)
+# arch_num_genera <- collect_all(tbl, start_tax_id=archaea_tax_id, target_rank="genus") 
+# (arch_num_genera)
+```
+
+
+_Part 11_
+
+Let's do Part _11_ first. Afterwards _Part 10_ is easier. Here our goal is to 
+write a function that returns all the taxa below a given _division_ in the tree. There
+are many ways to do this.
+
+```{r, eval=FALSE}
+get_all_division_taxa <- function(tbl, division) {
+  nodes <- tbl %>% filter(`division id`==division)
+  return(nodes)
+}
+```
+
+
+_Part 12_
+
+Here is a solution from a previous year (Aki Eftyhios). I provide a recursive solution below (beyond the scope of the course).
+
+```{r, eval=FALSE}
+path_to_root <- function(tax_id, taxonomy) {
+  
+  # Function does what the question asks :) 
+  
+  # Using the environment because of undefined behavior when trying to filter with
+  # tax_id. The names conflict.
+  functione_env <- environment()
+  path <- c()
+  
+  # Obvious, but still need to instantiate. 
+  # Hard coding it could be a problem if they ever change the root tax_id, 
+  # but I doubt that will ever happen.
+  root_tax_id <- 1
+  
+  # Functions as off switch in while loop. Allows for one iteration using root
+  count_switch <- 2
+  
+  while (count_switch != 0) {
+    
+    # Get name of node and add to path vector
+    node_name <- taxonomy %>%
+      filter(`tax_id` == get("tax_id", functione_env)) %>%
+      pull("name_txt") %>%  # Pull name
+      replace_na("NA") # Fixes NAs
+    
+    # Add to vector
+    path <- c(path, node_name) 
+    
+    # Switch to new node
+    tax_id <- taxonomy %>%
+      filter(`tax_id` == get("tax_id", functione_env)) %>%
+      pull("parent tax_id")
+    
+    # Off switch
+    if (tax_id == root_tax_id) {
+      count_switch <- count_switch - 1
+    }
+    
+  }
+  return(cat(rev(path), sep = ", "))
+}
+```
+
+Here is a recursive solution (as discussed in class; beyond the scope of the course).
+
+```{r, eval=FALSE}
+
+path_to_root <- function(tbl, current_tax_id, target_tax_id) {
+
+  tmp <- tbl %>% filter(tax_id == current_tax_id)
+  if (nrow(tmp)>1) tmp <- tmp[1,]  # annoying if multiple matches, so just take the first one.
+  
+  if (current_tax_id == target_tax_id) {
+    return(tmp[['name_txt']])
+  } 
+  parent <- tmp %>% .[['parent tax_id']]
+  return(c(tmp[['name_txt']], path_to_root(tbl, parent, target_tax_id  )))
+}
+
+# for some reason the NCBI set the parent of the root to be the parent.
+# that doesn't make any sense. Fix here.
+fix <- which(tbl$tax_id == 1)
+tbl[fix, 'parent tax_id'] <- NA
+
+x <- path_to_root(tbl, current_tax_id = 2157, target_tax_id=1)
+# path from archae to root
+print(x)
+```
+
+
+
+

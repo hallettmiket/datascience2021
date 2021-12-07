@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Mike Hallett">
+    <meta name="description" content="Explore and model biological data">
+
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" content="@hallettmichael">
+    <meta name="twitter:title" content="02-solution | BIOL 480/510/630: Bioinformatics">
+    <meta name="twitter:creator" content="@hallettmichael">
+    <meta name="twitter:image" content="/images/sys-small1.png">
+    <meta name="twitter:description" content="Explore and model biological data" />
+
+    <meta property="og:site_name" content="BIOL 480/510/630: Bioinformatics"/>
+    <meta property="og:title" content="02-solution | BIOL 480/510/630: Bioinformatics">
+    <meta property="og:type" content="article" />
+    <meta property="article:author" content="" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/images/sys-small1.png">
+    <meta property="og:description" content="Explore and model biological data" />
+
+    <meta name="generator" content="Hugo 0.74.1" />    
+
+    <title>02-solution | BIOL 480/510/630: Bioinformatics</title>
+    <link rel="canonical" href="/solutions/03-solution/">
+    <link href="/theme/css/tufte.css" rel="stylesheet">
+    <link href="/theme/css/latex.css" rel="stylesheet">
+    <link href="/theme/css/custom.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .wrap a, .wrap a:visited {
+            color: #1663BA;
+        }
+
+        .wrap a:hover {
+            color: #398AE6;
+        }
+
+        .wrap p > a {
+            color: #1663BA;
+        }
+
+        article .sidenote-number:after, article .sidenote:before {
+            color: #1663BA;
+        }
+
+        article .sidenote:before {
+            color: #1663BA;
+        }
+
+        @media (max-width: 760px) {
+            label.margin-toggle:not(.sidenote-number) {
+                color: #1663BA;
+            }
+        }
+
+        .contrast a, .contrast a:visited {
+            color: #1663BA; 
+        }
+
+        header > nav a {
+            color: #1663BA;
+        }
+
+        .credits a {
+            color: #1663BA;
+        }
+
+        .wrap .tag {
+            background: #1663BA;
+        }
+    </style>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="BIOL 480/510/630: Bioinformatics"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" /> 
+    <meta name="msapplication-TileImage" content="/images/mstile-144x144.png" />
+
+    
+    <script src="//use.typekit.net/vpe6zfl.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+ 
+
+</head>
+
+<body>
+<div class="wrap">
+    <header>
+        <nav class="group logo-wrap">
+            <a href="/" class="logo"><img src="/images/sys-small1.png" alt="Data Science in Biology"></a>
+            <h1 class="websitetitle"><a href="/">BIOL 480/510/630: Bioinformatics</a></h1>
+        </nav>
+        <nav class="bottom-group">
+            
+            <a href="/overview/">Overview</a>
+            
+            <a href="/syllabus/">Syllabus</a>
+            
+            <a href="/resources/">Resources</a>
+            
+            <a href="/assignments/">Assignments</a>
+            
+            <a href="/projects/">Projects</a>
+            
+        </nav>
+    </header>
+ 
+
+    <article class="group">
+    <h1>02-solution</h1>
+
+    <h2>0001/01/01</h2>
+    
+    
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p><em>Part1 1</em></p>
+<p>You can do it in R. (I don’t want to run this so it’s commented out.)</p>
+<pre class="r"><code># Create raw directory
+#dir.create(&quot;/cloud/project/raw&quot;)
+
+# Download file
+#download.file(url = &quot;ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip&quot;, 
+#              destfile = &quot;/cloud/project/raw/taxdmp.zip&quot;,
+#              method = &quot;wget&quot;)
+
+# Unzip
+#unzip(&quot;/cloud/project/raw/taxdmp.zip&quot;, exdir = &quot;/cloud/project/raw/taxdmp&quot;)</code></pre>
+<p>Or you can do it in Unix.</p>
+<pre class="r"><code># Create raw directory
+#mkdir /cloud/project/raw
+
+# Download file
+#wget ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip \
+      /cloud/project/raw/taxdmp.zip
+
+# Unzip
+#cd /cloud/project/raw
+#gunzip /cloud/project/raw/taxdmp</code></pre>
+<p><em>Part 2</em></p>
+<pre class="r"><code>require(purrr); require(tidyverse)</code></pre>
+<pre class="r"><code># File names + dir
+files &lt;- c(&quot;division&quot; = &quot;/cloud/project/raw/taxdmp/division.dmp&quot;, 
+           &quot;nodes&quot; = &quot;/cloud/project/raw/taxdmp/nodes.dmp&quot;, 
+           &quot;names&quot; = &quot;/cloud/project/raw/taxdmp/names.dmp&quot;)
+
+dir.create(&quot;/cloud/project/refined&quot;)
+
+# A solution from last year&#39;s TA Aky Eftyhios (many other ways to do this.)
+read_dmp &lt;- function(dmp_file) {
+  out &lt;- readLines(dmp_file) %&gt;%
+    gsub(pattern = &quot;\t\\|$&quot;, replacement = &quot;&quot;) %&gt;% 
+    str_split(., pattern = &quot;\t\\|\t&quot;, simplify = TRUE) %&gt;%
+    as_tibble()
+  
+  return(out)
+}
+
+res &lt;- map(.x = files, .f=read_dmp)</code></pre>
+<p>You’ll see that the tables do no thave column names with Aki’s solutions. We could carefully add them here. As a side note: this is not my preferred solution; it can be dangerous to lose the original column names rather than changing them individually afterwards. I also don’t find optimal the use of spaces in the names or the mixed upper and lower case, as discussed in the lecture.</p>
+<pre class="r"><code>fields &lt;- list(&quot;division&quot; = c(&quot;division id&quot;, &quot;division cde&quot;, &quot;division name&quot;, &quot;comments&quot;),
+               
+               &quot;nodes&quot; = c(&quot;tax_id&quot;, &quot;parent tax_id&quot;, &quot;rank&quot;, &quot;embl code&quot;, &quot;division id&quot;,
+                           &quot;inherited div flag&quot;, &quot;genetic code id&quot;, &quot;inherited GC flag&quot;, 
+                           &quot;mitochondrial genetic code id&quot;, &quot;inherited MGC flag&quot;,
+                           &quot;GenBank hidden flag&quot;, &quot;hidden subtree root flag&quot;, &quot;comments&quot;),
+               
+               &quot;names&quot; = c(&quot;tax_id&quot;, &quot;name_txt&quot;, &quot;unique name&quot;, &quot;name class&quot;)
+               )
+
+colnames(res$nodes) &lt;- fields$nodes
+colnames(res$division) &lt;- fields$division
+colnames(res$names) &lt;- fields$names</code></pre>
+<p>Now we just save the refined version.</p>
+<pre class="r"><code>dir.create(&quot;/cloud/project/refined&quot;)
+#saveRDS(res, &quot;/cloud/project/refined/master.rds&quot;)</code></pre>
+<p><em>Part 3</em></p>
+<pre class="r"><code>filter_terms &lt;- c(&quot;comments&quot;, &quot;mitochondrial genetic code id&quot;, &quot;inherited div flag&quot;,
+                  &quot;genetic code id&quot;, &quot;inherited GC flag&quot;, &quot;inherited MGC flag&quot;, 
+                  &quot;GenBank hidden flag&quot;, &quot;hidden subtree root flag&quot;)
+
+# Filter
+refined &lt;- map(
+  .x = res,
+  .f = ~ select(.x, -any_of(filter_terms))
+  )
+saveRDS(refined, &quot;/cloud/project/refined/master.rds&quot;)  # save updated version</code></pre>
+<p><em>Part 4</em></p>
+<p>Is it tidy? Well… As I mentioned above, I don’t like the column names in some cases but that’s a minor point. Mostly the three tibbles are tidy, except for <span class="math inline">\({\tt unique name}\)</span> in my opinion. There is both the name name of the taxon and then extra information in these angle brackets. We’ll leave it for now though.</p>
+<p>Do you agree?</p>
+<p><em>Part 5</em></p>
+<pre class="r"><code>str(refined)</code></pre>
+<p>No there are many problems here mostly where characers like <span class="math inline">\({\tt tax\id}\)</span> probably should be integers or numeric.</p>
+<pre class="r"><code>refined$division[[&quot;division id&quot;]] &lt;- as.numeric(refined$division[[&quot;division id&quot;]])
+
+# Nodes
+refined$nodes &lt;-  refined$nodes %&gt;%
+  mutate_at(vars(&quot;tax_id&quot;, &quot;parent tax_id&quot;, &quot;division id&quot;), ~ as.numeric(.))
+
+# Names
+refined$names[[&quot;tax_id&quot;]] &lt;- as.numeric(refined$names[[&quot;tax_id&quot;]])
+
+# Print
+str(refined)</code></pre>
+<p><em>Part 6</em></p>
+<p>Is <span class="math inline">\({\tt tax\_id}\)</span> unique in its own table? That is, does each observation have a unique <span class="math inline">\({\tt tax\_id}\)</span>? Yes, it can serve as a primary key in the <span class="math inline">\({\tt refined\$nodes}\)</span> tibble.</p>
+<pre class="r"><code>refined$nodes %&gt;%
+  count(tax_id) %&gt;% 
+  filter(n &gt; 1) %&gt;% 
+  nrow</code></pre>
+<p>It is also present in the <span class="math inline">\({\tt names}\)</span> tibble but it i not unique, so it serves as the foreign key.</p>
+<pre class="r"><code>refined$names %&gt;%
+  count(tax_id) %&gt;% 
+  filter(n &gt; 1) %&gt;%
+  nrow</code></pre>
+<p>We can check if any observation in either table is NA.</p>
+<pre class="r"><code>length(which(is.na(refined$nodes[&quot;tax_id&quot;]))); length(which(is.na(refined$names[&quot;tax_id&quot;])))</code></pre>
+<p>We can use <span class="math inline">\({\tt left\_join\)</span> because we want to keep all the observations in
+<span class="math inline">\({\tt refined\$names}\)</span>. These entries match <span class="math inline">\({\tt refined\$nodes}\)</span>, therefore we don’t lose any data. It keeps the one-to-many relationship intact</p>
+<pre class="r"><code>tbl &lt;- refined$names %&gt;%
+  left_join(refined$nodes, by = &quot;tax_id&quot;)
+tbl</code></pre>
+<p><em>Part 7</em></p>
+<p>Primary key is <span class="math inline">\({\tt division id}\)</span> because it uniquely
+identifies each observation.</p>
+<pre class="r"><code>refined$division %&gt;%
+  count(`division id`) %&gt;% 
+  filter(n &gt; 1) %&gt;%
+  nrow</code></pre>
+<p>Foreign key is <code>division id</code> in our new tbl from Part 6 because it appears in the
+refined$division table, where it matches each division to a unique id.</p>
+<p>We use the <span class="math inline">\({\tt left\_join}\)</span> because we would like to keep all the observations in the original tibble (<span class="math inline">\({\tt tbl}\)</span>) and add the additional information found in the <span class="math inline">\({\tt dividsion}\)</span> tibble.</p>
+<pre class="r"><code>tbl &lt;- tbl %&gt;%
+    left_join(refined$division, by = &quot;division id&quot;)</code></pre>
+<p><em>Part 8</em></p>
+<pre class="r"><code>get_taxon_name &lt;- function(tbl, target_tax_name) {
+  tmp &lt;- tbl %&gt;% filter(name_txt == target_tax_name) %&gt;% .[[&quot;tax_id&quot;]]
+  return(tmp)
+}</code></pre>
+<p><em>Part 9</em></p>
+<pre class="r"><code>get_children &lt;- function(tbl, target_tax_id) {
+  tmp &lt;- tbl %&gt;% filter(`parent tax_id` == target_tax_id) 
+  return(tmp)
+}</code></pre>
+<p><em>Part 10</em></p>
+<p>This is a very hard question. First we write a function to return all of the species below a node in the tree</p>
+<pre class="r"><code>collect_all &lt;- function(tbl, start_tax_id, target_rank=&quot;species&quot;) {
+  
+  to_do &lt;- start_tax_id  # this vector keeps track of every taxon we need to visit
+  good_ones &lt;- c()  # use this to store all tax_id that have the right rank
+  
+  while (length(to_do)&gt;0) {   # we are finished when it&#39;s empty
+    
+    current &lt;- to_do[1]   # look at the first entry of to_do
+    to_do &lt;- to_do[-1]  # remove first entry from to_do
+    
+    tmp &lt;- tbl %&gt;% filter(tax_id==current) %&gt;% .[[&#39;rank&#39;]]
+    
+    # check if one of them is the right rank (there could be more than one)
+    for (j in 1:length(tmp)) {
+      if (tmp[j]==target_rank) {
+        good_ones &lt;- c(good_ones, current)
+        break
+      }
+    }
+    currents_kids &lt;- unique(get_children(tbl, current)[[&#39;tax_id&#39;]])
+    to_do &lt;- c(to_do, currents_kids) 
+  }
+  return(length(good_ones))
+}</code></pre>
+<p>Ok so now all that is left is to run this for the three kingdoms first with rank species and then rank genera.</p>
+<pre class="r"><code>bacteria_tax_id &lt;- 2
+eukaryota_tax_id &lt;- 2759
+archaea_tax_id &lt;- 2157
+# 
+# bac_num_species &lt;- collect_all(tbl, start_tax_id=bacteria_tax_id, target_rank=&quot;species&quot;) 
+# (bac_num_species)
+# euk_num_species &lt;- collect_all(tbl, start_tax_id=eukaryota_tax_id, target_rank=&quot;species&quot;) 
+# (euk_num_species)
+# arch_num_species &lt;- collect_all(tbl, start_tax_id=archaea_tax_id, target_rank=&quot;species&quot;) 
+# (arch_num_species)
+# 
+# bac_num_genera &lt;- collect_all(tbl, start_tax_id=bacteria_tax_id, target_rank=&quot;genus&quot;) 
+# (bac_num_genera)
+# euk_num_genera &lt;- collect_all(tbl, start_tax_id=eukaryota_tax_id, target_rank=&quot;genus&quot;) 
+# (euk_num_genera)
+# arch_num_genera &lt;- collect_all(tbl, start_tax_id=archaea_tax_id, target_rank=&quot;genus&quot;) 
+# (arch_num_genera)</code></pre>
+<p><em>Part 11</em></p>
+<p>Let’s do Part <em>11</em> first. Afterwards <em>Part 10</em> is easier. Here our goal is to
+write a function that returns all the taxa below a given <em>division</em> in the tree. There
+are many ways to do this.</p>
+<pre class="r"><code>get_all_division_taxa &lt;- function(tbl, division) {
+  nodes &lt;- tbl %&gt;% filter(`division id`==division)
+  return(nodes)
+}</code></pre>
+<p><em>Part 12</em></p>
+<p>Here is a solution from a previous year (Aki Eftyhios). I provide a recursive solution below (beyond the scope of the course).</p>
+<pre class="r"><code>path_to_root &lt;- function(tax_id, taxonomy) {
+  
+  # Function does what the question asks :) 
+  
+  # Using the environment because of undefined behavior when trying to filter with
+  # tax_id. The names conflict.
+  functione_env &lt;- environment()
+  path &lt;- c()
+  
+  # Obvious, but still need to instantiate. 
+  # Hard coding it could be a problem if they ever change the root tax_id, 
+  # but I doubt that will ever happen.
+  root_tax_id &lt;- 1
+  
+  # Functions as off switch in while loop. Allows for one iteration using root
+  count_switch &lt;- 2
+  
+  while (count_switch != 0) {
+    
+    # Get name of node and add to path vector
+    node_name &lt;- taxonomy %&gt;%
+      filter(`tax_id` == get(&quot;tax_id&quot;, functione_env)) %&gt;%
+      pull(&quot;name_txt&quot;) %&gt;%  # Pull name
+      replace_na(&quot;NA&quot;) # Fixes NAs
+    
+    # Add to vector
+    path &lt;- c(path, node_name) 
+    
+    # Switch to new node
+    tax_id &lt;- taxonomy %&gt;%
+      filter(`tax_id` == get(&quot;tax_id&quot;, functione_env)) %&gt;%
+      pull(&quot;parent tax_id&quot;)
+    
+    # Off switch
+    if (tax_id == root_tax_id) {
+      count_switch &lt;- count_switch - 1
+    }
+    
+  }
+  return(cat(rev(path), sep = &quot;, &quot;))
+}</code></pre>
+<p>Here is a recursive solution (as discussed in class; beyond the scope of the course).</p>
+<pre class="r"><code>path_to_root &lt;- function(tbl, current_tax_id, target_tax_id) {
+
+  tmp &lt;- tbl %&gt;% filter(tax_id == current_tax_id)
+  if (nrow(tmp)&gt;1) tmp &lt;- tmp[1,]  # annoying if multiple matches, so just take the first one.
+  
+  if (current_tax_id == target_tax_id) {
+    return(tmp[[&#39;name_txt&#39;]])
+  } 
+  parent &lt;- tmp %&gt;% .[[&#39;parent tax_id&#39;]]
+  return(c(tmp[[&#39;name_txt&#39;]], path_to_root(tbl, parent, target_tax_id  )))
+}
+
+# for some reason the NCBI set the parent of the root to be the parent.
+# that doesn&#39;t make any sense. Fix here.
+fix &lt;- which(tbl$tax_id == 1)
+tbl[fix, &#39;parent tax_id&#39;] &lt;- NA
+
+x &lt;- path_to_root(tbl, current_tax_id = 2157, target_tax_id=1)
+# path from archae to root
+print(x)</code></pre>
+
+
+    </article>
+
+    <footer>
+        <hr class="slender">
+        <div class="course-info">
+        <span class="course-name">
+            BIOL 480/510/630: Bioinformatics (Fall 2021)
+        </span><br>
+        <span>
+            <em><a href="https://www.concordia.ca">Concordia University</a></em> | 
+            <em><a href="https://www.concordia.ca/artsci/biology.html">Department of Biology | CSFG | CASB</a></em>
+        </span>
+        </div>
+
+        <ul class="footer-links">
+            <li>
+            <a href="https://mikehallett.science"><i class="fa fa-user" aria-hidden="true"></i> Mike Hallett</a>
+            </li>
+
+            <li>
+            <a href="mailto:hallett.mike.t@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i> gmail</a>
+            </li>
+
+            <li>
+            <i class="fa fa-calendar" aria-hidden="true"></i> TuTh HB 130 LOY
+            </li>
+
+            <li>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> 13:15-14:30
+            </li>
+
+            <li>
+                <a href=""><i class="fa fa-university" aria-hidden="true"></i> Zoom</a>
+            </li>
+            
+
+            <li>
+            <a href="https://twitter.com/hallettmichael"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+            </li>
+
+            <li>
+            <a href="https://github.com/https://github.com/hallettmiket/hallettmiket.github.io"><i class="fa fa-github" aria-hidden="true"></i></a>
+            </li>
+            <span class="fake-li"><i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com/">Slack</a></span><br>
+
+            
+        </ul>
+
+        <div class="credits">
+        <span>All content licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons</a>.
+        Content © 2021 <a href="https://mikehallett.science">mike hallett</a>
+        </span><br><br>
+<br><br>
+        <span>We thank <a href="https://www.andrewheiss.com/">A Heiss</a> for the modified Tufte scheme.</span><br><br>
+
+        <span>This site modified the <a href="https://github.com/andrewheiss/ath-tufte-hugo">ath-tufte-hugo theme</a> in <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> and <a href="https://gohugo.io/">hugo</a>.</span>
+        </div>
+    </footer>
+
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script async type="text/javascript"
+      src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+</div>
+</body>
+</html>
+

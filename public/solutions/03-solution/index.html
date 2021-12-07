@@ -361,9 +361,9 @@ are many ways to do this.</p>
   return(cat(rev(path), sep = &quot;, &quot;))
 }</code></pre>
 <p>Here is a recursive solution (as discussed in class; beyond the scope of the course).</p>
-<pre class="r"><code>path_to_root &lt;- function(tbl, current_tax_id, target_tax_id) {
+<pre class="r"><code>path_to_root &lt;-  function(tbl, current_tax_id, target_tax_id) {
 
-  tmp &lt;- tbl %&gt;% filter(tax_id == current_tax_id)
+  tmp &lt;- tbl %&gt;% filter(tax_id ==  current_tax_id)
   if (nrow(tmp)&gt;1) tmp &lt;- tmp[1,]  # annoying if multiple matches, so just take the first one.
   
   if (current_tax_id == target_tax_id) {

@@ -357,9 +357,9 @@ Here is a recursive solution (as discussed in class; beyond the scope of the cou
 
 ```{r, eval=FALSE}
 
-path_to_root <- function(tbl, current_tax_id, target_tax_id) {
+path_to_root <-  function(tbl, current_tax_id, target_tax_id) {
 
-  tmp <- tbl %>% filter(tax_id == current_tax_id)
+  tmp <- tbl %>% filter(tax_id ==  current_tax_id)
   if (nrow(tmp)>1) tmp <- tmp[1,]  # annoying if multiple matches, so just take the first one.
   
   if (current_tax_id == target_tax_id) {

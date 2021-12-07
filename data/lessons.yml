@@ -200,7 +200,7 @@ lessons:
   - number: "--"
     date: "Dec 2"
     title: "**Assignment 4 due**"
- #   solutions: "04-solutions"
+    solutions: "04-solutions"
   - number: "--"
     date: "Dec 10"
     title: "**Project due**"

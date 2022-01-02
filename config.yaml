@@ -46,34 +46,34 @@ params:
     twitter: hallettmichael
     github: hallettmiket
     bitbucket: hallettlab
-    office: GE120.07
-    officehours: "Office Hours Th 12-13"
+    office: TBA
+    officehours: "Office Hours TBA"
   course:
-    number: BIOL 480/510/630
-    semester: Fall 2021
-    days: TuTh HB 130 LOY
-    time: "13:15-14:30"
-    location: "https://concordia-ca.zoom.us/s/8992285958#success"
+    number: "BIOCHEM 3xxx"
+    semester: Fall 2022
+    days: "TBA"
+    time: "TBA"
+    location: "TBA"
     twitter: hallettmichael
-    slack: "https://biol480-18-concordia.slack.com/"
-    dates: "September 7–December 6, 2021"
+    slack: "https://"
+    dates: "TBA2022"
     youtube: "https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber"
     github: "https://github.com/hallettmiket/hallettmiket.github.io"
-    copyrightYear: "2021"
+    copyrightYear: "2020"
     contactDetails: Slack
     rstudiocloud: "private"
   labs:
-    TA: Samira Massahi
-    email: samiram2244@gmail.com
-    location:  "CC 321 Loy"
-    labtime: "Lab Tu 10:15-11:30 CC321"
+    TA: TBA
+    email: TBA
+    location:  "TBA"
+    labtime: "TBA"
     officehours: "Office Hourse: TBA" 
   university: 
-    name: Concordia University
-    url: "https://www.concordia.ca"
+    name: Western University
+    url: "https://www.uwo.ca/"
   school:
-    name: Department of Biology | CSFG | CASB
-    url: "https://www.concordia.ca/artsci/biology.html"
+    name: "Department of Biochemistry"
+    url: "https://www.schulich.uwo.ca/biochem/"
   description: "Explore and model biological data"
   primaryColor: "#1663BA"
   secondaryColor: "#398AE6"

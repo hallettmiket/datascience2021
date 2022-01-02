@@ -12,15 +12,12 @@
     
     
     <item>
-      <title>Graph Convolutional Neural Networks</title>
-      <link>/class/23-class/</link>
-      <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
+      <title>Introduction and orientation</title>
+      <link>/video/00-video/</link>
+      <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>/class/23-class/</guid>
-      <description>  Contents  Slides Action Items Points of Reflection   Slides Action Items  Assignment 4
- Project
- Start to prepare for final
-  Points of Reflection </description>
+      <guid>/video/00-video/</guid>
+      <description>Lecture 00 at Youtube</description>
     </item>
     
     <item>
@@ -70,10 +67,10 @@ Action items  If you haven’t doing the reading, please do so and address the a
     
     <item>
       <title>Computational challenges of single cell profiling</title>
-      <link>/reading/22-reading/</link>
+      <link>/reading/23-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/reading/22-reading/</guid>
+      <guid>/reading/23-reading/</guid>
       <description>Required  [Macosko et al (2015) Cell] (https://www.cell.com/fulltext/S0092-8674%2915%2900549-8)(Please watch video and try to undestand up to Figures 1, 2, and S2. You don’t need to read the whole paper.)
  Candida albicans single cell project (my lab)
   Recommended Reading  Laehnemann et al. (2020) Elevn grand challenges in single-cell data science. Genome Biology (Try to understand the intuition of each of the 11 challenges.)
@@ -82,19 +79,19 @@ Action items  If you haven’t doing the reading, please do so and address the a
     
     <item>
       <title>Computational challenges of single cell profiling</title>
-      <link>/video/22-video/</link>
+      <link>/video/23-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/video/22-video/</guid>
-      <description>Lecture 22 at Youtube</description>
+      <guid>/video/23-video/</guid>
+      <description>Lecture 23 at Youtube</description>
     </item>
     
     <item>
       <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
-      <link>/reading/21-reading/</link>
+      <link>/reading/22-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/reading/21-reading/</guid>
+      <guid>/reading/22-reading/</guid>
       <description>Required  Convolution Neural Networks
  Leanring to drive
  Learning to converse
@@ -112,11 +109,11 @@ Action items  If you haven’t doing the reading, please do so and address the a
     
     <item>
       <title>Deep learning: proliferative index of a cancer cell with microscopy</title>
-      <link>/video/21-video/</link>
+      <link>/video/22-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/video/21-video/</guid>
-      <description>Lecture 21 at Youtube</description>
+      <guid>/video/22-video/</guid>
+      <description>Lecture 22 at Youtube</description>
     </item>
     
     <item>
@@ -240,7 +237,8 @@ Lab October 20th - Visualization of Tara Oceans</description>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/video/14-video/</guid>
-      <description>Lecture 14 at Youtube</description>
+      <description>Lecture 14 Part I at YouTube
+Lecutre 14 Part II (HMMs) at YouTube</description>
     </item>
     
     <item>
@@ -252,8 +250,8 @@ Lab October 20th - Visualization of Tara Oceans</description>
       <description>  Required  Annotate Bioconductor package  Recommended Reading  1000 Genomes Project
  Biostrings
   Action items  Project outline due for genomics diploma and grad students (1 page)
- Oct 29 Midterm
- Assignment #3 is available
+ Oct 19 Midterm
+ Finish up Assignment #2
   </description>
     </item>
     
@@ -264,15 +262,6 @@ Lab October 20th - Visualization of Tara Oceans</description>
       
       <guid>/video/12-video/</guid>
       <description>Lecture 12 at Youtube</description>
-    </item>
-    
-    <item>
-      <title>Graph Convolutional Neural Networks</title>
-      <link>/video/23-video/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/video/23-video/</guid>
-      <description>Lecture 23 at Youtube</description>
     </item>
     
     <item>
@@ -317,15 +306,6 @@ Required  Please read the Overview for the course.Required reading represents fu
  These are interesting short articles on different approaches towards keeping lab notebooks, and the pros and cons of electronic laboratory notebooks (ELNs) versus traditional paper notebooks. E Pain (2019) Science and R Kwok (2018) Nature.
   Recommended  Read a little bit about RStudio here and specifically RStudio Cloud
  If you have difficulties with Google Drive, this seems like a reasonable tutorial.</description>
-    </item>
-    
-    <item>
-      <title>Introduction and orientation</title>
-      <link>/video/00-video/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/video/00-video/</guid>
-      <description>Lecture 00 at Youtube</description>
     </item>
     
     <item>
@@ -424,24 +404,11 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/reading/20-reading/</link>
+      <link>/video/21-video/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/reading/20-reading/</guid>
-      <description>  Required  Oncotype Dx
- MammaPrint
-  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
- Project
-  </description>
-    </item>
-    
-    <item>
-      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/video/20-video/</link>
-      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/video/20-video/</guid>
-      <description>Lecture 20 at Youtube</description>
+      <guid>/video/21-video/</guid>
+      <description>Lecture 21 at Youtube</description>
     </item>
     
     <item>
@@ -529,6 +496,45 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     </item>
     
     <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/reading/20-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/20-reading/</guid>
+      <description>  This is the reading material for the next two lectures.
+Required  We are using slides from Vanessa Dumeaux
+ Oncotype Dx
+ MammaPrint
+  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/reading/21-reading/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/reading/21-reading/</guid>
+      <description>  This is the reading material for the next two lectures.
+Required  We are using slides from Vanessa Dumeaux
+ Oncotype Dx
+ MammaPrint
+  Recommended Reading  Paik et al. (2008) Gene Expression and Benefit of Chemotherapy in Women With Node-Negative, Estrogen Receptor–Positive Breast Cancer  Action items  Assignment #4
+ Project
+  </description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/video/20-video/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/video/20-video/</guid>
+      <description>Lecture in class (no video). Samira will give the presentation.</description>
+    </item>
+    
+    <item>
       <title>Transformations of breast cancer transcriptional cohorts</title>
       <link>/reading/05-reading/</link>
       <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
@@ -583,10 +589,10 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Computational challenges of single cell profiling</title>
-      <link>/class/22-class/</link>
+      <link>/class/23-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/class/22-class/</guid>
+      <guid>/class/23-class/</guid>
       <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
  Project
  Start to prepare for final
@@ -658,8 +664,9 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
       <guid>/class/14-class/</guid>
-      <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)
- Aki’s S4 objects for Markov Models
+      <description>Contents  Slides Action Items   Slides  Object Orientation lecture slides (html)
+ S4 objects for Markov Models
+ Hidden Markov Models
   Action Items  Oct 29 Midterm  Points of Reflection  Our model is very simple. Name some of aspects of DNA-protein interactions that are not captured by our model.
  What other aspects of gene regulation are not well modelled by our approach?</description>
     </item>
@@ -672,9 +679,8 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
       <guid>/class/12-class/</guid>
       <description>Contents  Slides Action Items   Slides  View lectures slide in your browser (html)  Action Items  See if you can understand the \({\tt sapply}\) and \({\tt for}\) loops.
  Project outline due for genomics diploma and grad students (1 page)
- Oct 29 Midterm
- Assignment #3 is available
- Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.</description>
+ Try to understand how I prepared the tibble for exploring nucleotide frequency in S. cerevisiae.
+  Points of Reflection  Which organism has the largest genome?</description>
     </item>
     
     <item>
@@ -732,22 +738,10 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     
     <item>
       <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/class/20-class/</link>
+      <link>/class/22-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/class/20-class/</guid>
-      <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
- Project
-  Points of Reflection  What are the social and the economic benefits of tests like Oncotype DX or MammaPrint? They are quite expensive (costing thousands of dollars). How can they nevetheless save our health care systems money?
- What advantages does multivariate prediction have over univariate prediction in this domain?</description>
-    </item>
-    
-    <item>
-      <title>Predicting breast cancer patient outcome from expression data: supervised analysis</title>
-      <link>/class/21-class/</link>
-      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/class/21-class/</guid>
+      <guid>/class/22-class/</guid>
       <description>Contents  Slides Action Items Points of Reflection   Slides  View lectures slide in your browser (html)  Action Items  Assignment 4
  Project
   Points of Reflection  How will AI impact areas of biology that you are interested in? How will that impact the researchers in this area? Or companies?
@@ -800,6 +794,28 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     </item>
     
     <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/class/20-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/20-class/</guid>
+      <description>  Contents  Slides Action Items Points of Reflection   Slides  We are using slides from Vanessa Dumeaux )  Action Items  Assignment 4
+ Project
+  Points of Reflection  Why is a \(t\)-test not the appropriate test to use to detect differentially exprssed genes? Can you give several reasons?  </description>
+    </item>
+    
+    <item>
+      <title>Transcriptomics: a deep dive</title>
+      <link>/class/21-class/</link>
+      <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/class/21-class/</guid>
+      <description>  Contents  Slides Action Items Points of Reflection   Slides  We are using slides from Vanessa Dumeaux )  Action Items  Assignment 4
+ Project
+  Points of Reflection  Why is a \(t\)-test not the appropriate test to use to detect differentially exprssed genes? Can you give several reasons?  </description>
+    </item>
+    
+    <item>
       <title>Transformations of breast cancer transcriptional cohorts</title>
       <link>/class/05-class/</link>
       <pubDate>Mon, 20 Jul 2020 00:00:00 +0000</pubDate>
@@ -819,30 +835,115 @@ Lecture 02 Part 2 at Youtube (RStudio Cloud)</description>
     </item>
     
     <item>
+      <title>01-solution</title>
+      <link>/solutions/01-solutions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solutions/01-solutions/</guid>
+      <description>Note that due dates can be found in the Syllabus; submission instructions can be found on the Assignment Instructions page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your \({\tt R}\) code via Google Drive. Samira will go over the submission process in the lab.
+\({\bf 60}\) total marks.
+Question 1 [7 points] You obtained a \({\tt gmail}\) account for this course.</description>
+    </item>
+    
+    <item>
+      <title>02-solution</title>
+      <link>/solutions/02-solutions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solutions/02-solutions/</guid>
+      <description>\({\bf 67}\) total marks.
+Question 1 [10 points] A. Re-express the following small program using pipes.
+c &amp;lt;- 18 f &amp;lt;- c*(9/5) + 32 print(f) ## [1] 64.4 f &amp;lt;- c %&amp;gt;% .[[1]]*(9/5) + 32 print(f) ## [1] 64.4 It’s pretty trick but just remember that whatever you pass through a pipe is called \({\tt .}\) and it’s actually a list. So if it is just a single item, it’s the first item in the list \({\tt .</description>
+    </item>
+    
+    <item>
+      <title>03-solution</title>
+      <link>/solutions/03-solutions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solutions/03-solutions/</guid>
+      <description>Part1 1
+You can do it in R. (I don’t want to run this so it’s commented out.)
+# Create raw directory #dir.create(&amp;quot;/cloud/project/raw&amp;quot;) # Download file #download.file(url = &amp;quot;ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip&amp;quot;, # destfile = &amp;quot;/cloud/project/raw/taxdmp.zip&amp;quot;, # method = &amp;quot;wget&amp;quot;) # Unzip #unzip(&amp;quot;/cloud/project/raw/taxdmp.zip&amp;quot;, exdir = &amp;quot;/cloud/project/raw/taxdmp&amp;quot;) Or you can do it in Unix.
+# Create raw directory #mkdir /cloud/project/raw # Download file #wget ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip \ /cloud/project/raw/taxdmp.zip # Unzip #cd /cloud/project/raw #gunzip /cloud/project/raw/taxdmp Part 2</description>
+    </item>
+    
+    <item>
+      <title>Assignment 1</title>
+      <link>/assignment/01-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/01-assignment/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Assignment 2</title>
+      <link>/assignment/02-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/02-assignment/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Assignment 3</title>
+      <link>/assignment/03-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/03-assignment/</guid>
+      <description>pre  code.sourceCode { white-space: pre; position: relative; } pre  code.sourceCode  span { display: inline-block; line-height: 1.25; } pre  code.sourceCode  span:empty { height: 1.2em; } code.sourceCode  span { color: inherit; text-decoration: inherit; } div.sourceCode { margin: 1em 0; } pre.sourceCode { margin: 0; } @media screen { div.sourceCode { overflow: auto; } } @media print { pre  code.sourceCode { white-space: pre-wrap; } pre  code.</description>
+    </item>
+    
+    <item>
+      <title>Assignment 4</title>
+      <link>/assignment/04-assignment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/04-assignment/</guid>
+      <description>Please note that due dates can be found in the Syllabus; submission instructions can be found on the Assignment Instructions page. In this assignment, you can submit a Google Doc (or other text editor, pictures, etc.) but also your \({\tt R}\) code via Google Drive. Aki will go over the submission process in the lab.
+You might consider (but it is not mandatory) using R Markdown to write your answers.</description>
+    </item>
+    
+    <item>
       <title>Assignments</title>
       <link>/assignments/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/assignments/</guid>
       <description>Homework assignments &amp;#8853;Course
- TuTh HB 130 LOY
- September 7–December 6, 2021
- 13:15-14:30
+ TBA
+ TBA2022
+ TBA
 Zoom
  Slack
 Github repo
 Lectures
 RStudio Cloud
 Labs
-Samira Massahi
-samiram2244@gmail.com
- Lab Tu 10:15-11:30 CC321
+TBA
+TBA
+ TBA
 Zoom
  Office Hourse: TBA
 
 A homework assignment will be due approximately every three weeks.
 Generally, each assignment covers material we recently covered in class.
-They are designed so that you can explore concepts and tools in more depth.</description>
+They are designed so that you can explore concepts and tools in more depth.
+Seeking assistance You should complete the assignments alone, however it is perfectly ok to ask for help.</description>
+    </item>
+    
+    <item>
+      <title>Midterm</title>
+      <link>/assignment/01-midterm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/assignment/01-midterm/</guid>
+      <description>The midterm must be submitted by 2:30pm on Tuesday, October 26th, 2021 to \({\tt biol480.concordia@gmail.com}\)
+All answers in one email.
+Subject header of email is Midterm, Lastname, Firstname, student ID.
+You can use which ever media you prefer to answer your questions.
+This is open book, so you can use whatever resources you would like, but you must cite them. You are not allowed to speak to each other or other experts in this field (eg students who previously took the course).</description>
     </item>
     
     <item>
@@ -854,19 +955,24 @@ They are designed so that you can explore concepts and tools in more depth.</des
       <description>Course objectives Our fundamental goal is to ensure you have the necessary bioinformatics skills, both in terms of tools and underlying analytic approaches,in order to fully participate in modern life science approaches.
 Biology is becoming increasingly quantitative.&amp;#8853;Instructor
 Mike Hallett
- GE120.07
- Office Hours Th 12-13
+ TBA
+ Office Hours TBA
 hallett.mike.t@gmail.com
 @hallettmichael
 Course
- TuTh HB 130 LOY
- September 7–December 6, 2021
- 13:15-14:30
+ TBA
+ TBA2022
+ TBA
 Zoom
  Slack
 Github repo
 Lectures
-RStudio Cloud</description>
+RStudio Cloud
+Labs
+TBA
+TBA
+ TBA
+Zoom</description>
     </item>
     
     <item>
@@ -894,7 +1000,7 @@ RStudio Cloud</description>
       
       <guid>/syllabus/</guid>
       <description>Readings and assignments should be completed before each class session. Assignments, and instructions for submitting assignments, can be found at at the Assignments page.
-  Date Number Topic Reading Video Slides+ Assignment Solutions      Part I Data Science        Sept 7 L0 Introduction and orientation        Sept 9 L1 Information technology for managing science        Sept 9 -- Assignment 1 start        Sept 14 L2 Modern computing paradigms and RStudio Cloud        Sept 16 L3 Visualizing breast cancer transcriptomes        Sept 21 L4 Representing &amp;amp; manipulating data        Sept 23 L5 Transformations of breast cancer transcriptomes        Sept 27 -- Assignment 1 due        Sept 28 L6 Exploratory data analysis of breast cancer transcriptomes        Sept 28 -- Assignment 2 start         Part II Bioinformatics        Sept 30 L7 The NCBI: a rich resource for the life sciences        Oct 5 L8 How to wrangle with marine microbes        Oct 7 L9 Organzing the Tara Ocean&amp;rsquo;s data        Oct 12 L10 Exploring microbial diversity across our oceans        Oct 14 L11 Representing genomes in R        Oct 19 -- Midterm (1.</description>
+  Date Number Topic Reading Video Slides+ Assignment Solutions      Part I Data Science        Sept 7 L0 Introduction and orientation        Sept 9 L1 Information technology for managing science        Sept 9 -- Assignment 1 start        Sept 14 L2 Modern computing paradigms and RStudio Cloud        Sept 16 L3 Visualizing breast cancer transcriptomes        Sept 21 L4 Representing &amp;amp; manipulating data        Sept 23 L5 Transformations of breast cancer transcriptomes        Sept 27 -- Assignment 1 due        Sept 28 L6 Exploratory data analysis of breast cancer transcriptomes        Sept 28 -- Assignment 2 start         Part II Bioinformatics        Sept 30 L7 The NCBI: a rich resource for the life sciences        Oct 5 L8 How to wrangle with marine microbes        Oct 7 L9 Organzing the Tara Ocean&amp;rsquo;s data        Oct 12 L10 Exploring microbial diversity across our oceans        Oct 14 L11 Representing genomes in R        Oct 19 L12 Genome annotations         Part III Computational Biology        Oct 21 L13 Transcription factor binding sites in Baker&amp;rsquo;s yeast        Oct 22 -- Assignment 2 due        Oct 26 -- Midterm (1.</description>
     </item>
     
   </channel>

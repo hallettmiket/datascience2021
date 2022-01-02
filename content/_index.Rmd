@@ -4,7 +4,7 @@ author: "Mike Hallett"
 date: "2020-07-17"
 ---
 
-^[{-} `r blogdown::shortcode("courseinfo")`] <span class="newthought"> This site contains</span> a description of the course material and the course structure for BIOL 480 (undergraduate), 510 (genomics diploma), 630 (graduate students) for the Fall 2020 at Concordia University.
+^[{-} `r blogdown::shortcode("courseinfo")`] <span class="newthought"> This site contains</span> the course material and  course structure for Bioinformatics and Data Science in Biology.
 
 
  

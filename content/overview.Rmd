@@ -59,7 +59,7 @@ However note that all of these are general data science book and not specific to
 <span class="newthought">[Software]</span> The course will heavily utilize several software packages
 
 
-- <i class="fa fa-envelope-square" aria-hidden="true"></i> <a href="https://gmail.google.com">Google Gmail (free)</a> For security reasons and for simplicity, we ask each student to obtain a gmail account for the course. You will need to send it to the [biol480.concordia@gmail.com](mailto:biol480@gmail.com) at the beginning of the course.
+- <i class="fa fa-envelope-square" aria-hidden="true"></i> <a href="https://gmail.google.com">Google Gmail (free)</a> For security reasons and for simplicity, we ask each student to obtain a gmail account for the course. You will need to send it to the [biol480@gmail.com](mailto:biol480@gmail.com) at the beginning of the course.
 
 - <i class="fa fa-google"></i> <a href="https://drive.google.com">Google Drive (free)</a> We use the cloud-based text editor, drawing tool, spreadsheets, and storage offered by Drive to create and share files.
 
@@ -68,11 +68,11 @@ However note that all of these are general data science book and not specific to
 
 [^julia]
 
-- <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com"> Slack (free)</a>When you send me your gmail account, you will be added.
+- <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480.slack.com"> Slack (free)</a>When you send me your gmail account, you will be added.
 
-- <i class="fa fa-video-camera" aria-hidden="true"></i><a href="https://concordia-ca.zoom.us/s/8992285958#success"> Zoom (free)</a> All lecture slots and TA sessions are on our Zoom channel available at the link above. When you have given us your gmail account, we will add you to Slack and you will see the password for the Zoom channel.
+- <i class="fa fa-video-camera" aria-hidden="true"></i><a href="https://"> Zoom (free)</a> All lecture slots and TA sessions are on our Zoom channel available at the link above. When you have given us your gmail account, we will add you to Slack and you will see the password for the Zoom channel.
 
-- <i class="fa fa-rebel" aria-hidden="true"></i><a href="https://rstudio.com/products/cloud/"> RStudio Cloud (~$28.00)</a> This is a beautiful [Interactive Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) for the language ${\tt R}$. It is based in the cloud, so you will not have to install any software. All of the lecture  notes, code and datasets will be available to you at the website. We are hopeful currently that Concordia will cover this cost for each of you. 
+- <i class="fa fa-rebel" aria-hidden="true"></i><a href="https://rstudio.com/products/cloud/"> RStudio Cloud (~$28.00)</a> This is a beautiful [Interactive Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) for the language ${\tt R}$. It is based in the cloud, so you will not have to install any software. All of the lecture  notes, code and datasets will be available to you at the website. 
 
 - There are other ad hoc tools that we will use throughout the course, but they are all free.
 
@@ -102,7 +102,7 @@ If you are a relatively advanced  programmmer, we recommend the following [manua
 -------
 
 <span class="newthought">[Hardware]</span> All of the tools listed above are in the cloud. This means that you need minimal computing equipment. It will likely be very hard to program with only a tablet however.
-If you do not have a laptop or machine at home, you should contact [IITS](https://www.concordia.ca/coronavirus/students.html) (they loan equipment for free) or the instructor (I have some Google Chrome notebooks). Note that you can purchase a Google Chrome notebook for under $300 on [<i class="fa fa-amazon" aria-hidden="true"></i>
+If you do not have a laptop or machine at home, you should contact [ITS](https://) (they loan equipment for free) or the instructor (I have some Google Chrome notebooks). Note that you can purchase a Google Chrome notebook for under $300 on [<i class="fa fa-amazon" aria-hidden="true"></i>
 Amazon](https://www.amazon.ca/s?k=google+chrome+book&ref=nb_sb_noss_1).
 
 # Evaluation
@@ -157,7 +157,7 @@ Although covid-19 is still a significant problem, the intention currently is to 
 1. The video for each lecture is available on <i class="fa fa-youtube" aria-hidden="true"></i> <a href= "https://www.youtube.com/channel/UCx3QJc2DZSo-mny8UERmywg?view_as=subscriber"> our YouTube channel</a>.
 You should watch the  video before the actual lecture. 
 
-2. We have a <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480-18-concordia.slack.com"> Slack</a> workspace and you can ask questions in the #biol480 channel. You can get access to Slack by sending  your gmail account here: [biol480.concordia](mailto:biol480.concordia@gmail.com). Slack is great for asking questions. 
+2. We have a <i class="fa fa-slack" aria-hidden="true"></i> <a href="https://biol480slack.com"> Slack</a> workspace and you can ask questions in the #biol480 channel. You can get access to Slack by sending  your gmail account here: [biol480](mailto:biol480@gmail.com). Slack is great for asking questions. 
 
 3.  The lectures  will be used to discuss the material  you have read previously (see 1 above). Also, sometimes (8 in total) there will be small quizzess, or I will give a small puzzle, or ask for your opinion on a subject relevant to the material covered to date. These will last ~10 minutes. Otherwise, I will answer questions and provide more depth on specific aspects of the slides. The lectures will be in class.
 
@@ -190,19 +190,16 @@ In the event of extraordinary circumstances and pursuant to the Academic Regulat
 # Behaviour
 All individuals participating in courses are expected to be professional and constructive throughout the course, including in their communications.
 
-Concordia students are subject to the Code of Rights and Responsibilities which applies both when students are physically and virtually engaged in any University activity, including classes, seminars, meetings, etc. Students engaged in University activities must respect this Code when engaging with any members of the Concordia community, including faculty, staff, and students, whether such interactions are verbal or in writing, face to face or online/virtual. Failing to comply with the Code may result in charges and sanctions, as outlined in the Code.
+Students are subject to the Code of Rights and Responsibilities which applies both when students are physically and virtually engaged in any University activity, including classes, seminars, meetings, etc. Students engaged in University activities must respect this Code when engaging with any members of the  community, including faculty, staff, and students, whether such interactions are verbal or in writing, face to face or online/virtual. Failing to comply with the Code may result in charges and sanctions, as outlined in the Code.
 
 # Course policies
 
 [^hairball] 
 
-- Be nice and honest, defined at least partially here [Academic Code of Conduct](http://www.concordia.ca/academics/undergraduate/calendar/current/17-10.html).
-This New York Times article seems appropriate in the covid-19 era: [If everyone else is doing it ...](https://www.nytimes.com/2020/04/07/magazine/if-my-classmates-are-going-to-cheat-on-an-online-exam-why-cant-i.html). You might check out the 
+- Be nice and honest, defined at least partially here [Academic Code of Conduct](http://).
+This New York Times article seems appropriate in the covid-19 era: You might check out the 
 [ethos statement](https://www.mikehallett.science/ethos/) my lab designed;
 it clarifies everyone's roles and responsibilities.
-
-- Especially in these covid-19 times, things can be stressful. Concordia does have units that can help, ranging from financial assistance to mental health. 
-A good place to start is [Concordia's covid-19 resource page](https://www.concordia.ca/coronavirus.html).
 
 
 - In some exercises, we state explicitly that group work is encouraged. In all cases, you ***must*** cite  whomever helped you and state precisely what they helped you with. If this is not done, this constitutes academic dishonesty. Generally however discussion and interaction is encouraged in the course.
@@ -211,7 +208,7 @@ A good place to start is [Concordia's covid-19 resource page](https://www.concor
 
 
 
-# Non-Concordia students and auditors
+# Students and auditors from outside Western
 
 I am totally happy to allow you to audit or follow the course either in real time,
 or via the residual online resources.
@@ -219,7 +216,7 @@ If you want to participate in virtual lectures, labs, office hours, you would ne
 Please drop me an [email](mailto:hallett.mike.t@gmail.com).
 
 # Action items 
-Once you have read this entire overview, please email us at the course gmail  [biol480.concordia](mailto:biol480.concordia@gmail.com)  with your gmail account, last name, first name and student ID.
+Once you have read this entire overview, please email us at the course gmail  [biol480](mailto:biol480@gmail.com)  with your gmail account, last name, first name and student ID.
 Make sure it is easy for us to associate the name of your gmail account with your real name (if the username of your gmail account is e.g. "kingofeverything", it might be hard for us to guess who this is, unfortunately.
 For security reasons and for organizational simplicity for  TA, 
 we would ask that you send a Google mail [gmail](https://mail.google.ca)  address.

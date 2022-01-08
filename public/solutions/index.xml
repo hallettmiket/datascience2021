@@ -5,11 +5,7 @@
     <link>/solutions/</link>
     <description>Recent content in Solutions on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="/solutions/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="/solutions/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>01-solution</title>
       <link>/solutions/01-solutions/</link>

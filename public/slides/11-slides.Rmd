@@ -418,10 +418,10 @@ ggplot(data=Sc, aes(x=chromosome, y=value, fill=nucleotide)) +
 
 - What are the advantages of special datastructures  for genomes and molecular sequence data?
 
-## BIOL 480
+## BIOCHEM xxxx
 
-&copy; M Hallett, 2020 Concordia University
+&copy; M Hallett, 2022 Western University
 
-![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+![Computational Biology Western](images/apple-touch-icon-114x114.png)
 
 

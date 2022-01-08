@@ -72,11 +72,11 @@ still has not caught a microbe
 - Will Survivorman succeed and capturing microbes in his tibble on this remote south pacific island?
 
 
-## BIOL 480 on location
+## BIOCHEM xxxx on location
 
 
-&copy; M Hallett, 2020 Concordia University
+&copy; M Hallett, 2022 Western University
 
-![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+![Computational Biology Western](images/apple-touch-icon-114x114.png)
 
 

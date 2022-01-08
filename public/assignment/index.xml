@@ -5,11 +5,7 @@
     <link>/assignment/</link>
     <description>Recent content in Assignments on Bioinformatics</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="/assignment/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="/assignment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Assignment 1</title>
       <link>/assignment/01-assignment/</link>
@@ -53,7 +49,7 @@ You might consider (but it is not mandatory) using R Markdown to write your answ
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/assignment/01-midterm/</guid>
-      <description>The midterm must be submitted by 2:30pm on Tuesday, October 26th, 2021 to \({\tt biol480.concordia@gmail.com}\)
+      <description>The midterm must be submitted by 2:30pm on Tuesday, October 26th, 2021 to \({\tt bioinfo.western@gmail.com}\)
 All answers in one email.
 Subject header of email is Midterm, Lastname, Firstname, student ID.
 You can use which ever media you prefer to answer your questions.

@@ -241,10 +241,10 @@ write_rds( Scerevisiae, file.path( data_path, "Scerevisiae_vers_1.0.rds" ))
 - What are the advantages of object oriented programming?
 
 
-## BIOL 480
+## BIOCHEM xxxx
 
-&copy; M Hallett, 2020 Concordia University
+&copy; M Hallett, 2022 Western University
 
-![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+![Computational Biology Western](images/apple-touch-icon-114x114.png)
 
 

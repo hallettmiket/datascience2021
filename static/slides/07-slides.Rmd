@@ -49,8 +49,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## BIOL480 
 
-&copy; M Hallett, 2020 Concordia University
+&copy; M Hallett, 2022 Western University
 
-![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+![Computational Biology Western](images/apple-touch-icon-114x114.png)
 
 

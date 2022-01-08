@@ -225,10 +225,10 @@ deadling with large genomes, especially human.
 
 - What are some of the different types of entities that are cataloged and mapped to the genome of baker's yeast?
 
-## BIOL 480
+## BIOCHEM xxx
 
-&copy; M Hallett, 2020 Concordia University
+&copy; M Hallett, 2022 Western University
 
-![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+![Computational Biology Western](images/apple-touch-icon-114x114.png)
 
 

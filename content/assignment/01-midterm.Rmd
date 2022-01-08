@@ -31,7 +31,7 @@ library(reshape2)
 load("~/data/GDC/TCGA_BRCA/small_brca.Rdata")
 ```
 
-The midterm must be submitted by __2:30pm__ on Tuesday, October 26th, 2021 to ${\tt biol480.concordia@gmail.com}$
+The midterm must be submitted by __2:30pm__ on Tuesday, October 26th, 2021 to ${\tt bioinfo.western@gmail.com}$
 
 All answers in one email. 
 

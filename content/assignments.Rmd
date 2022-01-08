@@ -46,11 +46,11 @@ After you have put all your files into this directory for the assignment
 (precise formats etc. will be specified in each assignment),
 share this folder with 
 
-- ${\bf {\tt biol480.concordia@gmail.com}}$. 
+- ${\bf {\tt bioinfo.western@gmail.com}}$. 
 
 When you share the folder, there is a box that allows you to add a comment. Make sure to add this comment:
 
-- ***BIOL480, Assignment #, Concordia ID, Lastname, Firstname***
+- ***BIOL480, Assignment #, Student ID, Lastname, Firstname***
 
 # Late assignments
 

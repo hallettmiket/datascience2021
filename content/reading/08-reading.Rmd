@@ -18,7 +18,7 @@ and most of the material is already familiar to you)
 
 - [Sunagawa et al. (2015) Structure and function of the global ocean microbiome](https://science.sciencemag.org/content/348/6237/1261359.long)
 
-You will need to be logged into the Concordia VPN to access this paper.
+You will need to be logged into Western's VPN to access this paper.
 
 - [Metagenonomics (wiki)](https://en.wikipedia.org/wiki/Metagenomics)
 

@@ -21,7 +21,7 @@ and most of the material is already familiar to you)
 
 - [Sunagawa et al. (2015) Structure and function of the global ocean microbiome](https://science.sciencemag.org/content/348/6237/1261359.long)
 
-You will need to be logged into the Concordia VPN to access this paper.
+You will need to be logged into the VPN to access this paper.
 
 - [Cook-Deegan and DeGuire (2017) Moving beyond Bermuda](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5453323/#COOK-DEEGANGR216911C4)
 

@@ -44,7 +44,7 @@ knitr::opts_chunk$set(echo = FALSE)
 [Data science for biologists](https://jolly-curran-f9c8ba.netlify.app/) Course Website
 
 
-${\tt michael.hallett@concordia.ca}$ e-mail<br>
+${\tt hallett.mike.t@gmail.com}$ e-mail<br>
 ${\tt @hallettmichael}$  Twitter<br>
 
 <figure class="image">
@@ -128,7 +128,7 @@ and the development of so-called **core** facilities.
 
 ## 2010's
 
-Moved to  Concordia in 2018. We are interested in how cells are wired (the molecular network), how this wiring can change  in response to stimuli, and how the changes in the network provide cells with advantages.
+Moved to  Western in 2022. We are interested in how cells are wired (the molecular network), how this wiring can change  in response to stimuli, and how the changes in the network provide cells with advantages.
 
 <figure class="image">
 <p float="left">
@@ -220,10 +220,10 @@ important.
 
 ---
 
-BIOL480 
+BIOCHEM xxxx
 
-&copy; M Hallett, 2020 Concordia University
+&copy; M Hallett, 2022 Western University
 
-![Computational Biology Concordia](images/apple-touch-icon-114x114.png)
+![Computational Biology Western](images/apple-touch-icon-114x114.png)
 
 

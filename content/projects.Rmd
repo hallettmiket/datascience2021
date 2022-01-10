@@ -8,7 +8,7 @@ output:
     toc: true
 ---
 [^circos]
-<span class="newthought">[Graduate (610) & Genomics Diploma (530) Students]</span> 
+<span class="newthought">[Graduate  Students]</span> 
 There is a small project that is worth $10\%$ of the overall grade. It 
 should be the equalivalent work as an assignment.
 
